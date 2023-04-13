@@ -1,0 +1,6 @@
+name: OneNightCity
+version: '${project.version}'
+main: me.chaounne.onenightcity.OneNightCity
+api-version: 1.19
+authors: [ Chaounne ]
+description: Une citée mais version beaucoup plus rapide
