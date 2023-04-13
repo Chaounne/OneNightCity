@@ -106,6 +106,7 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED+"You are not in a team!");
                         return false;
                     }
+
                     //get player to remove
                     Player player1 = player.getServer().getPlayer(args[2]);
                     if(player1 == null){

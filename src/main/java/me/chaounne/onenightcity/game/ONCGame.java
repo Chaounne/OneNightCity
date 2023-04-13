@@ -65,7 +65,6 @@ public class ONCGame {
                 }
             }
         }
-
     }
 
     public void startGame(){

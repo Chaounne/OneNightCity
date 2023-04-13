@@ -1,5 +1,7 @@
 # OneNightCity
- Un plugin citée minecraft mais version super rapide (une soirée)
+ Un plugin cité minecraft mais version super rapide (une soirée)
+
+Une cité : événement minecraft orienté sur le farm d'objet et l'échange avec des villageois au spawn.
 
 # Roadmap
 
