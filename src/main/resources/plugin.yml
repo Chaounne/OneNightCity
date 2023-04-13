@@ -4,3 +4,37 @@ main: me.chaounne.onenightcity.OneNightCity
 api-version: 1.19
 authors: [ Chaounne ]
 description: Une citée mais version beaucoup plus rapide
+website: https://twitter.com/SsbShawn
+commands:
+  city:
+    description: city
+    usage: /city
+    aliases: city
+    start:
+      description: start
+      usage: /city start
+      aliases: start
+    team:
+      description: team
+      usage: /city team
+      aliases: team
+        add:
+            description: add
+            usage: /city team add <player>
+            aliases: add
+        remove:
+            description: remove
+            usage: /city team remove <player>
+            aliases: remove
+        create:
+            description: create
+            usage: /city team create <name>
+            aliases: create
+        disband:
+            description: disband
+            usage: /city team disband
+            aliases: disband
+        list:
+            description: list
+            usage: /city team list
+            aliases: list

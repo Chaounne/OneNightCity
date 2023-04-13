@@ -1,18 +1,29 @@
 package me.chaounne.onenightcity;
 
+import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public final class OneNightCity extends JavaPlugin {
+
+    private List<ChatColor> availableColors = new ArrayList<>(Arrays.asList(ChatColor.values()));
+
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         System.out.println("One Night City is starting...");
 
+        Commands cmd = new Commands();
+
+        getCommand("city").setExecutor(cmd);
+
         getPlugin(OneNightCity.class).getServer().getPluginManager().registerEvents(new Handler(), this);
-
-
     }
 
     @Override
@@ -22,5 +33,15 @@ public final class OneNightCity extends JavaPlugin {
 
     public static OneNightCity getInstance() {
         return getPlugin(OneNightCity.class);
+    }
+
+    public synchronized ChatColor getRandomColor() {
+        if (availableColors.isEmpty()) {
+            throw new IllegalStateException("No more available colors.");
+        }
+
+        int index = (int) (Math.random() * availableColors.size());
+        ChatColor color = availableColors.remove(index);
+        return color;
     }
 }
