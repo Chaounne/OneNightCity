@@ -4,6 +4,7 @@ import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.Team;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -33,10 +34,34 @@ public class Commands implements CommandExecutor {
 
         Player player = (Player) sender;
 
+
+        // commande principale
         if(command.getName().equals("city")){
             String subCommand = args[0];
+
+            // sous commandes
             if(subCommand.equals("start")){
-                //TODO: start the game
+                if(game.getTeams().size()<=1){
+                    player.sendMessage(ChatColor.RED+"You need at least 2 teams to start the game!");
+                    return false;
+                }
+                if(GamePlayer.getInstance(player).getTeam() == null){
+                    player.sendMessage(ChatColor.RED+"You are not in a team!");
+                    return false;
+                }
+                if(game.isStarted()){
+                    player.sendMessage(ChatColor.RED+"The game is already started!");
+                    return false;
+                }
+                game.startGame();
+                return true;
+            } else if(subCommand.equals("stop")){
+                if(!game.isStarted()){
+                    player.sendMessage(ChatColor.RED+"The game is not started!");
+                    return false;
+                }
+                game.endGame();
+                return true;
             }
             else if(subCommand.equals("team")){
                 String teamCommand = args[1];

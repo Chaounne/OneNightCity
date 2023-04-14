@@ -14,6 +14,8 @@ public class ONCGame {
 
     private static ONCGame instance;
 
+    private boolean started = false;
+
 
     private ONCGame(){
 
@@ -67,12 +69,20 @@ public class ONCGame {
         }
     }
 
+    public boolean isStarted(){
+        return started;
+    }
+
     public void startGame(){
+
         //TODO
+        started = true;
     }
 
     public void endGame(){
+
         //TODO
+        started = false;
     }
 
 

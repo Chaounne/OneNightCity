@@ -14,6 +14,8 @@ public class GamePlayer {
 
     private Team team;
 
+    private int score = 0;
+
     private GamePlayer(Player player) {
         this.player = player;
     }
@@ -40,6 +42,22 @@ public class GamePlayer {
 
     public void removeTeam() {
         this.team = null;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void addScore(int score) {
+        this.score += score;
+    }
+
+    public void removeScore(int score) {
+        if(this.score - score >= 0){
+            this.score -= score;
+        } else {
+            this.score = 0;
+        }
     }
 
 }
