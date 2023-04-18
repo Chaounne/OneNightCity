@@ -28,4 +28,4 @@ Faire des events in-game aléatoire, du style :
 
 - Faire une annonce quand il reste 1 heure de jeu pour tous les joueurs
 
-- 
+- Des primes sur des joueurs, par les joueurs
