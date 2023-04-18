@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Commands implements CommandExecutor {
 
-    private ONCGame game = ONCGame.getInstance();
+    private ONCGame game;
 
     private List<ChatColor> availableColors = new ArrayList<>(Arrays.asList(ChatColor.values()));
 
@@ -38,6 +38,7 @@ public class Commands implements CommandExecutor {
         // commande principale
         if(command.getName().equals("city")){
             String subCommand = args[0];
+            game = ONCGame.getInstance();
 
             // sous commandes
             if(subCommand.equals("start")){
