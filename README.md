@@ -18,6 +18,8 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 
 ## Idée pour le mini jeu :
 
+- Achat de spawner à items au spawn ? (ex: spawner à diamant, fer, etc...
+
 Faire des events in-game aléatoire, du style :
 
 - Un coffre qui spawn à une certaine coordonnées( les joueurs ont 10 minutes pour récupérer le contenu (surement de la poudre ou des ressources))
