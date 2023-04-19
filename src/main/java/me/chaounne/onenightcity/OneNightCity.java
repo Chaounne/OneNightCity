@@ -37,14 +37,5 @@ public final class OneNightCity extends JavaPlugin {
     public static OneNightCity getInstance() {
         return getPlugin(OneNightCity.class);
     }
-
-    public synchronized ChatColor getRandomColor() {
-        if (availableColors.isEmpty()) {
-            throw new IllegalStateException("No more available colors.");
-        }
-
-        int index = (int) (Math.random() * availableColors.size());
-        ChatColor color = availableColors.remove(index);
-        return color;
-    }
+    
 }

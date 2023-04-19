@@ -11,25 +11,70 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Objects;
 
 public class Handler implements Listener{
 
     @EventHandler
-    public void onPlayerItemPickupEvent(EntityPickupItemEvent event) {
-        System.out.println("item pickup");
-        if(event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            GamePlayer gamePlayer = GamePlayer.getInstance(player);
-            if(player.getGameMode() == GameMode.SURVIVAL) {
-                if(event.getItem().getItemStack().equals(PoudreItem.getItem())){
-                    // ajoute autant de score à la team du joueur que de poudre ramassée
-                    for (int i = 0; i < event.getItem().getItemStack().getAmount(); i++) {
-                        gamePlayer.getTeam().addScore(1);
-                        gamePlayer.addScore(1);
+    public void onInventoryOpen(InventoryOpenEvent event){
+        if(event.getPlayer() instanceof Player){
+            Player player = (Player) event.getPlayer();
+            if(player.getGameMode() == GameMode.SURVIVAL){
+                if(player.getInventory().isEmpty()) return;
+                GamePlayer gamePlayer = GamePlayer.getInstance(player);
+                if(gamePlayer.getTeam() == null) return;
+                // regarde si le joueur à de la poudre
+                for(ItemStack item : player.getInventory().getContents()){
+                    if(item != null&&Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())){
+                        // ajoute autant de score à la team du joueur que de poudre ramassée
+                        for (int i = 0; i < item.getAmount(); i++) {
+                            gamePlayer.getTeam().addScore(1);
+                            gamePlayer.addScore(1);
+                            System.out.println(gamePlayer.getTeam().getScore());
+                        }
+                        player.getInventory().removeItem(item);
                     }
-                    // enlève toutes les poudres de l'inventaire du joueur
-                    player.getInventory().remove(PoudreItem.getItem());
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerItemDropped(PlayerDropItemEvent event){
+        Player player = event.getPlayer();
+        if(player.getGameMode() == GameMode.SURVIVAL){
+            Item item = event.getItemDrop();
+            if(Objects.equals(item.getItemStack().getItemMeta(), PoudreItem.getItem().getItemMeta())){
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInventoryClose(InventoryCloseEvent event){
+        if(event.getPlayer() instanceof Player){
+            Player player = (Player) event.getPlayer();
+            if(player.getGameMode() == GameMode.SURVIVAL){
+                if(player.getInventory().isEmpty()) return;
+                GamePlayer gamePlayer = GamePlayer.getInstance(player);
+                if(gamePlayer.getTeam() == null) return;
+                // regarde si le joueur à de la poudre
+                for(ItemStack item : player.getInventory().getContents()){
+                    if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())){
+                        // ajoute autant de score à la team du joueur que de poudre ramassée
+                        for (int i = 0; i < item.getAmount(); i++) {
+                            gamePlayer.getTeam().addScore(1);
+                            gamePlayer.addScore(1);
+                            System.out.println(gamePlayer.getTeam().getScore());
+                        }
+                        player.getInventory().removeItem(item);
+                    }
                 }
             }
         }
