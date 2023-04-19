@@ -12,7 +12,7 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 - [ ] Villageois au spawn dans une place centrale (type marché autour d'un grand arbre)
 - [ ] Prix random à chaque lancement de partie
 - [ ] Equipe custom (2, 3, 4)
-- [ ] Minerais déjà cuits
+- [x] Minerais déjà cuits
 - [ ] Monnaie = Poudre (redstone)
 - [ ] Ajout event pour que la poudre ne puisse pas se poser
 
