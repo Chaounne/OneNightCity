@@ -4,6 +4,7 @@ import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.PoudreItem;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,31 +41,28 @@ public class Handler implements Listener{
     public void onBlockBreakEvent(BlockBreakEvent event){
         if(event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             if(event.getBlock().getType().equals(Material.GOLD_ORE)){
-                // replace raw gold by gold ingot
-                for (ItemStack item : event.getBlock().getDrops()) {
-                    if(item.getType().equals(Material.RAW_GOLD)){
-                        item.setType(Material.GOLD_INGOT);
-                        // drop xp
-                        event.setExpToDrop(1);
-                    }
+                int fortuneLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+                int drops = fortuneLevel > 0 ? (int) (Math.random() * (2 + fortuneLevel)) + 1 : 1; // calcul du nombre de lingots d'or générés
+                event.getBlock().setType(Material.AIR);
+                for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots d'or spécifié
+                    event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT));
+                    event.setExpToDrop(1);
                 }
-            } else if (event.getBlock().getType().equals(Material.IRON_ORE)){
-                // replace raw iron by iron ingot
-                for (ItemStack item : event.getBlock().getDrops()) {
-                    if(item.getType().equals(Material.RAW_IRON)){
-                        item.setType(Material.IRON_INGOT);
-                        // drop xp
-                        event.setExpToDrop(1);
-                    }
+            } else if(event.getBlock().getType().equals(Material.IRON_ORE)){
+                int fortuneLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+                int drops = fortuneLevel > 0 ? (int) (Math.random() * (2 + fortuneLevel)) + 1 : 1; // calcul du nombre de lingots de fer générés
+                event.getBlock().setType(Material.AIR);
+                for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots de fer spécifié
+                    event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT));
+                    event.setExpToDrop(1);
                 }
-            } else if (event.getBlock().getType().equals(Material.COPPER_ORE)){
-                // replace raw copper by copper ingot
-                for (ItemStack item : event.getBlock().getDrops()) {
-                    if(item.getType().equals(Material.RAW_COPPER)){
-                        item.setType(Material.COPPER_INGOT);
-                        // drop xp
-                        event.setExpToDrop(1);
-                    }
+            } else if(event.getBlock().getType().equals(Material.COPPER_ORE)){
+                int fortuneLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+                int drops = fortuneLevel > 0 ? (int) (Math.random() * (2 + fortuneLevel)) + 1 : 1; // calcul du nombre de lingots de cuivre générés
+                event.getBlock().setType(Material.AIR);
+                for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots de cuivre spécifié
+                    event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COPPER_INGOT));
+                    event.setExpToDrop(1);
                 }
             }
         }
