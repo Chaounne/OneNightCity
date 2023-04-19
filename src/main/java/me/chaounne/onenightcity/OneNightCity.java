@@ -4,6 +4,9 @@ import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -19,6 +22,11 @@ public final class OneNightCity extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         System.out.println("One Night City is starting...");
+        for(Player player : Bukkit.getOnlinePlayers()) {
+            player.teleport(new Location(player.getWorld(), 121, 154, -40));
+            player.getPlayer().setGameMode(GameMode.ADVENTURE);
+        }
+
 
         Commands cmd = new Commands();
 

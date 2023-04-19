@@ -7,6 +7,8 @@ import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.villager.HenryEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -61,6 +63,12 @@ public class Commands implements CommandExecutor {
                 }
                 game.startGame();
                 Bukkit.broadcastMessage(ChatColor.GREEN+"The game has started!");
+                for( Player players : Bukkit.getOnlinePlayers()) {
+                    players.teleport(new Location(player.getWorld(), 0, 70, 0));
+                    players.setGameMode(GameMode.SURVIVAL);
+
+                }
+
                 return true;
             } else if(subCommand.equals("stop")){
                 if (!(sender.isOp())) {
