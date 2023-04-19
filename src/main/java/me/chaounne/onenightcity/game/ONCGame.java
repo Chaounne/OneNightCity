@@ -2,6 +2,7 @@ package me.chaounne.onenightcity.game;
 import me.chaounne.onenightcity.game.GenerateChest;
 
 import me.chaounne.onenightcity.OneNightCity;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -78,27 +79,24 @@ public class ONCGame {
         return started;
     }
 
-    public void startGame(){
-
+    public void startGame() {
+        GenerateChest generateChest = new GenerateChest();
+        Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> generateChest.spawnCoffre());
         timer = new BukkitRunnable() {
             @Override
             public void run() {
-
                 time--;
-                if(time == 0){
+                if (time == 0) {
                     this.cancel();
                     endGame();
                 }
-                GenerateChest generateChest = new GenerateChest();
-                generateChest.spawnCoffre();
 
             }
-
         };
-        if(!started) started = true;
-
+        if (!started) started = true;
         timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
     }
+
 
     public void endGame(){
         if(timer != null) timer.cancel();

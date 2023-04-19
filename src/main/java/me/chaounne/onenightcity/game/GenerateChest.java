@@ -19,12 +19,12 @@ import java.util.Random;
 
 public class GenerateChest extends JavaPlugin implements Listener {
 
-    private Random random = new Random();
+    private static Random random = new Random();
 
-    private Location spawn = new Location(Bukkit.getWorld("world"), 0, 70, 0);
-    private int rayon = 10000;
+    private static Location spawn = new Location(Bukkit.getWorld("world"), 0, 70, 0);
+    private static int rayon = 10000;
 
-    private ItemStack[] ressources = new ItemStack[]{
+    private static ItemStack[] ressources = new ItemStack[]{
             new ItemStack(Material.DIAMOND, 16),
             new ItemStack(Material.GOLD_INGOT, 32),
             new ItemStack(Material.IRON_INGOT, 64),
@@ -32,18 +32,12 @@ public class GenerateChest extends JavaPlugin implements Listener {
     };
 
 
-    @Override
-    public void onEnable() {
 
 
-        Bukkit.getPluginManager().registerEvents(this, this);
-
-        // Lancement du spawn du coffre toutes les 5 minutes
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> spawnCoffre(), 0L, 60L);
-    }
-
-    public void spawnCoffre() {
-
+    public static void spawnCoffre() {
+for(Player players : Bukkit.getOnlinePlayers()){
+    players.sendMessage("eeeeeeeeeeeeeeeeeeeeeee");
+}
         // Calcul d'une position aléatoire
         double x = spawn.getX() + (random.nextDouble() * rayon * 2) - rayon;
         double z = spawn.getZ() + (random.nextDouble() * rayon * 2) - rayon;
