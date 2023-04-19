@@ -20,6 +20,7 @@ public class Handler implements Listener{
         if(event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
+            if(gamePlayer == null) return;
             if(player.getGameMode() == GameMode.SURVIVAL) {
                 if(event.getItem().getItemStack().equals(PoudreItem.getItem())){
                     // ajoute autant de score à la team du joueur que de poudre ramassée
@@ -41,6 +42,7 @@ public class Handler implements Listener{
     public void onBlockBreakEvent(BlockBreakEvent event){
         if(event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             if(event.getBlock().getType().equals(Material.GOLD_ORE)){
+                event.setCancelled(true);
                 int fortuneLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
                 int drops = fortuneLevel > 0 ? (int) (Math.random() * (2 + fortuneLevel)) + 1 : 1; // calcul du nombre de lingots d'or générés
                 event.getBlock().setType(Material.AIR);
@@ -49,6 +51,7 @@ public class Handler implements Listener{
                     event.setExpToDrop(1);
                 }
             } else if(event.getBlock().getType().equals(Material.IRON_ORE)){
+                event.setCancelled(true);
                 int fortuneLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
                 int drops = fortuneLevel > 0 ? (int) (Math.random() * (2 + fortuneLevel)) + 1 : 1; // calcul du nombre de lingots de fer générés
                 event.getBlock().setType(Material.AIR);
@@ -57,6 +60,7 @@ public class Handler implements Listener{
                     event.setExpToDrop(1);
                 }
             } else if(event.getBlock().getType().equals(Material.COPPER_ORE)){
+                event.setCancelled(true);
                 int fortuneLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
                 int drops = fortuneLevel > 0 ? (int) (Math.random() * (2 + fortuneLevel)) + 1 : 1; // calcul du nombre de lingots de cuivre générés
                 event.getBlock().setType(Material.AIR);
