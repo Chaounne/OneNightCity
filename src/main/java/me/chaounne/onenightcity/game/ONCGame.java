@@ -23,7 +23,7 @@ public class ONCGame {
 
     public static ONCGame getInstance(){
         if(instance==null){
-            new ONCGame();
+            instance = new ONCGame();
         }
         return instance;
     }

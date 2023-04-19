@@ -13,6 +13,7 @@ public class Team {
     private int score;
     private String name;
     private org.bukkit.scoreboard.Team scoreboardTeam;
+    private Player leader;
 
     private ChatColor color;
 
@@ -34,6 +35,14 @@ public class Team {
         this.color = color;
     }
 
+    public void setLeader(Player player){
+        leader = player;
+    }
+
+    public Player getLeader(){
+        return leader;
+    }
+
     public ChatColor getColor(){
         return color;
     }
@@ -44,6 +53,8 @@ public class Team {
     }
 
     public void removePlayer(Player player) {
+        if(leader == player)
+            leader = null;
         players.remove(player);
         scoreboardTeam.removeEntry(player.getName());
     }

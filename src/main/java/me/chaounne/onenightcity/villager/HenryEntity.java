@@ -30,8 +30,11 @@ public class HenryEntity {
         henry.setInvulnerable(true);
         henry.setSilent(true);
         henry.setCollidable(false);
-        henry.setVillagerExperience(0);
-        henry.setVillagerLevel(0);
+        henry.setVillagerExperience(5);
+        henry.setVillagerLevel(5);
+        henry.setAdult();
+        henry.setCanPickupItems(false);
+        henry.setRemoveWhenFarAway(false);
 
         /**int i = 69
          * int alea = random 100
@@ -53,9 +56,9 @@ public class HenryEntity {
         henry.setRecipes(trades);
 
         //ce qu'henry propose
-        MerchantRecipe recipe = new MerchantRecipe(null, 0);
+        //MerchantRecipe recipe = new MerchantRecipe(null, 0);
         //ce qu'il veut
-        recipe.addIngredient(null);
+        //recipe.addIngredient(null);
 
 
 

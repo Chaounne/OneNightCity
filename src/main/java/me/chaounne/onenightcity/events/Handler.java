@@ -17,10 +17,10 @@ public class Handler implements Listener{
 
     @EventHandler
     public void onPlayerItemPickupEvent(EntityPickupItemEvent event) {
+        System.out.println("item pickup");
         if(event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
-            if(gamePlayer == null) return;
             if(player.getGameMode() == GameMode.SURVIVAL) {
                 if(event.getItem().getItemStack().equals(PoudreItem.getItem())){
                     // ajoute autant de score à la team du joueur que de poudre ramassée

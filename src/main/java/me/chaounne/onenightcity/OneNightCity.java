@@ -2,6 +2,7 @@ package me.chaounne.onenightcity;
 
 import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,6 +30,8 @@ public final class OneNightCity extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        //A NE PAS ACTIVER QUAND ON LANCERA L'EVENT
+        Bukkit.getScoreboardManager().getMainScoreboard().getTeams().forEach(team -> team.unregister());
     }
 
     public static OneNightCity getInstance() {
