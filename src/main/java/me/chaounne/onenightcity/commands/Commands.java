@@ -60,6 +60,7 @@ public class Commands implements CommandExecutor {
                     return false;
                 }
                 game.startGame();
+                Bukkit.broadcastMessage(ChatColor.GREEN+"The game has started!");
                 return true;
             } else if(subCommand.equals("stop")){
                 if (!(sender.isOp())) {
@@ -71,6 +72,7 @@ public class Commands implements CommandExecutor {
                     return false;
                 }
                 game.endGame();
+                Bukkit.broadcastMessage(ChatColor.GREEN+"The game has ended!");
                 return true;
             }
             else if(subCommand.equals("team")){

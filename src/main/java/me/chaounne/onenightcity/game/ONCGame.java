@@ -1,6 +1,8 @@
 package me.chaounne.onenightcity.game;
 
+import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +18,8 @@ public class ONCGame {
 
     private boolean started = false;
 
+    private BukkitRunnable timer;
+    private int time = 14400;
 
     private ONCGame(){
 
@@ -74,15 +78,24 @@ public class ONCGame {
     }
 
     public void startGame(){
+        timer = new BukkitRunnable() {
+            @Override
+            public void run() {
+                time--;
+                if(time == 0){
+                    this.cancel();
+                    endGame();
+                }
+            }
+        };
+        if(!started) started = true;
 
-        //TODO
-        started = true;
+        timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
     }
 
     public void endGame(){
-
-        //TODO
-        started = false;
+        if(timer != null) timer.cancel();
+        if(started) started = false;
     }
 
 
