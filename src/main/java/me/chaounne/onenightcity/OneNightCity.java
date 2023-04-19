@@ -37,5 +37,5 @@ public final class OneNightCity extends JavaPlugin {
     public static OneNightCity getInstance() {
         return getPlugin(OneNightCity.class);
     }
-    
+
 }

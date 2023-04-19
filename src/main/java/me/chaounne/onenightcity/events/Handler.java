@@ -1,6 +1,7 @@
 package me.chaounne.onenightcity.events;
 
 import me.chaounne.onenightcity.game.GamePlayer;
+import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -9,17 +10,19 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
 public class Handler implements Listener{
+
+    private ONCGame game = ONCGame.getInstance();
 
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event){
@@ -164,5 +167,15 @@ public class Handler implements Listener{
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onFoodLevelChange(FoodLevelChangeEvent event){
+        if(!game.isStarted()) event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event){
+        if(!game.isStarted()) event.setCancelled(true);
     }
 }
