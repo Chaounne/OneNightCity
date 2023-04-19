@@ -34,6 +34,7 @@ public class Handler implements Listener{
     }
 
     // cut clean
+    // Ici qu'on gere si un joueur essaie de casser un block dans le spawn ?
     @EventHandler
     public void onBlockBreakEvent(BlockBreakEvent event){
         if(event.getPlayer().getGameMode() == GameMode.SURVIVAL) {

@@ -33,8 +33,15 @@ public class HenryEntity {
         henry.setVillagerExperience(0);
         henry.setVillagerLevel(0);
 
-
-        List<MerchantRecipe> trades = new ArrayList<>();
+        /**int i = 69
+         * int alea = random 100
+         * if alea = i
+         * message everyone "Prix doublé pendant 5 minutes"
+         * on double le prix des items donc au lieu de 2 melon pour 2 poudres => 2 melon pour 4 poudres
+         * else
+         * wait(1minutes)
+         */
+         List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
         int amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 0));
