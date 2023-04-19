@@ -4,6 +4,7 @@ import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
@@ -13,6 +14,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -47,6 +49,12 @@ public class Handler implements Listener{
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        Player player = event.getEntity();
+        player.teleport(new Location(player.getWorld(), 0, 70, 0));
     }
 
     @EventHandler

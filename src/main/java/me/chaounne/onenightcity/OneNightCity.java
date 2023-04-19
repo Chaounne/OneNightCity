@@ -2,6 +2,7 @@ package me.chaounne.onenightcity;
 
 import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;
+import me.chaounne.onenightcity.game.GenerateChest;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -26,7 +27,6 @@ public final class OneNightCity extends JavaPlugin {
             player.teleport(new Location(player.getWorld(), 121, 154, -40));
             player.getPlayer().setGameMode(GameMode.ADVENTURE);
         }
-
 
         Commands cmd = new Commands();
 

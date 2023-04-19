@@ -2,6 +2,7 @@ package me.chaounne.onenightcity.commands;
 
 import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
+import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.villager.HenryEntity;
@@ -33,7 +34,12 @@ public class Commands implements CommandExecutor {
 
 
         Player player = (Player) sender;
-
+        if(command.getName().equals("test")) {
+            GenerateChest generateChest = new GenerateChest();
+            generateChest.spawnCoffre();
+            player.sendMessage(("re"));
+            return true;
+        }
 
         // commande principale
         if(command.getName().equals("city")){

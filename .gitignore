@@ -76,6 +76,7 @@ Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
+
 # Dump file
 *.stackdump
 
@@ -111,3 +112,5 @@ buildNumber.properties
 
 # Common working directory
 run/
+pom.xml
+pom.xml

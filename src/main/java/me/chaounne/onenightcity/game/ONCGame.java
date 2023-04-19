@@ -1,4 +1,5 @@
 package me.chaounne.onenightcity.game;
+import me.chaounne.onenightcity.game.GenerateChest;
 
 import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.entity.Player;
@@ -78,15 +79,21 @@ public class ONCGame {
     }
 
     public void startGame(){
+
         timer = new BukkitRunnable() {
             @Override
             public void run() {
+
                 time--;
                 if(time == 0){
                     this.cancel();
                     endGame();
                 }
+                GenerateChest generateChest = new GenerateChest();
+                generateChest.spawnCoffre();
+
             }
+
         };
         if(!started) started = true;
 
