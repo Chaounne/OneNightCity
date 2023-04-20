@@ -1,6 +1,5 @@
 package me.chaounne.onenightcity.commands;
 
-import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
