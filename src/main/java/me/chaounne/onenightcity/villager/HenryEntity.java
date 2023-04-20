@@ -26,7 +26,7 @@ public class HenryEntity {
         henry.setCustomNameVisible(true);
         henry.setProfession(Villager.Profession.FARMER);
         henry.setAI(false);
-        henry.setInvulnerable(true);
+        //henry.setInvulnerable(true);
         henry.setSilent(true);
         henry.setCollidable(false);
         henry.setVillagerExperience(5);

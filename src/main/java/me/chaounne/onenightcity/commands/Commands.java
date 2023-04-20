@@ -33,17 +33,11 @@ public class Commands implements CommandExecutor {
 
 
         Player player = (Player) sender;
-        if(command.getName().equals("test")) {
-            GenerateChest generateChest = new GenerateChest();
-            generateChest.spawnCoffre();
-            player.sendMessage(("re"));
-            return true;
-        }
 
         // commande principale
         if(command.getName().equals("city")){
             if(args.length<=0){
-                player.sendMessage(ChatColor.RED+"usage: /city <start|stop|team|entity>");
+                player.sendMessage(ChatColor.RED+"usage: /city <start|poudre|stop|team|entity>");
                 return false;
             }
             game = ONCGame.getInstance();
@@ -264,8 +258,84 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
             }
+            else if(subCommand.equals("poudre")){
+                if(!player.isOp()){
+                    player.sendMessage(ChatColor.RED+"You are not allowed to do this!");
+                    return true;
+                }
+                if(args.length<=1){
+                    player.sendMessage(ChatColor.RED+"Usage : /city poudre <give|remove>");
+                    return true;
+                }
+                String poudreCommand = args[1];
+                if(poudreCommand.equals("give")){
+                    if(args.length<=3){
+                        player.sendMessage(ChatColor.RED+"Usage : /city poudre give <player> <amount>");
+                        return true;
+                    }
+                    Player playerToGive = player.getServer().getPlayer(args[2]);
+                    if(playerToGive == null){
+                        player.sendMessage(ChatColor.RED+"Player not found!");
+                        return true;
+                    }
+                    int amount = 0;
+                    try{
+                        amount = Integer.parseInt(args[3]);
+                    } catch(NumberFormatException e){
+                        player.sendMessage(ChatColor.RED+"Amount must be a number!");
+                        return true;
+                    }
+                    if(amount<=0){
+                        player.sendMessage(ChatColor.RED+"Amount must be positive!");
+                        return true;
+                    }
+                    if(GamePlayer.getInstance(playerToGive).getTeam() == null){
+                        player.sendMessage(ChatColor.RED+"Player is not in a team!");
+                        return true;
+                    }
+                    GamePlayer.getInstance(playerToGive).addScore(amount);
+                    GamePlayer.getInstance(playerToGive).getTeam().addScore(amount);
+                    player.sendMessage(ChatColor.GREEN+"You gave "+amount+" poudre to "+playerToGive.getName()+"!");
+                    playerToGive.sendMessage(ChatColor.GREEN+"You received "+amount+" poudre from "+player.getName()+"!");
+                    return true;
+                } else if(poudreCommand.equals("remove")){
+                    if(args.length<=3){
+                        player.sendMessage(ChatColor.RED+"Usage : /city poudre remove <player> <amount>");
+                        return true;
+                    }
+                    Player playerToRemove = player.getServer().getPlayer(args[2]);
+                    if(playerToRemove == null){
+                        player.sendMessage(ChatColor.RED+"Player not found!");
+                        return true;
+                    }
+                    int amount = 0;
+                    try{
+                        amount = Integer.parseInt(args[3]);
+                    } catch(NumberFormatException e){
+                        player.sendMessage(ChatColor.RED+"Amount must be a number!");
+                        return true;
+                    }
+                    if(amount<=0){
+                        player.sendMessage(ChatColor.RED+"Amount must be positive!");
+                        return true;
+                    }
+                    if(GamePlayer.getInstance(playerToRemove).getTeam() == null){
+                        player.sendMessage(ChatColor.RED+"Player is not in a team!");
+                        return true;
+                    }
+                    GamePlayer.getInstance(playerToRemove).removeScore(amount);
+                    GamePlayer.getInstance(playerToRemove).getTeam().removeScore(amount);
+                    player.sendMessage(ChatColor.RED+"You removed "+amount+" poudre to "+playerToRemove.getName()+"!");
+                    playerToRemove.sendMessage(ChatColor.RED+"You lost "+amount+" poudre from "+player.getName()+"!");
+                    return true;
+                } else {
+                    player.sendMessage(ChatColor.RED+"Usage : /city poudre <give|remove>");
+                    return true;
+                }
+
+            }
         } else{
-            player.sendMessage(ChatColor.RED+"usage: /city <start|stop|team|entity>");
+            player.sendMessage(ChatColor.RED+"usage: /city <start|poudre|stop|team|entity>");
             return false;
         }
         return false;
