@@ -105,7 +105,7 @@ public class Handler implements Listener{
                 event.getBlock().setType(Material.AIR);
                 for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots d'or spécifié
                     event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT));
-                    event.setExpToDrop(1);
+                    event.getPlayer().setExp(event.getPlayer().getExp() + 1);
                 }
             } else if(event.getBlock().getType().equals(Material.IRON_ORE) || event.getBlock().getType().equals(Material.DEEPSLATE_IRON_ORE)){
                 event.setCancelled(true);
@@ -114,7 +114,7 @@ public class Handler implements Listener{
                 event.getBlock().setType(Material.AIR);
                 for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots de fer spécifié
                     event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT));
-                    event.setExpToDrop(1);
+                    event.getPlayer().setExp(event.getPlayer().getExp() + 1);
                 }
             } else if(event.getBlock().getType().equals(Material.COPPER_ORE) || event.getBlock().getType().equals(Material.DEEPSLATE_COPPER_ORE)){
                 event.setCancelled(true);
@@ -123,7 +123,7 @@ public class Handler implements Listener{
                 event.getBlock().setType(Material.AIR);
                 for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots de cuivre spécifié
                     event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COPPER_INGOT));
-                    event.setExpToDrop(1);
+                    event.getPlayer().setExp(event.getPlayer().getExp() + 1);
                 }
             }
         }
