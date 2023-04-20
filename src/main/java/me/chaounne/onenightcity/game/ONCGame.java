@@ -2,6 +2,9 @@ package me.chaounne.onenightcity.game;
 
 import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -99,6 +102,10 @@ public class ONCGame {
 
     public void endGame(){
         if(timer != null) timer.cancel();
+        for(Player players : Bukkit.getOnlinePlayers()){
+            players.getPlayer().teleport(new Location(players.getWorld(),122,154,-39));
+            players.setGameMode(GameMode.ADVENTURE);
+        }
         if(started) started = false;
     }
 

@@ -73,6 +73,7 @@ public class Commands implements CommandExecutor {
                 Bukkit.broadcastMessage(ChatColor.GREEN+"The game has started!");
                 for( Player players : Bukkit.getOnlinePlayers()) {
                     players.teleport(new Location(player.getWorld(), 0, 70, 0));
+                    players.setBedSpawnLocation(new Location(player.getWorld(), 0, 71, 0),true);
                     players.setGameMode(GameMode.SURVIVAL);
 
                 }
