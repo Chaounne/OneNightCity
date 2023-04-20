@@ -15,9 +15,6 @@ import java.util.List;
 
 public final class OneNightCity extends JavaPlugin {
 
-    private List<ChatColor> availableColors = new ArrayList<>(Arrays.asList(ChatColor.values()));
-
-
     @Override
     public void onEnable() {
         // Plugin startup logic
