@@ -1,9 +1,7 @@
 package me.chaounne.onenightcity.game;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import me.chaounne.onenightcity.OneNightCity;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
@@ -17,12 +15,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Random;
 
-public class GenerateChest extends JavaPlugin implements Listener {
+public class GenerateChest implements Listener {
 
     private static Random random = new Random();
 
-    private static Location spawn = new Location(Bukkit.getWorld("world"), 0, 70, 0);
-    private static int rayon = 10000;
+    private static Location spawn = new Location(Bukkit.getWorld("world"), 0, 200, 0);
+    private static int rayon = 5000;
 
     private static ItemStack[] ressources = new ItemStack[]{
             new ItemStack(Material.DIAMOND, 16),
@@ -33,59 +31,55 @@ public class GenerateChest extends JavaPlugin implements Listener {
 
 
 
-
     public static void spawnCoffre() {
-for(Player players : Bukkit.getOnlinePlayers()){
-    players.sendMessage("eeeeeeeeeeeeeeeeeeeeeee");
-}
-        // Calcul d'une position aléatoire
-        double x = spawn.getX() + (random.nextDouble() * rayon * 2) - rayon;
-        double z = spawn.getZ() + (random.nextDouble() * rayon * 2) - rayon;
-        Location chestLocation = new Location(spawn.getWorld(), x, spawn.getY(), z);
-
-        // Recherche d'un block solide sous la position
-        World world = chestLocation.getWorld();
-        for (int y = chestLocation.getBlockY(); y > 0; y--) {
-            Block block = world.getBlockAt(chestLocation.getBlockX(), y, chestLocation.getBlockZ());
-            if (block.getType().isSolid()) {
-                chestLocation.setY(y + 1);
-                break;
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
+            for(Player players : Bukkit.getOnlinePlayers()){
+                players.sendMessage("Debug lancement spawnCoffre");
             }
-        }
+            // Calcul d'une position aléatoire
+            double x, z;
+            do {
+                x = spawn.getX() + (random.nextDouble() * rayon * 2) - rayon;
+                z = spawn.getZ() + (random.nextDouble() * rayon * 2) - rayon;
+            } while (x < 100 || z < 100); // Ajout de la condition
 
-        // Création du coffre et ajout des ressources
-        Block chestBlock = world.getBlockAt(chestLocation);
-        chestBlock.setType(Material.CHEST);
-        Chest chest = (Chest) chestBlock.getState();
-        Inventory inventory = chest.getInventory();
-        inventory.setContents(ressources);
+            Location chestLocation = new Location(spawn.getWorld(), x, spawn.getY(), z);
 
-        // Envoi d'un message à tous les joueurs
-        String message = String.format("Un coffre vient d'apparaître à la position : x=%d, y=%d, z=%d",
-                chestLocation.getBlockX(), chestLocation.getBlockY(), chestLocation.getBlockZ());
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            player.sendMessage(message);
-        }
-    }
+            // Recherche d'un block solide sous la position
+            World world = chestLocation.getWorld();
+            Block block;
+            int y = chestLocation.getBlockY();
+            do {
+                block = world.getBlockAt(chestLocation.getBlockX(), y, chestLocation.getBlockZ());
+                if (block.getType().isSolid()) {
+                    chestLocation.setY(y + 1);
+                    break;
+                }
+                y--;
+            } while (y > 0);
 
-    @EventHandler
-    public void onInventoryClose(InventoryCloseEvent event) {
-        // Vérification si l'inventaire fermé est un coffre et s'il est vide
-        Inventory inventory = event.getInventory();
-        if (inventory.getType() == InventoryType.CHEST && isChestEmpty(inventory)) {
-            // Suppression du coffre
-            Block chestBlock = event.getInventory().getLocation().getBlock();
-            chestBlock.setType(Material.AIR);
-        }
-    }
+            // Création du coffre et ajout des ressources
+            Block chestBlock = world.getBlockAt(chestLocation);
+            chestBlock.setType(Material.CHEST);
+            Chest chest = (Chest) chestBlock.getState();
+            Inventory inventory = chest.getInventory();
+            inventory.setContents(ressources);
 
-    private boolean isChestEmpty(Inventory inventory) {
-        for (ItemStack itemStack : inventory.getContents()) {
-            if (itemStack != null && itemStack.getType() != Material.AIR) {
-                return false;
+            // Envoi d'un message à tous les joueurs
+            String message = String.format("&6Un coffre vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d",
+                    chestLocation.getBlockX(), chestLocation.getBlockY(), chestLocation.getBlockZ());
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
             }
-        }
-        return true;
+
+
+        }, 0L, 1200L);
     }
+
+
+
+
+
+
 }
 

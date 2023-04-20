@@ -67,7 +67,10 @@ public class Commands implements CommandExecutor {
                     player.sendMessage(ChatColor.RED+"The game is already started!");
                     return false;
                 }
+
+
                 game.startGame();
+
                 Bukkit.broadcastMessage(ChatColor.GREEN+"The game has started!");
                 for( Player players : Bukkit.getOnlinePlayers()) {
                     players.teleport(new Location(player.getWorld(), 0, 70, 0));
