@@ -6,23 +6,20 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 # Roadmap
 
 ## A faire
-- [ ] Ajouter les commandes
-- [ ] Echanges super rapide
+
 - [ ] End et nether ouvert au bout de 30 mins
 - [ ] Villageois au spawn dans une place centrale (type marché autour d'un grand arbre)
 - [ ] Prix random à chaque lancement de partie
-- [ ] Equipe custom (2, 3, 4)
+- [x] Equipe custom (2, 3, 4)
 - [x] Minerais déjà cuits
-- [ ] Monnaie = Poudre (redstone)
-- [ ] Ajout event pour que la poudre ne puisse pas se poser
+- [x] Monnaie = Poudre (redstone)
+- [x] Ajout event pour que la poudre ne puisse pas se poser
 
 ## Idée pour le mini jeu :
 
 - Achat de spawner à items au spawn ? (ex: spawner à diamant, fer, etc...
 
 Faire des events in-game aléatoire, du style :
-
-- Un coffre qui spawn à une certaine coordonnées( les joueurs ont 10 minutes pour récupérer le contenu (surement de la poudre ou des ressources))
 
 - Faire un classement des équipes en fonction des poudres en leurs possessions 
 
