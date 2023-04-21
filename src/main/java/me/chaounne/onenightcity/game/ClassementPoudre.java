@@ -14,12 +14,10 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class ClassementPoudre {
-    private static ArrayList<Team> teamList;
-    private ArrayList<Team> teams;
     private Hologram hologram;
+    private static ONCGame game = ONCGame.getInstance();
 
-    public ClassementPoudre(ArrayList<Team> teams) {
-        this.teams = teams;
+    public ClassementPoudre() {
     }
 
     public static void showScoreboard() {
@@ -27,8 +25,7 @@ public class ClassementPoudre {
             players.sendMessage("pendant 1");
         }
         // Trier les équipes par score décroissant
-        teamList = new ArrayList<>();
-        ArrayList<Team> teams = new ArrayList<>(teamList);
+        ArrayList<Team> teams = game.getTeams();
         teams.sort(Comparator.comparingInt(Team::getScore).reversed());
 
         // Créer un hologramme
