@@ -73,7 +73,8 @@ public class Commands implements CommandExecutor {
                 }
 
                 return true;
-            } else if(subCommand.equals("stop")){
+            }
+            else if(subCommand.equals("stop")){
                 if (!(sender.isOp())) {
                     sender.sendMessage(ChatColor.RED+"You must be an operator to execute OneNightCity commands!");
                     return false;
@@ -164,10 +165,6 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED+"The game is already started!");
                         return false;
                     }
-                    if(args.length<=2){
-                        player.sendMessage(ChatColor.RED+"Usage : /city team create <teamname>");
-                        return false;
-                    }
                     String teamName = args[2];
                     if(GamePlayer.getInstance(player).getTeam() != null){
                         player.sendMessage(ChatColor.RED+"You are already in a team!");
@@ -181,6 +178,7 @@ public class Commands implements CommandExecutor {
                     }
                     //create a new team
                     Team team = new Team(teamName);
+                    game.addTeam(team);
                     team.addPlayer(player);
                     team.setLeader(player);
 
@@ -194,7 +192,6 @@ public class Commands implements CommandExecutor {
 
                     // set team to player
                     GamePlayer.getInstance(player).setTeam(team);
-                    game.addTeam(team);
                     player.sendMessage(ChatColor.GREEN+"Team "+teamName+" created!");
                     return true;
                 } else if(teamCommand.equals("remove")) {

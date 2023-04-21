@@ -88,7 +88,7 @@ public class ONCGame {
 
     public void startGame() {
         GenerateChest generateChest = new GenerateChest();
-        Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> generateChest.spawnCoffre());
+        //Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> generateChest.spawnCoffre());
         for(Player players : Bukkit.getOnlinePlayers()){
             players.sendMessage("avant");
         }
