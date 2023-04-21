@@ -51,6 +51,10 @@ public class Team {
         scoreboardTeam.addEntry(player.getName());
     }
 
+    public int getPlayersSize() {
+        return players.size();
+    }
+
     public void removePlayer(Player player) {
         if(leader == player)
             leader = null;
