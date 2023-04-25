@@ -14,6 +14,7 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 - [x] Minerais déjà cuits
 - [x] Monnaie = Poudre (redstone)
 - [x] Ajout event pour que la poudre ne puisse pas se poser
+- [ ] Timer pour le temps de jeu
 
 ## Idée pour le mini jeu :
 
