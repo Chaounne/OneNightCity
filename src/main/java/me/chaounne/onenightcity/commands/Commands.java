@@ -188,8 +188,8 @@ public class Commands implements CommandExecutor {
                     int random = (int) (Math.random() * availableColors.size());
                     ChatColor color = availableColors.get(random);
                     team.setColor(color);
-                    team.getScoreboardTeam().setPrefix(color.toString());
-                    team.getScoreboardTeam().setSuffix(ChatColor.RESET.toString());
+                    team.getScoreboardTeam().setPrefix(color+"["+teamName+"] ");
+                    team.getScoreboardTeam().setSuffix(ChatColor.RESET+"");
                     availableColors.remove(random);
 
                     // set team to player

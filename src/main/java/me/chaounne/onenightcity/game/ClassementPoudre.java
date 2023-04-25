@@ -43,9 +43,6 @@ public class ClassementPoudre {
             // Afficher le score de l'équipe à côté de son nom
             String hologramText = formattedTeamName + " : " + team.getScore() + " poudres";
             DHAPI.addHologramLine(hologram, hologramText);
-
-            // Ajouter un remplaçant de texte pour mettre à jour le score de l'équipe
-            team.getScoreboardTeam().setSuffix(" : " + team.getScore() + " poudres");
         }
 
         hologram.setLocation(location);

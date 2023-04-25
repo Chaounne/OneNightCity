@@ -1,19 +1,20 @@
 package me.chaounne.onenightcity.game;
 
-import eu.decentsoftware.holograms.api.DHAPI;
-
-import eu.decentsoftware.holograms.api.holograms.Hologram;
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class ONCGame {
+public class ONCGame implements Listener {
 
     private ArrayList<Team> teams = new ArrayList<>();
 
@@ -25,10 +26,10 @@ public class ONCGame {
 
     private BukkitRunnable timer;
     private int time = 14400;
-    private FastBoard board;
+    private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){
-
+        Bukkit.getPluginManager().registerEvents(this, OneNightCity.getInstance());
     }
 
     public static ONCGame getInstance(){
@@ -79,10 +80,22 @@ public class ONCGame {
         }
     }
 
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event){
+        Player realPlayer = event.getPlayer();
+        GamePlayer player = GamePlayer.getInstance(realPlayer);
+        FastBoard board = new FastBoard(realPlayer);
+        board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
+        boards.put(realPlayer.getUniqueId(), board);
+        if(isStarted()){
+            if(!players.contains(player)) realPlayer.setGameMode(GameMode.SPECTATOR);
+        }
+    }
+
     public void updateBoard(){
-        for(Player players : Bukkit.getOnlinePlayers()){
-            GamePlayer player = GamePlayer.getInstance(players);
-            board = new FastBoard(player.getPlayer());
+        for(GamePlayer player : players){
+            System.out.println(player.getPlayer().getName());
+            FastBoard board = boards.get(player.getPlayer().getUniqueId());
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
             board.updateLines("",
                     ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
@@ -91,7 +104,7 @@ public class ONCGame {
                     ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                     "",
                     ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
-                    "---------------------------------");
+                    "--------------------");
         }
     }
 
@@ -102,13 +115,12 @@ public class ONCGame {
     public void startGame() {
         GenerateChest generateChest = new GenerateChest();
         //Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> generateChest.spawnCoffre());
-        for(Player players : Bukkit.getOnlinePlayers()){
-            players.sendMessage("avant");
+        for(Player player : Bukkit.getOnlinePlayers()){
+            FastBoard board = new FastBoard(player);
+            board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
+            boards.put(player.getUniqueId(), board);
         }
         ClassementPoudre.showScoreboard();
-        for(Player players : Bukkit.getOnlinePlayers()){
-            players.sendMessage("apres");
-        }
         timer = new BukkitRunnable() {
             @Override
             public void run() {
@@ -122,7 +134,7 @@ public class ONCGame {
         };
 
         if (!started) started = true;
-        timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
+        timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
      }
 
 
@@ -131,7 +143,7 @@ public class ONCGame {
         for(Player players : Bukkit.getOnlinePlayers()){
             players.getPlayer().teleport(new Location(players.getWorld(),122,154,-39));
             players.setGameMode(GameMode.ADVENTURE);
-            board = new FastBoard(players);
+            FastBoard board = boards.get(players.getUniqueId());
             board.delete();
         }
         for(Team team : teams){
