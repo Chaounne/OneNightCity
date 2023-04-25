@@ -114,7 +114,6 @@ public class ONCGame implements Listener {
 
     public void startGame() {
         GenerateChest generateChest = new GenerateChest();
-        //Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> generateChest.spawnCoffre());
         for(Player player : Bukkit.getOnlinePlayers()){
             FastBoard board = new FastBoard(player);
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
@@ -129,13 +128,16 @@ public class ONCGame implements Listener {
                 if (time == 0) {
                     this.cancel();
                     endGame();
+                } else {
+                    ClassementPoudre.showScoreboard();
                 }
             }
         };
 
         if (!started) started = true;
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
-     }
+    }
+
 
 
     public void endGame(){

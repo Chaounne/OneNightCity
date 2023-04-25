@@ -21,47 +21,48 @@ public class ClassementPoudre {
     }
 
     public static void showScoreboard() {
-        for(Player players : Bukkit.getOnlinePlayers()){
-            players.sendMessage("pendant 1");
-        }
+        // Envoyer un message à tous les joueurs en ligne
+
+
         // Trier les équipes par score décroissant
         ArrayList<Team> teams = game.getTeams();
         teams.sort(Comparator.comparingInt(Team::getScore).reversed());
 
-        // Créer un hologramme
-        Location location = new Location(Bukkit.getWorlds().get(0), 0, 72, 0);
-        Hologram hologram = DHAPI.createHologram("Classement", location);
-        for(Player players : Bukkit.getOnlinePlayers()){
-            players.sendMessage(String.valueOf(teams.size()));
+        // Créer un hologramme pour afficher le classement
+        Location hologramLocation = new Location(Bukkit.getWorlds().get(0), -1.5, 72.5, -1.5);
+        Hologram scoreboardHologram = DHAPI.createHologram("Classement", hologramLocation);
+        String title = ChatColor.RED + "C" + ChatColor.GOLD + "l" + ChatColor.YELLOW + "a" + ChatColor.GREEN + "s" + ChatColor.AQUA + "s" + ChatColor.BLUE + "e" + ChatColor.DARK_BLUE + "m" + ChatColor.DARK_PURPLE + "e" + ChatColor.LIGHT_PURPLE + "n" + ChatColor.RED + "t" + ChatColor.GOLD + " " + ChatColor.YELLOW + "d" + ChatColor.GREEN + "e" + ChatColor.AQUA + "s" + ChatColor.BLUE + " " + ChatColor.DARK_BLUE + "t" + ChatColor.DARK_PURPLE + "e" + ChatColor.LIGHT_PURPLE + "a" + ChatColor.RED + "m" + ChatColor.GOLD + "s" + ChatColor.YELLOW + " :";
+        DHAPI.addHologramLine(scoreboardHologram, title);
+
+        // Ajouter une ligne de texte pour chaque équipe, avec les 3 premières équipes en couleur
+        for (int i = 0; i < teams.size(); i++) {
+            ChatColor teamColor;
+            if (i == 0) {
+                teamColor = ChatColor.GOLD;
+            } else if (i == 1) {
+                teamColor = ChatColor.GRAY;
+            } else if (i == 2) {
+                teamColor = ChatColor.DARK_RED;
+            } else {
+                teamColor = teams.get(i).getColor();
+            }
+            String teamName = teams.get(i).getName();
+            String formattedTeamName = teamColor + (i == 0 ? "1er " : "") + (i == 1 ? "2eme " : "") +(i == 2 ? "3eme " : "") + teamName;String hologramText = formattedTeamName + " : " + teams.get(i).getScore() + " poudres";
+            DHAPI.addHologramLine(scoreboardHologram, hologramText);
         }
-        // Ajouter une ligne de texte pour chaque équipe
-        for (Team team : teams) {
-            ChatColor teamColor = team.getColor();
-            String teamName = team.getName();
-            // Utiliser des codes de couleurs pour afficher le nom de l'équipe dans sa couleur
-            String formattedTeamName = teamColor + teamName;
-            // Afficher le score de l'équipe à côté de son nom
-            String hologramText = formattedTeamName + " : " + team.getScore() + " poudres";
-            DHAPI.addHologramLine(hologram, hologramText);
-        }
 
-        hologram.setLocation(location);
-        hologram.showAll();
-        hologram.enable();
+        // Afficher l'hologramme pour tous les joueurs
+        scoreboardHologram.showAll();
 
-
-        Hologram hologram2 = DHAPI.createHologram("name", location);
-
-        DHAPI.addHologramLine(hologram, "Line content");
-        hologram2.setLocation(location);
-        hologram2.showAll();
-        hologram2.enable();
-
-        // Mettre à jour l'hologramme toutes les 10 secondes
-        for(Player players : Bukkit.getOnlinePlayers()){
-            players.sendMessage("pendant 2");
-        }
+        // Supprimer l'hologramme après 20 secondes
+        Bukkit.getScheduler().runTaskLater(OneNightCity.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                scoreboardHologram.delete();
+            }
+        }, 40L);
     }
+
 
     public void hideHologram() {
         hologram.delete();
