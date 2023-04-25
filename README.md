@@ -15,6 +15,12 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 - [x] Monnaie = Poudre (redstone)
 - [x] Ajout event pour que la poudre ne puisse pas se poser
 - [ ] Timer pour le temps de jeu
+- [ ] Empecher les joueurs de détruire le spawn
+- [ ] Donner aux joueurs un stuff quand ils spawnent
+- [ ] Pvp activé au bout de 10 min
+- [ ] Limite de 5000 blocks de coté
+- [ ] Fix l'hologram pour le classement
+- [ ] Faire un test pour voir si tout fonctionne
 
 ## Idée pour le mini jeu :
 
