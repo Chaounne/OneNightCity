@@ -3,11 +3,9 @@ package me.chaounne.onenightcity.game;
 import eu.decentsoftware.holograms.api.DHAPI;
 
 import eu.decentsoftware.holograms.api.holograms.Hologram;
+import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -27,6 +25,7 @@ public class ONCGame {
 
     private BukkitRunnable timer;
     private int time = 14400;
+    private FastBoard board;
 
     private ONCGame(){
 
@@ -80,11 +79,25 @@ public class ONCGame {
         }
     }
 
+    public void updateBoard(){
+        for(Player players : Bukkit.getOnlinePlayers()){
+            GamePlayer player = GamePlayer.getInstance(players);
+            board = new FastBoard(player.getPlayer());
+            board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
+            board.updateLines("",
+                    ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
+                    ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + time,
+                    ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                    ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                    "",
+                    ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                    "---------------------------------");
+        }
+    }
+
     public boolean isStarted(){
         return started;
     }
-
-
 
     public void startGame() {
         GenerateChest generateChest = new GenerateChest();
@@ -100,11 +113,11 @@ public class ONCGame {
             @Override
             public void run() {
                 time--;
+                updateBoard();
                 if (time == 0) {
                     this.cancel();
                     endGame();
                 }
-
             }
         };
 
@@ -118,7 +131,14 @@ public class ONCGame {
         for(Player players : Bukkit.getOnlinePlayers()){
             players.getPlayer().teleport(new Location(players.getWorld(),122,154,-39));
             players.setGameMode(GameMode.ADVENTURE);
+            board = new FastBoard(players);
+            board.delete();
         }
+        for(Team team : teams){
+            team.reset();
+        }
+        teams.clear();
+        players.clear();
         if(started) started = false;
     }
 

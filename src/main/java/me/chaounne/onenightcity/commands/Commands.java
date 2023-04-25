@@ -121,6 +121,7 @@ public class Commands implements CommandExecutor {
                     //add player to team
                     team.addPlayer(player1);
                     GamePlayer.getInstance(player1).setTeam(team);
+                    game.addPlayer(GamePlayer.getInstance(player1));
                     player.sendMessage(ChatColor.GREEN+"Player "+player1.getName()+" added to your team!");
                     player1.sendMessage(ChatColor.GREEN+"You have been added to "+team.getName()+"!");
                     return true;
@@ -154,6 +155,7 @@ public class Commands implements CommandExecutor {
                         p.sendMessage(ChatColor.RED+"Your team has been disbanded!");
                         team.removePlayer(p);
                         GamePlayer.getInstance(p).removeTeam();
+                        game.removePlayer(GamePlayer.getInstance(p));
                     }
                     game.removeTeam(team);
                 } else if(teamCommand.equals("create")) {
@@ -192,6 +194,7 @@ public class Commands implements CommandExecutor {
 
                     // set team to player
                     GamePlayer.getInstance(player).setTeam(team);
+                    game.addPlayer(GamePlayer.getInstance(player));
                     player.sendMessage(ChatColor.GREEN+"Team "+teamName+" created!");
                     return true;
                 } else if(teamCommand.equals("remove")) {
@@ -218,6 +221,7 @@ public class Commands implements CommandExecutor {
                     //remove player from team
                     GamePlayer.getInstance(playerARemove).getTeam().removePlayer(playerARemove);
                     GamePlayer.getInstance(playerARemove).removeTeam();
+                    game.removePlayer(GamePlayer.getInstance(playerARemove));
                     player.sendMessage(ChatColor.GREEN+"Player "+playerARemove.getName()+" removed from your team!");
                     playerARemove.sendMessage(ChatColor.GREEN+"You have been removed from "+team.getName()+"!");
                     return true;

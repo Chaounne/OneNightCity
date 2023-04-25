@@ -92,4 +92,14 @@ public class Team {
     public String getName() {
         return name;
     }
+
+    public void reset(){
+        for(Player player : players){
+            scoreboardTeam.removeEntry(player.getName());
+            GamePlayer.getInstance(player).setTeam(null);
+        }
+        players.clear();
+        score = 0;
+        leader = null;
+    }
 }

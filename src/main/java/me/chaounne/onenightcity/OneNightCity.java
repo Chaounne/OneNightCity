@@ -38,7 +38,7 @@ public final class OneNightCity extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         //A NE PAS ACTIVER QUAND ON LANCERA L'EVENT
-        //Bukkit.getScoreboardManager().getMainScoreboard().getTeams().forEach(team -> team.unregister());
+        Bukkit.getScoreboardManager().getMainScoreboard().getTeams().forEach(team -> team.unregister());
     }
 
     public static OneNightCity getInstance() {
