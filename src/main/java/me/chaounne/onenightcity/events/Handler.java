@@ -18,8 +18,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Objects;
 
@@ -42,7 +42,6 @@ public class Handler implements Listener{
                         for (int i = 0; i < item.getAmount(); i++) {
                             gamePlayer.getTeam().addScore(1);
                             gamePlayer.addScore(1);
-                            System.out.println(gamePlayer.getTeam().getScore());
                         }
                         player.getInventory().removeItem(item);
                     }
@@ -54,7 +53,26 @@ public class Handler implements Listener{
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
+        GamePlayer gamePlayer = GamePlayer.getInstance(player);
         player.teleport(new Location(player.getWorld(), 0, 70, 0));
+
+        if(gamePlayer.hasBounty()){
+            Player killer = player.getKiller();
+            if(killer != null){
+                GamePlayer gameKiller = GamePlayer.getInstance(killer);
+                gameKiller.addScore(gamePlayer.getBounty());
+                gameKiller.getTeam().addScore(gamePlayer.getBounty());
+
+                gamePlayer.getBeter().addScore((int) (gamePlayer.getBounty() * 1.25));
+                gamePlayer.getBeter().getTeam().addScore((int) (gamePlayer.getBounty() * 1.25));
+
+                gamePlayer.removeBounty();
+                gamePlayer.removeBeter();
+                gamePlayer.getBeter().getPlayer().sendMessage("Vous avez récupéré la prime de " + gamePlayer.getBounty() + " points multipliée par 1.25 !");
+                gameKiller.getPlayer().sendMessage("Vous avez tué " + player.getName() + " et récupéré sa prime de " + gamePlayer.getBounty() + " points !");
+                gamePlayer.getPlayer().sendMessage("Vous avez été tué par " + killer.getName() + " et perdu votre prime de " + gamePlayer.getBounty() + " points !");
+            }
+        }
     }
 
     @EventHandler
@@ -83,7 +101,6 @@ public class Handler implements Listener{
                         for (int i = 0; i < item.getAmount(); i++) {
                             gamePlayer.getTeam().addScore(1);
                             gamePlayer.addScore(1);
-                            System.out.println(gamePlayer.getTeam().getScore());
                         }
                         player.getInventory().removeItem(item);
                     }
@@ -179,12 +196,11 @@ public class Handler implements Listener{
     }
 
     @EventHandler
-    public void onFoodLevelChange(FoodLevelChangeEvent event){
-        if(!game.isStarted()) event.setCancelled(true);
-    }
+    public void onFoodLevelChange(FoodLevelChangeEvent event){if(!game.isStarted()) event.setCancelled(true);}
 
     @EventHandler
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent event){
-        if(!game.isStarted()) event.setCancelled(true);
-    }
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event){if(!game.isStarted()) event.setCancelled(true);}
+
+    @EventHandler
+    public void onPlayerItemDamage(PlayerItemDamageEvent e) {e.setCancelled(true);}
 }

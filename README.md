@@ -8,8 +8,8 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 ## A faire
 
 - [ ] End et nether ouvert au bout de 30 mins
-- [ ] Villageois au spawn dans une place centrale (type marché autour d'un grand arbre)
-- [ ] Prix random à chaque lancement de partie
+- [x] Villageois au spawn dans une place centrale (type marché autour d'un grand arbre)
+- [x] Prix random à chaque lancement de partie
 - [x] Equipe custom (2, 3, 4)
 - [x] Minerais déjà cuits
 - [x] Monnaie = Poudre (redstone)

@@ -34,8 +34,6 @@ public class ClassementPoudre {
         for(Player players : Bukkit.getOnlinePlayers()){
             players.sendMessage(String.valueOf(teams.size()));
         }
-        // à 0
-        System.out.println(teams.size());
         // Ajouter une ligne de texte pour chaque équipe
         for (Team team : teams) {
             ChatColor teamColor = team.getColor();

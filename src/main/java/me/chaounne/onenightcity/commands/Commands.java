@@ -334,7 +334,51 @@ public class Commands implements CommandExecutor {
             }
         } else{
             player.sendMessage(ChatColor.RED+"usage: /city <start|poudre|stop|team|entity>");
-            return false;
+            return true;
+        }
+        if (command.getName().equals("bounty")) {
+            if(args.length<=1){
+                player.sendMessage(ChatColor.RED+"Usage : /bounty <amount> <player> ");
+                return true;
+            }
+            int amount = 0;
+            try{
+                amount = Integer.parseInt(args[0]);
+            } catch(NumberFormatException e){
+                player.sendMessage(ChatColor.RED+"Amount must be a number!");
+                return true;
+            }
+            if(amount<=0){
+                player.sendMessage(ChatColor.RED+"Amount must be positive!");
+                return true;
+            }
+            Player playerToBounty = player.getServer().getPlayer(args[1]);
+            if(playerToBounty == null){
+                player.sendMessage(ChatColor.RED+"Player not found!");
+                return true;
+            }
+            GamePlayer bountyPlayer = GamePlayer.getInstance(playerToBounty);
+            GamePlayer gamePlayer = GamePlayer.getInstance(player);
+            if(bountyPlayer.getTeam() == null){
+                player.sendMessage(ChatColor.RED+"Player is not in a team!");
+                return true;
+            }
+            if(bountyPlayer.getTeam().equals(gamePlayer.getTeam())){
+                player.sendMessage(ChatColor.RED+"You can't bounty a player from your team!");
+                return true;
+            }
+            if(gamePlayer.getScore()<amount){
+                player.sendMessage(ChatColor.RED+"You don't have enough poudre!");
+                return true;
+            }
+            gamePlayer.removeScore(amount);
+            gamePlayer.getTeam().removeScore(amount);
+            bountyPlayer.addScore(amount);
+            bountyPlayer.getTeam().addScore(amount);
+            bountyPlayer.setBounty(amount);
+            bountyPlayer.setBeter(gamePlayer);
+
+            Bukkit.broadcastMessage(ChatColor.GREEN+player.getName()+" bountied " + ChatColor.RED +amount+" powder to "+playerToBounty.getName()+"!");
         }
         return false;
     }

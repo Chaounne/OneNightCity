@@ -16,6 +16,12 @@ public class GamePlayer {
 
     private int score = 0;
 
+    private int bounty = 0;
+
+    private boolean isBounty = false;
+
+    private GamePlayer bet = null;
+
     private GamePlayer(Player player) {
         this.player = player;
     }
@@ -58,6 +64,36 @@ public class GamePlayer {
         } else {
             this.score = 0;
         }
+    }
+
+    public boolean hasBounty() {
+        return isBounty;
+    }
+
+    public void setBounty(int bounty) {
+        this.bounty = bounty;
+        this.isBounty = true;
+    }
+
+    public void removeBounty() {
+        this.bounty = 0;
+        this.isBounty = false;
+    }
+
+    public int getBounty() {
+        return bounty;
+    }
+
+    public GamePlayer getBeter() {
+        return bet;
+    }
+
+    public void setBeter(GamePlayer bet) {
+        this.bet = bet;
+    }
+
+    public void removeBeter() {
+        this.bet = null;
     }
 
 }
