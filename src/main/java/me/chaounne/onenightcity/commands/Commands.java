@@ -31,7 +31,6 @@ public class Commands implements CommandExecutor {
             return false;
         }
 
-
         Player player = (Player) sender;
 
         // commande principale

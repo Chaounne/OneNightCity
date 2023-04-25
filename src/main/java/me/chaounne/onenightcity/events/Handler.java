@@ -3,6 +3,7 @@ package me.chaounne.onenightcity.events;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,6 +18,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
@@ -47,6 +49,17 @@ public class Handler implements Listener{
                     }
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerChat(AsyncPlayerChatEvent event){
+        Player player = event.getPlayer();
+        GamePlayer gamePlayer = GamePlayer.getInstance(player);
+        if(gamePlayer.getTeam() != null){
+            event.setFormat(gamePlayer.getTeam().getColor() +  "[" + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + event.getMessage());
+        } else {
+            event.setFormat(ChatColor.GRAY + player.getName() + ChatColor.RESET + " : " + event.getMessage());
         }
     }
 
