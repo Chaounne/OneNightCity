@@ -89,7 +89,7 @@ public class Commands implements CommandExecutor {
             }
             else if(subCommand.equals("team")){
                 if(args.length<=1){
-                    player.sendMessage(ChatColor.RED+"Usage : /city team <add|disband|create|list> <player|teamname>");
+                    player.sendMessage(ChatColor.RED+"Usage : /city team <add|disband|create|list|remove> <player|teamname>");
                     return false;
                 }
                 String teamCommand = args[1];
@@ -241,7 +241,7 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 } else {
-                    player.sendMessage(ChatColor.RED+"Usage : /city team <add|disband|create|list> <player|teamname>");
+                    player.sendMessage(ChatColor.RED+"Usage : /city team <add|disband|create|list|remove> <player|teamname>");
                     return false;
                 }
             }
