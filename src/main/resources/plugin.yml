@@ -10,3 +10,7 @@ commands:
     description: city
     usage: /city
     aliases: city
+  bounty:
+    description: bounty
+    usage: /bounty <amount> <player>
+    aliases: bounty

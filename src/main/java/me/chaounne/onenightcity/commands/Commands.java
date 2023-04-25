@@ -332,11 +332,7 @@ public class Commands implements CommandExecutor {
                 }
 
             }
-        } else{
-            player.sendMessage(ChatColor.RED+"usage: /city <start|poudre|stop|team|entity>");
-            return true;
-        }
-        if (command.getName().equals("bounty")) {
+        } else if (command.getName().equals("bounty")) {
             if(args.length<=1){
                 player.sendMessage(ChatColor.RED+"Usage : /bounty <amount> <player> ");
                 return true;
@@ -379,7 +375,10 @@ public class Commands implements CommandExecutor {
             bountyPlayer.setBeter(gamePlayer);
 
             Bukkit.broadcastMessage(ChatColor.GREEN+player.getName()+" bountied " + ChatColor.RED +amount+" powder to "+playerToBounty.getName()+"!");
+            System.out.println(bountyPlayer.getBounty());
+            return true;
         }
+
         return false;
     }
 }

@@ -69,13 +69,15 @@ public class Handler implements Listener{
                     beter.getTeam().addScore((int) (gamePlayer.getBounty() * 1.25));
                 }
 
-                gamePlayer.removeBounty();
-                gamePlayer.removeBeter();
+                System.out.println("bounty : " + gamePlayer.getBounty());
 
                 assert beter != null;
                 beter.getPlayer().sendMessage("Vous avez récupéré la prime de " + gamePlayer.getBounty() + " points multipliée par 1.25 !");
                 gameKiller.getPlayer().sendMessage("Vous avez tué " + player.getName() + " et récupéré sa prime de " + gamePlayer.getBounty() + " points !");
                 gamePlayer.getPlayer().sendMessage("Vous avez été tué par " + killer.getName() + " et perdu votre prime de " + gamePlayer.getBounty() + " points !");
+
+                gamePlayer.removeBounty();
+                gamePlayer.removeBeter();
             }
         }
     }

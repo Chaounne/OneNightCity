@@ -25,6 +25,7 @@ public final class OneNightCity extends JavaPlugin {
         Commands cmd = new Commands();
 
         getCommand("city").setExecutor(cmd);
+        getCommand("bounty").setExecutor(cmd);
 
         getPlugin(OneNightCity.class).getServer().getPluginManager().registerEvents(new Handler(), this);
     }

@@ -16,7 +16,7 @@ public class GamePlayer {
 
     private int score = 0;
 
-    private int bounty = 0;
+    private int bounty;
 
     private boolean isBounty = false;
 
