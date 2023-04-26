@@ -19,7 +19,7 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 - [ ] Donner aux joueurs un stuff quand ils spawnent
 - [ ] Pvp activé au bout de 10 min
 - [ ] Limite de 5000 blocks de coté
-- [ ] Fix l'hologram pour le classement
+- [x] Fix l'hologram pour le classement
 - [ ] Faire un test pour voir si tout fonctionne
 
 ## Idée pour le mini jeu :
@@ -28,7 +28,6 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 
 Faire des events in-game aléatoire, du style :
 
-- Faire un classement des équipes en fonction des poudres en leurs possessions 
 
 - Aléatoirement, des ressources valent 2 fois plus de poudre aupres des marchants (on fait une annonce quand ça arrive)
 
