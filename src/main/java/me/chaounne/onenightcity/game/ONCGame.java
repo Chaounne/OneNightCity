@@ -2,14 +2,12 @@ package me.chaounne.onenightcity.game;
 
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
@@ -115,9 +113,20 @@ public class ONCGame implements Listener {
     public void startGame() {
         GenerateChest generateChest = new GenerateChest();
         for(Player player : Bukkit.getOnlinePlayers()){
+            player.getPlayer().getInventory().clear();
             FastBoard board = new FastBoard(player);
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
             boards.put(player.getUniqueId(), board);
+            player.getInventory().addItem(new ItemStack(Material.IRON_SWORD));
+            player.getInventory().addItem(new ItemStack(Material.IRON_PICKAXE));
+            player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 15));
+            ItemStack[] armorContents = {
+                    new ItemStack(Material.IRON_BOOTS),
+                    new ItemStack(Material.IRON_LEGGINGS),
+                    new ItemStack(Material.IRON_CHESTPLATE),
+                    new ItemStack(Material.IRON_HELMET)
+            };
+            player.getInventory().setArmorContents(armorContents);
         }
         ClassementPoudre.showScoreboard();
         timer = new BukkitRunnable() {
