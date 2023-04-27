@@ -132,6 +132,19 @@ public class ONCGame implements Listener {
         timer = new BukkitRunnable() {
             @Override
             public void run() {
+                World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
+                world.setPVP(false);
+                if (time == 14350) {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.sendTitle("Il reste une heure de jeu", "", 10, 70, 20);
+                        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 5f, 5f);
+                    }
+
+                }
+                if(time>=14350){
+                    world.setPVP(true);
+                }
+
                 time--;
                 updateBoard();
                 if (time == 0) {
@@ -142,6 +155,7 @@ public class ONCGame implements Listener {
                 }
             }
         };
+
 
         if (!started) started = true;
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
