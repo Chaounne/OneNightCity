@@ -141,7 +141,7 @@ public class ONCGame implements Listener {
                     }
 
                 }
-                if(time>=14350){
+                if(time<=14350){
                     world.setPVP(true);
                 }
 
