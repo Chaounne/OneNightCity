@@ -268,6 +268,9 @@ public class Commands implements CommandExecutor {
                 }else if(entityName.equals("justin")){
                     JustinPuechEntity.getEntity(player.getLocation());
                     return true;
+                } else if(entityName.equals("cheep")){
+                    CheepCheapEntity.getEntity(player.getLocation());
+                    return true;
                 }
                 else {
                     player.sendMessage(ChatColor.RED+"Usage : /city entity <henry|??>");
