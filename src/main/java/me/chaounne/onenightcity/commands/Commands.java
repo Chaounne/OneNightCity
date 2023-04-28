@@ -1,7 +1,6 @@
 package me.chaounne.onenightcity.commands;
 
 import me.chaounne.onenightcity.game.GamePlayer;
-import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.villager.*;
@@ -256,8 +255,8 @@ public class Commands implements CommandExecutor {
                 if(entityName.equals("henry")){
                     HenryEntity.getEntity(player.getLocation());
                     return true;
-                } else if(entityName.equals("henry1")){
-                    HenryEntity1.getEntity(player.getLocation());
+                } else if(entityName.equals("jeaneau")){
+                    JeaneauEntity.getEntity(player.getLocation());
                     return true;
 
                 } else if(entityName.equals("henry3")){
@@ -266,7 +265,11 @@ public class Commands implements CommandExecutor {
                 } else if(entityName.equals("MBouffe")){
                     KilianMBoufféEntity.getEntity(player.getLocation());
                     return true;
-                } else {
+                }else if(entityName.equals("justin")){
+                    JustinPuechEntity.getEntity(player.getLocation());
+                    return true;
+                }
+                else {
                     player.sendMessage(ChatColor.RED+"Usage : /city entity <henry|??>");
                     return false;
                 }

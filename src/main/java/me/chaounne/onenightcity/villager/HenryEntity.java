@@ -46,7 +46,7 @@ public class HenryEntity {
          List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
         int amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 0));
+        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 5) + 1;
         trades.get(0).addIngredient(new ItemStack(Material.MELON, price));

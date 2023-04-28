@@ -50,6 +50,15 @@ public class Handler implements Listener {
                         }
                         player.getInventory().removeItem(item);
                     }
+
+                    if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())) {
+                        // ajoute autant de score à la team du joueur que de poudre ramassée
+                        for (int i = 0; i < item.getAmount(); i++) {
+                            gamePlayer.getTeam().addScore(10);
+                            gamePlayer.addScore(10);
+                        }
+                        player.getInventory().removeItem(item);
+                    }
                 }
             }
         }
@@ -145,6 +154,17 @@ public class Handler implements Listener {
                             }
                             players.getInventory().removeItem(item);
                         }
+
+                        if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())){
+                            GamePlayer gamePlayer = GamePlayer.getInstance(players);
+
+                            // ajoute autant de score à la team du joueur que de poudre ramassée
+                            for (int i = 0; i < item.getAmount(); i++) {
+                                gamePlayer.getTeam().addScore(10);
+                                gamePlayer.addScore(10);
+                            }
+                            players.getInventory().removeItem(item);
+                        }
                     }
                     return; // Sortir de la boucle une fois qu'un trade est trouvé
                 }
@@ -170,14 +190,21 @@ public class Handler implements Listener {
                         }
                         player.getInventory().removeItem(item);
                     }
+
+                    if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())){
+                        // ajoute autant de score à la team du joueur que de poudre ramassée
+                        for (int i = 0; i < item.getAmount(); i++) {
+                            gamePlayer.getTeam().addScore(10);
+                            gamePlayer.addScore(10);
+                        }
+                        player.getInventory().removeItem(item);
+                    }
                 }
             }
         }
     }
 
     // cut clean
-    // Ici qu'on gere si un joueur essaie de casser un block dans le spawn ?
-    // reponse : Oui tu peux gérer ça ici
     @EventHandler
     public void onBlockBreakEvent(BlockBreakEvent event){
         if(event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
