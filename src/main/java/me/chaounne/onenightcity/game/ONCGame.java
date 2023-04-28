@@ -147,13 +147,23 @@ public class ONCGame implements Listener {
                     }
                 }
 
-                if (time == 14370 && !world.getEntities().contains("DARKHenry")){
-                    DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 63, 1));
-                    for (Player p : Bukkit.getOnlinePlayers()) {
-                        p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
-                        p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
+                if (time == 14370 ) {
+                    boolean spawnDARKHenry = true;
+                    for (Entity entity : world.getEntities()) {
+                        if (entity.getName().equals("DARKHenry")) {
+                            spawnDARKHenry = false;
+                            break;
+                        }
+                    }
 
-                        p.sendMessage(ChatColor.RED+"DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
+                    if (spawnDARKHenry) {
+                        DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 63, 1));
+                        for (Player p : Bukkit.getOnlinePlayers()) {
+                            p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
+                            p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
+
+                            p.sendMessage(ChatColor.RED + "DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
+                        }
                     }
                 }
 
