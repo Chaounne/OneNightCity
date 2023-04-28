@@ -4,7 +4,7 @@ import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.Team;
-import me.chaounne.onenightcity.villager.HenryEntity;
+import me.chaounne.onenightcity.villager.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -257,8 +257,15 @@ public class Commands implements CommandExecutor {
                 if(entityName.equals("henry")){
                     HenryEntity.getEntity(player.getLocation());
                     return true;
-                } else if(entityName.equals("henry")){
-                    HenryEntity.getEntity(player.getLocation());
+                } else if(entityName.equals("henry1")){
+                    HenryEntity1.getEntity(player.getLocation());
+                    return true;
+
+                } else if(entityName.equals("henry3")){
+                    HenryEntity3.getEntity(player.getLocation());
+                    return true;
+                } else if(entityName.equals("MBouffe")){
+                    KilianMBoufféEntity.getEntity(player.getLocation());
                     return true;
                 } else {
                     player.sendMessage(ChatColor.RED+"Usage : /city entity <henry|??>");
