@@ -52,7 +52,7 @@ public class DarkHenryEntity {
 
         List<MerchantRecipe> trades = new ArrayList<>();
         ItemStack tradeItem = items.get((int) (Math.random() * items.size()));
-        trades.add(new MerchantRecipe(PoudreItem.getItem(64), 1));
+        trades.add(new MerchantRecipe(PoudreItem.getSuperPoudre(20), 1));
         trades.get(0).addIngredient(tradeItem);
         henry2.setRecipes(trades);
 
