@@ -202,6 +202,9 @@ public class ONCGame implements Listener {
 
                 if(time<=14350) {
                     world.setPVP(true);
+                    for(Player player:Bukkit.getOnlinePlayers()){
+                        player.sendMessage("Le pvp est activé");
+                    }
                 }
 
 
