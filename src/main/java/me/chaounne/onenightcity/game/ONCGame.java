@@ -137,7 +137,7 @@ public class ONCGame implements Listener {
 
                 if (time > 14370 ) {
                     for (Entity entity : world.getEntities()) {
-                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
+                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 63 && entity.getLocation().getBlockZ() == 1) {
                             entity.remove();
                         }
                         if (entity instanceof LivingEntity && entity.getName().equals("DARKHenry")) {
@@ -148,7 +148,7 @@ public class ONCGame implements Listener {
 
                 if (time == 14370) {
 
-                    DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
+                    DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 63, 1));
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
