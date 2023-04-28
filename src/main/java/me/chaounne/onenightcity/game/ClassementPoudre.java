@@ -58,7 +58,7 @@ public class ClassementPoudre {
         Bukkit.getScheduler().runTaskLater(OneNightCity.getInstance(), new Runnable() {
             @Override
             public void run() {
-                scoreboardHologram.delete();
+                if(game.isStarted()==true){scoreboardHologram.delete();}
             }
         }, 40L);
     }
