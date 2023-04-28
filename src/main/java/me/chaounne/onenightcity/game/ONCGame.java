@@ -124,6 +124,7 @@ public class ONCGame implements Listener {
     }
 
     public void createDark() {
+        final boolean[] hasSpawn = {false};
         World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
         Location location = new Location(world, 0, 63, 1);
@@ -146,12 +147,13 @@ public class ONCGame implements Listener {
                     }
                 }
 
-                if (time == 14370) {
+                if (time == 14370&& hasSpawn[0] ==false) {
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 63, 1));
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
+                        hasSpawn[0] =true;
                         p.sendMessage(ChatColor.RED+"DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
                     }
                 }
