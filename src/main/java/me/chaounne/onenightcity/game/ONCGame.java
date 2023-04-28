@@ -28,7 +28,7 @@ public class ONCGame implements Listener {
     private boolean started = false;
 
     private BukkitRunnable timer;
-    private int time = 14400;
+    private int time = 10800;
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){
@@ -136,7 +136,7 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 14370 ) {
+                if (time > 2700 ) {
                     for (Entity entity : world.getEntities()) {
                         if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 63 && entity.getLocation().getBlockZ() == 1) {
                             entity.remove();
@@ -147,22 +147,16 @@ public class ONCGame implements Listener {
                     }
                 }
 
-                if (time == 14370 ) {
+                if (time == 2700 ) {
                     boolean spawnDARKHenry = true;
                     for (Entity entity : world.getEntities()) {
                         if (entity.getName().equals("DARKHenry")) {
-                            for(Player player:Bukkit.getOnlinePlayers()){
-                                player.sendMessage("EFEFEFEF");
-                            }
                             spawnDARKHenry = false;
                             break;
                         }
                     }
 
                     if (spawnDARKHenry) {
-                        for(Player player:Bukkit.getOnlinePlayers()){
-                            player.sendMessage("EFdddEFEFEF");
-                        }
                         DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 63, 1));
                         for (Player p : Bukkit.getOnlinePlayers()) {
                             p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
@@ -210,7 +204,7 @@ public class ONCGame implements Listener {
 
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
                 world.setPVP(false);
-                if (time == 14350) {
+                if (time == 3600) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle("1 heure restante", "", 10, 70, 20);
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 5f, 5f);
@@ -218,7 +212,7 @@ public class ONCGame implements Listener {
 
                 }
 
-                if(time==14350) {
+                if(time==10200) {
                     world.setPVP(true);
                     for(Player player:Bukkit.getOnlinePlayers()){
                         player.sendMessage("Le pvp est activé");

@@ -131,9 +131,6 @@ public class Handler implements Listener {
             for (MerchantRecipe recipe : recipes) {
                 if (players.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
                     if (merchant.getTrader().getName().equals(ChatColor.RED+"DARKHenry")) {
-                        for(Player player:Bukkit.getOnlinePlayers()){
-                            player.sendMessage("EFdddEFE111FEF");
-                        }
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             player.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
                             player.getPlayer().playSound(players.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
