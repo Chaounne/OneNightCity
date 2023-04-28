@@ -49,7 +49,7 @@ public class CheepCheapEntity {
         int amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        int price = (int) (Math.random() * 5) + 1;
+        int price = (int) (Math.random() * 10) + 1;
         trades.get(0).addIngredient(new ItemStack(Material.WHITE_WOOL, price));
 
         //trade 2
@@ -57,7 +57,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(1).addIngredient(new ItemStack(Material.RED_WOOL, price));
 
         //trade 3
@@ -65,7 +65,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(2).addIngredient(new ItemStack(Material.BLUE_WOOL, price));
 
         //trade 4
@@ -73,7 +73,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(3).addIngredient(new ItemStack(Material.GREEN_WOOL, price));
 
         //trade 5
@@ -81,7 +81,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(4).addIngredient(new ItemStack(Material.YELLOW_WOOL, price));
 
         //trade 6
@@ -89,7 +89,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(5).addIngredient(new ItemStack(Material.PURPLE_WOOL, price));
 
         //trade 7
@@ -97,7 +97,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(6).addIngredient(new ItemStack(Material.ORANGE_WOOL, price));
 
         //trade 8
@@ -105,7 +105,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(7).addIngredient(new ItemStack(Material.MAGENTA_WOOL, price));
 
         //trade 9
@@ -113,7 +113,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(8).addIngredient(new ItemStack(Material.LIGHT_BLUE_WOOL, price));
 
         //trade 10
@@ -121,7 +121,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(9).addIngredient(new ItemStack(Material.LIGHT_GRAY_WOOL, price));
 
         //trade 11
@@ -129,7 +129,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(10).addIngredient(new ItemStack(Material.GRAY_WOOL, price));
 
         //trade 12
@@ -137,7 +137,7 @@ public class CheepCheapEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(11).addIngredient(new ItemStack(Material.BLACK_WOOL, price));
 
         //trade 13
