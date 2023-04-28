@@ -20,8 +20,8 @@ public final class OneNightCity extends JavaPlugin {
         // Plugin startup logic
         System.out.println("One Night City is starting...");
         for(Player player : Bukkit.getOnlinePlayers()) {
-            player.teleport(new Location(player.getWorld(), 121, 154, -40));
-            player.getPlayer().setGameMode(GameMode.ADVENTURE);
+            //player.teleport(new Location(player.getWorld(), 121, 154, -40));
+            //player.getPlayer().setGameMode(GameMode.ADVENTURE);
         }
 
         Commands cmd = new Commands();
