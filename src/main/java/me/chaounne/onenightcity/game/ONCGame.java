@@ -2,13 +2,11 @@ package me.chaounne.onenightcity.game;
 
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
-import me.chaounne.onenightcity.villager.HenryEntity1;
-import me.chaounne.onenightcity.villager.HenryEntity2;
+import me.chaounne.onenightcity.villager.DarkHenryEntity;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -16,9 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
-
-import static me.chaounne.onenightcity.villager.HenryEntity2.henry2;
-import static me.chaounne.onenightcity.villager.HenryEntity2.onTrade;
 
 public class ONCGame implements Listener {
 
@@ -119,6 +114,12 @@ public class ONCGame implements Listener {
     }
 
     public void createDark() {
+        World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
+
+        Location location = new Location(world, 0, 63, 1);
+        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
+        world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);
+
         timer = new BukkitRunnable() {
             @Override
             public void run() {
@@ -137,10 +138,11 @@ public class ONCGame implements Listener {
 
                 if (time == 14370) {
 
-                    HenryEntity2.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
+                    DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "Il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange", 10, 70, 20);
+                        p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
+                        p.sendMessage(ChatColor.RED+"DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
                     }
                 }
 
@@ -179,7 +181,7 @@ public class ONCGame implements Listener {
                 world.setPVP(false);
                 if (time == 14350) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
-                        player.sendTitle("1heure restante", "", 10, 70, 20);
+                        player.sendTitle("1 heure restante", "", 10, 70, 20);
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 5f, 5f);
                     }
 

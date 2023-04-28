@@ -3,7 +3,6 @@ package me.chaounne.onenightcity.events;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
-import me.chaounne.onenightcity.villager.HenryEntity2;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
@@ -27,7 +26,7 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.List;
 import java.util.Objects;
 
-import static me.chaounne.onenightcity.villager.HenryEntity2.henry2;
+import static me.chaounne.onenightcity.villager.DarkHenryEntity.henry2;
 
 public class Handler implements Listener {
 
@@ -121,9 +120,11 @@ public class Handler implements Listener {
             // Vérifier si le joueur a effectué un trade avec le villageois
             for (MerchantRecipe recipe : recipes) {
                 if (players.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
-                    for(Player player:Bukkit.getOnlinePlayers()){
-                        player.sendMessage("DARKHenry à échangé l'ITEM spécial avec"+players.getName() +" !"+"DARKHenry s'en va");
-                        player.getPlayer().playSound(players.getLocation(),Sound.ITEM_GOAT_HORN_SOUND_4,1f,1f);
+                    if (henry2.getName().equalsIgnoreCase(ChatColor.DARK_RED + "DARKHenry")) {
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            player.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
+                            player.getPlayer().playSound(players.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
+                        }
                     }
                     World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
