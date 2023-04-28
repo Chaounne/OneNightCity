@@ -33,3 +33,10 @@ Faire des events in-game aléatoire, du style :
 
 - Faire une annonce quand il reste 1 heure de jeu pour tous les joueurs
 
+- ajouter la vente de shulker box
+
+- bug pvp actif
+
+- pas mettre de viande crue dans les pnjs
+
+- prendre en compte silk touch
