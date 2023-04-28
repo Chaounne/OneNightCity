@@ -4,6 +4,7 @@ import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
+import me.chaounne.onenightcity.villager.HenryEntity;
 import me.chaounne.onenightcity.villager.spawners.Spawners;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -129,7 +130,10 @@ public class Handler implements Listener {
             // Vérifier si le joueur a effectué un trade avec le villageois
             for (MerchantRecipe recipe : recipes) {
                 if (players.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
-                    if (henry2.getName().equalsIgnoreCase(ChatColor.DARK_RED + "DARKHenry")) {
+                    if (merchant.getTrader().getName().equals(ChatColor.RED+"DARKHenry")) {
+                        for(Player player:Bukkit.getOnlinePlayers()){
+                            player.sendMessage("EFdddEFE111FEF");
+                        }
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             player.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
                             player.getPlayer().playSound(players.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);

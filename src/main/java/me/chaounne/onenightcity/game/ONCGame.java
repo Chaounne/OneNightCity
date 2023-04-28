@@ -151,12 +151,18 @@ public class ONCGame implements Listener {
                     boolean spawnDARKHenry = true;
                     for (Entity entity : world.getEntities()) {
                         if (entity.getName().equals("DARKHenry")) {
+                            for(Player player:Bukkit.getOnlinePlayers()){
+                                player.sendMessage("EFEFEFEF");
+                            }
                             spawnDARKHenry = false;
                             break;
                         }
                     }
 
                     if (spawnDARKHenry) {
+                        for(Player player:Bukkit.getOnlinePlayers()){
+                            player.sendMessage("EFdddEFEFEF");
+                        }
                         DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 63, 1));
                         for (Player p : Bukkit.getOnlinePlayers()) {
                             p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
@@ -170,7 +176,7 @@ public class ONCGame implements Listener {
 
             }
         };
-        timer.runTaskTimer(OneNightCity.getInstance(), 0, 500);
+        timer.runTaskTimer(OneNightCity.getInstance(), 0, 600);
     }
 
 
@@ -197,10 +203,11 @@ public class ONCGame implements Listener {
             player.getInventory().setArmorContents(armorContents);
         }
         ClassementPoudre.showScoreboard();
+        createDark();
         timer = new BukkitRunnable() {
             @Override
             public void run() {
-                createDark();
+
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
                 world.setPVP(false);
                 if (time == 14350) {
