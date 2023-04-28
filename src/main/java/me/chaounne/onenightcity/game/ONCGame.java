@@ -2,13 +2,11 @@ package me.chaounne.onenightcity.game;
 
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
-import me.chaounne.onenightcity.villager.HenryEntity1;
 import me.chaounne.onenightcity.villager.HenryEntity2;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
