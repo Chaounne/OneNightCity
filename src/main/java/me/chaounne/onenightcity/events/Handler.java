@@ -42,14 +42,6 @@ public class Handler implements Listener {
                 if (gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
                 for (ItemStack item : player.getInventory().getContents()) {
-                    if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())) {
-                        // ajoute autant de score à la team du joueur que de poudre ramassée
-                        for (int i = 0; i < item.getAmount(); i++) {
-                            gamePlayer.getTeam().addScore(1);
-                            gamePlayer.addScore(1);
-                        }
-                        player.getInventory().removeItem(item);
-                    }
 
                     if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())) {
                         // ajoute autant de score à la team du joueur que de poudre ramassée

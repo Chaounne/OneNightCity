@@ -31,6 +31,12 @@ public class PoudreItem {
 
         return poudre;
     }
+    public static ItemStack getSuperPoudre(int amount){
+        poudre = new ItemBuilder(Material.SUGAR)
+                .name(ChatColor.GOLD + ""+ChatColor.BOLD +"Super Poudre").amount(amount).enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
+
+        return poudre;
+    }
 
 
 }

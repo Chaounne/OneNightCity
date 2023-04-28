@@ -100,9 +100,16 @@ public class ONCGame implements Listener {
             System.out.println(player.getPlayer().getName());
             FastBoard board = boards.get(player.getPlayer().getUniqueId());
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
+
+            int hours = time / 3600; // nombre d'heures
+            int minutes = (time % 3600) / 60; // nombre de minutes
+            int seconds = time % 60; // nombre de secondes
+
+            String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds); // formatage de l'heure
+
             board.updateLines("",
                     ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
-                    ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + time,
+                    ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                     ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                     ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                     "",
@@ -110,6 +117,7 @@ public class ONCGame implements Listener {
                     "--------------------");
         }
     }
+
 
     public boolean isStarted(){
         return started;
