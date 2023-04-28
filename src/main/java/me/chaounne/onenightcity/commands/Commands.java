@@ -259,8 +259,8 @@ public class Commands implements CommandExecutor {
                     JeaneauEntity.getEntity(player.getLocation());
                     return true;
 
-                } else if(entityName.equals("henry3")){
-                    HenryEntity3.getEntity(player.getLocation());
+                } else if(entityName.equals("aypierre")){
+                    LesPierresEntity.getEntity(player.getLocation());
                     return true;
                 } else if(entityName.equals("MBouffe")){
                     KilianMBoufféEntity.getEntity(player.getLocation());
