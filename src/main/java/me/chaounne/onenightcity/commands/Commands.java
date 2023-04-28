@@ -5,10 +5,7 @@ import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.villager.*;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -68,6 +65,8 @@ public class Commands implements CommandExecutor {
                     players.teleport(new Location(player.getWorld(), 0, 70, 0));
                     players.setBedSpawnLocation(new Location(player.getWorld(), 0, 71, 0),true);
                     players.setGameMode(GameMode.SURVIVAL);
+                    players.sendTitle(ChatColor.RED + "La partie COMMENCE !", "Bonne chance à tous les joueurs !", 10, 70, 20);
+                    players.playSound(players.getLocation(), Sound.ENTITY_EXPERIENCE_BOTTLE_THROW, 10f, 10f);
 
                 }
 

@@ -3,10 +3,8 @@ package me.chaounne.onenightcity.events;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import me.chaounne.onenightcity.villager.HenryEntity2;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -21,25 +19,31 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Merchant;
+import org.bukkit.inventory.MerchantRecipe;
 
+import java.util.List;
 import java.util.Objects;
 
-public class Handler implements Listener{
+import static me.chaounne.onenightcity.villager.HenryEntity2.henry2;
+
+public class Handler implements Listener {
 
     private ONCGame game = ONCGame.getInstance();
 
     @EventHandler
-    public void onInventoryOpen(InventoryOpenEvent event){
-        if(event.getPlayer() instanceof Player){
+    public void onInventoryOpen(InventoryOpenEvent event) {
+        if (event.getPlayer() instanceof Player) {
             Player player = (Player) event.getPlayer();
-            if(player.getGameMode() == GameMode.SURVIVAL){
-                if(player.getInventory().isEmpty()) return;
+            if (player.getGameMode() == GameMode.SURVIVAL) {
+                if (player.getInventory().isEmpty()) return;
                 GamePlayer gamePlayer = GamePlayer.getInstance(player);
-                if(gamePlayer.getTeam() == null) return;
+                if (gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
-                for(ItemStack item : player.getInventory().getContents()){
-                    if(item != null&&Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())){
+                for (ItemStack item : player.getInventory().getContents()) {
+                    if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())) {
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
                             gamePlayer.getTeam().addScore(1);
@@ -52,12 +56,13 @@ public class Handler implements Listener{
         }
     }
 
+
     @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event){
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
-        if(gamePlayer.getTeam() != null){
-            event.setFormat(gamePlayer.getTeam().getColor() +  "[" + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + event.getMessage());
+        if (gamePlayer.getTeam() != null) {
+            event.setFormat(gamePlayer.getTeam().getColor() + "[" + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + event.getMessage());
         } else {
             event.setFormat(ChatColor.GRAY + player.getName() + ChatColor.RESET + " : " + event.getMessage());
         }
@@ -69,13 +74,13 @@ public class Handler implements Listener{
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         player.teleport(new Location(player.getWorld(), 0, 70, 0));
 
-        if(gamePlayer.hasBounty()){
+        if (gamePlayer.hasBounty()) {
             Player killer = player.getKiller();
-            if(killer != null){
+            if (killer != null) {
                 GamePlayer gameKiller = GamePlayer.getInstance(killer);
                 GamePlayer beter = gamePlayer.getBeter();
 
-                if(beter != null && beter.getTeam() != null && beter.getTeam() != gameKiller.getTeam() && beter.getTeam() != gamePlayer.getTeam()){
+                if (beter != null && beter.getTeam() != null && beter.getTeam() != gameKiller.getTeam() && beter.getTeam() != gamePlayer.getTeam()) {
                     beter.addScore((int) (gamePlayer.getBounty() * 1.25));
                     beter.getTeam().addScore((int) (gamePlayer.getBounty() * 1.25));
 
@@ -94,18 +99,60 @@ public class Handler implements Listener{
     }
 
     @EventHandler
-    public void onPlayerItemDropped(PlayerDropItemEvent event){
+    public void onPlayerItemDropped(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
-        if(player.getGameMode() == GameMode.SURVIVAL){
+        if (player.getGameMode() == GameMode.SURVIVAL) {
             Item item = event.getItemDrop();
-            if(Objects.equals(item.getItemStack().getItemMeta(), PoudreItem.getItem().getItemMeta())){
+            if (Objects.equals(item.getItemStack().getItemMeta(), PoudreItem.getItem().getItemMeta())) {
                 event.setCancelled(true);
             }
         }
     }
 
     @EventHandler
-    public void onInventoryClose(InventoryCloseEvent event){
+    public void onInventoryClose(InventoryCloseEvent event) {
+        Inventory inventory = event.getInventory();
+        Player players = (Player) event.getPlayer();
+
+        if (inventory.getHolder() instanceof Merchant) {
+            Merchant merchant = (Merchant) inventory.getHolder();
+            List<MerchantRecipe> recipes = merchant.getRecipes();
+
+            // Vérifier si le joueur a effectué un trade avec le villageois
+            for (MerchantRecipe recipe : recipes) {
+                if (players.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
+                    for(Player player:Bukkit.getOnlinePlayers()){
+                        player.sendMessage("DARKHenry à échangé l'ITEM spécial avec"+players.getName() +" !"+"DARKHenry s'en va");
+                        player.getPlayer().playSound(players.getLocation(),Sound.ITEM_GOAT_HORN_SOUND_4,1f,1f);
+                    }
+                    World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
+
+                    for (Entity entity : world.getEntities()) {
+                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
+                            entity.remove();
+                        }
+                    }
+
+                    for(ItemStack item : players.getInventory().getContents()){
+                        if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())){
+                            GamePlayer gamePlayer = GamePlayer.getInstance(players);
+
+                            // ajoute autant de score à la team du joueur que de poudre ramassée
+                            for (int i = 0; i < item.getAmount(); i++) {
+                                gamePlayer.getTeam().addScore(1);
+                                gamePlayer.addScore(1);
+                            }
+                            players.getInventory().removeItem(item);
+                        }
+                    }
+                    return; // Sortir de la boucle une fois qu'un trade est trouvé
+                }
+            }
+
+
+        }
+
+
         if(event.getPlayer() instanceof Player){
             Player player = (Player) event.getPlayer();
             if(player.getGameMode() == GameMode.SURVIVAL){

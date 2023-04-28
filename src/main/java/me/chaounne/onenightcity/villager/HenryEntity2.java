@@ -43,7 +43,7 @@ public class HenryEntity2 {
         henry2.setRemoveWhenFarAway(false);
 
         List<MerchantRecipe> trades = new ArrayList<>();
-        trades.add(new MerchantRecipe(PoudreItem.getItem(1), 0));
+        trades.add(new MerchantRecipe(PoudreItem.getItem(1), 1));
         trades.get(0).addIngredient(new ItemStack(Material.BEACON, 1));
 
         henry2.setRecipes(trades);
@@ -52,11 +52,19 @@ public class HenryEntity2 {
     }
 
     public static void onTrade(Player player) {
-        removeEntity();
+        HenryEntity2.removeEntity();
+
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.sendMessage(ChatColor.RED + "DARKHENRY : Vous avez laissé passer votre chance ? Ou bien avez-vous été devancé ?", "ADIEU");
             p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 5f, 5f);
         }
+
+        // Send message to all players about the trade
+        String message = ChatColor.GREEN + "Le joueur " + player.getName() + " vient de faire un échange avec DARKHENRY !";
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.sendMessage(message);
+        }
     }
+
 }
 

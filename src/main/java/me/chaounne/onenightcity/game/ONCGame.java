@@ -5,6 +5,8 @@ import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.villager.HenryEntity1;
 import me.chaounne.onenightcity.villager.HenryEntity2;
 import org.bukkit.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -14,6 +16,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
+
+import static me.chaounne.onenightcity.villager.HenryEntity2.henry2;
+import static me.chaounne.onenightcity.villager.HenryEntity2.onTrade;
 
 public class ONCGame implements Listener {
 
@@ -117,26 +122,37 @@ public class ONCGame implements Listener {
         timer = new BukkitRunnable() {
             @Override
             public void run() {
-                if (time > 14345 ) {
-                    HenryEntity2.removeEntity();}
+                World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time == 14345) {
+                if (time > 14370 ) {
+                    for (Entity entity : world.getEntities()) {
+                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
+                            entity.remove();
+                        }
+                        if (entity instanceof LivingEntity && entity.getName().equals("DARKHenry")) {
+                            entity.remove();
+                        }
+                    }
+                }
+
+                if (time == 14370) {
+
                     HenryEntity2.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "Il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange", 10, 70, 20);
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
                     }
                 }
+
+
             }
         };
-        timer.runTaskTimer(OneNightCity.getInstance(), 100, 120);
+        timer.runTaskTimer(OneNightCity.getInstance(), 0, 500);
     }
 
 
     public void startGame() {
-        for (int i=0;i<100;i++) {
-            HenryEntity2.removeEntity();
-        }
+
         GenerateChest generateChest = new GenerateChest();
         for(Player player : Bukkit.getOnlinePlayers()){
             player.getPlayer().getInventory().clear();
@@ -158,6 +174,7 @@ public class ONCGame implements Listener {
         timer = new BukkitRunnable() {
             @Override
             public void run() {
+                createDark();
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
                 world.setPVP(false);
                 if (time == 14350) {
@@ -167,11 +184,11 @@ public class ONCGame implements Listener {
                     }
 
                 }
-                if(time<=14350){
+
+                if(time<=14350) {
                     world.setPVP(true);
                 }
 
-                    createDark();
 
 
                 time--;
