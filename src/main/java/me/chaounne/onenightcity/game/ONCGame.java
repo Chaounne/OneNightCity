@@ -157,6 +157,9 @@ public class ONCGame implements Listener {
             FastBoard board = new FastBoard(player);
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
             boards.put(player.getUniqueId(), board);
+            player.setFoodLevel(20);
+            player.setHealth(20);
+            player.setSaturation(20);
             player.getInventory().addItem(new ItemStack(Material.IRON_SWORD));
             player.getInventory().addItem(new ItemStack(Material.IRON_PICKAXE));
             player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 15));

@@ -124,15 +124,15 @@ public class JustinPuechEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(8).addIngredient(new ItemStack(Material.PUFFERFISH_BUCKET, price));
+        trades.get(9).addIngredient(new ItemStack(Material.PUFFERFISH_BUCKET, price));
 
-        //trade 10
+        //trade 11
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(8).addIngredient(new ItemStack(Material.TROPICAL_FISH_BUCKET, price));
+        trades.get(10).addIngredient(new ItemStack(Material.TROPICAL_FISH_BUCKET, price));
 
         justin.setRecipes(trades);
 
