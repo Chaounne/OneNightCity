@@ -22,7 +22,7 @@ public class CheepCheapEntity {
     public static Villager getEntity(Location loc){
         cheap = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
-        cheap.setCustomName("Les Pierres");
+        cheap.setCustomName("Cheep Cheap");
         cheap.setCustomNameVisible(true);
         cheap.setVillagerType(Villager.Type.TAIGA);
         cheap.setProfession(Villager.Profession.SHEPHERD);
