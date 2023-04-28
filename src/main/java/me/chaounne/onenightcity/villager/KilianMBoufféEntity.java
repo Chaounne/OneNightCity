@@ -26,7 +26,7 @@ public class KilianMBoufféEntity {
         MBouffe.setCustomNameVisible(true);
         MBouffe.setProfession(Villager.Profession.FARMER);
         MBouffe.setAI(false);
-        //MBouffe.setInvulnerable(true);
+        MBouffe.setInvulnerable(true);
         MBouffe.setSilent(true);
         MBouffe.setCollidable(false);
         MBouffe.setVillagerExperience(5);

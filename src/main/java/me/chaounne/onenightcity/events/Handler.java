@@ -332,7 +332,13 @@ public class Handler implements Listener {
     public void onFoodLevelChange(FoodLevelChangeEvent event){if(!game.isStarted()) event.setCancelled(true);}
 
     @EventHandler
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent event){if(!game.isStarted()) event.setCancelled(true);}
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event){
+        if(!game.isStarted()) event.setCancelled(true);
+
+        if(event.getEntity() instanceof Villager){
+            event.setCancelled(true);
+        }
+    }
 
     @EventHandler
     public void onPlayerItemDamage(PlayerItemDamageEvent e) {e.setCancelled(true);}
