@@ -68,7 +68,7 @@ public class GenerateChest implements Listener {
                     }
 
                 }
-            }, 0L, 1200L);
+            }, 0L, 36000);
 
     }
 
