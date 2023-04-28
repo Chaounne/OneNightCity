@@ -40,3 +40,5 @@ Faire des events in-game aléatoire, du style :
 - pas mettre de viande crue dans les pnjs
 
 - prendre en compte silk touch
+
+- réduire zone pvp à citadelle
