@@ -42,3 +42,5 @@ Faire des events in-game aléatoire, du style :
 - prendre en compte silk touch
 
 - réduire zone pvp à citadelle
+
+- patch le timer
