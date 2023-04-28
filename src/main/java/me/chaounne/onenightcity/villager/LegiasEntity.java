@@ -11,29 +11,30 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HenryEntity {
+public class LegiasEntity {
 
-    private static Villager henry;
+    private static Villager legolas;
 
-    public HenryEntity(){
+    public LegiasEntity(){
 
     }
 
     public static Villager getEntity(Location loc){
-        henry = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        legolas = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
-        henry.setCustomName("Henry");
-        henry.setCustomNameVisible(true);
-        henry.setProfession(Villager.Profession.FARMER);
-        henry.setAI(false);
-        //henry.setInvulnerable(true);
-        henry.setSilent(true);
-        henry.setCollidable(false);
-        henry.setVillagerExperience(5);
-        henry.setVillagerLevel(5);
-        henry.setAdult();
-        henry.setCanPickupItems(false);
-        henry.setRemoveWhenFarAway(false);
+        legolas.setCustomName("Legias");
+        legolas.setCustomNameVisible(true);
+        legolas.setVillagerType(Villager.Type.SWAMP);
+        legolas.setProfession(Villager.Profession.FLETCHER);
+        legolas.setAI(false);
+        //henry3.setInvulnerable(true);
+        legolas.setSilent(true);
+        legolas.setCollidable(false);
+        legolas.setVillagerExperience(5);
+        legolas.setVillagerLevel(5);
+        legolas.setAdult();
+        legolas.setCanPickupItems(false);
+        legolas.setRemoveWhenFarAway(false);
 
         /**int i = 69
          * int alea = random 100
@@ -48,48 +49,50 @@ public class HenryEntity {
         int amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        int price = (int) (Math.random() * 5) + 1;
-        trades.get(0).addIngredient(new ItemStack(Material.MELON, price));
+        int price = (int) (Math.random() * 64) + 30;
+        if(price > 64){
+            price = 64;
+        }
+        trades.get(0).addIngredient(new ItemStack(Material.ARROW, price));
 
         //trade 2
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(1).addIngredient(new ItemStack(Material.PUMPKIN, price));
+        trades.get(1).addIngredient(new ItemStack(Material.BOW, 1));
 
         //trade 3
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(2).addIngredient(new ItemStack(Material.CARROT, price));
+        price = (int) (Math.random() * 64) + 30;
+        if(price > 64){
+            price = 64;
+        }
+        trades.get(2).addIngredient(new ItemStack(Material.SPECTRAL_ARROW, price));
 
         //trade 4
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(3).addIngredient(new ItemStack(Material.POTATO, price));
+        trades.get(3).addIngredient(new ItemStack(Material.CROSSBOW, 1));
 
         //trade 5
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(4).addIngredient(new ItemStack(Material.BEETROOT, price));
+        price = (int) (Math.random() * 10) + 1;
+        trades.get(4).addIngredient(new ItemStack(Material.BIG_DRIPLEAF, price));
 
         //trade 6
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 20) + 5;
-        trades.get(5).addIngredient(new ItemStack(Material.WHEAT, price));
+        price = (int) (Math.random() * 10) + 1;
+        trades.get(5).addIngredient(new ItemStack(Material.SMALL_DRIPLEAF, price));
 
         //trade 7
         // random amount of poudre
@@ -97,7 +100,7 @@ public class HenryEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(6).addIngredient(new ItemStack(Material.SUGAR_CANE, price));
+        trades.get(6).addIngredient(new ItemStack(Material.SPORE_BLOSSOM, price));
 
         //trade 8
         // random amount of poudre
@@ -105,7 +108,7 @@ public class HenryEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(7).addIngredient(new ItemStack(Material.COCOA_BEANS, price));
+        trades.get(7).addIngredient(new ItemStack(Material.VINE, price));
 
         //trade 9
         // random amount of poudre
@@ -113,17 +116,10 @@ public class HenryEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(8).addIngredient(new ItemStack(Material.APPLE, price));
+        trades.get(8).addIngredient(new ItemStack(Material.LILY_PAD, price));
 
-        henry.setRecipes(trades);
+        legolas.setRecipes(trades);
 
-        //ce qu'henry propose
-        //MerchantRecipe recipe = new MerchantRecipe(null, 0);
-        //ce qu'il veut
-        //recipe.addIngredient(null);
-
-
-
-        return henry;
+        return legolas;
     }
 }

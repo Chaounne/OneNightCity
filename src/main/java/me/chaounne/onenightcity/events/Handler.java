@@ -1,14 +1,17 @@
 package me.chaounne.onenightcity.events;
 
+import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
+import me.chaounne.onenightcity.villager.spawners.Spawners;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -22,6 +25,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.MerchantRecipe;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 import java.util.Objects;
@@ -161,10 +165,7 @@ public class Handler implements Listener {
                     return; // Sortir de la boucle une fois qu'un trade est trouvé
                 }
             }
-
-
         }
-
 
         if(event.getPlayer() instanceof Player){
             Player player = (Player) event.getPlayer();
@@ -228,6 +229,53 @@ public class Handler implements Listener {
                     event.getPlayer().setExp(event.getPlayer().getExp() + 1);
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlaced(BlockPlaceEvent event){
+        // if the block is spawner.getDiamondSpawner
+        ItemStack item = event.getItemInHand();
+        ItemStack diamondSpawner = Spawners.getDiamondSpawner();
+        ItemStack goldSpawner = Spawners.getGoldSpawner();
+        ItemStack ironSpawner = Spawners.getIronSpawner();
+        ItemStack emeraldSpawner = Spawners.getEmeraldSpawner();
+        if(item.equals(diamondSpawner)){
+            // spawn diamond on top of the spawner
+            BukkitRunnable runnable = new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if(!game.isStarted()) this.cancel();
+                    event.getBlockPlaced().getWorld().dropItemNaturally(event.getBlockPlaced().getLocation().add(0, 1, 0), new ItemStack(Material.DIAMOND));
+                }};
+            runnable.runTaskTimer(OneNightCity.getInstance(), 0, 200);
+        } else if(item.equals(goldSpawner)){
+            // spawn gold on top of the spawner
+            BukkitRunnable runnable = new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if(!game.isStarted()) this.cancel();
+                    event.getBlockPlaced().getWorld().dropItemNaturally(event.getBlockPlaced().getLocation().add(0, 1, 0), new ItemStack(Material.GOLD_INGOT));
+                }};
+            runnable.runTaskTimer(OneNightCity.getInstance(), 0, 200);
+        } else if(item.equals(ironSpawner)){
+            // spawn iron on top of the spawner
+            BukkitRunnable runnable = new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if(!game.isStarted()) this.cancel();
+                    event.getBlockPlaced().getWorld().dropItemNaturally(event.getBlockPlaced().getLocation().add(0, 1, 0), new ItemStack(Material.IRON_INGOT));
+                }};
+            runnable.runTaskTimer(OneNightCity.getInstance(), 0, 200);
+        } else if(item.equals(emeraldSpawner)){
+            // spawn emerald on top of the spawner
+            BukkitRunnable runnable = new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if(!game.isStarted()) this.cancel();
+                    event.getBlockPlaced().getWorld().dropItemNaturally(event.getBlockPlaced().getLocation().add(0, 1, 0), new ItemStack(Material.EMERALD));
+                }};
+            runnable.runTaskTimer(OneNightCity.getInstance(), 0, 200);
         }
     }
 
