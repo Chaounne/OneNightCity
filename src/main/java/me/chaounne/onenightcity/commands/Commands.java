@@ -277,6 +277,9 @@ public class Commands implements CommandExecutor {
                 }else if(entityName.equals("dream")){
                     DreamEntity.getEntity(player.getLocation());
                     return true;
+                }else if(entityName.equals("legolas")){
+                    LegiasEntity.getEntity(player.getLocation());
+                    return true;
                 }
                 else {
                     player.sendMessage(ChatColor.RED+"Usage : /city entity <henry|??>");

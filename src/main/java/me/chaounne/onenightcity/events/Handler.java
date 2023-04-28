@@ -4,9 +4,8 @@ import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
-import me.chaounne.onenightcity.villager.Spawners;
+import me.chaounne.onenightcity.villager.spawners.Spawners;
 import org.bukkit.*;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -26,7 +25,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.MerchantRecipe;
-import org.bukkit.material.MaterialData;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;

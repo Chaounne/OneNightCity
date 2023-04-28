@@ -1,4 +1,4 @@
-package me.chaounne.onenightcity.villager;
+package me.chaounne.onenightcity.villager.spawners;
 
 import me.chaounne.fastinv.ItemBuilder;
 import org.bukkit.ChatColor;

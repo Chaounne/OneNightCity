@@ -1,17 +1,14 @@
 package me.chaounne.onenightcity.villager;
 
-import me.chaounne.onenightcity.game.PoudreItem;
+import me.chaounne.onenightcity.villager.spawners.Spawners;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
-import org.bukkit.inventory.meta.BlockStateMeta;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DreamEntity {
