@@ -11,29 +11,30 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KilianMBoufféEntity {
+public class BeauThonyEntity {
 
-    private static Villager MBouffe;
+    private static Villager thony;
 
-    public KilianMBoufféEntity(){
+    public BeauThonyEntity(){
 
     }
 
     public static Villager getEntity(Location loc){
-        MBouffe = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        thony = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
-        MBouffe.setCustomName("Kylian MBouffé");
-        MBouffe.setCustomNameVisible(true);
-        MBouffe.setProfession(Villager.Profession.BUTCHER);
-        MBouffe.setAI(false);
-        MBouffe.setInvulnerable(true);
-        MBouffe.setSilent(true);
-        MBouffe.setCollidable(false);
-        MBouffe.setVillagerExperience(5);
-        MBouffe.setVillagerLevel(5);
-        MBouffe.setAdult();
-        MBouffe.setCanPickupItems(false);
-        MBouffe.setRemoveWhenFarAway(false);
+        thony.setCustomName("Beau Thony");
+        thony.setCustomNameVisible(true);
+        thony.setVillagerType(Villager.Type.JUNGLE);
+        thony.setProfession(Villager.Profession.CARTOGRAPHER);
+        thony.setAI(false);
+        thony.setInvulnerable(true);
+        thony.setSilent(true);
+        thony.setCollidable(false);
+        thony.setVillagerExperience(5);
+        thony.setVillagerLevel(5);
+        thony.setAdult();
+        thony.setCanPickupItems(false);
+        thony.setRemoveWhenFarAway(false);
 
         /**int i = 69
          * int alea = random 100
@@ -49,7 +50,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 5) + 1;
-        trades.get(0).addIngredient(new ItemStack(Material.COOKED_BEEF, price));
+        trades.get(0).addIngredient(new ItemStack(Material.ACACIA_SAPLING, price));
 
         //trade 2
         // random amount of poudre
@@ -57,7 +58,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(1).addIngredient(new ItemStack(Material.COOKED_CHICKEN, price));
+        trades.get(1).addIngredient(new ItemStack(Material.BAMBOO, price));
 
         //trade 3
         // random amount of poudre
@@ -65,7 +66,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(2).addIngredient(new ItemStack(Material.COOKED_PORKCHOP, price));
+        trades.get(2).addIngredient(new ItemStack(Material.BIRCH_SAPLING, price));
 
         //trade 4
         // random amount of poudre
@@ -73,7 +74,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(3).addIngredient(new ItemStack(Material.COOKED_MUTTON, price));
+        trades.get(3).addIngredient(new ItemStack(Material.DARK_OAK_SAPLING, price));
 
         //trade 5
         // random amount of poudre
@@ -81,7 +82,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(4).addIngredient(new ItemStack(Material.COOKED_RABBIT, price));
+        trades.get(4).addIngredient(new ItemStack(Material.SPRUCE_SAPLING, price));
 
         //trade 6
         // random amount of poudre
@@ -89,15 +90,15 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(5).addIngredient(new ItemStack(Material.BEEF, price));
+        trades.get(5).addIngredient(new ItemStack(Material.JUNGLE_SAPLING, price));
 
         //trade 7
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(6).addIngredient(new ItemStack(Material.CHICKEN, price));
+        price = (int) (Math.random() * 10) + 5;
+        trades.get(6).addIngredient(new ItemStack(Material.OAK_SAPLING, price));
 
         //trade 8
         // random amount of poudre
@@ -105,7 +106,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(7).addIngredient(new ItemStack(Material.PORKCHOP, price));
+        trades.get(7).addIngredient(new ItemStack(Material.FLOWER_POT, price));
 
         //trade 9
         // random amount of poudre
@@ -113,18 +114,26 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(8).addIngredient(new ItemStack(Material.MUTTON, price));
+        trades.get(8).addIngredient(new ItemStack(Material.MANGROVE_PROPAGULE, price));
 
         //trade 10
+        // random amount of poudre
+        amount = (int) (Math.random() * 5) + 1;
+        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
+        // random price
+        price = (int) (Math.random() * 5) + 1;
+        trades.get(9).addIngredient(new ItemStack(Material.AZALEA, price));
+
+        //trade 11
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(9).addIngredient(new ItemStack(Material.RABBIT, price));
+        trades.get(10).addIngredient(new ItemStack(Material.AZALEA_LEAVES, price));
 
-        MBouffe.setRecipes(trades);
+        thony.setRecipes(trades);
 
-        return MBouffe;
+        return thony;
     }
 }

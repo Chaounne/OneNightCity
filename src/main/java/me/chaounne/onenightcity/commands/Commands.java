@@ -262,7 +262,7 @@ public class Commands implements CommandExecutor {
                 } else if(entityName.equals("aypierre")){
                     LesPierresEntity.getEntity(player.getLocation());
                     return true;
-                } else if(entityName.equals("MBouffe")){
+                } else if(entityName.equals("kiks")){
                     KilianMBoufféEntity.getEntity(player.getLocation());
                     return true;
                 }else if(entityName.equals("justin")){
@@ -285,6 +285,34 @@ public class Commands implements CommandExecutor {
                     return true;
                 }else if(entityName.equals("francois")){
                     ClodoFrancisEntity.getEntity(player.getLocation());
+                    return true;
+                }else if(entityName.equals("dose")){
+                    PfizerEntity.getEntity(player.getLocation());
+                    return true;
+                }else if(entityName.equals("lucie")){
+                    LucieAcierEntity.getEntity(player.getLocation());
+                    return true;
+                }else if(entityName.equals("cosmique")){
+                    DurifSylvainEntity.getEntity(player.getLocation());
+                    return true;
+                }else if(entityName.equals("nolife")){
+                    IkikomoriEntity.getEntity(player.getLocation());
+                    return true;
+                }else if(entityName.equals("neigeux")){
+                    NeigeuDemotEntity.getEntity(player.getLocation());
+                    return true;
+                }else if(entityName.equals("warden")){
+                    SombreHeroEntity.getEntity(player.getLocation());
+                    return true;
+                }else if(entityName.equals("plante")){
+                    BeauThonyEntity.getEntity(player.getLocation());
+                    return true;
+                }
+                else if(entityName.equals("champi")){
+                    MicoseMicodeEntity.getEntity(player.getLocation());
+                    return true;
+                }else if(entityName.equals("util")){
+                    HutilItaireEntity.getEntity(player.getLocation());
                     return true;
                 }
                 else {

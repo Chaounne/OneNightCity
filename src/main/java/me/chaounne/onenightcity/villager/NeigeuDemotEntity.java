@@ -11,29 +11,30 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KilianMBoufféEntity {
+public class NeigeuDemotEntity {
 
-    private static Villager MBouffe;
+    private static Villager neigeux;
 
-    public KilianMBoufféEntity(){
+    public NeigeuDemotEntity(){
 
     }
 
     public static Villager getEntity(Location loc){
-        MBouffe = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        neigeux = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
-        MBouffe.setCustomName("Kylian MBouffé");
-        MBouffe.setCustomNameVisible(true);
-        MBouffe.setProfession(Villager.Profession.BUTCHER);
-        MBouffe.setAI(false);
-        MBouffe.setInvulnerable(true);
-        MBouffe.setSilent(true);
-        MBouffe.setCollidable(false);
-        MBouffe.setVillagerExperience(5);
-        MBouffe.setVillagerLevel(5);
-        MBouffe.setAdult();
-        MBouffe.setCanPickupItems(false);
-        MBouffe.setRemoveWhenFarAway(false);
+        neigeux.setCustomName("Négeux Demo");
+        neigeux.setCustomNameVisible(true);
+        neigeux.setVillagerType(Villager.Type.SNOW);
+        neigeux.setProfession(Villager.Profession.MASON);
+        neigeux.setAI(false);
+        neigeux.setInvulnerable(true);
+        neigeux.setSilent(true);
+        neigeux.setCollidable(false);
+        neigeux.setVillagerExperience(5);
+        neigeux.setVillagerLevel(5);
+        neigeux.setAdult();
+        neigeux.setCanPickupItems(false);
+        neigeux.setRemoveWhenFarAway(false);
 
         /**int i = 69
          * int alea = random 100
@@ -48,8 +49,8 @@ public class KilianMBoufféEntity {
         int amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        int price = (int) (Math.random() * 5) + 1;
-        trades.get(0).addIngredient(new ItemStack(Material.COOKED_BEEF, price));
+        int price = (int) (Math.random() * 5) + 5;
+        trades.get(0).addIngredient(new ItemStack(Material.SNOWBALL, price));
 
         //trade 2
         // random amount of poudre
@@ -57,7 +58,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(1).addIngredient(new ItemStack(Material.COOKED_CHICKEN, price));
+        trades.get(1).addIngredient(new ItemStack(Material.POWDER_SNOW_BUCKET, price));
 
         //trade 3
         // random amount of poudre
@@ -65,7 +66,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(2).addIngredient(new ItemStack(Material.COOKED_PORKCHOP, price));
+        trades.get(2).addIngredient(new ItemStack(Material.SNOW, price));
 
         //trade 4
         // random amount of poudre
@@ -73,7 +74,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(3).addIngredient(new ItemStack(Material.COOKED_MUTTON, price));
+        trades.get(3).addIngredient(new ItemStack(Material.SNOW_BLOCK, price));
 
         //trade 5
         // random amount of poudre
@@ -81,7 +82,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(4).addIngredient(new ItemStack(Material.COOKED_RABBIT, price));
+        trades.get(4).addIngredient(new ItemStack(Material.CARVED_PUMPKIN, price));
 
         //trade 6
         // random amount of poudre
@@ -89,15 +90,15 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(5).addIngredient(new ItemStack(Material.BEEF, price));
+        trades.get(5).addIngredient(new ItemStack(Material.ICE, price));
 
         //trade 7
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(6).addIngredient(new ItemStack(Material.CHICKEN, price));
+        price = (int) (Math.random() * 10) + 5;
+        trades.get(6).addIngredient(new ItemStack(Material.BLUE_ICE, price));
 
         //trade 8
         // random amount of poudre
@@ -105,26 +106,10 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(7).addIngredient(new ItemStack(Material.PORKCHOP, price));
+        trades.get(7).addIngredient(new ItemStack(Material.PACKED_ICE, price));
 
-        //trade 9
-        // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(8).addIngredient(new ItemStack(Material.MUTTON, price));
+        neigeux.setRecipes(trades);
 
-        //trade 10
-        // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(9).addIngredient(new ItemStack(Material.RABBIT, price));
-
-        MBouffe.setRecipes(trades);
-
-        return MBouffe;
+        return neigeux;
     }
 }
