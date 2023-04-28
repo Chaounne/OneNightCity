@@ -202,7 +202,7 @@ public class ONCGame implements Listener {
 
                 }
 
-                if(time<=14350) {
+                if(time==14350) {
                     world.setPVP(true);
                     for(Player player:Bukkit.getOnlinePlayers()){
                         player.sendMessage("Le pvp est activé");
@@ -222,7 +222,7 @@ public class ONCGame implements Listener {
             }
         };
 
-
+        generateChest.spawnCoffre();
         if (!started) started = true;
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }

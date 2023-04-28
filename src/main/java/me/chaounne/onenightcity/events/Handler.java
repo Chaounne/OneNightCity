@@ -76,7 +76,11 @@ public class Handler implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
-        player.teleport(new Location(player.getWorld(), 0, 70, 0));
+
+        // si le joueur n'a pas de getBedSpawnLocation(), il est tp au 0,0
+        if (player.getBedSpawnLocation() == null) {
+            player.teleport(new Location(player.getWorld(), 0, 70, 0));
+        }
 
         if (gamePlayer.hasBounty()) {
             Player killer = player.getKiller();
