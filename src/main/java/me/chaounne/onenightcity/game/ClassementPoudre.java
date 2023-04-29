@@ -30,9 +30,9 @@ public class ClassementPoudre {
 
         // Créer un hologramme pour afficher le classement
         Location hologramLocation = new Location(Bukkit.getWorlds().get(0), -1.5, 72.5, -1.5);
-        Hologram scoreboardHologram = DHAPI.createHologram("Classement", hologramLocation);
+       // Hologram scoreboardHologram = DHAPI.createHologram("Classement", hologramLocation);
         String title = ChatColor.RED + "C" + ChatColor.GOLD + "l" + ChatColor.YELLOW + "a" + ChatColor.GREEN + "s" + ChatColor.AQUA + "s" + ChatColor.BLUE + "e" + ChatColor.DARK_BLUE + "m" + ChatColor.DARK_PURPLE + "e" + ChatColor.LIGHT_PURPLE + "n" + ChatColor.RED + "t" + ChatColor.GOLD + " " + ChatColor.YELLOW + "d" + ChatColor.GREEN + "e" + ChatColor.AQUA + "s" + ChatColor.BLUE + " " + ChatColor.DARK_BLUE + "t" + ChatColor.DARK_PURPLE + "e" + ChatColor.LIGHT_PURPLE + "a" + ChatColor.RED + "m" + ChatColor.GOLD + "s" + ChatColor.YELLOW + " :";
-        DHAPI.addHologramLine(scoreboardHologram, title);
+       // DHAPI.addHologramLine(scoreboardHologram, title);
 
         // Ajouter une ligne de texte pour chaque équipe, avec les 3 premières équipes en couleur
         for (int i = 0; i < teams.size(); i++) {
@@ -48,17 +48,18 @@ public class ClassementPoudre {
             }
             String teamName = teams.get(i).getName();
             String formattedTeamName = teamColor + (i == 0 ? "1er " : "") + (i == 1 ? "2eme " : "") +(i == 2 ? "3eme " : "") + teamName;String hologramText = formattedTeamName + " : " + teams.get(i).getScore() + " poudres";
-            DHAPI.addHologramLine(scoreboardHologram, hologramText);
+        //    DHAPI.addHologramLine(scoreboardHologram, hologramText);
         }
 
         // Afficher l'hologramme pour tous les joueurs
-        scoreboardHologram.showAll();
+      //  scoreboardHologram.showAll();
 
         // Supprimer l'hologramme après 20 secondes
         Bukkit.getScheduler().runTaskLater(OneNightCity.getInstance(), new Runnable() {
             @Override
             public void run() {
-                if(game.isStarted()==true){scoreboardHologram.delete();}
+          //      if(game.isStarted()==true){scoreboardHologram.delete();}
+          //      if(game.isStarted()==true){scoreboardHologram.delete();}
             }
         }, 40L);
     }

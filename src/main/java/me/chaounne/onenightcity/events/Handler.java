@@ -129,17 +129,29 @@ public class Handler implements Listener {
 
             // Vérifier si le joueur a effectué un trade avec le villageois
             for (MerchantRecipe recipe : recipes) {
+                //TEST2 quand je trade avec un villageois avant que DARKHENRY spawn
                 if (players.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
-                    if (merchant.getTrader().getName().equals(ChatColor.RED+"DARKHenry")) {
-                        for (Player player : Bukkit.getOnlinePlayers()) {
-                            player.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
-                            player.getPlayer().playSound(players.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
-                        }
+                    for(Player player:Bukkit.getOnlinePlayers()){
+                        player.sendMessage("TEST2");
                     }
                     World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
-
+                    //DETECTE BIEN DARKHenry
                     for (Entity entity : world.getEntities()) {
                         if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
+                            for (Player player : Bukkit.getOnlinePlayers()) {
+                                player.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
+                                player.getPlayer().playSound(players.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
+
+                            }
+                        }
+                    }
+
+                    //TEST1 quand on  trade avec un villageois et que darkhenry a spawn, il disparait DARKHENRY
+                    for (Entity entity : world.getEntities()) {
+                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
+                            for(Player player:Bukkit.getOnlinePlayers()){
+                                player.sendMessage("TEST1");
+                            }
                             entity.remove();
                         }
                     }

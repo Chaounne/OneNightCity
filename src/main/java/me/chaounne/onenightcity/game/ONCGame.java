@@ -28,7 +28,7 @@ public class ONCGame implements Listener {
     private boolean started = false;
 
     private BukkitRunnable timer;
-    private int time = 10800;
+    private int time = 14370;
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){
@@ -124,7 +124,6 @@ public class ONCGame implements Listener {
     }
 
     public void createDark() {
-
         World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
         Location location = new Location(world, 0, 63, 1);
@@ -136,9 +135,9 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 2700 ) {
+                if (time > 14370 ) {
                     for (Entity entity : world.getEntities()) {
-                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 63 && entity.getLocation().getBlockZ() == 1) {
+                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
                             entity.remove();
                         }
                         if (entity instanceof LivingEntity && entity.getName().equals("DARKHenry")) {
@@ -147,35 +146,26 @@ public class ONCGame implements Listener {
                     }
                 }
 
-                if (time == 2700 ) {
-                    boolean spawnDARKHenry = true;
-                    for (Entity entity : world.getEntities()) {
-                        if (entity.getName().equals("DARKHenry")) {
-                            spawnDARKHenry = false;
-                            break;
-                        }
-                    }
+                if (time == 14350) {
 
-                    if (spawnDARKHenry) {
-                        DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 63, 1));
-                        for (Player p : Bukkit.getOnlinePlayers()) {
-                            p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
-                            p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
-
-                            p.sendMessage(ChatColor.RED + "DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
-                        }
+                    DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
+                    for (Player p : Bukkit.getOnlinePlayers()) {
+                        p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
+                        p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
+                        p.sendMessage(ChatColor.RED+"DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
                     }
                 }
 
 
             }
         };
-        timer.runTaskTimer(OneNightCity.getInstance(), 0, 600);
+        timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
     }
 
 
-    public void startGame() {
 
+    public void startGame() {
+        createDark();
         GenerateChest generateChest = new GenerateChest();
         for(Player player : Bukkit.getOnlinePlayers()){
             player.getPlayer().getInventory().clear();
@@ -197,13 +187,13 @@ public class ONCGame implements Listener {
             player.getInventory().setArmorContents(armorContents);
         }
         ClassementPoudre.showScoreboard();
-        createDark();
+        World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
+        world.setPVP(false);
         timer = new BukkitRunnable() {
             @Override
             public void run() {
 
-                World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
-                world.setPVP(false);
+
                 if (time == 3600) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle("1 heure restante", "", 10, 70, 20);
@@ -232,7 +222,7 @@ public class ONCGame implements Listener {
             }
         };
 
-        generateChest.spawnCoffre();
+        //generateChest.spawnCoffre();
         if (!started) started = true;
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }
