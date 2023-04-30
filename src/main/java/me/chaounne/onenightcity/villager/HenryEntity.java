@@ -21,7 +21,7 @@ public class HenryEntity {
 
     public static Villager getEntity(Location loc){
         henry = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
-
+       
         henry.setCustomName("Henry");
         henry.setCustomNameVisible(true);
         henry.setProfession(Villager.Profession.FARMER);

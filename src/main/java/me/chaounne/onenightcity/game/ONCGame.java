@@ -13,6 +13,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
@@ -139,7 +141,7 @@ public class ONCGame implements Listener {
     public void createDark() {
         World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-        Location location = new Location(world, 0, 63, 1);
+        Location location = new Location(world, 0, 62, 1);
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
         world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);
 
@@ -172,6 +174,12 @@ public class ONCGame implements Listener {
                         p.sendMessage(ChatColor.RED+"DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
                     }
                 }
+                if(time==1){
+                    for(Player player:Bukkit.getOnlinePlayers()) {
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 1));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 50, 1));
+                    }
+                }
 
 
             }
@@ -182,6 +190,7 @@ public class ONCGame implements Listener {
 
 
     public void startGame() {
+        int timeLeft = 10;
         createDark();
         GenerateChest generateChest = new GenerateChest();
         for(Player player : Bukkit.getOnlinePlayers()){
@@ -224,6 +233,89 @@ public class ONCGame implements Listener {
                         player.sendMessage("Le pvp est activé");
                     }
                 }
+                if(time==1){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+                        player.getInventory().clear();
+                        player.sendMessage(ChatColor.RED+"FIN DE LA PARTIE, GG A TOUS");
+                        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
+                        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
+
+                        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
+
+                    }
+                }
+                if(time==11){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"Fin de la partie, dans 10 ");
+
+                    }
+                }
+                if(time==10){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...9");
+
+                    }
+                }
+                if(time==9){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...8");
+
+                    }
+                }
+                if(time==8){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...7");
+
+                    }
+                }
+                if(time==7){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...6");
+
+                    }
+                }
+                if(time==6){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...5");
+
+                    }
+                }
+                if(time==5){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...4");
+
+                    }
+                }
+                if(time==4){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...3");
+
+                    }
+                }
+                if(time==3){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...2");
+
+                    }
+                }
+                if(time==2){
+                    for(Player player:Bukkit.getOnlinePlayers()){
+
+                        player.sendMessage(ChatColor.RED+"...1");
+
+                    }
+                }
+
+
 
 
 

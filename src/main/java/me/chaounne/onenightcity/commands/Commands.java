@@ -59,13 +59,14 @@ public class Commands implements CommandExecutor {
 
                 game.startGame();
 
-                Bukkit.broadcastMessage(ChatColor.GREEN+"The game has started!");
+                Bukkit.broadcastMessage(ChatColor.GREEN+"La partie commence !");
                 for( Player players : Bukkit.getOnlinePlayers()) {
                     players.teleport(new Location(player.getWorld(), 0, 70, 0));
                     players.setBedSpawnLocation(new Location(player.getWorld(), 0, 71, 0),true);
                     players.setGameMode(GameMode.SURVIVAL);
                     players.sendTitle(ChatColor.RED + "La partie COMMENCE !", "Bonne chance à tous les joueurs !", 10, 70, 20);
-                    players.playSound(players.getLocation(), Sound.ENTITY_EXPERIENCE_BOTTLE_THROW, 10f, 10f);
+                    players.playSound(players.getLocation(), Sound.ENTITY_VILLAGER_YES, 1f, 1f);
+
 
                 }
 
