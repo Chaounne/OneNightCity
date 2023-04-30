@@ -135,26 +135,24 @@ public class Handler implements Listener {
                         player.sendMessage("TEST2");
                     }
                     World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
-                    //DETECTE BIEN DARKHenry
+                    Location entityLocation = new Location(world, 0, 62, 1);
+
                     for (Entity entity : world.getEntities()) {
-                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
+                        if (entity.getLocation().equals(entityLocation)) {
                             for (Player player : Bukkit.getOnlinePlayers()) {
-                                player.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
-                                player.getPlayer().playSound(players.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
-
+                                if (player.getLocation().distance(entityLocation) <= 3) {
+                                    // Le joueur est à moins de 3 blocs de l'entité
+                                    player.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
+                                    player.playSound(player.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
+                                    // Ajoute le nombre de poudres à la team du joueur
+                                   entity.remove(); // Supprime l'entité
+                                }
                             }
                         }
                     }
 
-                    //TEST1 quand on  trade avec un villageois et que darkhenry a spawn, il disparait DARKHENRY
-                    for (Entity entity : world.getEntities()) {
-                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
-                            for(Player player:Bukkit.getOnlinePlayers()){
-                                player.sendMessage("TEST1");
-                            }
-                            entity.remove();
-                        }
-                    }
+
+
 
                     for(ItemStack item : players.getInventory().getContents()){
                         if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())){
