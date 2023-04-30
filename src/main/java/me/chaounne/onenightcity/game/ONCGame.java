@@ -158,9 +158,6 @@ public class ONCGame implements Listener {
     public void createDark() {
         World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-        Location location = new Location(world, 0, 62, 1);
-        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
-        world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);
 
         timer = new BukkitRunnable() {
             @Override
@@ -182,9 +179,13 @@ public class ONCGame implements Listener {
                     endGame();
                 }
 
-                if (time == 14350) {
+                if (time == 30) {
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
+                    Location location = new Location(world, 0, 62, 1);
+                    Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
+                    world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);
+
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);

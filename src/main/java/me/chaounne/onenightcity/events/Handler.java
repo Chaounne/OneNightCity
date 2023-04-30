@@ -42,15 +42,7 @@ public class Handler implements Listener {
    private int poudresPersoAvantEchange;
     private int poudresPersoApresEchange;
     private ONCGame game = ONCGame.getInstance();
-    @EventHandler
-    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
-        Entity clickedEntity = event.getRightClicked();
-        if (clickedEntity instanceof Villager) {
-            Villager clickedVillager = (Villager) clickedEntity;
-            clickedVillager.setAI(false);
-            Bukkit.getScheduler().runTaskLater(OneNightCity.getInstance(), () -> clickedVillager.setAI(true), 20L);
-        }
-    }
+
 
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
