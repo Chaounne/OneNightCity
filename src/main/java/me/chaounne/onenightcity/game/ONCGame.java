@@ -109,22 +109,39 @@ public class ONCGame implements Listener {
 
             String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds); // formatage de l'heure
 
-            int countdown = time - 14390; // countdown de 10 secondes
+            int countdown2 = time - 20;
+            int countdown = time - 30; // countdown de 10 secondes
             if (countdown >= 0) {
                 String countdownString = String.format("%02d", countdown); // formatage du compte à rebours
+                String countdownString1 = String.format("%02d", countdown2);
+
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.GOLD + "PVP Activé dans : " + ChatColor.WHITE + countdownString + "s",
+                        ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
                         ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
-                       ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
-            } else {
+            } else if(countdown<=0 && countdown2>=0){
+                String countdownString1 = String.format("%02d", countdown2);
+
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.RED + "PVP ACTIVÉ !",
+                        ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
+                        ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                        ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        "");
+            }else {
+             board.updateLines("",
+                        ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
+                        ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
+                        ChatColor.RED + "PVP ACTIVÉ !",
+                        ChatColor.RED + "END ACTIVÉ !",
                         ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
