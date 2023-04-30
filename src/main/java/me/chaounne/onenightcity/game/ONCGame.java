@@ -28,7 +28,7 @@ public class ONCGame implements Listener {
     private boolean started = false;
 
     private BukkitRunnable timer;
-    private int time = 14370;
+    private int time = 14400;
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){
@@ -95,8 +95,8 @@ public class ONCGame implements Listener {
         }
     }
 
-    public void updateBoard(){
-        for(GamePlayer player : players){
+    public void updateBoard() {
+        for (GamePlayer player : players) {
             System.out.println(player.getPlayer().getName());
             FastBoard board = boards.get(player.getPlayer().getUniqueId());
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
@@ -107,17 +107,30 @@ public class ONCGame implements Listener {
 
             String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds); // formatage de l'heure
 
-            board.updateLines("",
-                    ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
-                    ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
-                    ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
-                    ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
-                    "",
-                    ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
-                    "--------------------");
+            int countdown = time - 14390; // countdown de 10 secondes
+            if (countdown >= 0) {
+                String countdownString = String.format("%02d", countdown); // formatage du compte à rebours
+                board.updateLines("",
+                        ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
+                        ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
+                        ChatColor.GOLD + "PVP Activé dans : " + ChatColor.WHITE + countdownString + "s",
+                        ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                       ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        "");
+            } else {
+                board.updateLines("",
+                        ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
+                        ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
+                        ChatColor.RED + "PVP ACTIVÉ !",
+                        ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                        ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        "");
+            }
+
         }
     }
-
 
     public boolean isStarted(){
         return started;
@@ -144,6 +157,10 @@ public class ONCGame implements Listener {
                             entity.remove();
                         }
                     }
+                }
+                if (time == 0) {
+                    this.cancel();
+                    endGame();
                 }
 
                 if (time == 14350) {
@@ -186,13 +203,12 @@ public class ONCGame implements Listener {
             };
             player.getInventory().setArmorContents(armorContents);
         }
-        ClassementPoudre.showScoreboard();
-        World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
+       World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
         world.setPVP(false);
         timer = new BukkitRunnable() {
             @Override
             public void run() {
-
+                ClassementPoudre.showScoreboard();
 
                 if (time == 3600) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
@@ -202,7 +218,7 @@ public class ONCGame implements Listener {
 
                 }
 
-                if(time==10200) {
+                if(time==14390) {
                     world.setPVP(true);
                     for(Player player:Bukkit.getOnlinePlayers()){
                         player.sendMessage("Le pvp est activé");
@@ -213,12 +229,9 @@ public class ONCGame implements Listener {
 
                 time--;
                 updateBoard();
-                if (time == 0) {
-                    this.cancel();
-                    endGame();
-                } else {
-                    ClassementPoudre.showScoreboard();
-                }
+
+
+
             }
         };
 

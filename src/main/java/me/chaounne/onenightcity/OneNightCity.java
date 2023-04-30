@@ -14,6 +14,7 @@ public final class OneNightCity extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         // Plugin startup logic
         Location hologramLocation = new Location(Bukkit.getWorlds().get(0), 125, 156, -33);
         Hologram hologram = DHAPI.createHologram("Bienvenue", hologramLocation);
