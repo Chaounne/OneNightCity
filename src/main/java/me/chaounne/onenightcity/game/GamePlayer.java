@@ -10,7 +10,7 @@ public class GamePlayer {
 
     private static final Map<UUID, GamePlayer> players = new HashMap<>();
 
-    private final Player player;
+    private Player player;
 
     private Team team;
 

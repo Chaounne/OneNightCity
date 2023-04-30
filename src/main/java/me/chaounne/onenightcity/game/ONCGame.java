@@ -28,7 +28,7 @@ public class ONCGame implements Listener {
     private boolean started = false;
 
     private BukkitRunnable timer;
-    private int time = 14400;
+    private int time = 40;
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){

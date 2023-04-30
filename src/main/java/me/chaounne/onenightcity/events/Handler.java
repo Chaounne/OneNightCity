@@ -4,6 +4,7 @@ import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
+import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.villager.HenryEntity;
 import me.chaounne.onenightcity.villager.spawners.Spawners;
 import org.bukkit.*;
@@ -28,6 +29,7 @@ import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,18 +37,29 @@ import static me.chaounne.onenightcity.villager.DarkHenryEntity.henry2;
 
 public class Handler implements Listener {
 
+    public final List<GamePlayer> test = new ArrayList<>();
+   private int poudresPersoAvantEchange;
+    private int poudresPersoApresEchange;
     private ONCGame game = ONCGame.getInstance();
 
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
         if (event.getPlayer() instanceof Player) {
             Player player = (Player) event.getPlayer();
+
             if (player.getGameMode() == GameMode.SURVIVAL) {
                 if (player.getInventory().isEmpty()) return;
                 GamePlayer gamePlayer = GamePlayer.getInstance(player);
                 if (gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
                 for (ItemStack item : player.getInventory().getContents()) {
+
+
+                    poudresPersoAvantEchange = gamePlayer.getScore();
+
+                    // ...
+
+
 
                     if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())) {
                         // ajoute autant de score à la team du joueur que de poudre ramassée
@@ -121,31 +134,39 @@ public class Handler implements Listener {
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         Inventory inventory = event.getInventory();
+        Player player = (Player) event.getPlayer();
+        GamePlayer gamePlayer = GamePlayer.getInstance(player);
         Player players = (Player) event.getPlayer();
+
 
         if (inventory.getHolder() instanceof Merchant) {
             Merchant merchant = (Merchant) inventory.getHolder();
             List<MerchantRecipe> recipes = merchant.getRecipes();
 
+
+
+
             // Vérifier si le joueur a effectué un trade avec le villageois
             for (MerchantRecipe recipe : recipes) {
+
+
+
+
                 //TEST2 quand je trade avec un villageois avant que DARKHENRY spawn
                 if (players.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
-                    for(Player player:Bukkit.getOnlinePlayers()){
-                        player.sendMessage("TEST2");
-                    }
+
                     World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
                     Location entityLocation = new Location(world, 0, 62, 1);
 
                     for (Entity entity : world.getEntities()) {
                         if (entity.getLocation().equals(entityLocation)) {
-                            for (Player player : Bukkit.getOnlinePlayers()) {
-                                if (player.getLocation().distance(entityLocation) <= 3) {
+                            for (Player playere : Bukkit.getOnlinePlayers()) {
+                                if (playere.getLocation().distance(entityLocation) <= 3) {
                                     // Le joueur est à moins de 3 blocs de l'entité
-                                    player.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
-                                    player.playSound(player.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
+                                    playere.sendMessage(ChatColor.RED + "DARKHenry à échangé l'ITEM spécial avec " + players.getName() + " !" + " DARKHenry s'en va");
+                                    playere.playSound(playere.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
                                     // Ajoute le nombre de poudres à la team du joueur
-                                   entity.remove(); // Supprime l'entité
+                                    entity.remove(); // Supprime l'entité
                                 }
                             }
                         }
@@ -154,27 +175,40 @@ public class Handler implements Listener {
 
 
 
+
                     for(ItemStack item : players.getInventory().getContents()){
                         if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())){
-                            GamePlayer gamePlayer = GamePlayer.getInstance(players);
+                            GamePlayer gamePlayer1 = GamePlayer.getInstance(players);
 
                             // ajoute autant de score à la team du joueur que de poudre ramassée
                             for (int i = 0; i < item.getAmount(); i++) {
-                                gamePlayer.getTeam().addScore(1);
-                                gamePlayer.addScore(1);
+                                gamePlayer1.getTeam().addScore(1);
+                                gamePlayer1.addScore(1);
                             }
                             players.getInventory().removeItem(item);
                         }
 
                         if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())){
-                            GamePlayer gamePlayer = GamePlayer.getInstance(players);
+                            GamePlayer gamePlayer2 = GamePlayer.getInstance(players);
 
                             // ajoute autant de score à la team du joueur que de poudre ramassée
                             for (int i = 0; i < item.getAmount(); i++) {
-                                gamePlayer.getTeam().addScore(10);
-                                gamePlayer.addScore(10);
+                                gamePlayer2.getTeam().addScore(100);
+                                gamePlayer2.addScore(100);
                             }
                             players.getInventory().removeItem(item);
+                        }
+                    }
+                    poudresPersoApresEchange = gamePlayer.getScore();
+
+                    int poudresGagnees = poudresPersoApresEchange - poudresPersoAvantEchange; // Calcule le nombre de poudres gagnées
+                    if (poudresGagnees > 0) {
+                        Team team = gamePlayer.getTeam();
+                        if (team != null) {
+                            String message = "Votre équipe à gagnée " + poudresGagnees + " poudres  !";
+                            for (Player teamMember : team.getPlayers()) {
+                                teamMember.sendMessage(message);
+                            }
                         }
                     }
                     return; // Sortir de la boucle une fois qu'un trade est trouvé
@@ -183,29 +217,29 @@ public class Handler implements Listener {
         }
 
         if(event.getPlayer() instanceof Player){
-            Player player = (Player) event.getPlayer();
-            if(player.getGameMode() == GameMode.SURVIVAL){
+            Player player3 = (Player) event.getPlayer();
+            if(player3.getGameMode() == GameMode.SURVIVAL){
                 if(player.getInventory().isEmpty()) return;
-                GamePlayer gamePlayer = GamePlayer.getInstance(player);
+                GamePlayer gamePlayer3 = GamePlayer.getInstance(player);
                 if(gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
                 for(ItemStack item : player.getInventory().getContents()){
                     if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())){
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
-                            gamePlayer.getTeam().addScore(1);
-                            gamePlayer.addScore(1);
+                            gamePlayer3.getTeam().addScore(1);
+                            gamePlayer3.addScore(1);
                         }
-                        player.getInventory().removeItem(item);
+                        player3.getInventory().removeItem(item);
                     }
 
                     if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())){
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
-                            gamePlayer.getTeam().addScore(10);
-                            gamePlayer.addScore(10);
+                            gamePlayer3.getTeam().addScore(100);
+                            gamePlayer3.addScore(100);
                         }
-                        player.getInventory().removeItem(item);
+                        player3.getInventory().removeItem(item);
                     }
                 }
             }
