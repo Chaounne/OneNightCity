@@ -30,7 +30,9 @@ public class ONCGame implements Listener {
     private boolean started = false;
 
     private BukkitRunnable timer;
-    private int time = 300;
+    private BukkitRunnable darkTimer;
+    private int time = 10800;
+    int pvp_countdown = time - 30;
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){
@@ -99,39 +101,44 @@ public class ONCGame implements Listener {
 
     public void updateBoard() {
         for (GamePlayer player : players) {
-            System.out.println(player.getPlayer().getName());
             FastBoard board = boards.get(player.getPlayer().getUniqueId());
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
 
+            int pvp_timer = time - 30;
+            int pvp_minutes = (pvp_timer % 3600) / 60; // nombre de minutes
+            int pvp_seconds = pvp_timer % 60; // nombre de secondes
             int hours = time / 3600; // nombre d'heures
             int minutes = (time % 3600) / 60; // nombre de minutes
             int seconds = time % 60; // nombre de secondes
 
             String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds); // formatage de l'heure
 
-            int countdown2 = time - 20;
-            int countdown = time - 30; // countdown de 10 secondes
-            if (countdown >= 0) {
-                String countdownString = String.format("%02d", countdown); // formatage du compte à rebours
-                String countdownString1 = String.format("%02d", countdown2);
+            //int countdown2 = time - 20;
+
+            if (pvp_timer >= 0) {
+                String countdownString = String.format("00:%02d:%02d", pvp_minutes, pvp_seconds); // formatage du compte à rebours
+                // countdownString1 = String.format("%02d", countdown2);
 
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
-                        ChatColor.GOLD + "PVP Activé dans : " + ChatColor.WHITE + countdownString + "s",
-                        ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
+                        ChatColor.GOLD + "PVP Activé dans : " + ChatColor.WHITE + countdownString,
+                        //ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
                         ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
-            } else if(countdown<=0 && countdown2>=0){
-                String countdownString1 = String.format("%02d", countdown2);
+            } else if(pvp_timer ==0 /*&& countdown2>=0*/){
+                String countdownString1 = String.format("%02d"/*, countdown2*/);
+
+                World world = Bukkit.getWorlds().get(0);
+                world.setPVP(true);
 
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.RED + "PVP ACTIVÉ !",
-                        ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
+                        //ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
                         ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
@@ -141,7 +148,7 @@ public class ONCGame implements Listener {
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.RED + "PVP ACTIVÉ !",
-                        ChatColor.RED + "END ACTIVÉ !",
+                     //ChatColor.RED + "END ACTIVÉ !",
                         ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
@@ -156,35 +163,16 @@ public class ONCGame implements Listener {
     }
 
     public void createDark() {
-        World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-
-        timer = new BukkitRunnable() {
+        darkTimer = new BukkitRunnable() {
             @Override
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
-
-                if (time > 14370 ) {
-                    for (Entity entity : world.getEntities()) {
-                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
-                            entity.remove();
-                        }
-                        if (entity instanceof LivingEntity && entity.getName().equals("DARKHenry")) {
-                            entity.remove();
-                        }
-                    }
-                }
-                if (time == 0) {
-                    this.cancel();
-                    endGame();
-                }
+                /*
                 if (time == 290){
                     QuineItem.start();
-                }
-
-
-                if (time == 30) {
-
+                }*/
+                    System.out.println("DARKHENRY");
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
@@ -195,24 +183,14 @@ public class ONCGame implements Listener {
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
                         p.sendMessage(ChatColor.RED+"DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
                     }
-                }
-                if(time==1){
-                    for(Player player:Bukkit.getOnlinePlayers()) {
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 1));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 50, 1));
-                    }
-                }
-
-
             }
         };
-        timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
+        darkTimer.runTaskLater(OneNightCity.getInstance(), 144000);
     }
 
 
 
     public void startGame() {
-        int timeLeft = 10;
         createDark();
         GenerateChest generateChest = new GenerateChest();
         for(Player player : Bukkit.getOnlinePlayers()){
@@ -248,11 +226,10 @@ public class ONCGame implements Listener {
                     }
 
                 }
-
-                if(time==14390) {
-                    world.setPVP(true);
-                    for(Player player:Bukkit.getOnlinePlayers()){
-                        player.sendMessage("Le pvp est activé");
+                if (time == 1800) {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.sendTitle("30 minutes restantes", "", 10, 70, 20);
+                        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 5f, 5f);
                     }
                 }
                 if(time==1){
@@ -261,9 +238,10 @@ public class ONCGame implements Listener {
                         player.sendMessage(ChatColor.RED+"FIN DE LA PARTIE, GG A TOUS");
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
-
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
 
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 1));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 50, 1));
                     }
                 }
                 if(time==11){
@@ -336,22 +314,19 @@ public class ONCGame implements Listener {
 
                     }
                 }
-
-
-
-
+                if (time == 0) {
+                    this.cancel();
+                    endGame();
+                }
 
                 time--;
                 updateBoard();
-
-
-
             }
         };
 
-        //generateChest.spawnCoffre();
+        generateChest.spawnCoffre();
         if (!started) started = true;
-        timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
+        timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
     }
 
 
@@ -371,8 +346,4 @@ public class ONCGame implements Listener {
         players.clear();
         if(started) started = false;
     }
-
-
-
-
 }

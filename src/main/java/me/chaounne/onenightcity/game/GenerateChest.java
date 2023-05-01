@@ -119,7 +119,7 @@ public class GenerateChest implements Listener {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', messageToSend));
                 }
             }
-            }, 0L, 36);
+            }, 36000, 36000);
 
     }
 

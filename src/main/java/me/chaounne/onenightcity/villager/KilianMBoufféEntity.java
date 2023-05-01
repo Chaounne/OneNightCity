@@ -89,7 +89,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(5).addIngredient(new ItemStack(Material.BEEF, price));
+        trades.get(5).addIngredient(new ItemStack(Material.RABBIT_STEW));
 
         //trade 7
         // random amount of poudre
@@ -97,7 +97,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(6).addIngredient(new ItemStack(Material.CHICKEN, price));
+        trades.get(6).addIngredient(new ItemStack(Material.PUMPKIN_PIE, price));
 
         //trade 8
         // random amount of poudre
@@ -105,7 +105,7 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(7).addIngredient(new ItemStack(Material.PORKCHOP, price));
+        trades.get(7).addIngredient(new ItemStack(Material.COOKIE, price));
 
         //trade 9
         // random amount of poudre
@@ -113,15 +113,15 @@ public class KilianMBoufféEntity {
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(8).addIngredient(new ItemStack(Material.MUTTON, price));
+        trades.get(8).addIngredient(new ItemStack(Material.SWEET_BERRIES, price));
 
         //trade 10
         // random amount of poudre
         amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
+        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(9).addIngredient(new ItemStack(Material.RABBIT, price));
+        trades.get(9).addIngredient(new ItemStack(Material.DRIED_KELP, price));
 
         MBouffe.setRecipes(trades);
 

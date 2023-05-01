@@ -140,19 +140,12 @@ public class Handler implements Listener {
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         Player players = (Player) event.getPlayer();
 
-
         if (inventory.getHolder() instanceof Merchant) {
             Merchant merchant = (Merchant) inventory.getHolder();
             List<MerchantRecipe> recipes = merchant.getRecipes();
 
-
-
-
             // Vérifier si le joueur a effectué un trade avec le villageois
             for (MerchantRecipe recipe : recipes) {
-
-
-
 
                 //TEST2 quand je trade avec un villageois avant que DARKHENRY spawn
                 if (players.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
@@ -173,10 +166,6 @@ public class Handler implements Listener {
                             }
                         }
                     }
-
-
-
-
 
                     for(ItemStack item : players.getInventory().getContents()){
                         if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getItem().getItemMeta())){
@@ -207,7 +196,7 @@ public class Handler implements Listener {
                     if (poudresGagnees > 0) {
                         Team team = gamePlayer.getTeam();
                         if (team != null) {
-                            String message = "Votre équipe à gagnée " + poudresGagnees + " poudres  !";
+                            String message = "Votre équipe a gagnée " + poudresGagnees + " poudres  !";
                             for (Player teamMember : team.getPlayers()) {
                                 teamMember.sendMessage(message);
                             }
@@ -252,6 +241,8 @@ public class Handler implements Listener {
     @EventHandler
     public void onBlockBreakEvent(BlockBreakEvent event){
         if(event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+            int skilkTouchLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.SILK_TOUCH);
+            if(skilkTouchLevel > 0) return;
             if(event.getBlock().getType().equals(Material.GOLD_ORE) || event.getBlock().getType().equals(Material.DEEPSLATE_GOLD_ORE)){
                 event.setCancelled(true);
                 int fortuneLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
@@ -259,7 +250,11 @@ public class Handler implements Listener {
                 event.getBlock().setType(Material.AIR);
                 for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots d'or spécifié
                     event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT));
-                    event.getPlayer().setExp(event.getPlayer().getExp() + 1);
+                    if(event.getPlayer().getExp() +0.2f >1){
+                        event.getPlayer().setExp(0);
+                        event.getPlayer().setLevel(event.getPlayer().getLevel() + 1);
+                    }
+                    event.getPlayer().setExp(event.getPlayer().getExp() + 0.2f);
                 }
             } else if(event.getBlock().getType().equals(Material.IRON_ORE) || event.getBlock().getType().equals(Material.DEEPSLATE_IRON_ORE)){
                 event.setCancelled(true);
@@ -268,7 +263,11 @@ public class Handler implements Listener {
                 event.getBlock().setType(Material.AIR);
                 for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots de fer spécifié
                     event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT));
-                    event.getPlayer().setExp(event.getPlayer().getExp() + 1);
+                    if(event.getPlayer().getExp() +0.1f >1){
+                        event.getPlayer().setExp(0);
+                        event.getPlayer().setLevel(event.getPlayer().getLevel() + 1);
+                    }
+                    event.getPlayer().setExp(event.getPlayer().getExp() + 0.1f);
                 }
             } else if(event.getBlock().getType().equals(Material.COPPER_ORE) || event.getBlock().getType().equals(Material.DEEPSLATE_COPPER_ORE)){
                 event.setCancelled(true);
@@ -277,7 +276,11 @@ public class Handler implements Listener {
                 event.getBlock().setType(Material.AIR);
                 for (int i = 0; i < drops; i++) { // boucle pour générer le nombre de lingots de cuivre spécifié
                     event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COPPER_INGOT));
-                    event.getPlayer().setExp(event.getPlayer().getExp() + 1);
+                    if(event.getPlayer().getExp() +0.1f >1){
+                        event.getPlayer().setExp(0);
+                        event.getPlayer().setLevel(event.getPlayer().getLevel() + 1);
+                    }
+                    event.getPlayer().setExp(event.getPlayer().getExp() + 0.1f);
                 }
             }
         }

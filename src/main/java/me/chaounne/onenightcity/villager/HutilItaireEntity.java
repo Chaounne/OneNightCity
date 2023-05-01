@@ -49,7 +49,7 @@ public class HutilItaireEntity {
         int amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        int price = (int) (Math.random() * 5) + 1;
+        int price = (int) (Math.random() * 7) + 5;
         trades.get(0).addIngredient(new ItemStack(Material.CRAFTING_TABLE, price));
 
         //trade 2
@@ -105,7 +105,7 @@ public class HutilItaireEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 5) + 5;
         trades.get(7).addIngredient(new ItemStack(Material.FURNACE, price));
 
         //trade 9
