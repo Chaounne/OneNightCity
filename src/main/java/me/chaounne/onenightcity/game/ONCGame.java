@@ -30,7 +30,7 @@ public class ONCGame implements Listener {
     private boolean started = false;
 
     private BukkitRunnable timer;
-    private int time = 40;
+    private int time = 300;
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){
@@ -345,7 +345,7 @@ public class ONCGame implements Listener {
             }
         };
 
-        //generateChest.spawnCoffre();
+        generateChest.spawnCoffre();
         if (!started) started = true;
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }
