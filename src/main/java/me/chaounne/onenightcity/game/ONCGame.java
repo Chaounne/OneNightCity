@@ -178,6 +178,10 @@ public class ONCGame implements Listener {
                     this.cancel();
                     endGame();
                 }
+                if (time == 290){
+                    QuineItem.start();
+                }
+
 
                 if (time == 30) {
 
@@ -345,7 +349,7 @@ public class ONCGame implements Listener {
             }
         };
 
-        generateChest.spawnCoffre();
+        //generateChest.spawnCoffre();
         if (!started) started = true;
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }

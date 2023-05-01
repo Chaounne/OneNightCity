@@ -31,44 +31,55 @@ public class GenerateChest implements Listener {
         if ( nombre == 2) {
             Super = true;
             ressources = new ItemStack[]{
-                    new ItemStack(Material.DIAMOND, 32),
-                    new ItemStack(Material.GOLD_INGOT, 44),
-                    new ItemStack(Material.IRON_INGOT, 64),
-                    new ItemStack(Material.EMERALD, 16),
-                    PoudreItem.getSuperPoudre(15)
-            };
+                    new ItemStack(Material.DIAMOND, random.nextInt(21) + 30),
+                    new ItemStack(Material.GOLD_INGOT, random.nextInt(21) + 30),
+                    new ItemStack(Material.IRON_INGOT, random.nextInt(21) + 30),
+                    new ItemStack(Material.EMERALD, random.nextInt(21) + 30),
+                    PoudreItem.getSuperPoudre(random.nextInt(11) + 10),
+};
             for(Player player:Bukkit.getOnlinePlayers()){
                 player.playSound(player.getLocation(),Sound.BLOCK_CONDUIT_AMBIENT, 10f,10f);
             }
-            message = ""+nombre+ " &r&6&lUn &6&lS&e&e&lU&dp&l&6&lE&r&6&lR &r&6&lCoffre vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o!";
+            message = " &r&6&lUn &6&l&e&e&l&dS&e&e&lU&dP&l&6&lE&r&6&l&e&e&lR &r&6&lCoffre vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o!";
         } else if(nombre==3) {
             ressources = new ItemStack[]{
-                    new ItemStack(Material.GOLDEN_CARROT, 3), // 3 carottes dorées
-                    new ItemStack(Material.FERMENTED_SPIDER_EYE, 3), // 3 yeux d'araignée fermentés
-                    new ItemStack(Material.BLAZE_POWDER, 2), // 2 poudres de Blaze
-                    new ItemStack(Material.BREWING_STAND, 1),
-                    new ItemStack(Material.GHAST_TEAR, 2) // 2 larmes de Ghast
+                    new ItemStack(Material.GOLDEN_CARROT, random.nextInt(4)+1), // 3 carottes dorées
+                    new ItemStack(Material.FERMENTED_SPIDER_EYE, random.nextInt(4)+1), // 3 yeux d'araignée fermentés
+                    new ItemStack(Material.BLAZE_POWDER, random.nextInt(4)+1), // 2 poudres de Blaze
+                    new ItemStack(Material.BREWING_STAND, random.nextInt(4)+1),
+                    new ItemStack(Material.GHAST_TEAR, random.nextInt(4)+1),// 2 larmes de Ghast
+                    new ItemStack(Material.DIAMOND, random.nextInt(4)+1),
+                    new ItemStack(Material.NETHER_WART,random.nextInt(4)+1),
             };
 
-            message = ""+nombre+"&6Un coffre &c&lPOTION&r&6 vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d";
-        }else if (nombre ==7||nombre==10){
+            for(Player player:Bukkit.getOnlinePlayers()){
+                player.playSound(player.getLocation(),Sound.BLOCK_LAVA_AMBIENT, 10f,10f);
+            }
+            message = "&6Un coffre &c&lPOTION&r&6 vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d";
+        }else if (nombre ==7){
             ressources = new ItemStack[]{
-                    new ItemStack(Material.DIAMOND_CHESTPLATE, 2),
-                    new ItemStack(Material.DIAMOND_BOOTS, 2),
+                    new ItemStack(Material.DIAMOND_CHESTPLATE, random.nextInt(3)+1),
+                    new ItemStack(Material.DIAMOND_BOOTS, random.nextInt(4)+1),
                     new ItemStack(Material.CROSSBOW, 1),
-
-                    new ItemStack(Material.EXPERIENCE_BOTTLE, 10)
-};
-            message = ""+nombre+"&6Un coffre &c&lEQUIPEMENT &6vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o";
+                    new ItemStack(Material.DIAMOND, random.nextInt(4)+1),
+                    new ItemStack(Material.EXPERIENCE_BOTTLE, random.nextInt(15)+5)
+        };
+            for(Player player:Bukkit.getOnlinePlayers()){
+                player.playSound(player.getLocation(),Sound.BLOCK_BEACON_AMBIENT, 10f,10f);
+            }
+            message = "&6Un coffre &c&lEQUIPEMENT &6vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o";
         }else{
             ressources = new ItemStack[]{
-                    new ItemStack(Material.DIAMOND, 10),
-                    new ItemStack(Material.GOLD_INGOT, 20),
-                    new ItemStack(Material.IRON_INGOT, 30),
-                    new ItemStack(Material.EMERALD, 4),
-                    PoudreItem.getItem(250)
+                    new ItemStack(Material.DIAMOND, random.nextInt(15)+9),
+                    new ItemStack(Material.GOLD_INGOT, random.nextInt(20)+15),
+                    new ItemStack(Material.IRON_INGOT, random.nextInt(40)+20),
+                    new ItemStack(Material.EMERALD, random.nextInt(16)+8),
+                    PoudreItem.getItem(random.nextInt(60)+40),
+                    PoudreItem.getItem(random.nextInt(60)+40),
+                    PoudreItem.getItem(random.nextInt(60)+40),
+
             };
-            message = ""+nombre+ "&6Un  coffre vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d";
+            message = "&6Un  coffre vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d";
 
         }
 
