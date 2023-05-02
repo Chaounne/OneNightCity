@@ -4,6 +4,7 @@ import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -33,9 +34,6 @@ public class QuineItem {
             new ItemStack(Material.NETHER_WART),
             new ItemStack(Material.ARMOR_STAND),
             new ItemStack(Material.AMETHYST_BLOCK),
-
-
-
     };
 
     private static ItemStack[] itemsToFind = new ItemStack[3];
@@ -56,9 +54,9 @@ public class QuineItem {
         }
 
         // Affichage des 3 items à trouver aux joueurs
-        String message = "Les 3 items à trouver sont : ";
+        String message = ChatColor.YELLOW + "Les 3 items à trouver sont : ";
         for (ItemStack item : itemsToFind) {
-            message += item.getAmount() + " " + item.getType().toString() + ", ";
+            message += item.getAmount() + " " + ChatColor.AQUA + item.getType().toString() + ChatColor.YELLOW + ", ";
         }
         message = message.substring(0, message.length() - 2); // suppression de la dernière virgule et espace
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -69,6 +67,9 @@ public class QuineItem {
             if (time ==50||gameEnded) {
                 gameEnded = true;
                 Bukkit.broadcastMessage(ChatColor.RED + "La quine est terminée !");
+                for(Player playerE: Bukkit.getOnlinePlayers()){
+                     playerE.playSound(playerE.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_1, 5f, 5f);
+                }
                 time =51;
                 return;
             }
@@ -83,9 +84,10 @@ public class QuineItem {
                         }
                     }
                     if (hasAllItems && !gameEnded) {
-                        player.sendMessage("Vous avez réussi à completer la Quine d'item, vous gagnez 1000 points!");
+                        player.sendMessage(ChatColor.GREEN + "Vous avez réussi à compléter la Quine d'item, vous gagnez 1000 points!");
                         for(Player playerE: Bukkit.getOnlinePlayers()){
-                            playerE.sendMessage("Le joueur : "+player.getName()+" à réussi la QUINE");
+                            playerE.sendMessage(ChatColor.GOLD + "Le joueur : " + player.getName() + " a réussi la QUINE");
+                            playerE.playSound(playerE.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_1, 5f, 5f);
                         }
                         gameEnded = true;
                         GamePlayer player1 = GamePlayer.getInstance(player);

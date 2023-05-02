@@ -131,8 +131,7 @@ public class ONCGame implements Listener {
             } else if(pvp_timer ==0 /*&& countdown2>=0*/){
                 String countdownString1 = String.format("%02d"/*, countdown2*/);
 
-                World world = Bukkit.getWorlds().get(0);
-                world.setPVP(true);
+
 
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
@@ -232,6 +231,16 @@ public class ONCGame implements Listener {
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 5f, 5f);
                     }
                 }
+
+                if(time==10200){
+                    World world = Bukkit.getWorlds().get(0);
+                    world.setPVP(true);
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.sendTitle("Le PVP est (enfin) activé", "", 10, 70, 20);
+                        player.playSound(player.getLocation(), Sound.ENTITY_WARDEN_AMBIENT, 5f, 5f);
+                    }
+                }
+
                 if(time==1){
                     for(Player player:Bukkit.getOnlinePlayers()){
                         player.getInventory().clear();
