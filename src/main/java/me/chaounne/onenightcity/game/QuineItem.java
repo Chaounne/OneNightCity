@@ -53,7 +53,7 @@ private static boolean fini=false;
         }
 
         // Affichage des 3 items à trouver aux joueurs
-        String message = ChatColor.YELLOW + "Les 3 items à trouver sont : ";
+        String message = ChatColor.YELLOW + "Tentez de gagner 3000 poudres, Les 3 items à trouver sont : ";
         for (ItemStack item : itemsToFind) {
             message += item.getAmount() + " " + ChatColor.AQUA + item.getType().toString() + ChatColor.YELLOW + ", ";
         }
@@ -63,7 +63,7 @@ private static boolean fini=false;
         }
         // Vérification de la proximité des joueurs avec le spawn
         Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
-            if (time ==50&&test||fini&&test) {
+            if (time ==100&&test||fini&&test) {
                 test=false;
                 Bukkit.broadcastMessage(ChatColor.RED + "La quine est terminée !");
                 for(Player playerE: Bukkit.getOnlinePlayers()) {
@@ -94,8 +94,8 @@ private static boolean fini=false;
                         }
                         gameEnded = true;
                         GamePlayer player1 = GamePlayer.getInstance(player);
-                        player1.getTeam().addScore(1000);
-                        player1.addScore(1000);
+                        player1.getTeam().addScore(3000);
+                        player1.addScore(3000);
                         player.getInventory().removeItem(ressources);
 
                     }

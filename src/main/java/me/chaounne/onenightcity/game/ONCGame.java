@@ -6,6 +6,7 @@ import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.villager.DarkHenryEntity;
 
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -30,7 +31,7 @@ public class ONCGame implements Listener {
     private boolean started = false;
 
     private BukkitRunnable timer;
-    private int time = 300;
+    private int time = 10800;
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){
@@ -110,9 +111,9 @@ public class ONCGame implements Listener {
             String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds); // formatage de l'heure
 
 
-            int countdown2 = time - 270;
-            int countdown4 = time -250;
-            int countdown = time - 280; // countdown de 10 secondes
+            int countdown2 = time - 7200;// au bout de 2 min end open
+            int countdown4 = time - 7200; // au bout de 4 min quine fini
+            int countdown = time - 10200; // countdown de 1 minutes
             if (countdown >= 0) {
                 String countdownString = String.format("%02d", countdown); // formatage du compte à rebours
                 String countdownString1 = String.format("%02d", countdown2);
@@ -188,26 +189,31 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 14370 ) {
-                    for (Entity entity : world.getEntities()) {
-                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
-                            entity.remove();
-                        }
-                        if (entity instanceof LivingEntity && entity.getName().equals("DARKHenry")) {
-                            entity.remove();
-                        }
-                    }
-                }
+
                 if (time == 0) {
                     this.cancel();
                     endGame();
                 }
-                if (time == 290){
+                if (time == 7200){
                     QuineItem.start();
+                    Location[] locations = new Location[]{
+                            new Location(Bukkit.getWorld("world"), 2, 64, 7),
+                            new Location(Bukkit.getWorld("world"), 2, 63, 7),
+                            new Location(Bukkit.getWorld("world"), 2, 62, 7),
+                            new Location(Bukkit.getWorld("world"), 1, 64, 7),
+                            new Location(Bukkit.getWorld("world"), 1, 63, 7),
+                            new Location(Bukkit.getWorld("world"), 1, 62, 7)
+                    };
+                    for (Location location : locations) {
+                        Block block = location.getBlock();
+                        if (block.getType() != Material.AIR) {
+                            block.breakNaturally();
+                        }
+                    }
                 }
 
 
-                if (time == 30) {
+                if (time == 4000) { //Darkhenry spawn au bout de 5 min
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
@@ -236,7 +242,7 @@ public class ONCGame implements Listener {
 
 
     public void startGame() {
-        int timeLeft = 10;
+
         createDark();
         GenerateChest generateChest = new GenerateChest();
         for(Player player : Bukkit.getOnlinePlayers()){
@@ -273,7 +279,7 @@ public class ONCGame implements Listener {
 
                 }
 
-                if(time==280) {
+                if(time==10200) {
                     world.setPVP(true);
                     for(Player player:Bukkit.getOnlinePlayers()){
                         player.sendMessage("Le pvp est activé");
