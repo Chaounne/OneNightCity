@@ -114,10 +114,12 @@ public class ONCGame implements Listener {
             int countdown2 = time - 7200;// au bout de 2 min end open
             int countdown4 = time - 7200; // au bout de 4 min quine fini
             int countdown = time - 10200; // countdown de 1 minutes
+
+
             if (countdown >= 0) {
-                String countdownString = String.format("%02d", countdown); // formatage du compte à rebours
-                String countdownString1 = String.format("%02d", countdown2);
-                String countdownString3 = String.format("%02d", countdown4);
+                String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
+                String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
+                String countdownString3 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
 
 
                 board.updateLines("",
@@ -131,8 +133,9 @@ public class ONCGame implements Listener {
                         ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
             } else if(countdown<=0 && countdown2>=0) {
-                String countdownString1 = String.format("%02d", countdown2);
-                String countdownString3 = String.format("%02d", countdown4);
+                String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
+                String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
+                String countdownString3 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
 
 
                 board.updateLines("",
@@ -146,7 +149,9 @@ public class ONCGame implements Listener {
                         ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
             }else if(countdown<=0 && countdown2<=0 && countdown4>=0){
-                String countdownString3 = String.format("%02d", countdown4);
+                String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
+                String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
+                String countdownString3 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
 
 
                 board.updateLines("",
