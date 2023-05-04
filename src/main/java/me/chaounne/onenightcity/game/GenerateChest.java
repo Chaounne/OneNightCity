@@ -68,6 +68,12 @@ public class GenerateChest implements Listener {
                 player.playSound(player.getLocation(),Sound.BLOCK_BEACON_AMBIENT, 10f,10f);
             }
             message = "&6Un coffre &c&lEQUIPEMENT &6vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o";
+
+
+       //idée de coffre suplémentaire : Coffre fermier, coffre mineur, coffre ?/.?§.?%^^?. (un coffre ultra bizarre faut voir ce qu'on en fait), Un coffre piège qui retire des poudres à celui qui l'ouvre ? et lui envoie un message (vous vous etes fait avoir par un faux coffre, vous perdez X poudres
+
+
+
         }else{
             ressources = new ItemStack[]{
                     new ItemStack(Material.DIAMOND, random.nextInt(15)+9),
