@@ -194,7 +194,16 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-
+                if (time > 10700 ) {
+                    for (Entity entity : world.getEntities()) {
+                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
+                            entity.remove();
+                        }
+                        if (entity instanceof LivingEntity && entity.getName().equals("DARKHenry")) {
+                            entity.remove();
+                        }
+                    }
+                }
                 if (time == 0) {
                     this.cancel();
                     endGame();
@@ -250,7 +259,7 @@ public class ONCGame implements Listener {
 
         createDark();
         GenerateChest generateChest = new GenerateChest();
-        for(Player player : Bukkit.getOnlinePlayers()){
+        for (Player player : Bukkit.getOnlinePlayers()) {
             player.getPlayer().getInventory().clear();
             FastBoard board = new FastBoard(player);
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
@@ -271,6 +280,7 @@ public class ONCGame implements Listener {
         }
         World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
         world.setPVP(false);
+        List<Player> playersWithEgg = new ArrayList<>();
         timer = new BukkitRunnable() {
             @Override
             public void run() {
@@ -283,7 +293,20 @@ public class ONCGame implements Listener {
                     }
 
                 }
+                if (playersWithEgg.isEmpty()) {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        if (player.getInventory().contains(Material.DRAGON_EGG)) {
+                            player.sendMessage(ChatColor.DARK_PURPLE + "§lLe Dragon Egg a été récupéré !§r\n" +
+                                    ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf :§r"+player.getName());
+                            player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f);
+                            GamePlayer gamePlayer = GamePlayer.getInstance(player);
+                            gamePlayer.getTeam().addScore(5000);
+                            gamePlayer.addScore(5000);
+                            playersWithEgg.add(player);
+                        }
+                    }
 
+                }
                 if(time==10200) {
                     world.setPVP(true);
                     for(Player player:Bukkit.getOnlinePlayers()){
@@ -389,6 +412,7 @@ public class ONCGame implements Listener {
         if (!started) started = true;
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }
+
 
 
 
