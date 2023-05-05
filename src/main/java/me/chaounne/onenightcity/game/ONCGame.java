@@ -227,7 +227,7 @@ public class ONCGame implements Listener {
                 }
 
 
-                if (time == 4000) { //Darkhenry spawn au bout de 2 heures  et quelques je crois
+                if (time == 4300) { //Darkhenry spawn au bout de 2 heures  et quelques je crois
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
@@ -237,7 +237,9 @@ public class ONCGame implements Listener {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
-                        p.sendMessage(ChatColor.RED+"DARKHenry est là, il n'effectuera qu'UN SEUL ECHANGE. Soyez donc le premier à faire l'échange");
+                        p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
+
+                        p.sendMessage(ChatColor.RED+"Le frère maléfique de Henry est là, il est pressé, il ne vous accorde qu'un seul échange, dépéchez-vous !");
                     }
                 }
                 if(time==1){
@@ -297,13 +299,14 @@ public class ONCGame implements Listener {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         if (player.getInventory().contains(Material.DRAGON_EGG)) {
                             for(Player player1:Bukkit.getOnlinePlayers()){
-                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lLe Dragon Egg a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf :§r"+player.getName());
+                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"+player.getName()+ChatColor.DARK_PURPLE+"§o, il a gagné 5000 poudres");
                                 player1.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f);
 
                             }
                             GamePlayer gamePlayer = GamePlayer.getInstance(player);
                             gamePlayer.getTeam().addScore(5000);
                             gamePlayer.addScore(5000);
+
                             playersWithEgg.add(player);
                         }
                     }
