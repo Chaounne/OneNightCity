@@ -296,9 +296,11 @@ public class ONCGame implements Listener {
                 if (playersWithEgg.isEmpty()) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         if (player.getInventory().contains(Material.DRAGON_EGG)) {
-                            player.sendMessage(ChatColor.DARK_PURPLE + "§lLe Dragon Egg a été récupéré !§r\n" +
-                                    ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf :§r"+player.getName());
-                            player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f);
+                            for(Player player1:Bukkit.getOnlinePlayers()){
+                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lLe Dragon Egg a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf :§r"+player.getName());
+                                player1.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f);
+
+                            }
                             GamePlayer gamePlayer = GamePlayer.getInstance(player);
                             gamePlayer.getTeam().addScore(5000);
                             gamePlayer.addScore(5000);
