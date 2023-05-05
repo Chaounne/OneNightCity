@@ -208,8 +208,11 @@ public class ONCGame implements Listener {
                     this.cancel();
                     endGame();
                 }
-                if (time == 9000){//au bout de 30 min la quine commence
+                if (time == 9000) {//au bout de 30 min la quine commence
                     QuineItem.start();
+
+                }
+                if(time==7200){
                     Location[] locations = new Location[]{
                             new Location(Bukkit.getWorld("world"), 2, 64, 7),
                             new Location(Bukkit.getWorld("world"), 2, 63, 7),
@@ -218,6 +221,9 @@ public class ONCGame implements Listener {
                             new Location(Bukkit.getWorld("world"), 1, 63, 7),
                             new Location(Bukkit.getWorld("world"), 1, 62, 7)
                     };
+                    for(Player player: Bukkit.getOnlinePlayers()){
+                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra 5000 points");
+                    }
                     for (Location location : locations) {
                         Block block = location.getBlock();
                         if (block.getType() != Material.AIR) {
