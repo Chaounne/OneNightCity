@@ -44,7 +44,7 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("Arrete de mourir et va farm plûtot !");
+        player.sendMessage("Arrête de mourir  et va farm plutôt !");
         player.getInventory().clear(); // On vide l'inventaire du joueur
         player.getInventory().setArmorContents(null); // On retire l'armure du joueur
         player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET)); // On équipe le joueur d'un casque en fer

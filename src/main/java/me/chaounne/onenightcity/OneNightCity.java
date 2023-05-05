@@ -40,8 +40,8 @@ public final class OneNightCity extends JavaPlugin {
         Hologram hologram6 = DHAPI.createHologram("hologram6", hologramLocation6);
         DHAPI.addHologramLine(hologram6, "PVP activé après 10 min de jeu.");
         DHAPI.addHologramLine(hologram6, "Le spawn est le seul endroit protégé.");
-        DHAPI.addHologramLine(hologram6, "Créez votre base, pillez les autres, tuez-vous entre joueurs.");
-        DHAPI.addHologramLine(hologram6, "Aucun cheat autorisé, même pas le X-RAY.");
+        DHAPI.addHologramLine(hologram6, "Créez votre base, pillez les autres, entre tuez-vous !");
+        DHAPI.addHologramLine(hologram6, "Aucun cheat autorisé, même pas le X-RAY.(n'est-ce pas Chris973 ?)");
         Location hologramLocation3 = new Location(Bukkit.getWorlds().get(0), 114, 157, -48);
         Hologram hologram3 = DHAPI.createHologram("test", hologramLocation3);
         DHAPI.addHologramLine(hologram3, "Concernant l'item spécial : la Poudre (c'est pas de la coke).");
@@ -57,7 +57,7 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(hologram8, ChatColor.RED + "NOUVEAUTES");
         DHAPI.addHologramLine(hologram8, "Le pvp fonctionne enfin, l'end sera accessible et vaut le coup !");
         DHAPI.addHologramLine(hologram8,"Une Quine sera lancée au bout d'environ");
-        DHAPI.addHologramLine(hologram8, " 30 minutes de jeu, si vous la complétez vous aurez une récompense ;).");
+        DHAPI.addHologramLine(hologram8, " 30 minutes de jeu, si vous la complétait vous aurez une récompense ;).");
         DHAPI.addHologramLine(hologram8, "L'économie a été refaite, tous les items sont plus rentable au niveau du farm.");
         DHAPI.addHologramLine(hologram8, "Amusez-vous bien !");
 
