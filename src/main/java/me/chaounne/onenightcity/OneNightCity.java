@@ -46,7 +46,7 @@ public final class OneNightCity extends JavaPlugin {
         Hologram hologram3 = DHAPI.createHologram("test", hologramLocation3);
         DHAPI.addHologramLine(hologram3, "Concernant l'item spécial : la Poudre (c'est pas de la coke).");
         DHAPI.addHologramLine(hologram3, "Elle est échangeable contre des ressources au marché.");
-        DHAPI.addHologramLine(hologram3, "Il existe une SuperPoudre qui vaut 10 Poudres.");
+        DHAPI.addHologramLine(hologram3, ChatColor.GOLD+"Il existe une "+ChatColor.BOLD+"SuperPoudre "+ChatColor.GOLD+"qui vaut "+ChatColor.BOLD+" 1000 "+"Poudres.");
         DHAPI.addHologramLine(hologram3, "Un easter egg est présent au spawn :).");
         DHAPI.addHologramLine(hologram3, "Il risque d'y avoir des bugs, merci de nous les signaler.");
         DHAPI.addHologramLine(hologram3,"Et pour finir amusez-vous bien et bon jeu ! GL HF");
@@ -60,6 +60,17 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(hologram8, " 30 minutes de jeu, si vous la complétez vous aurez une récompense ;).");
         DHAPI.addHologramLine(hologram8, "L'économie a été refaite, tous les items sont plus rentable au niveau du farm.");
         DHAPI.addHologramLine(hologram8, "Amusez-vous bien !");
+
+        Location hologramLocation4 = new Location(Bukkit.getWorlds().get(0), 125, 157, -40);
+        Hologram hologram4 = DHAPI.createHologram("test2", hologramLocation4);
+
+        DHAPI.addHologramLine(hologram4, ChatColor.RED + "Création et gestion de team :");
+        DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour créer une team : /city team create \"NomDeLaTeam\"");
+        DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour ajouter un joueur à votre équipe : /city team add \"NomDuJoueur\"");
+        DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour voir les membres de votre équipe : /city team list");
+        DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour mettre une prime sur un joueur : /bounty \"ValeurDeLaPrime\" \"NomDuJoueur\"");
+        DHAPI.addHologramLine(hologram4, ChatColor.GREEN + "Amusez-vous bien !");
+        <#ANIM:wave:&f,&b&l>Text</#ANIM>
 
         System.out.println("One Night City is starting...");
         for(Player player : Bukkit.getOnlinePlayers()) {
