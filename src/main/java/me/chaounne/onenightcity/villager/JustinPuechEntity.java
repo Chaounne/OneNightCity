@@ -48,7 +48,7 @@ public class JustinPuechEntity {
 
          //trade 1
         // random amount of poudre
-        int amount = (int) (Math.random() * 5) + 1;
+        int amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 5) + 1;
@@ -56,7 +56,7 @@ public class JustinPuechEntity {
 
         //trade 2
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 115) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -64,31 +64,24 @@ public class JustinPuechEntity {
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 50) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
         trades.get(2).addIngredient(new ItemStack(Material.PUFFERFISH, price));
 
-        //trade 4
-        // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(3).addIngredient(new ItemStack(Material.COD, price));
 
         //trade 5
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(4).addIngredient(new ItemStack(Material.COOKED_COD, price));
+        trades.get(3).addIngredient(new ItemStack(Material.COOKED_COD, price));
 
         //trade 6
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 15) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -96,7 +89,7 @@ public class JustinPuechEntity {
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 15) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -104,7 +97,7 @@ public class JustinPuechEntity {
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -120,7 +113,7 @@ public class JustinPuechEntity {
 
         //trade 10
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 50) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -128,7 +121,7 @@ public class JustinPuechEntity {
 
         //trade 11
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 50) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;

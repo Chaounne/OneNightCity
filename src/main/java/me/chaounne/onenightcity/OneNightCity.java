@@ -14,6 +14,7 @@ public final class OneNightCity extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        Bukkit.getOnlinePlayers().forEach(player -> player.getAdvancementProgress(Bukkit.getAdvancement(NamespacedKey.minecraft("story/root"))).awardCriteria("impossible"));
 
         // Plugin startup logic
         Location hologramLocation = new Location(Bukkit.getWorlds().get(0), 125, 156, -33);
@@ -49,6 +50,16 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(hologram3, "Un easter egg est présent au spawn :).");
         DHAPI.addHologramLine(hologram3, "Il risque d'y avoir des bugs, merci de nous les signaler.");
         DHAPI.addHologramLine(hologram3,"Et pour finir amusez-vous bien et bon jeu ! GL HF");
+
+
+        Location hologramLocation8 = new Location(Bukkit.getWorlds().get(0), 123, 158, -49);
+        Hologram hologram8 = DHAPI.createHologram("nouveautes", hologramLocation8);
+        DHAPI.addHologramLine(hologram8, ChatColor.RED + "NOUVEAUTES");
+        DHAPI.addHologramLine(hologram8, "Le pvp fonctionne enfin, l'end sera accessible et vaut le coup !");
+        DHAPI.addHologramLine(hologram8,"Une Quine sera lancée au bout d'environ");
+        DHAPI.addHologramLine(hologram8, " 30 minutes de jeu, si vous la complétez vous aurez une récompense ;).");
+        DHAPI.addHologramLine(hologram8, "L'économie a été refaite, tous les items sont plus rentable au niveau du farm.");
+        DHAPI.addHologramLine(hologram8, "Amusez-vous bien !");
 
         System.out.println("One Night City is starting...");
         for(Player player : Bukkit.getOnlinePlayers()) {

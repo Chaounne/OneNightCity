@@ -46,7 +46,7 @@ public class NeigeuDemotEntity {
          */
          List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
-        int amount = (int) (Math.random() * 5) + 1;
+        int amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 5) + 5;
@@ -86,7 +86,7 @@ public class NeigeuDemotEntity {
 
         //trade 6
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 15) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -94,7 +94,7 @@ public class NeigeuDemotEntity {
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 15) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 10) + 5;
@@ -102,7 +102,7 @@ public class NeigeuDemotEntity {
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 15) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;

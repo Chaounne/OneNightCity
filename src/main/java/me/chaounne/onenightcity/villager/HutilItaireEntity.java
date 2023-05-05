@@ -46,7 +46,7 @@ public class HutilItaireEntity {
          */
          List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
-        int amount = (int) (Math.random() * 5) + 1;
+        int amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 7) + 5;
@@ -54,7 +54,7 @@ public class HutilItaireEntity {
 
         //trade 2
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -62,7 +62,7 @@ public class HutilItaireEntity {
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -70,7 +70,7 @@ public class HutilItaireEntity {
 
         //trade 4
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -78,7 +78,7 @@ public class HutilItaireEntity {
 
         //trade 5
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -86,7 +86,7 @@ public class HutilItaireEntity {
 
         //trade 6
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -94,15 +94,15 @@ public class HutilItaireEntity {
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 10) + 5;
+        price = (int) (Math.random() * 5) + 1;
         trades.get(6).addIngredient(new ItemStack(Material.LOOM, price));
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 5;
@@ -110,7 +110,7 @@ public class HutilItaireEntity {
 
         //trade 9
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -118,7 +118,7 @@ public class HutilItaireEntity {
 
         //trade 10
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -134,7 +134,7 @@ public class HutilItaireEntity {
 
         //trade 12
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 50) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
         // random price
         price = (int) (Math.random() * 5) + 1;

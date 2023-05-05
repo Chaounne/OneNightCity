@@ -46,7 +46,7 @@ public class PfizerEntity {
          */
          List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
-        int amount = (int) (Math.random() * 5) + 1;
+        int amount = (int) (Math.random() * 80) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 5) + 1;
@@ -54,7 +54,7 @@ public class PfizerEntity {
 
         //trade 2
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -70,7 +70,7 @@ public class PfizerEntity {
 
         //trade 4
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 15) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -102,7 +102,7 @@ public class PfizerEntity {
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 50) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -110,7 +110,7 @@ public class PfizerEntity {
 
         //trade 9
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -118,7 +118,7 @@ public class PfizerEntity {
 
         //trade 10
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 80) + 40;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
         // random price
         price = (int) (Math.random() * 5) + 1;

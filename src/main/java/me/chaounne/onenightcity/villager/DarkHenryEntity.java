@@ -43,16 +43,17 @@ public class DarkHenryEntity {
         henry2.setRemoveWhenFarAway(false);
 
         List<ItemStack> items = new ArrayList<>();
-        items.add(new ItemStack(Material.BEACON));
+        items.add(new ItemStack(Material.ENCHANTING_TABLE));
         items.add(new ItemStack(Material.DRAGON_EGG));
         items.add(new ItemStack(Material.TUBE_CORAL));
-        items.add(new ItemStack(Material.SCULK_SHRIEKER));
+        items.add(new ItemStack(Material.LEGACY_EYE_OF_ENDER));
         items.add(new ItemStack(Material.END_CRYSTAL));
         items.add(new ItemStack(Material.DRAGON_HEAD));
+        items.add(new ItemStack(Material.CARROT_ON_A_STICK));
 
         List<MerchantRecipe> trades = new ArrayList<>();
         ItemStack tradeItem = items.get((int) (Math.random() * items.size()));
-        trades.add(new MerchantRecipe(PoudreItem.getSuperPoudre(20), 1));
+        trades.add(new MerchantRecipe(PoudreItem.getSuperPoudre(10), 1));
         trades.get(0).addIngredient(tradeItem);
         henry2.setRecipes(trades);
 

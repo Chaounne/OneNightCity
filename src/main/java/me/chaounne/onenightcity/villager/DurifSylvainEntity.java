@@ -46,7 +46,7 @@ public class DurifSylvainEntity {
          */
          List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
-        int amount = (int) (Math.random() * 5) + 1;
+        int amount = (int) (Math.random() * 150) + 50;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 5) + 1;
@@ -54,7 +54,7 @@ public class DurifSylvainEntity {
 
         //trade 2
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 50) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -65,12 +65,12 @@ public class DurifSylvainEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 15) + 1;
         trades.get(2).addIngredient(new ItemStack(Material.PURPUR_BLOCK, price));
 
         //trade 4
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 15) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -78,7 +78,7 @@ public class DurifSylvainEntity {
 
         //trade 5
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -86,7 +86,7 @@ public class DurifSylvainEntity {
 
         //trade 6
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -94,7 +94,7 @@ public class DurifSylvainEntity {
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 10) + 5;
@@ -126,10 +126,10 @@ public class DurifSylvainEntity {
 
         //trade 11
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 250) + 200;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 1) + 1;
         trades.get(10).addIngredient(new ItemStack(Material.END_CRYSTAL, price));
 
         //trade 12
@@ -142,7 +142,7 @@ public class DurifSylvainEntity {
 
         //trade 13
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 40) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
         // random price
         price = (int) (Math.random() * 5) + 1;
