@@ -70,7 +70,6 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour voir les membres de votre équipe : /city team list");
         DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour mettre une prime sur un joueur : /bounty \"ValeurDeLaPrime\" \"NomDuJoueur\"");
         DHAPI.addHologramLine(hologram4, ChatColor.GREEN + "Amusez-vous bien !");
-        <#ANIM:wave:&f,&b&l>Text</#ANIM>
 
         System.out.println("One Night City is starting...");
         for(Player player : Bukkit.getOnlinePlayers()) {

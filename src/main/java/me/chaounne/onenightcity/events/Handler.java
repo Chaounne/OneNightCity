@@ -21,10 +21,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
@@ -44,7 +41,19 @@ public class Handler implements Listener {
     private int poudresPersoApresEchange;
     private ONCGame game = ONCGame.getInstance();
 
-
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        Player player = event.getPlayer();
+        player.sendMessage("Arrete de mourir et va farm plûtot !");
+        player.getInventory().clear(); // On vide l'inventaire du joueur
+        player.getInventory().setArmorContents(null); // On retire l'armure du joueur
+        player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET)); // On équipe le joueur d'un casque en fer
+        player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE)); // On équipe le joueur d'une plastron en fer
+        player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS)); // On équipe le joueur de jambières en fer
+        player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS)); // On équipe le joueur de bottes en fer
+        player.getInventory().addItem(new ItemStack(Material.IRON_SWORD)); // On donne au joueur une épée en fer
+        player.getInventory().addItem(new ItemStack(Material.IRON_PICKAXE)); // On donne au joueur une pioche en fer
+    }
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
         if (event.getPlayer() instanceof Player) {
