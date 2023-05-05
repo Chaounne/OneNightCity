@@ -20,9 +20,9 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 - [x] Pvp activé au bout de 10 min
 - [x] Limite de 5000 blocks de coté
 - [x] Fix l'hologram pour le classement
-- [ ] Faciliter la lecture des timers (au lieu de juste les secondes => heures:minutes:secondes)
+- [x] Faciliter la lecture des timers (au lieu de juste les secondes => heures:minutes:secondes)
 - [ ] Pouvoir intéragir à plusieurs sur un seul villageois (ou en faire spawn 2 avec les même loots)
-- [ ] +5000 pts si un joueur tue l'Ender Dragon ou récup l'oeuf
+- [x] +5000 pts si un joueur tue l'Ender Dragon ou récup l'oeuf
 - [ ] Améliorer quine (empêcher les échange après le compte à rebours)
 - [ ] Spawn des coffres en fonction de leur rareté (coffre normal)
 - [ ] Sons plus fort lors de l'annonce d'un coffre
