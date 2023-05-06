@@ -253,72 +253,71 @@ public class Commands implements CommandExecutor {
                     return false;
                 }
                 String entityName = args[1];
-                if(entityName.equals("henry")){
-                    HenryEntity.getEntity(player.getLocation());
-                    return true;
-                } else if(entityName.equals("jeaneau")){
-                    JeaneauEntity.getEntity(player.getLocation());
-                    return true;
+                switch (entityName) {
+                    case "henry":
+                        HenryEntity.getEntity(player.getLocation());
+                        return true;
+                    case "jeaneau":
+                        JeaneauEntity.getEntity(player.getLocation());
+                        return true;
 
-                } else if(entityName.equals("aypierre")){
-                    LesPierresEntity.getEntity(player.getLocation());
-                    return true;
-                } else if(entityName.equals("kiks")){
-                    KilianMBoufféEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("justin")){
-                    JustinPuechEntity.getEntity(player.getLocation());
-                    return true;
-                } else if(entityName.equals("cheep")){
-                    CheepCheapEntity.getEntity(player.getLocation());
-                    return true;
-                } else if(entityName.equals("mineur")){
-                    JeanMineurEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("dream")){
-                    DreamEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("legolas")){
-                    LegiasEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("potter")){
-                    JykaRoulerEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("francois")){
-                    ClodoFrancisEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("dose")){
-                    PfizerEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("lucie")){
-                    LucieAcierEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("cosmique")){
-                    DurifSylvainEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("nolife")){
-                    IkikomoriEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("neigeux")){
-                    NeigeuDemotEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("warden")){
-                    SombreHeroEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("plante")){
-                    BeauThonyEntity.getEntity(player.getLocation());
-                    return true;
-                }
-                else if(entityName.equals("champi")){
-                    MicoseMicodeEntity.getEntity(player.getLocation());
-                    return true;
-                }else if(entityName.equals("util")){
-                    HutilItaireEntity.getEntity(player.getLocation());
-                    return true;
-                }
-                else {
-                    player.sendMessage(ChatColor.RED+"Usage : /city entity <henry|??>");
-                    return false;
+                    case "aypierre":
+                        LesPierresEntity.getEntity(player.getLocation());
+                        return true;
+                    case "kiks":
+                        KilianMBoufféEntity.getEntity(player.getLocation());
+                        return true;
+                    case "justin":
+                        JustinPuechEntity.getEntity(player.getLocation());
+                        return true;
+                    case "cheep":
+                        CheepCheapEntity.getEntity(player.getLocation());
+                        return true;
+                    case "mineur":
+                        JeanMineurEntity.getEntity(player.getLocation());
+                        return true;
+                    case "dream":
+                        DreamEntity.getEntity(player.getLocation());
+                        return true;
+                    case "legolas":
+                        LegiasEntity.getEntity(player.getLocation());
+                        return true;
+                    case "potter":
+                        JykaRoulerEntity.getEntity(player.getLocation());
+                        return true;
+                    case "francois":
+                        ClodoFrancisEntity.getEntity(player.getLocation());
+                        return true;
+                    case "dose":
+                        PfizerEntity.getEntity(player.getLocation());
+                        return true;
+                    case "lucie":
+                        LucieAcierEntity.getEntity(player.getLocation());
+                        return true;
+                    case "cosmique":
+                        DurifSylvainEntity.getEntity(player.getLocation());
+                        return true;
+                    case "nolife":
+                        IkikomoriEntity.getEntity(player.getLocation());
+                        return true;
+                    case "neigeux":
+                        NeigeuDemotEntity.getEntity(player.getLocation());
+                        return true;
+                    case "warden":
+                        SombreHeroEntity.getEntity(player.getLocation());
+                        return true;
+                    case "plante":
+                        BeauThonyEntity.getEntity(player.getLocation());
+                        return true;
+                    case "champi":
+                        MicoseMicodeEntity.getEntity(player.getLocation());
+                        return true;
+                    case "util":
+                        HutilItaireEntity.getEntity(player.getLocation());
+                        return true;
+                    default:
+                        player.sendMessage(ChatColor.RED + "Usage : /city entity <henry|??>");
+                        return false;
                 }
             }
             else if(subCommand.equals("poudre")){

@@ -1,17 +1,14 @@
 package me.chaounne.onenightcity.game;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
-import eu.decentsoftware.holograms.api.holograms.HologramLine;
 import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class ClassementPoudre {
     private Hologram hologram;

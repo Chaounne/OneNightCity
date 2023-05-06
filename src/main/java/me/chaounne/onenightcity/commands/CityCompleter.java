@@ -1,13 +1,11 @@
 package me.chaounne.onenightcity.commands;
 
-import me.chaounne.onenightcity.game.GamePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class CityCompleter implements TabCompleter {
     List<String> argumentsCity = new ArrayList<>();

@@ -428,19 +428,21 @@ public class ONCGame implements Listener {
 
 
     public void endGame(){
-        if(timer != null) timer.cancel();
-        for(Player players : Bukkit.getOnlinePlayers()){
-            players.getPlayer().teleport(new Location(players.getWorld(),122,154,-39));
-            players.setGameMode(GameMode.ADVENTURE);
-            FastBoard board = boards.get(players.getUniqueId());
+        if (timer != null) timer.cancel();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.getPlayer().teleport(new Location(player.getWorld(),122,154,-39));
+            player.setGameMode(GameMode.ADVENTURE);
+            FastBoard board = boards.get(player.getUniqueId());
             board.delete();
+            player.setExp(0);
+            player.setLevel(0);
         }
-        for(Team team : teams){
+        for (Team team : teams) {
             team.reset();
         }
         teams.clear();
         players.clear();
-        if(started) started = false;
+        if (started) started = false;
     }
 
 
