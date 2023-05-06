@@ -26,16 +26,14 @@ Une cité : événement minecraft orienté sur le farm d'objet et l'échange ave
 - [ ] Améliorer quine (empêcher les échange après le compte à rebours)
 - [ ] Spawn des coffres en fonction de leur rareté (coffre normal)
 - [ ] Sons plus fort lors de l'annonce d'un coffre
-- [ ] Faire un test pour voir si tout fonctionne
+- [x] Enlevez xp level en fin de partie
+- [ ] L'ender dragon qui ne déscend jamais
 
 ## Idée pour le mini jeu :
 
-
 Faire des events in-game aléatoire, du style :
 
-
 - Aléatoirement, des ressources valent 2 fois plus de poudre aupres des marchants (on fait une annonce quand ça arrive)
-
 
 - ajouter la vente de shulker box
 
