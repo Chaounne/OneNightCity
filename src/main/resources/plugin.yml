@@ -2,7 +2,7 @@ name: OneNightCity
 version: '${project.version}'
 main: me.chaounne.onenightcity.OneNightCity
 api-version: 1.19
-authors: [ Chaounne ]
+authors: [ Chaounne, lucastrap09 ]
 description: Une cité mais version beaucoup plus rapide
 website: https://twitter.com/SsbShawn
 commands:
