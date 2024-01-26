@@ -46,7 +46,6 @@ public class Handler implements Listener {
         if (playerDeathStatus.getOrDefault(player, false)) {
             // Si le joueur est marqué comme mort, effectuez les actions nécessaires
             playerDeathStatus.put(player, false); // Réinitialise le statut de mort du joueur
-
             player.sendMessage("Arrête de mourir  et va farm plutôt !");
         player.getInventory().clear(); // On vide l'inventaire du joueur
         player.getInventory().setArmorContents(null); // On retire l'armure du joueur
@@ -81,8 +80,8 @@ public class Handler implements Listener {
                     if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())) {
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
-                            gamePlayer.getTeam().addScore(10);
-                            gamePlayer.addScore(10);
+                            gamePlayer.getTeam().addScore(4000);
+                            gamePlayer.addScore(4000);
                         }
                         player.getInventory().removeItem(item);
                     }
@@ -113,10 +112,10 @@ public class Handler implements Listener {
             GamePlayer killerGamePlayer = GamePlayer.getInstance(killer);
 
             // Add 200 poudres to the killer
-            killerGamePlayer.getTeam().addScore(200);
-            killerGamePlayer.addScore(200);
+            killerGamePlayer.getTeam().addScore(500);
+            killerGamePlayer.addScore(500);
 
-            killer.sendMessage(ChatColor.GREEN + "Vous avez gagné 200 poudres pour avoir tué " + player.getName() + " !");
+            killer.sendMessage(ChatColor.GREEN + "Vous avez gagné 500 poudres pour avoir tué " + player.getName() + " !");
         }
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         playerDeathStatus.put(player, true);
@@ -211,8 +210,8 @@ public class Handler implements Listener {
 
                             // ajoute autant de score à la team du joueur que de poudre ramassée
                             for (int i = 0; i < item.getAmount(); i++) {
-                                gamePlayer2.getTeam().addScore(1000);
-                                gamePlayer2.addScore(1000);
+                                gamePlayer2.getTeam().addScore(4000);
+                                gamePlayer2.addScore(4000);
                             }
                             players.getInventory().removeItem(item);
                         }
@@ -254,8 +253,8 @@ public class Handler implements Listener {
                     if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())){
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
-                            gamePlayer3.getTeam().addScore(2000);
-                            gamePlayer3.addScore(2000);
+                            gamePlayer3.getTeam().addScore(4000);
+                            gamePlayer3.addScore(4000);
                         }
                         player3.getInventory().removeItem(item);
                     }

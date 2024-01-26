@@ -8,12 +8,14 @@ import me.chaounne.onenightcity.villager.DarkHenryEntity;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -193,7 +195,7 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 10700 ) {// Pour supprimer darkHenry le cas ou il spawn
+                /*if (time > 10700 ) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
                         if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
                             entity.remove();
@@ -202,7 +204,7 @@ public class ONCGame implements Listener {
                             entity.remove();
                         }
                     }
-                }
+                }*/
                 if (time == 0) {
                     this.cancel();
                     endGame();
@@ -232,7 +234,7 @@ public class ONCGame implements Listener {
                 }
 
 
-                if (time == 10700) { //Darkhenry spawn au bout de 2 heures  et quelques je crois
+                if (time == 10750) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
@@ -304,13 +306,13 @@ public class ONCGame implements Listener {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         if (player.getInventory().contains(Material.DRAGON_EGG)) {
                             for(Player player1:Bukkit.getOnlinePlayers()){
-                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"+player.getName()+ChatColor.DARK_PURPLE+"§o, il a gagné 10 000 poudres");
+                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"+player.getName()+ChatColor.DARK_PURPLE+"§o, il a gagné  15 000 poudres");
                                 player1.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f);
 
                             }
                             GamePlayer gamePlayer = GamePlayer.getInstance(player);
-                            gamePlayer.getTeam().addScore(10000);
-                            gamePlayer.addScore(10000);
+                            gamePlayer.getTeam().addScore(15000);
+                            gamePlayer.addScore(15000);
 
                             playersWithEgg.add(player);
                         }
@@ -417,9 +419,13 @@ public class ONCGame implements Listener {
             }
         };
 
-        //generateChest.spawnCoffre();
+
 
         if (!started) started = true;
+        if (isStarted()==true) {
+
+            generateChest.spawnCoffre();
+        }
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }
 
@@ -431,10 +437,30 @@ public class ONCGame implements Listener {
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.getPlayer().teleport(new Location(player.getWorld(),122,154,-39));
             player.setGameMode(GameMode.ADVENTURE);
+            player.getInventory().clear();
             FastBoard board = boards.get(player.getUniqueId());
             board.delete();
             player.setExp(0);
             player.setLevel(0);
+
+            // Créer un feu d'artifice près de la localisation spécifiée
+            Location fireworkLocation = new Location(player.getWorld(), 122, 154, -39);
+
+            Firework firework = player.getWorld().spawn(fireworkLocation, Firework.class);
+            FireworkMeta fireworkMeta = firework.getFireworkMeta();
+
+            // Création de l'effet de feu d'artifice
+            FireworkEffect effect = FireworkEffect.builder()
+                    .flicker(false)
+                    .trail(true)
+                    .with(FireworkEffect.Type.BURST)
+                    .withColor(Color.RED)
+                    .withFade(Color.ORANGE)
+                    .build();
+
+            fireworkMeta.addEffect(effect);
+            fireworkMeta.setPower(1);
+            firework.setFireworkMeta(fireworkMeta);
         }
         for (Team team : teams) {
             team.reset();

@@ -410,7 +410,7 @@ public class Commands implements CommandExecutor {
                 }
 
             }
-        } else if (command.getName().equals("bounty")) {
+        } /*else if (command.getName().equals("bounty")) {
             if(args.length<=1){
                 player.sendMessage(ChatColor.RED+"Usage : /bounty <amount> <player> ");
                 return true;
@@ -455,7 +455,7 @@ public class Commands implements CommandExecutor {
             Bukkit.broadcastMessage(ChatColor.GREEN+player.getName()+" bountied " + ChatColor.RED +amount+" powder to "+playerToBounty.getName()+"!");
             System.out.println(bountyPlayer.getBounty());
             return true;
-        }
+        }*/
 
         return false;
     }
