@@ -29,9 +29,7 @@ import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Handler implements Listener {
 
@@ -39,11 +37,17 @@ public class Handler implements Listener {
    private int poudresPersoAvantEchange;
     private int poudresPersoApresEchange;
     private ONCGame game = ONCGame.getInstance();
+    private Map<Player, Boolean> playerDeathStatus = new HashMap<>();
+
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("Arrête de mourir  et va farm plutôt !");
+        if (playerDeathStatus.getOrDefault(player, false)) {
+            // Si le joueur est marqué comme mort, effectuez les actions nécessaires
+            playerDeathStatus.put(player, false); // Réinitialise le statut de mort du joueur
+
+            player.sendMessage("Arrête de mourir  et va farm plutôt !");
         player.getInventory().clear(); // On vide l'inventaire du joueur
         player.getInventory().setArmorContents(null); // On retire l'armure du joueur
         player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET)); // On équipe le joueur d'un casque en fer
@@ -52,6 +56,8 @@ public class Handler implements Listener {
         player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS)); // On équipe le joueur de bottes en fer
         player.getInventory().addItem(new ItemStack(Material.IRON_SWORD)); // On donne au joueur une épée en fer
         player.getInventory().addItem(new ItemStack(Material.IRON_PICKAXE)); // On donne au joueur une pioche en fer
+        }
+
     }
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
@@ -101,7 +107,7 @@ public class Handler implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
-
+        playerDeathStatus.put(player, true);
         // si le joueur n'a pas de getBedSpawnLocation(), il est tp au 0,0
         if (player.getBedSpawnLocation() == null) {
             player.teleport(new Location(player.getWorld(), 0, 70, 0));
@@ -236,8 +242,8 @@ public class Handler implements Listener {
                     if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())){
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
-                            gamePlayer3.getTeam().addScore(1000);
-                            gamePlayer3.addScore(1000);
+                            gamePlayer3.getTeam().addScore(2000);
+                            gamePlayer3.addScore(2000);
                         }
                         player3.getInventory().removeItem(item);
                     }
