@@ -320,7 +320,7 @@ public class ONCGame implements Listener {
                 if(time==10200) {// Temps au bout de 10 min de jeu
                     world.setPVP(true);
                     for(Player player:Bukkit.getOnlinePlayers()){
-                        player.sendMessage("Le pvp est activé");
+                       player.sendMessage("Le pvp est activé");
                     }
                 }
                 if(time==1){ // Pour la fin de la partie

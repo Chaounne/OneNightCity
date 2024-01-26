@@ -106,6 +106,18 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
+
+        Player killer = player.getKiller();
+
+        if (killer instanceof Player) {
+            GamePlayer killerGamePlayer = GamePlayer.getInstance(killer);
+
+            // Add 200 poudres to the killer
+            killerGamePlayer.getTeam().addScore(200);
+            killerGamePlayer.addScore(200);
+
+            killer.sendMessage(ChatColor.GREEN + "Vous avez gagné 200 poudres pour avoir tué " + player.getName() + " !");
+        }
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         playerDeathStatus.put(player, true);
         // si le joueur n'a pas de getBedSpawnLocation(), il est tp au 0,0
@@ -114,7 +126,7 @@ public class Handler implements Listener {
         }
 
         if (gamePlayer.hasBounty()) {
-            Player killer = player.getKiller();
+            killer = player.getKiller();
             if (killer != null) {
                 GamePlayer gameKiller = GamePlayer.getInstance(killer);
                 GamePlayer beter = gamePlayer.getBeter();
@@ -407,7 +419,9 @@ public class Handler implements Listener {
         if(event.getEntity() instanceof Villager){
             event.setCancelled(true);
         }
+
     }
+
 
     @EventHandler
     public void onPlayerItemDamage(PlayerItemDamageEvent e) {e.setCancelled(true);}
