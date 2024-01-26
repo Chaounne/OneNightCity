@@ -23,7 +23,7 @@ public class GenerateChest implements Listener {
 
     private static Location spawn = new Location(Bukkit.getWorld("world"), 0, 200, 0);
     private static boolean Super = false;
-    private static int rayon = 2000;
+    private static int rayon = 800;
 
     private static ItemStack[] ressources;
     private static String message;

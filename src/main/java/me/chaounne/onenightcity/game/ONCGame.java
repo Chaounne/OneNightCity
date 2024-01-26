@@ -100,7 +100,6 @@ public class ONCGame implements Listener {
 
     public void updateBoard() {
         for (GamePlayer player : players) {
-            System.out.println(player.getPlayer().getName());
             FastBoard board = boards.get(player.getPlayer().getUniqueId());
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
 
@@ -222,7 +221,7 @@ public class ONCGame implements Listener {
                             new Location(Bukkit.getWorld("world"), 1, 62, 7)
                     };
                     for(Player player: Bukkit.getOnlinePlayers()){
-                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra 5000 points");
+                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra 10 000 points");
                     }
                     for (Location location : locations) {
                         Block block = location.getBlock();
@@ -305,13 +304,13 @@ public class ONCGame implements Listener {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         if (player.getInventory().contains(Material.DRAGON_EGG)) {
                             for(Player player1:Bukkit.getOnlinePlayers()){
-                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"+player.getName()+ChatColor.DARK_PURPLE+"§o, il a gagné 5000 poudres");
+                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"+player.getName()+ChatColor.DARK_PURPLE+"§o, il a gagné 10 000 poudres");
                                 player1.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f);
 
                             }
                             GamePlayer gamePlayer = GamePlayer.getInstance(player);
-                            gamePlayer.getTeam().addScore(5000);
-                            gamePlayer.addScore(5000);
+                            gamePlayer.getTeam().addScore(10000);
+                            gamePlayer.addScore(10000);
 
                             playersWithEgg.add(player);
                         }

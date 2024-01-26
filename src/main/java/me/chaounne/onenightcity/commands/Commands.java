@@ -19,6 +19,7 @@ public class Commands implements CommandExecutor {
     private ONCGame game;
 
     private List<ChatColor> availableColors = new ArrayList<>(Arrays.asList(ChatColor.values()));
+    World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -28,15 +29,26 @@ public class Commands implements CommandExecutor {
         }
 
         Player player = (Player) sender;
+        Location location = new Location(world, 23, 67, 1);
+        if(command.getName().equals("test")){
+            sender.sendMessage(ChatColor.RED+"TEST!");
 
+        }
         // commande principale
         if(command.getName().equals("city")){
             if(args.length<=0){
                 player.sendMessage(ChatColor.RED+"usage: /city <start|poudre|stop|team|entity>");
                 return false;
             }
+
             game = ONCGame.getInstance();
             String subCommand = args[0];
+              if (subCommand.equals("respawnTrade")) {
+                // Kill all villagers
+                  MicoseMicodeEntity.getEntity(location).remove();
+                // Respawn a new villager at the specified location
+                MicoseMicodeEntity.getEntity(location);
+            }
             // sous commandes
             if(subCommand.equals("start")){
                 if (!(sender.isOp())) {
@@ -319,7 +331,9 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Usage : /city entity <henry|??>");
                         return false;
                 }
+
             }
+
             else if(subCommand.equals("poudre")){
                 if(!player.isOp()){
                     player.sendMessage(ChatColor.RED+"You are not allowed to do this!");
