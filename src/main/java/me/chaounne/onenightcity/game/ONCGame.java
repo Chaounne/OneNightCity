@@ -232,7 +232,7 @@ public class ONCGame implements Listener {
                 }
 
 
-                if (time == 4100) { //Darkhenry spawn au bout de 2 heures  et quelques je crois
+                if (time == 10700) { //Darkhenry spawn au bout de 2 heures  et quelques je crois
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
