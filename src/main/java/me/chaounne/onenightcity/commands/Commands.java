@@ -8,7 +8,10 @@ import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -266,6 +269,139 @@ public class Commands implements CommandExecutor {
                 }
                 String entityName = args[1];
                 switch (entityName) {
+                    case "spawn":
+                        // Liste des noms des entités à supprimer
+
+// Parcours de toutes les entités du monde
+
+
+                                // Vérifie si l'entité est une LivingEntity
+                                for (Entity entity : world.getEntities()) {
+
+                                        if (entity instanceof LivingEntity && entity.getName().equals("Henry")) {
+                                            entity.remove();
+                                            System.out.println("HENRY");
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("Jeaneau")) {
+                                            entity.remove();
+                                            System.out.println("AUTRE");
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("kiks")) {
+                                            entity.remove();
+                                            System.out.println("AUTRE");
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("aypierre")) {
+                                            entity.remove();
+                                            System.out.println("AUTRE");
+
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("cheep")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("mineur")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("dream")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("legolas")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("potter")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("francois")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("dose")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("lucie")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("cosmique")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("nolife")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("neigeux")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("warden")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("plante")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("champi")) {
+                                            entity.remove();
+                                        }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("util")) {
+                                            entity.remove();
+                                        }
+                                    
+                                }
+
+
+
+                        HenryEntity.getEntity( new Location(Bukkit.getWorld("world"), -25 , 69, -62)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        LesPierresEntity.getEntity( new Location(Bukkit.getWorld("world"), -21 , 70, 17)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        KilianMBoufféEntity.getEntity( new Location(Bukkit.getWorld("world"), -14 , 70, 22)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        HutilItaireEntity.getEntity( new Location(Bukkit.getWorld("world"), -20 , 71, -20)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        CheepCheapEntity.getEntity( new Location(Bukkit.getWorld("world"), 57 , 69, -17)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        JeanMineurEntity.getEntity( new Location(Bukkit.getWorld("world"), -19 , 70, 21)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        DreamEntity.getEntity( new Location(Bukkit.getWorld("world"), 45 , 68, -11)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        LegiasEntity.getEntity( new Location(Bukkit.getWorld("world"), 55 , 68, 4)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        JykaRoulerEntity.getEntity( new Location(Bukkit.getWorld("world"), 50 , 68, -11)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        ClodoFrancisEntity.getEntity( new Location(Bukkit.getWorld("world"), 44 , 68, -18)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        PfizerEntity.getEntity( new Location(Bukkit.getWorld("world"), 17 , 70, 22)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        LucieAcierEntity.getEntity( new Location(Bukkit.getWorld("world"), 22 , 70, 16)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        DurifSylvainEntity.getEntity( new Location(Bukkit.getWorld("world"), 22 , 70, 21)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        IkikomoriEntity.getEntity( new Location(Bukkit.getWorld("world"), 21 , 71, -20)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        NeigeuDemotEntity.getEntity( new Location(Bukkit.getWorld("world"), 22 , 71, -16)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        SombreHeroEntity.getEntity( new Location(Bukkit.getWorld("world"), 16 , 71, -21)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        BeauThonyEntity.getEntity( new Location(Bukkit.getWorld("world"), -16 , 71, -20)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        MicoseMicodeEntity.getEntity( new Location(Bukkit.getWorld("world"), -21 , 71, -15)
+                        ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        return true;
+
+
                     case "henry":
                         HenryEntity.getEntity(player.getLocation());
                         return true;

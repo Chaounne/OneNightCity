@@ -195,7 +195,7 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                /*if (time > 10700 ) {// Pour supprimer darkHenry le cas ou il spawn
+                if (time > 10700 ) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
                         if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
                             entity.remove();
@@ -204,7 +204,7 @@ public class ONCGame implements Listener {
                             entity.remove();
                         }
                     }
-                }*/
+                }
                 if (time == 0) {
                     this.cancel();
                     endGame();
