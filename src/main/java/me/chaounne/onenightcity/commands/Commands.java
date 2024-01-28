@@ -340,7 +340,7 @@ public class Commands implements CommandExecutor {
                                         if (entity instanceof LivingEntity && entity.getName().equals("util")) {
                                             entity.remove();
                                         }
-                                    
+
                                 }
 
 
