@@ -42,18 +42,8 @@ private static boolean fini=false;
             new ItemStack(Material.CRAFTING_TABLE),
             new ItemStack(Material.STRING),
             new ItemStack(Material.WHEAT_SEEDS),
-         
-
-
-
-
-
-
-
-
-
-
-
+            new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK),
+            
 
     };
 
