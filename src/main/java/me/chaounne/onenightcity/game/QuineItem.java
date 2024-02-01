@@ -31,6 +31,30 @@ private static boolean fini=false;
             new ItemStack(Material.NETHER_WART),
             new ItemStack(Material.ARMOR_STAND),
             new ItemStack(Material.AMETHYST_BLOCK),
+            new ItemStack(Material.FLOWER_POT),
+            new ItemStack(Material.SUNFLOWER),
+            new ItemStack(Material.PUMPKIN_PIE),
+            new ItemStack(Material.DIAMOND_SHOVEL),
+            new ItemStack(Material.HAY_BLOCK),
+            new ItemStack(Material.BOOK),
+            new ItemStack(Material.MUSHROOM_STEW),
+            new ItemStack(Material.OAK_SLAB),
+            new ItemStack(Material.CRAFTING_TABLE),
+            new ItemStack(Material.STRING),
+            new ItemStack(Material.WHEAT_SEEDS),
+         
+
+
+
+
+
+
+
+
+
+
+
+
     };
 
     private static ItemStack[] itemsToFind = new ItemStack[3];
