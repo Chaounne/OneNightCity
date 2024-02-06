@@ -62,14 +62,16 @@ public class Handler implements Listener {
     public void onInventoryOpen(InventoryOpenEvent event) {
         if (event.getPlayer() instanceof Player) {
             Player player = (Player) event.getPlayer();
-
+            player.sendMessage("tes1t");
             if (player.getGameMode() == GameMode.SURVIVAL) {
+                player.sendMessage("te2st");
                 if (player.getInventory().isEmpty()) return;
+                player.sendMessage("test3");
                 GamePlayer gamePlayer = GamePlayer.getInstance(player);
                 if (gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
                 for (ItemStack item : player.getInventory().getContents()) {
-
+                    player.sendMessage("test");
 
                     poudresPersoAvantEchange = gamePlayer.getScore();
 
@@ -80,8 +82,9 @@ public class Handler implements Listener {
                     if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())) {
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
-                            gamePlayer.getTeam().addScore(4000);
-                            gamePlayer.addScore(4000);
+                            gamePlayer.getTeam().addScore(10);
+                            gamePlayer.addScore(10);
+                            player.sendMessage("AAAAA");
                         }
                         player.getInventory().removeItem(item);
                     }
@@ -210,8 +213,8 @@ public class Handler implements Listener {
 
                             // ajoute autant de score à la team du joueur que de poudre ramassée
                             for (int i = 0; i < item.getAmount(); i++) {
-                                gamePlayer2.getTeam().addScore(4000);
-                                gamePlayer2.addScore(4000);
+                                gamePlayer2.getTeam().addScore(1000);
+                                gamePlayer2.addScore(1000);
                             }
                             players.getInventory().removeItem(item);
                         }
@@ -253,8 +256,8 @@ public class Handler implements Listener {
                     if(item != null&& Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())){
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
-                            gamePlayer3.getTeam().addScore(4000);
-                            gamePlayer3.addScore(4000);
+                            gamePlayer3.getTeam().addScore(2000);
+                            gamePlayer3.addScore(2000);
                         }
                         player3.getInventory().removeItem(item);
                     }

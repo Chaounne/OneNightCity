@@ -195,7 +195,7 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 10700 ) {// Pour supprimer darkHenry le cas ou il spawn
+                if (time > 10800) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
                         if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
                             entity.remove();
@@ -209,7 +209,7 @@ public class ONCGame implements Listener {
                     this.cancel();
                     endGame();
                 }
-                if (time == 9000) {//au bout de 30 min la quine commence
+                if (time == 10780) {//au bout de 30 min la quine commence
                     QuineItem.start();
 
                 }
@@ -223,7 +223,7 @@ public class ONCGame implements Listener {
                             new Location(Bukkit.getWorld("world"), 1, 62, 7)
                     };
                     for(Player player: Bukkit.getOnlinePlayers()){
-                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra 10 000 points");
+                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra 15 000 points");
                     }
                     for (Location location : locations) {
                         Block block = location.getBlock();
@@ -234,7 +234,7 @@ public class ONCGame implements Listener {
                 }
 
 
-                if (time == 6800) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
+                if (time == 10750) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);

@@ -14,35 +14,11 @@ public class QuineItem {
 private static boolean fini=false;
     private static
     ItemStack[] ressources = new ItemStack[]{
-            new ItemStack(Material.CAKE),
-            new ItemStack(Material.JUKEBOX),
-            new ItemStack(Material.PUFFERFISH_BUCKET),
-            new ItemStack(Material.COOKIE),
-            new ItemStack(Material.CLOCK),
-            new ItemStack(Material.EMERALD),
-            new ItemStack(Material.FERMENTED_SPIDER_EYE),
-            new ItemStack(Material.CARROT_ON_A_STICK),
-            new ItemStack(Material.INK_SAC),
-            new ItemStack(Material.MILK_BUCKET),
-            new ItemStack(Material.RABBIT_HIDE),
-            new ItemStack(Material.BLAZE_ROD),
-            new ItemStack(Material.BRICK_STAIRS),
-            new ItemStack(Material.MAGMA_CREAM),
-            new ItemStack(Material.NETHER_WART),
-            new ItemStack(Material.ARMOR_STAND),
-            new ItemStack(Material.AMETHYST_BLOCK),
-            new ItemStack(Material.FLOWER_POT),
+
             new ItemStack(Material.SUNFLOWER),
-            new ItemStack(Material.PUMPKIN_PIE),
-            new ItemStack(Material.DIAMOND_SHOVEL),
-            new ItemStack(Material.HAY_BLOCK),
+
             new ItemStack(Material.BOOK),
-            new ItemStack(Material.MUSHROOM_STEW),
-            new ItemStack(Material.OAK_SLAB),
             new ItemStack(Material.CRAFTING_TABLE),
-            new ItemStack(Material.STRING),
-            new ItemStack(Material.WHEAT_SEEDS),
-            new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK),
 
 
     };
