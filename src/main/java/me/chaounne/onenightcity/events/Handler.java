@@ -62,16 +62,12 @@ public class Handler implements Listener {
     public void onInventoryOpen(InventoryOpenEvent event) {
         if (event.getPlayer() instanceof Player) {
             Player player = (Player) event.getPlayer();
-            player.sendMessage("tes1t");
             if (player.getGameMode() == GameMode.SURVIVAL) {
-                player.sendMessage("te2st");
-                if (player.getInventory().isEmpty()) return;
-                player.sendMessage("test3");
+                 if (player.getInventory().isEmpty()) return;
                 GamePlayer gamePlayer = GamePlayer.getInstance(player);
                 if (gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
                 for (ItemStack item : player.getInventory().getContents()) {
-                    player.sendMessage("test");
 
                     poudresPersoAvantEchange = gamePlayer.getScore();
 
@@ -84,7 +80,6 @@ public class Handler implements Listener {
                         for (int i = 0; i < item.getAmount(); i++) {
                             gamePlayer.getTeam().addScore(10);
                             gamePlayer.addScore(10);
-                            player.sendMessage("AAAAA");
                         }
                         player.getInventory().removeItem(item);
                     }

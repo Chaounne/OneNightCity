@@ -33,10 +33,7 @@ public class Commands implements CommandExecutor {
 
         Player player = (Player) sender;
         Location location = new Location(world, 23, 67, 1);
-        if(command.getName().equals("test")){
-            sender.sendMessage(ChatColor.RED+"TEST!");
 
-        }
         // commande principale
         if(command.getName().equals("city")){
             if(args.length<=0){
