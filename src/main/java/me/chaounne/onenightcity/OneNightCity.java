@@ -2,6 +2,7 @@ package me.chaounne.onenightcity;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
+import me.chaounne.fastinv.FastInvManager;
 import me.chaounne.onenightcity.commands.CityCompleter;
 import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;
@@ -15,6 +16,8 @@ public final class OneNightCity extends JavaPlugin {
     @Override
     public void onEnable() {
         Bukkit.getOnlinePlayers().forEach(player -> player.getAdvancementProgress(Bukkit.getAdvancement(NamespacedKey.minecraft("story/root"))).awardCriteria("impossible"));
+
+        FastInvManager.register(this);
 
         // Plugin startup logic
         Location hologramLocation = new Location(Bukkit.getWorlds().get(0), 125, 156, -33);
