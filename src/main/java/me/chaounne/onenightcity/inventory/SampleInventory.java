@@ -16,13 +16,15 @@ public class SampleInventory extends FastInv {
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
             player.getInventory().removeItem(given);
             gamePlayer.addScore(amountPoudre);
+            System.out.println(gamePlayer.getScore());
         }
 
     }
 
     public void addItem(ItemStack item, int slot, int amountPoudre){
         setItem(slot, item, e -> {
-            trade(amountPoudre, item, (Player) e.getWhoClicked());
+            ItemStack itemStack = new ItemStack(item.getType());
+            trade(amountPoudre, itemStack, (Player) e.getWhoClicked());
         });
     }
 }

@@ -1,10 +1,12 @@
 package me.chaounne.onenightcity.events;
 
+import me.chaounne.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
 import me.chaounne.onenightcity.game.Team;
+import me.chaounne.onenightcity.inventory.SampleInventory;
 import me.chaounne.onenightcity.villager.spawners.Spawners;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -19,10 +21,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
@@ -417,6 +416,20 @@ public class Handler implements Listener {
             event.setCancelled(true);
         }
 
+    }
+
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event){
+        if(event.getRightClicked() instanceof Villager){
+            event.setCancelled(true);
+            Player player = event.getPlayer();
+            Villager villager = (Villager) event.getRightClicked();
+            if(villager.getCustomName() != null && villager.getCustomName().equals("Henry")){
+                SampleInventory sampleInventory = new SampleInventory(9, "Henry");
+                sampleInventory.addItem(new ItemBuilder(Material.WHEAT).lore("100 Poudres").build(), 0, 100);
+                sampleInventory.open(player);
+            }
+        }
     }
 
 
