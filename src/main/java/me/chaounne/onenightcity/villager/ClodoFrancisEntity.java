@@ -91,7 +91,7 @@ public class ClodoFrancisEntity {
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 100) + 50;
+        amount = (int) (Math.random() * 10) + 5;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 2) + 1;

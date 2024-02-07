@@ -54,7 +54,7 @@ public class MicoseMicodeEntity {
 
         //trade 2
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -62,7 +62,7 @@ public class MicoseMicodeEntity {
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -70,7 +70,7 @@ public class MicoseMicodeEntity {
 
         //trade 4
         // random amount of poudre
-        amount = (int) (Math.random() * 10) + 1;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -78,7 +78,7 @@ public class MicoseMicodeEntity {
 
         //trade 5
         // random amount of poudre
-        amount = (int) (Math.random() * 10) + 1;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;

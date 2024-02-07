@@ -48,7 +48,7 @@ public class JeaneauEntity {
 
          //trade 1
         // random amount of poudre
-        int amount = (int) (Math.random() * 20) + 1;
+        int amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 5) + 1;
@@ -56,7 +56,7 @@ public class JeaneauEntity {
 
         //trade 2
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -64,7 +64,7 @@ public class JeaneauEntity {
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -72,7 +72,7 @@ public class JeaneauEntity {
 
         //trade 4
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -80,7 +80,7 @@ public class JeaneauEntity {
 
         //trade 5
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -88,7 +88,7 @@ public class JeaneauEntity {
 
         //trade 6
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -96,7 +96,7 @@ public class JeaneauEntity {
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -104,7 +104,7 @@ public class JeaneauEntity {
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -112,7 +112,7 @@ public class JeaneauEntity {
 
         //trade 9
         // random amount of poudre
-        amount = (int) (Math.random() * 15) + 1;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;

@@ -102,7 +102,7 @@ public class PfizerEntity {
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 50) + 20;
+        amount = (int) (Math.random() * 10) + 5;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -118,7 +118,7 @@ public class PfizerEntity {
 
         //trade 10
         // random amount of poudre
-        amount = (int) (Math.random() * 80) + 40;
+        amount = (int) (Math.random() * 20) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
         // random price
         price = (int) (Math.random() * 5) + 1;

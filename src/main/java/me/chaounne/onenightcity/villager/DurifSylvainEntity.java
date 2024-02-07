@@ -126,7 +126,7 @@ public class DurifSylvainEntity {
 
         //trade 11
         // random amount of poudre
-        amount = (int) (Math.random() * 250) + 200;
+        amount = (int) (Math.random() * 30) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
         // random price
         price = (int) (Math.random() * 1) + 1;

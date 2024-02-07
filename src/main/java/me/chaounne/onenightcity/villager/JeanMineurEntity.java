@@ -62,11 +62,11 @@ public class JeanMineurEntity {
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 100) + 25;
+        amount = (int) (Math.random() * 25) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
-        trades.get(2).addIngredient(new ItemStack(Material.COAL_ORE, price));
+        trades.get(2).addIngredient(new ItemStack(Material.COAL, price));
 
         //trade 4
         // random amount of poudre

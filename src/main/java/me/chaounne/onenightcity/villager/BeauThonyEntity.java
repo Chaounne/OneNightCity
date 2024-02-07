@@ -97,7 +97,7 @@ public class BeauThonyEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 10) + 5;
+        price = (int) (Math.random() * 5) + 5;
         trades.get(6).addIngredient(new ItemStack(Material.OAK_SAPLING, price));
 
         //trade 8

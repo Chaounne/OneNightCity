@@ -46,7 +46,7 @@ public class JykaRoulerEntity {
          */
          List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
-        int amount = (int) (Math.random() * 25) + 1;
+        int amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         int price = (int) (Math.random() * 5) + 1;
@@ -61,10 +61,10 @@ public class JykaRoulerEntity {
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 20) + 1;
+        amount = (int) (Math.random() * 30) + 10;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 10) + 1;
+        price = (int) (Math.random() * 5) + 1;
         trades.get(2).addIngredient(new ItemStack(Material.LECTERN, price));
 
         //trade 4
@@ -75,7 +75,7 @@ public class JykaRoulerEntity {
 
         //trade 5
         // random amount of poudre
-        amount = (int) (Math.random() * 60) + 20;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -83,7 +83,7 @@ public class JykaRoulerEntity {
 
         //trade 6
         // random amount of poudre
-        amount = (int) (Math.random() * 150) + 80;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -91,7 +91,7 @@ public class JykaRoulerEntity {
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 150) + 100;
+        amount = (int) (Math.random() * 10) + 5;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 1) + 1;
@@ -107,7 +107,7 @@ public class JykaRoulerEntity {
 
         //trade 9
         // random amount of poudre
-        amount = (int) (Math.random() * 50) + 25;
+        amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 3) + 1;

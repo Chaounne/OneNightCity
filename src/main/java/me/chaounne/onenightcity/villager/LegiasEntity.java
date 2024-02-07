@@ -49,7 +49,7 @@ public class LegiasEntity {
         int amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        int price = (int) (Math.random() * 64) + 30;
+        int price = (int) (Math.random() * 64) + 3;
         if(price > 64){
             price = 64;
         }
@@ -57,16 +57,16 @@ public class LegiasEntity {
 
         //trade 2
         // random amount of poudre
-        amount = (int) (Math.random() * 50) + 1;
+        amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         trades.get(1).addIngredient(new ItemStack(Material.BOW, 1));
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 25) + 1;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 64) + 30;
+        price = (int) (Math.random() * 64) + 3;
         if(price > 64){
             price = 64;
         }
@@ -74,7 +74,7 @@ public class LegiasEntity {
 
         //trade 4
         // random amount of poudre
-        amount = (int) (Math.random() * 50) + 1;
+        amount = (int) (Math.random() * 30) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         trades.get(3).addIngredient(new ItemStack(Material.CROSSBOW, 1));
 
@@ -83,7 +83,7 @@ public class LegiasEntity {
         amount = (int) (Math.random() * 20) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 10) + 1;
+        price = (int) (Math.random() * 5) + 1;
         trades.get(4).addIngredient(new ItemStack(Material.BIG_DRIPLEAF, price));
 
         //trade 6

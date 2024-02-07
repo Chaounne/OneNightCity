@@ -82,7 +82,6 @@ public final class OneNightCity extends JavaPlugin {
         TabCompleter tab = new CityCompleter();
 
         getCommand("city").setExecutor(cmd);
-
         getCommand("city").setTabCompleter(tab);
         getCommand("bounty").setExecutor(cmd);
         getPlugin(OneNightCity.class).getServer().getPluginManager().registerEvents(new Handler(), this);
