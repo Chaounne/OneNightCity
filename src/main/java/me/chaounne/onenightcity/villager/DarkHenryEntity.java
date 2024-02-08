@@ -44,13 +44,16 @@ public class DarkHenryEntity {
 
         List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.ENCHANTING_TABLE));
-        items.add(new ItemStack(Material.DRAGON_EGG));
         items.add(new ItemStack(Material.LEGACY_EYE_OF_ENDER));
         items.add(new ItemStack(Material.END_CRYSTAL));
         items.add(new ItemStack(Material.DRAGON_HEAD));
         items.add(new ItemStack(Material.BLAZE_POWDER));
         items.add(new ItemStack(Material.MAGMA_CREAM));
-        items.add(new ItemStack(Material.CARROT_ON_A_STICK));
+        items.add(new ItemStack(Material.SHULKER_SHELL));
+        items.add(new ItemStack(Material.NAME_TAG));
+        items.add(new ItemStack(Material.HONEY_BOTTLE));
+        items.add(new ItemStack(Material.GLOW_INK_SAC));
+
 
         List<MerchantRecipe> trades = new ArrayList<>();
         ItemStack tradeItem = items.get((int) (Math.random() * items.size()));

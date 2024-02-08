@@ -1,6 +1,7 @@
 package me.chaounne.onenightcity.commands;
 
 import me.chaounne.onenightcity.game.GamePlayer;
+import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.villager.*;
@@ -43,11 +44,10 @@ public class Commands implements CommandExecutor {
 
             game = ONCGame.getInstance();
             String subCommand = args[0];
-              if (subCommand.equals("respawnTrade")) {
-                // Kill all villagers
-                  MicoseMicodeEntity.getEntity(location).remove();
-                // Respawn a new villager at the specified location
-                MicoseMicodeEntity.getEntity(location);
+            if(subCommand.equals("chest") && sender instanceof Player){
+                player = (Player) sender;
+                Location playerLocation = player.getLocation();
+                GenerateChest.spawnChest(playerLocation);
             }
             // sous commandes
             if(subCommand.equals("start")){

@@ -46,39 +46,41 @@ public class ClodoFrancisEntity {
          */
          List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
-        int amount = (int) (Math.random() * 15) + 1;
+        int amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        int price = (int) (Math.random() * 5) + 1;
+        int price = (int) (Math.random() * 20) + 1;
         trades.get(0).addIngredient(new ItemStack(Material.GLASS_BOTTLE, price));
 
         //trade 2
         // random amount of poudre
-        amount = (int) (Math.random() * 15) + 1;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 50) + 20;
         trades.get(1).addIngredient(new ItemStack(Material.HONEY_BOTTLE, price));
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 15) + 1;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 50) + 20;
         trades.get(2).addIngredient(new ItemStack(Material.MILK_BUCKET, price));
 
         //trade 4
         // random amount of poudre
-        amount = (int) (Math.random() * 10) + 1;
+        amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        trades.get(3).addIngredient(new ItemStack(Material.BEETROOT_SOUP, 1));
+
+        price = (int) (Math.random() * 50) + 20;
+        trades.get(3).addIngredient(new ItemStack(Material.BEETROOT_SOUP, price));
 
         //trade 5
         // random amount of poudre
         amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 10) + 1;
+        price = (int) (Math.random() * 50) + 20;
         trades.get(4).addIngredient(new ItemStack(Material.MUSHROOM_STEW, price));
 
         //trade 6
@@ -86,12 +88,12 @@ public class ClodoFrancisEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 50) + 20;
         trades.get(5).addIngredient(new ItemStack(Material.POTION, price));
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 10) + 5;
+        amount = (int) (Math.random() * 25) + 40;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 2) + 1;
@@ -99,18 +101,18 @@ public class ClodoFrancisEntity {
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 15) + 1;
+        amount = (int) (Math.random() * 25) + 40;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 2) + 1;
         trades.get(7).addIngredient(new ItemStack(Material.WRITABLE_BOOK, price));
 
         //trade 9
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random()* 25) + 40;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 4) + 1;
         trades.get(8).addIngredient(new ItemStack(Material.SPLASH_POTION, price));
 
         potter.setRecipes(trades);

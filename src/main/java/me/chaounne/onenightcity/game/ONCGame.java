@@ -195,7 +195,7 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 10800) {// Pour supprimer darkHenry le cas ou il spawn
+                if (time > 10750) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
                         if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
                             entity.remove();
@@ -234,7 +234,7 @@ public class ONCGame implements Listener {
                 }
 
 
-                if (time == 10750) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
+                if (time == 6250) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
@@ -434,8 +434,11 @@ public class ONCGame implements Listener {
 
     public void endGame(){
         if (timer != null) timer.cancel();
+        World overworld = Bukkit.getWorld("world"); // Make sure "world" is the name of your overworld
+
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.getPlayer().teleport(new Location(player.getWorld(),122,154,-39));
+
+            player.getPlayer().teleport(new Location(overworld,122,154,-39));
             player.setGameMode(GameMode.ADVENTURE);
             player.getInventory().clear();
             FastBoard board = boards.get(player.getUniqueId());

@@ -46,10 +46,10 @@ public class BeauThonyEntity {
          */
          List<MerchantRecipe> trades = new ArrayList<>();
         // random amount of poudre
-        int amount = (int) (Math.random() * 5) + 1;
+        int amount = (int) (Math.random() * 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        int price = (int) (Math.random() * 5) + 1;
+        int price = (int) (Math.random()  * 5) + 1;
         trades.get(0).addIngredient(new ItemStack(Material.ACACIA_SAPLING, price));
 
         //trade 2
@@ -57,68 +57,68 @@ public class BeauThonyEntity {
         amount = (int) (Math.random() * 5) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 1;
         trades.get(1).addIngredient(new ItemStack(Material.BAMBOO, price));
 
         //trade 3
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random()  * 5) + 1;
         trades.get(2).addIngredient(new ItemStack(Material.BIRCH_SAPLING, price));
 
         //trade 4
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random()  * 5) + 1;
         trades.get(3).addIngredient(new ItemStack(Material.DARK_OAK_SAPLING, price));
 
         //trade 5
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random()* 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random()  * 5) + 1;
         trades.get(4).addIngredient(new ItemStack(Material.SPRUCE_SAPLING, price));
 
         //trade 6
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random()  * 5) + 1;
         trades.get(5).addIngredient(new ItemStack(Material.JUNGLE_SAPLING, price));
 
         //trade 7
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random()* 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 5;
+        price = (int) (Math.random() * 5) + 1;
         trades.get(6).addIngredient(new ItemStack(Material.OAK_SAPLING, price));
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random()  * 25) + 40; //MAX VALUE 64
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 8) + 1;
+        price = (int) (Math.random() * 2) + 1;
         trades.get(7).addIngredient(new ItemStack(Material.FLOWER_POT, price));
 
         //trade 9
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random()* 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random()* 5) + 1;
         trades.get(8).addIngredient(new ItemStack(Material.MANGROVE_PROPAGULE, price));
 
         //trade 10
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
         price = (int) (Math.random() * 5) + 1;
@@ -126,7 +126,7 @@ public class BeauThonyEntity {
 
         //trade 11
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 21) + 20;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), 1));
         // random price
         price = (int) (Math.random() * 5) + 1;

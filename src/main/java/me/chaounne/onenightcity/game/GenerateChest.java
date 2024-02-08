@@ -67,13 +67,68 @@ public class GenerateChest implements Listener {
         livre.setItemMeta(meta);
         return livre;
     }
+    public static void spawnChest(Location location) {
+        if (ONCGame.getInstance().isStarted()) {
+            World world = location.getWorld();
+
+            // Génère les ressources du coffre aléatoirement
+            ItemStack[] ressources = new ItemStack[]{
+                    new ItemStack(Material.DIAMOND, random.nextInt(10) + 10),
+                    new ItemStack(Material.GOLD_INGOT, random.nextInt(10) + 10),
+                    new ItemStack(Material.IRON_INGOT, random.nextInt(10) + 10),
+                    new ItemStack(Material.EMERALD, random.nextInt(10) + 10),
+                    PoudreItem.getItem(random.nextInt(50) + 10),
+            };
+
+            // Ajout des arcs avec des puissances aléatoires
+
+
+
+            // Ajout des pommes dorées
+            ItemStack pommesDorees = new ItemStack(Material.GOLDEN_APPLE, random.nextInt(5) + 1);
+
+
+            // Ajout des perles de l'Ender
+            ItemStack perlesEnder = new ItemStack(Material.ENDER_PEARL, random.nextInt(10) + 1);
+
+            // Recherche d'un bloc solide sous la position
+            Block block = null;
+            int y = location.getBlockY();
+            do {
+                block = world.getBlockAt(location.getBlockX(), y, location.getBlockZ());
+                if (block.getType().isSolid()) {
+                    location.setY(y + 2);
+                    break;
+                }
+                y--;
+            } while (y > 0);
+
+            // Crée le coffre et ajoute les ressources
+            if (block != null && block.getType().isSolid()) {
+                block.setType(Material.CHEST);
+                Chest chest = (Chest) block.getState();
+                Inventory inventory = chest.getInventory();
+
+                // Ajout des ressources
+                inventory.setContents(ressources);
+
+
+
+                // Ajout des flèches, pommes dorées, épées en diamant et perles de l'Ender
+                inventory.addItem( pommesDorees, perlesEnder);
+            } else {
+                // Impossible de placer le coffre à la position fournie
+                System.out.println("Impossible de placer le coffre à la position spécifiée.");
+            }
+        }
+    }
 
     public static void spawnCoffre() {
 
 
         if (ONCGame.getInstance().isStarted()) {
             int randomDelayPeriod = 15000 + random.nextInt(20000); // Génère un nombre aléatoire entre 12.5 min et environ 27 min
-
+           // int randomDelayPeriod = 150 + random.nextInt(200); // Génère un nombre aléatoire entre 1 minute (60000 ms) et 2 minutes (120000 ms)
 
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 int nombre = random.nextInt(10) + 1;
@@ -92,7 +147,41 @@ public class GenerateChest implements Listener {
                         player.playSound(player.getLocation(), Sound.BLOCK_CONDUIT_AMBIENT, 100f, 100f);
                     }
                     message = " &r&6&lUn &6&l&e&e&l&dS&e&e&lU&dP&l&6&lE&r&6&l&e&e&lR &r&6&lCoffre vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o!";
-                } else if (nombre == 3) {
+                } else if (nombre == 4) {
+                    ressources = new ItemStack[]{
+                            new ItemStack(Material.DIAMOND_HOE, 1),
+                            new ItemStack(Material.IRON_SHOVEL, 1),
+                            new ItemStack(Material.WHEAT_SEEDS, random.nextInt(64) + 16),
+                            new ItemStack(Material.CARROT, random.nextInt(64) + 16),
+                            new ItemStack(Material.POTATO, random.nextInt(64) + 16),
+                            new ItemStack(Material.BEETROOT_SEEDS, random.nextInt(64) + 16),
+                            new ItemStack(Material.MELON_SEEDS, random.nextInt(32) + 8),
+                            new ItemStack(Material.PUMPKIN_SEEDS, random.nextInt(32) + 8),
+                            new ItemStack(Material.BONE_MEAL, random.nextInt(32) + 8),
+                    };
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
+                    }
+
+                    message = "&6Un coffre &c&lFERMIER &6vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o";
+                } else if (nombre == 5) {
+                    ressources = new ItemStack[]{
+                            new ItemStack(Material.DIAMOND_PICKAXE, 1),
+                            new ItemStack(Material.IRON_PICKAXE, 1),
+                            new ItemStack(Material.COAL, random.nextInt(32) + 16),
+                            new ItemStack(Material.IRON_ORE, random.nextInt(16) + 8),
+                            new ItemStack(Material.GOLD_ORE, random.nextInt(8) + 4),
+                            new ItemStack(Material.REDSTONE, random.nextInt(16) + 8),
+                            new ItemStack(Material.LAPIS_LAZULI, random.nextInt(16) + 8),
+                            new ItemStack(Material.DIAMOND, random.nextInt(4) + 1),
+                            new ItemStack(Material.EMERALD, random.nextInt(4) + 1),
+                    };
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
+                    }
+
+                    message = "&6Un coffre &c&fMINEUR &6vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o";
+                }else if (nombre == 3) {
 
                     ressources = new ItemStack[]{
                             new ItemStack(Material.GOLDEN_CARROT, random.nextInt(4) + 1), // 3 carottes dorées
@@ -135,7 +224,7 @@ public class GenerateChest implements Listener {
                     message = "&6Un coffre &c&lEQUIPEMENT &6vient d'apparaître à la position : &bx=%d&6, &by=%d&6, &bz=%d&e&o";
 
 
-                    //idée de coffre suplémentaire : Coffre fermier, coffre mineur, coffre ?/.?§.?%^^?. (un coffre ultra bizarre faut voir ce qu'on en fait), Un coffre piège qui retire des poudres à celui qui l'ouvre ? et lui envoie un message (vous vous etes fait avoir par un faux coffre, vous perdez X poudres, Un coffre ou faut etre plusieurs pour l'ouvrir
+                    //idée de coffre suplémentaire :  coffre ?/.?§.?%^^?. (un coffre ultra bizarre faut voir ce qu'on en fait), Un coffre piège qui retire des poudres à celui qui l'ouvre ? et lui envoie un message (vous vous etes fait avoir par un faux coffre, vous perdez X poudres, Un coffre ou faut etre plusieurs pour l'ouvrir
 
                 } else {
                     ressources = new ItemStack[]{
