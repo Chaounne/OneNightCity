@@ -22,10 +22,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Merchant;
-import org.bukkit.inventory.MerchantRecipe;
+import org.bukkit.inventory.*;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
@@ -155,8 +152,25 @@ public class Handler implements Listener {
             }
         }
     }
-
     @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        if(!ONCGame.getInstance().isStarted()){
+            Player player = event.getPlayer(); // Récupérer le joueur qui rejoint
+            World overworld = Bukkit.getWorld("world"); // Make sure "world" is the name of your overworld
+
+            // Téléporter le joueur en 0 70 0
+            player.getPlayer().teleport(new Location(overworld,122,154,-39));
+
+            // Mettre le joueur en mode aventure (gamemode adventure)
+            player.setGameMode(GameMode.ADVENTURE);
+
+            // Vider l'inventaire du joueur
+            PlayerInventory playerInventory = player.getInventory();
+            playerInventory.clear();
+
+        }
+    }
+        @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         Inventory inventory = event.getInventory();
         Player player = (Player) event.getPlayer();

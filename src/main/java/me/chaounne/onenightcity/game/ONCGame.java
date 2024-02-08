@@ -209,7 +209,7 @@ public class ONCGame implements Listener {
                     this.cancel();
                     endGame();
                 }
-                if (time == 10780) {//au bout de 30 min la quine commence
+                if (time == 9000) {//au bout de 30 min la quine commence
                     QuineItem.start();
 
                 }
@@ -266,6 +266,7 @@ public class ONCGame implements Listener {
 
     public void startGame() {
 
+        EventGame.revealPlayerPositions(); // Appel de la méthode statique
         createDark();
         GenerateChest generateChest = new GenerateChest();
         for (Player player : Bukkit.getOnlinePlayers()) {
