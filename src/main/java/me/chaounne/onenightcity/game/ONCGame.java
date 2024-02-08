@@ -265,7 +265,7 @@ public class ONCGame implements Listener {
 
 
     public void startGame() {
-
+        EventGame.LancerConcours();
         EventGame.revealPlayerPositions(); // Appel de la méthode statique
         createDark();
         GenerateChest generateChest = new GenerateChest();

@@ -126,9 +126,9 @@ public class GenerateChest implements Listener {
     public static void spawnCoffre() {
 
 
-        if (ONCGame.getInstance().isStarted()) {
-            int randomDelayPeriod = 15000 + random.nextInt(20000); // Génère un nombre aléatoire entre 12.5 min et environ 27 min
-           // int randomDelayPeriod = 150 + random.nextInt(200); // Génère un nombre aléatoire entre 1 minute (60000 ms) et 2 minutes (120000 ms)
+        if  (ONCGame.getInstance().isStarted()) {
+                int randomDelayPeriod = 15000 + random.nextInt(20000); // Génère un nombre aléatoire entre 12.5 min et environ 27 min
+                // int randomDelayPeriod = 150 + random.nextInt(200); // Génère un nombre aléatoire entre 1 minute (60000 ms) et 2 minutes (120000 ms)
 
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 int nombre = random.nextInt(10) + 1;
