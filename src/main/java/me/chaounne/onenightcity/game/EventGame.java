@@ -26,11 +26,10 @@ public class EventGame {
 
     // Méthode pour révéler la position des joueurs dans 10 secondes avec des feux d'artifice
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 15000 + random.nextInt(20000); // Génère un nombre aléatoire entre 12.5 min et environ 27 min
+        int randomDelayPeriod = 1500 + random.nextInt(2000); // Génère un nombre aléatoire entre 12.5 min et environ 27 min
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
             int randomNumber = random.nextInt(3) + 1; // Génère un nombre aléatoire entre 1 et 3
-            Bukkit.broadcastMessage(ChatColor.YELLOW + "Random Number: " + randomNumber);
 
             if (randomNumber == 1 || randomNumber == 2) {
 

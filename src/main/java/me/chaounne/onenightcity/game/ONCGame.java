@@ -265,6 +265,8 @@ public class ONCGame implements Listener {
 
 
     public void startGame() {
+        Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
+
         EventGame.LancerConcours();
         EventGame.revealPlayerPositions(); // Appel de la méthode statique
         createDark();
