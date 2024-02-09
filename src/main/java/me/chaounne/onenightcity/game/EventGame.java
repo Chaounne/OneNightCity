@@ -17,9 +17,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class EventGame {
     private static Random random = new Random();
@@ -75,7 +73,7 @@ public class EventGame {
         if (endTaskID == -1) { // Vérifie si aucun concours n'est en cours
              ItemStack itemToCollect = generateRandomItem();
            // Annonce du début du concours
-            Bukkit.broadcastMessage(ChatColor.YELLOW + "Début du concours de collecte ! 5000 poudres à gagner ! L'item à récupérer : " + itemToCollect.getType().toString());
+            Bukkit.broadcastMessage(ChatColor.YELLOW + "Début du concours de collecte, durée 10 minutes ! 5000 poudres à gagner ! L'item à récupérer : " + itemToCollect.getType().toString());
             for (Player player : Bukkit.getOnlinePlayers()) {
 
                 for (Player player1 : Bukkit.getOnlinePlayers()) {
@@ -91,7 +89,6 @@ public class EventGame {
     }
 
     private static void finConcours(ItemStack itemToCollect) {
-
         Map<Player, Integer> playerResources = new HashMap<>();
 
         // Vérification du contenu de l'inventaire de chaque joueur
@@ -100,30 +97,43 @@ public class EventGame {
             playerResources.put(player, itemCount);
         }
         System.out.println(itemToCollect);
-        // Calcul du joueur avec le plus grand nombre d'items collectés
-        Player winner = calculateWinner(playerResources);
+        // Calcul des joueurs avec le plus grand nombre d'items collectés
+        List<Player> winners = calculateWinner(playerResources);
 
-        // Annonce du gagnant
-        if (winner != null) {
-            Bukkit.broadcastMessage(ChatColor.GREEN + "Le joueur " + winner.getName() + " a remporté le concours avec " + playerResources.get(winner) + " " + itemToCollect.getType().toString() + " !"+"Il gagne 5000 poudres !");
-            for (Player player : Bukkit.getOnlinePlayers()) {
-
-                for (Player player1 : Bukkit.getOnlinePlayers()) {
-                    player1.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
-
+        // Annonce des gagnants
+        if (!winners.isEmpty()) {
+            if (winners.size() == 1) {
+                for (Player winner : winners) {
+                    Bukkit.broadcastMessage(ChatColor.GREEN + "Le joueur " + winner.getName() + " a remporté le concours avec " + playerResources.get(winner) + " " + itemToCollect.getType().toString() + "! Il gagne 5000 poudres !");
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
+                    }
+                    GamePlayer gamePlayer = GamePlayer.getInstance(winner);
+                    gamePlayer.getTeam().addScore(5000);
+                    gamePlayer.addScore(5000);
+                }
+            } else {
+                Bukkit.broadcastMessage(ChatColor.GREEN + "Les joueurs suivants ont remporté le concours avec le même nombre d'objets (" + playerResources.get(winners.get(0)) + ") : ");
+                for (Player winner : winners) {
+                    Bukkit.broadcastMessage(ChatColor.GREEN + "- " + winner.getName());
+                }
+                Bukkit.broadcastMessage(ChatColor.GREEN + "Chacun gagne 5000 poudres !");
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
+                }
+                for (Player winner : winners) {
+                    GamePlayer gamePlayer = GamePlayer.getInstance(winner);
+                    gamePlayer.getTeam().addScore(5000);
+                    gamePlayer.addScore(5000);
                 }
             }
-            GamePlayer gamePlayer = GamePlayer.getInstance(winner);
-            gamePlayer.getTeam().addScore(5000);
-            gamePlayer.addScore(5000);
-
-        }else{
+        } else {
             Bukkit.broadcastMessage(ChatColor.YELLOW + "Le concours s'est terminé, mais personne n'a collecté l'item.");
         }
-        // Réinitialisez la variable endTaskID pour indiquer qu'aucun concours n'est en cours
+
+        // Réinitialisation de la variable endTaskID pour indiquer qu'aucun concours n'est en cours
         endTaskID = -1;
     }
-
     // Méthode pour compter le nombre d'items spécifiques dans l'inventaire d'un joueur
     private static int countItems(Inventory inventory, ItemStack itemToCount) {
         int count = 0;
@@ -175,17 +185,26 @@ public class EventGame {
     }
 
     // Méthode pour calculer le joueur avec le plus grand nombre d'items collectés
-    private static Player calculateWinner(Map<Player, Integer> playerResources) {
-        Player winner = null;
+    private static List<Player> calculateWinner(Map<Player, Integer> playerResources) {
+        List<Player> winners = new ArrayList<>();
         int maxResources = 0;
 
+        // Trouver le nombre maximal d'objets collectés
         for (Map.Entry<Player, Integer> entry : playerResources.entrySet()) {
-            if (entry.getValue() > maxResources) {
-                maxResources = entry.getValue();
-                winner = entry.getKey();
+            int resources = entry.getValue();
+            if (resources > maxResources) {
+                maxResources = resources;
             }
         }
-        return winner;
+
+        // Ajouter tous les joueurs qui ont collecté le nombre maximal d'objets
+        for (Map.Entry<Player, Integer> entry : playerResources.entrySet()) {
+            if (entry.getValue() == maxResources && maxResources > 0) {
+                winners.add(entry.getKey());
+            }
+        }
+
+        return winners;
     }
 
 
