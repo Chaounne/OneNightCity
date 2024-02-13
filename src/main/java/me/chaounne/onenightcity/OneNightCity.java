@@ -6,9 +6,11 @@ import me.chaounne.fastinv.FastInvManager;
 import me.chaounne.onenightcity.commands.CityCompleter;
 import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;
+import me.chaounne.onenightcity.game.ONCGame;
 import org.bukkit.*;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class OneNightCity extends JavaPlugin {
@@ -30,7 +32,7 @@ public final class OneNightCity extends JavaPlugin {
         Hologram hologram1 = DHAPI.createHologram("Regle2", hologramLocation1);
         DHAPI.addHologramLine(hologram1, "Regle du jeu : Il faut être l'équipe");
         DHAPI.addHologramLine(hologram1, "ayant le plus de poudre à la fin du temps");
-        DHAPI.addHologramLine(hologram1, "imparti : 4 heures");
+        DHAPI.addHologramLine(hologram1, "imparti : 3 heures");
 
         Location hologramLocation2 = new Location(Bukkit.getWorlds().get(0), 114, 157, -33);
         Hologram hologram2 = DHAPI.createHologram("Spawn", hologramLocation2);
@@ -44,13 +46,13 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(hologram6, "PVP activé après 10 min de jeu.");
         DHAPI.addHologramLine(hologram6, "Le spawn est le seul endroit protégé.");
         DHAPI.addHologramLine(hologram6, "Créez votre base, pillez les autres, entre tuez-vous !");
-        DHAPI.addHologramLine(hologram6, "Aucun cheat autorisé, même pas le X-RAY.(n'est-ce pas Chris973 ?)");
+        DHAPI.addHologramLine(hologram6, "Aucun cheat autorisé, même pas le X-RAY.");
         Location hologramLocation3 = new Location(Bukkit.getWorlds().get(0), 114, 157, -48);
         Hologram hologram3 = DHAPI.createHologram("test", hologramLocation3);
-        DHAPI.addHologramLine(hologram3, "Concernant l'item spécial : la Poudre (c'est pas de la coke).");
-        DHAPI.addHologramLine(hologram3, "Elle est échangeable contre des ressources au marché.");
+        DHAPI.addHologramLine(hologram3, "Concernant l'item spécial : la Poudre .");
+        DHAPI.addHologramLine(hologram3, "Vous pouvez en avoir en tradant des items au spawn.");
         DHAPI.addHologramLine(hologram3, ChatColor.GOLD+"Il existe une "+ChatColor.BOLD+"SuperPoudre "+ChatColor.GOLD+"qui vaut "+ChatColor.BOLD+" 1000 "+"Poudres.");
-        DHAPI.addHologramLine(hologram3, "Un easter egg est présent au spawn :).");
+
         DHAPI.addHologramLine(hologram3, "Il risque d'y avoir des bugs, merci de nous les signaler.");
         DHAPI.addHologramLine(hologram3,"Et pour finir amusez-vous bien et bon jeu ! GL HF");
 
@@ -58,10 +60,10 @@ public final class OneNightCity extends JavaPlugin {
         Location hologramLocation8 = new Location(Bukkit.getWorlds().get(0), 123, 158, -49);
         Hologram hologram8 = DHAPI.createHologram("nouveautes", hologramLocation8);
         DHAPI.addHologramLine(hologram8, ChatColor.RED + "NOUVEAUTES");
-        DHAPI.addHologramLine(hologram8, "Le pvp fonctionne enfin, l'end sera accessible et vaut le coup !");
-        DHAPI.addHologramLine(hologram8,"Une Quine sera lancée au bout d'environ");
-        DHAPI.addHologramLine(hologram8, " 30 minutes de jeu, si vous la complétait vous aurez une récompense ;).");
-        DHAPI.addHologramLine(hologram8, "L'économie a été refaite, tous les items sont plus rentable au niveau du farm.");
+        DHAPI.addHologramLine(hologram8, "Fix des bugs de la derniere game!");
+        DHAPI.addHologramLine(hologram8,"Evenement Feu d'artifice et Concours Collecte ");
+        DHAPI.addHologramLine(hologram8, " + d'infos sur le wiki de OneNightCity tout fraichement créé.");
+        DHAPI.addHologramLine(hologram8, "Nouvelle interface pour les échanges avec les villageois.");
         DHAPI.addHologramLine(hologram8, "Amusez-vous bien !");
 
         Location hologramLocation4 = new Location(Bukkit.getWorlds().get(0), 125, 157, -40);
@@ -71,13 +73,43 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour créer une team : /city team create \"NomDeLaTeam\"");
         DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour ajouter un joueur à votre équipe : /city team add \"NomDuJoueur\"");
         DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour voir les membres de votre équipe : /city team list");
-        DHAPI.addHologramLine(hologram4, ChatColor.WHITE + "Pour mettre une prime sur un joueur : /bounty \"ValeurDeLaPrime\" \"NomDuJoueur\"");
         DHAPI.addHologramLine(hologram4, ChatColor.GREEN + "Amusez-vous bien !");
 
         System.out.println("One Night City is starting...");
-        for(Player player : Bukkit.getOnlinePlayers()) {
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            // Téléportez chaque joueur à la position spécifiée et définissez son mode de jeu sur l'aventure
             player.teleport(new Location(player.getWorld(), 121, 154, -40));
-            player.getPlayer().setGameMode(GameMode.ADVENTURE);
+            player.setGameMode(GameMode.ADVENTURE);
+
+            // Vérifiez si le jeu n'a pas encore commencé
+            // Vérifiez si le jeu n'a pas encore commencé
+            if (!ONCGame.getInstance().isStarted()) {
+                // Vérifiez si le joueur n'a pas de boules de neige
+                Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
+                    // Parcourez chaque joueur en ligne
+                    if (!ONCGame.getInstance().isStarted()) {
+
+                        for (Player player1 : Bukkit.getOnlinePlayers()) {
+                            boolean hasSnowball = false;
+                            for (ItemStack item : player1.getInventory().getContents()) {
+                                if (item != null && item.getType() == Material.SNOWBALL) {
+                                    hasSnowball = true;
+                                    break;
+                                }
+                            }
+
+                            // Si le joueur n'a pas de boules de neige, donnez-lui une boule de neige
+                            if (!hasSnowball) {
+                                
+                                ItemStack snowball = new ItemStack(Material.SNOWBALL, 1); // Créez une boule de neige
+                                player1.getInventory().addItem(snowball); // Donnez-la au joueur
+                                player1.updateInventory(); // Mettez à jour l'inventaire du joueur
+                            }
+                        }
+                    }
+                }, 0L, 50); // Planifiez la tâche toutes les 60 secondes (20 ticks par seconde)
+            }
 
         }
 

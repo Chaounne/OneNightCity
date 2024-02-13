@@ -8,7 +8,6 @@ website: https://twitter.com/SsbShawn
 commands:
   city:
     description: city
-    usage: /city
     aliases: city
 
   bounty:

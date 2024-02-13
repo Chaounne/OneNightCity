@@ -1,5 +1,6 @@
 package me.chaounne.onenightcity.events;
 
+import java.awt.Color;
 import me.chaounne.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
@@ -232,9 +233,47 @@ public class Handler implements Listener {
         int poudresGagnees = poudresPersoApresEchange - poudresPersoAvantEchange;
 
         if (poudresGagnees > 0 && gamePlayer.getTeam() != null) {
-            String message = "Votre équipe a gagné " + poudresGagnees + " poudres !";
+            // Choisissons un message aléatoire pour ajouter un peu de magie à l'annonce !
+            ChatColor[] colors = {
+                    ChatColor.LIGHT_PURPLE,
+                    ChatColor.AQUA,
+                    ChatColor.DARK_PURPLE,
+                    ChatColor.GOLD,
+                    ChatColor.RED,
+                    ChatColor.GREEN,
+                    ChatColor.BLUE,
+                    ChatColor.WHITE,
+                    ChatColor.GRAY,
+                    ChatColor.DARK_GREEN,
+                    ChatColor.DARK_RED,
+                    ChatColor.YELLOW
+            };
+            // Choisissons un message aléatoire pour ajouter un peu de magie à l'annonce !
+            String[] messages = {
+                    "Félicitations ! " + poudresGagnees + " poudres magiques pour votre équipe ! ",
+                    "Gloire ! " + poudresGagnees + " poudres magiques ont été récoltées ! ",
+                    "Seulement " + poudresGagnees + " poudres ont été ajouté à votre équipe ! ",
+                    "Bon y'a mieux mais " + poudresGagnees + " poudres gagnées ! ",
+                    "Encore toi ?  " + poudresGagnees + " poudres encore obtenues ! ",
+                    "WOW mais quel montant incroyable y'a  " + poudresGagnees + " poudres ajoutées à votre équipe ! ",
+                    "Merveilleux ! " + poudresGagnees + " poudres magiques ont été gagnées ! ",
+                    "Ronpich Zzzz ! " + poudresGagnees + " poudres, c'est tout ?! ",
+                    "Espece de rat, t'as que " + poudresGagnees + " poudres en echange pour la peine ! ",
+                    "Oula, c'est peu quand meme : " + poudresGagnees + " poudres ajoutées ! "
+            };
+
+            // Choisissons au hasard un des messages magiques à envoyer !
+            Random random = new Random();
+            int randomColorIndex = random.nextInt(colors.length);
+            ChatColor randomColor = colors[randomColorIndex];
+
+            int randomMessageIndex = random.nextInt(messages.length);
+            String randomMessage = randomColor + messages[randomMessageIndex];
+
+            // Envoyons la nouvelle enchantée à chaque membre de l'équipe !
             for (Player teamMember : gamePlayer.getTeam().getPlayers()) {
-                teamMember.sendMessage(message);
+                // Pour que chacun vive la magie à sa manière, offrons-lui son propre message !
+                teamMember.sendMessage(randomMessage);
             }
         }
     }

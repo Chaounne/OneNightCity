@@ -24,61 +24,76 @@ public class EventGame {
 
     // Méthode pour révéler la position des joueurs dans 10 secondes avec des feux d'artifice
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 1500 + random.nextInt(2000); // Génère un nombre aléatoire entre 12.5 min et environ 27 min
+        int randomDelayPeriod = 5 * 1000 + random.nextInt(1 * 1000);
+        if (ONCGame.getInstance().isStarted()) {
+            Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
+                if (ONCGame.getInstance().isStarted()) {
 
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
-            int randomNumber = random.nextInt(3) + 1; // Génère un nombre aléatoire entre 1 et 3
+                    int randomNumber = random.nextInt(3) + 1; // Génère un nombre aléatoire entre 1 et 3
 
-            if (randomNumber == 1 || randomNumber == 2) {
+                    if (randomNumber == 1 || randomNumber == 2) {
 
-                Bukkit.broadcastMessage(ChatColor.YELLOW + "Position révélée dans 10 secondes !");
-                Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
-                    Bukkit.broadcastMessage(ChatColor.YELLOW + "Feu d'artifice ! Position des joueurs révélée !");
-                    for (Player player : Bukkit.getOnlinePlayers()) {
-                        Location fireworkLocation = player.getLocation();
-                        Firework firework = player.getWorld().spawn(fireworkLocation, Firework.class);
-                        FireworkMeta fireworkMeta = firework.getFireworkMeta();
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            player.sendMessage(ChatColor.YELLOW + "Position révélée dans 10 secondes !");
+                        } Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
+                            if (ONCGame.getInstance().isStarted()) {
 
-                        // Création de l'effet de feu d'artifice
-                        FireworkEffect effect = FireworkEffect.builder()
-                                .flicker(true)
-                                .trail(true)
-                                .with(FireworkEffect.Type.BURST)
-                                .with(FireworkEffect.Type.BALL_LARGE)
-                                .withColor(Color.RED)
-                                .withFade(Color.ORANGE)
-                                .build();
+                                for (Player player : Bukkit.getOnlinePlayers()) {
+                                    player.sendMessage(ChatColor.YELLOW + "Feu d'artifice ! Position des joueurs révélée !");
+                                }  for (Player player : Bukkit.getOnlinePlayers()) {
+                                    if (!player.isDead()) {
+                                        Location fireworkLocation = player.getLocation();
+                                        Firework firework = player.getWorld().spawn(fireworkLocation, Firework.class);
+                                        FireworkMeta fireworkMeta = firework.getFireworkMeta();
+
+                                        // Création de l'effet de feu d'artifice
+                                        FireworkEffect effect = FireworkEffect.builder()
+                                                .flicker(true)
+                                                .trail(true)
+                                                .with(FireworkEffect.Type.BURST)
+                                                .with(FireworkEffect.Type.BALL_LARGE)
+                                                .withColor(Color.RED)
+                                                .withFade(Color.ORANGE)
+                                                .build();
 
 
-                        fireworkMeta.addEffect(effect);
-                        fireworkMeta.setPower(2);
-                        firework.setFireworkMeta(fireworkMeta);
+                                        fireworkMeta.addEffect(effect);
+                                        fireworkMeta.setPower(2);
+                                        firework.setFireworkMeta(fireworkMeta);
+                                    }
+                                }
+                            }
+                        }, 200L); // 20 ticks * 10 seconde
                     }
-
-                }, 200L); // 20 ticks * 10 seconde
-            }// s
-        }, randomDelayPeriod, randomDelayPeriod); // 20 ticks * 30 secondes
+                }
+            }, randomDelayPeriod, randomDelayPeriod); // 20 ticks * 30 secondes
+        }
     }
     // Ajoutez cette variable pour stocker l'identifiant de la tâche planifiée pour la fin du concours
     private static int endTaskID = -1;
 
-    public static  void LancerConcours(){
-        int randomDelayPeriod =2 * 60 * 20;
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
-            RessourceConcour();
-        }, randomDelayPeriod, randomDelayPeriod);// Spawn le coffre une fois toutes les 25 minutes
+    public static  void LancerConcours() {
+        if (ONCGame.getInstance().isStarted()) {
+
+            int randomDelayPeriod = 5 * 1000 + random.nextInt(1 * 1000);
+            Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
+                if (ONCGame.getInstance().isStarted()) {
+                    RessourceConcour();
+                }
+            }, randomDelayPeriod, randomDelayPeriod);// Spawn le coffre une fois toutes les 25 minutes
 
         }
+    }
     private static void RessourceConcour() {
         if (endTaskID == -1) { // Vérifie si aucun concours n'est en cours
              ItemStack itemToCollect = generateRandomItem();
            // Annonce du début du concours
-            Bukkit.broadcastMessage(ChatColor.YELLOW + "Début du concours de collecte, durée 10 minutes ! 5000 poudres à gagner ! L'item à récupérer : " + itemToCollect.getType().toString());
             for (Player player : Bukkit.getOnlinePlayers()) {
+                player.sendMessage(ChatColor.YELLOW + "Début du concours de collecte, durée 25 minutes ! 5000 poudres à gagner ! L'item à récupérer : " + itemToCollect.getType().toString());
+            } for (Player player : Bukkit.getOnlinePlayers()) {
 
                 for (Player player1 : Bukkit.getOnlinePlayers()) {
                     player1.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
-
                 }
             }
             // Planification de la fin du concours après 2 minutes

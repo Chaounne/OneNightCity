@@ -31,6 +31,7 @@ public class ONCGame implements Listener {
     private static ONCGame instance;
 
     private boolean started = false;
+    Random random = new Random();
 
     private BukkitRunnable timer;
     private int time = 10800;// Partie de 3 heures
@@ -233,8 +234,9 @@ public class ONCGame implements Listener {
                     }
                 }
 
+                int randomTime = random.nextInt(7001 - 5500) + 5500;
 
-                if (time == 6250) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
+                if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
@@ -265,7 +267,9 @@ public class ONCGame implements Listener {
 
 
     public void startGame() {
-        Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
+        if (!started) started = true;
+
+        //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
 
         EventGame.LancerConcours();
         EventGame.revealPlayerPositions(); // Appel de la méthode statique
@@ -324,8 +328,13 @@ public class ONCGame implements Listener {
                 }
                 if(time==10200) {// Temps au bout de 10 min de jeu
                     world.setPVP(true);
-                    for(Player player:Bukkit.getOnlinePlayers()){
-                       player.sendMessage("Le pvp est activé");
+
+                    // Envoyer le titre à tous les joueurs en ligne
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        // Envoyer le titre avec un sous-titre vide, aucun temps de fade-in ou fade-out et une durée d'affichage de 20 ticks
+                        player.sendTitle(ChatColor.GREEN + "Le PVP est activé", ChatColor.GRAY + "Préparez-vous à combattre !", 0, 20, 10);
+                        // Jouer un son à tous les joueurs
+                        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                     }
                 }
                 if(time==1){ // Pour la fin de la partie
@@ -424,11 +433,7 @@ public class ONCGame implements Listener {
 
 
 
-        if (!started) started = true;
-        if (isStarted()==true) {
 
-            generateChest.spawnCoffre();
-        }
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }
 
@@ -436,6 +441,10 @@ public class ONCGame implements Listener {
 
 
     public void endGame(){
+            //faire l'appel pour reset ici
+
+
+        if (started) started = false;
         if (timer != null) timer.cancel();
         World overworld = Bukkit.getWorld("world"); // Make sure "world" is the name of your overworld
 
@@ -468,6 +477,52 @@ public class ONCGame implements Listener {
             fireworkMeta.setPower(1);
             firework.setFireworkMeta(fireworkMeta);
         }
+
+        // Calcul des points de chaque équipe
+        Map<Team, Integer> teamScores = new HashMap<>();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            GamePlayer gamePlayer = GamePlayer.getInstance(player);
+            Team playerTeam = gamePlayer.getTeam();
+            int playerScore = gamePlayer.getScore();
+            teamScores.put(playerTeam, teamScores.getOrDefault(playerTeam, 0) + playerScore);
+        }
+
+// Vérifier s'il y a un gagnant ou une égalité
+        boolean hasWinner = false;
+        Team winningTeam = null;
+        int maxScore = 0;
+        for (Map.Entry<Team, Integer> entry : teamScores.entrySet()) {
+            int score = entry.getValue();
+            if (score > maxScore) {
+                maxScore = score;
+                winningTeam = entry.getKey();
+                hasWinner = true;
+            } else if (score == maxScore) {
+                hasWinner = false; // Égalité détectée
+            }
+        }
+
+// Diffuser le message aux joueurs en fonction du résultat
+        if (hasWinner) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                p.sendTitle(ChatColor.GREEN + " Félicitations à l'équipe gagnante !", ChatColor.AQUA + winningTeam.getName(), 10, 70, 20);
+                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
+            }
+        } else {
+            // Gérer le cas d'égalité ou de l'absence de gagnant
+            if (maxScore == 0) {
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    p.sendTitle(ChatColor.GREEN + " Le jeu s'est terminé", ChatColor.GREEN + "mais personne n'a marqué de points.", 10, 70, 20);
+                    p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
+                }
+
+            } else {
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    p.sendTitle(ChatColor.GREEN + " Egalitée entre plusieurs equipe !.","", 10, 70, 20);
+                    p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
+                } }
+        }
+
         for (Team team : teams) {
             team.reset();
         }
