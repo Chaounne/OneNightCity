@@ -97,8 +97,7 @@ public class Commands implements CommandExecutor {
                 return false;
             }
             game.endGame();
-            Bukkit.broadcastMessage(ChatColor.GREEN + "Le jeu est terminé !");
-            return true;
+           return true;
             }
             else if (subCommand.equals("team")) {
                 if (args.length <= 1) {
@@ -238,6 +237,19 @@ public class Commands implements CommandExecutor {
                     player.sendMessage(ChatColor.GREEN + "Joueur " + playerARemove.getName() + " supprimé de votre équipe !");
                     playerARemove.sendMessage(ChatColor.GREEN + "Vous avez été supprimé de " + team.getName() + " !");
                     return true;
+                }  else if (teamCommand.equals("leave")) {
+                GamePlayer gamePlayer = GamePlayer.getInstance(player);
+                Team team = gamePlayer.getTeam();
+                if (team == null) {
+                    player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
+                    return false;
+                }
+                team.removePlayer(player);
+                gamePlayer.removeTeam();
+                game.removePlayer(gamePlayer);
+                player.sendMessage(ChatColor.GREEN + "Vous avez quitté votre équipe !");
+                return true;
+
                 } else if (teamCommand.equals("list")) {
                     if (game.getTeams().size() <= 0) {
                         player.sendMessage(ChatColor.RED + "Aucune équipe !");

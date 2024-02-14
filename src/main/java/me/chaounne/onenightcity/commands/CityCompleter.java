@@ -21,13 +21,16 @@ public class CityCompleter implements TabCompleter {
             argumentsCity.add("team");
             argumentsCity.add("poudre");
             argumentsCity.add("entity");
+            argumentsCity.add("chest");
         }
         if(argumentsTeams.isEmpty()){
             argumentsTeams.add("create");
             argumentsTeams.add("add");
             argumentsTeams.add("remove");
-            argumentsTeams.add("list");
             argumentsTeams.add("disband");
+            argumentsTeams.add("leave");
+            argumentsTeams.add("list");
+
         }
         if(argumentsPoudre.isEmpty()){
             argumentsPoudre.add("give");

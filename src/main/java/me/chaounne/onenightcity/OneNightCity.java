@@ -101,7 +101,7 @@ public final class OneNightCity extends JavaPlugin {
 
                             // Si le joueur n'a pas de boules de neige, donnez-lui une boule de neige
                             if (!hasSnowball) {
-                                
+
                                 ItemStack snowball = new ItemStack(Material.SNOWBALL, 1); // Créez une boule de neige
                                 player1.getInventory().addItem(snowball); // Donnez-la au joueur
                                 player1.updateInventory(); // Mettez à jour l'inventaire du joueur

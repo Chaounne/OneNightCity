@@ -36,14 +36,33 @@ public class Handler implements Listener {
     private ONCGame game = ONCGame.getInstance();
     private Map<Player, Boolean> playerDeathStatus = new HashMap<>();
 
-
+    @EventHandler
+    public void onPlayerPortal(PlayerPortalEvent event) {
+        if (event.getCause() == PlayerPortalEvent.TeleportCause.END_PORTAL) {
+            Player player = event.getPlayer();
+            player.setBedSpawnLocation(new Location(player.getWorld(), 0,70,0), true);
+       }
+    }
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
         if (playerDeathStatus.getOrDefault(player, false)) {
+            if (player.getWorld().getEnvironment() == World.Environment.THE_END) {
+                // Si le joueur revient de l'End, définir un point de respawn spécifique pour cette situation
+                Location newSpawnPoint = new Location(player.getWorld(), 0,70,0); // Remplacez X_COORD, Y_COORD, Z_COORD par les coordonnées désirées
+                event.setRespawnLocation(newSpawnPoint);
+            } else {
+                Location bedSpawnPoint = player.getBedSpawnLocation();
+                if (bedSpawnPoint == null) {
+                    // Le point de spawn du lit est indéfini, fixer à (0, 70, 0) par défaut
+                    World world = player.getWorld();
+                    Location newSpawnPoint = new Location(world, 0, 70, 0);
+                    event.setRespawnLocation(newSpawnPoint);
+                }
+            }
             // Si le joueur est marqué comme mort, effectuez les actions nécessaires
             playerDeathStatus.put(player, false); // Réinitialise le statut de mort du joueur
-            player.sendMessage("Arrête de mourir  et va farm plutôt !");
+
         player.getInventory().clear(); // On vide l'inventaire du joueur
         player.getInventory().setArmorContents(null); // On retire l'armure du joueur
         player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET)); // On équipe le joueur d'un casque en fer
@@ -65,13 +84,7 @@ public class Handler implements Listener {
                 if (gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
                 for (ItemStack item : player.getInventory().getContents()) {
-
                     poudresPersoAvantEchange = gamePlayer.getScore();
-
-                    // ...
-
-
-
                     if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())) {
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
@@ -101,6 +114,7 @@ public class Handler implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
 
+
         Player killer = player.getKiller();
 
         if (killer instanceof Player) {
@@ -110,14 +124,13 @@ public class Handler implements Listener {
             killerGamePlayer.getTeam().addScore(500);
             killerGamePlayer.addScore(500);
 
-            killer.sendMessage(ChatColor.GREEN + "Vous avez gagné 500 poudres pour avoir tué " + player.getName() + " !");
+            killer.sendMessage(ChatColor.GOLD + "Vous avez gagné 500 poudres pour avoir tué " + player.getName() + " !");
         }
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         playerDeathStatus.put(player, true);
         // si le joueur n'a pas de getBedSpawnLocation(), il est tp au 0,0
-        if (player.getBedSpawnLocation() == null) {
-            player.teleport(new Location(player.getWorld(), 0, 70, 0));
-        }
+
+
 
         if (gamePlayer.hasBounty()) {
             killer = player.getKiller();
