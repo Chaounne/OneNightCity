@@ -209,7 +209,7 @@ public class ONCGame implements Listener {
                     this.cancel();
                     endGame();
                 }
-                if (time == 9000) {//au bout de 30 min la quine commence
+                if (time == 10700) {//au bout de 30 min la quine commence
                     QuineItem.start();
 
                 }
@@ -232,8 +232,8 @@ public class ONCGame implements Listener {
                         }
                     }
                 }
-
-              int randomTime = random.nextInt(3001) + 6000;
+                int randomTime=10700;
+             // int randomTime = random.nextInt(3001) + 6000;
                 if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));

@@ -14,8 +14,11 @@ public class SampleInventory extends FastInv {
     public void trade(int amountPoudre, ItemStack given, Player player){
         if(player.getInventory().containsAtLeast(given, given.getAmount())){
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
-            player.getInventory().removeItem(given);
+            player.sendMessage(given+""+given.getAmount());
+                  player.getInventory().removeItem(given);
+
             gamePlayer.addScore(amountPoudre);
+            gamePlayer.getTeam().addScore(amountPoudre);
             System.out.println(gamePlayer.getScore());
             player.sendMessage("Vous avez échangé " + given.getAmount() + " " + given.getType() + " contre " + amountPoudre + " poudres");
         }
@@ -24,8 +27,11 @@ public class SampleInventory extends FastInv {
 
     public void addItem(ItemStack item, int slot, int amountPoudre){
         setItem(slot, item, e -> {
-            ItemStack itemStack = new ItemStack(item.getType());
+            // Créez une copie de l'ItemStack avec la quantité spécifiée
+            ItemStack itemStack = new ItemStack(item.getType(), item.getAmount());
+            // Passez l'ItemStack correct à la méthode trade
             trade(amountPoudre, itemStack, (Player) e.getWhoClicked());
         });
     }
+
 }

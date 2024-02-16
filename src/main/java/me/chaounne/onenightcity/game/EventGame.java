@@ -28,7 +28,7 @@ public class EventGame {
 
     // Méthode pour révéler la position des joueurs dans 10 secondes avec des feux d'artifice
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = (30 * 60 * 20) + random.nextInt((15 * 60 * 20) + 1);
+        int randomDelayPeriod = 1 * 60 * 20 + random.nextInt(1 * 60 * 20); // Entre 40 et 55 minutes en ticks
         if (ONCGame.getInstance().isStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().isStarted()) {
