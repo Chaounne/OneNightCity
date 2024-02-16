@@ -28,7 +28,7 @@ public class EventGame {
 
     // Méthode pour révéler la position des joueurs dans 10 secondes avec des feux d'artifice
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 15*60*20 + random.nextInt(5*60*20);
+        int randomDelayPeriod = (30 * 60 * 20) + random.nextInt((15 * 60 * 20) + 1);
         if (ONCGame.getInstance().isStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().isStarted()) {
@@ -120,7 +120,7 @@ public class EventGame {
                 Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                     if (game) {
                         for (Player player : Bukkit.getOnlinePlayers()) {
-                            String message = ChatColor.GOLD + "Recuperer le plus de : " +ChatColor.GOLD+ finalItemDisplayName;
+                            String message = ChatColor.GOLD + "Concours Collecte, item à farm: " +ChatColor.GOLD+ finalItemDisplayName;
                             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                         }
                     }
