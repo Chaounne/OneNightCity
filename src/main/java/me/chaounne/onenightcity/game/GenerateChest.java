@@ -73,10 +73,10 @@ public class GenerateChest implements Listener {
 
             // Génère les ressources du coffre aléatoirement
             ItemStack[] ressources = new ItemStack[]{
-                    new ItemStack(Material.DIAMOND, random.nextInt(10) + 10),
-                    new ItemStack(Material.GOLD_INGOT, random.nextInt(10) + 10),
-                    new ItemStack(Material.IRON_INGOT, random.nextInt(10) + 10),
-                    new ItemStack(Material.EMERALD, random.nextInt(10) + 10),
+                    new ItemStack(Material.DIAMOND, random.nextInt(5) + 1),
+                    new ItemStack(Material.GOLD_INGOT, random.nextInt(5) + 1),
+                    new ItemStack(Material.IRON_INGOT, random.nextInt(5) + 1),
+                    new ItemStack(Material.EMERALD, random.nextInt(5) + 1),
                     PoudreItem.getItem(random.nextInt(50) + 10),
             };
 

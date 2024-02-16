@@ -130,9 +130,9 @@ public class ONCGame implements Listener {
                         ChatColor.GOLD + "PVP Activé dans : " + ChatColor.WHITE + countdownString + "s",
                         ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
                         ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
-                        ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
-                        ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
-                        ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                        ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
             } else if(countdown<=0 && countdown2>=0) {
                 String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
@@ -146,9 +146,9 @@ public class ONCGame implements Listener {
                         ChatColor.RED + "PVP ACTIVÉ !",
                         ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
                         ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
-                        ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
-                        ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
-                        ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                        ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
             }else if(countdown<=0 && countdown2<=0 && countdown4>=0){
                 String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
@@ -159,24 +159,24 @@ public class ONCGame implements Listener {
                 board.updateLines("",
                             ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                             ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
-                            ChatColor.RED + "PVP ACTIVÉ !",
-                            ChatColor.RED + "END ACTIVÉ !",
-                            ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
+                        ChatColor.RED + "PVP ACTIVÉ !",
+                        ChatColor.DARK_PURPLE + "END ACTIVÉ !",
+                        ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
 
-                            ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
-                            ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
-                            ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
-                            "");
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                        ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        "");
             }else {
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.RED + "PVP ACTIVÉ !",
-                        ChatColor.RED + "END ACTIVÉ !",
-                        ChatColor.RED + "QUINE FINI !",
-                        ChatColor.GOLD + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
-                        ChatColor.GOLD + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
-                        ChatColor.GOLD + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.DARK_PURPLE + "END ACTIVÉ !",
+                        ChatColor.AQUA + "QUINE FINI !",
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                        ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
             }
 
@@ -189,7 +189,6 @@ public class ONCGame implements Listener {
 
     public void createDark() {
         World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
-
 
         timer = new BukkitRunnable() {
             @Override
@@ -224,7 +223,7 @@ public class ONCGame implements Listener {
                             new Location(Bukkit.getWorld("world"), 1, 62, 7)
                     };
                     for(Player player: Bukkit.getOnlinePlayers()){
-                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra 15 000 points");
+                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 10 000"+ChatColor.DARK_PURPLE+" points");
                     }
                     for (Location location : locations) {
                         Block block = location.getBlock();
@@ -234,7 +233,7 @@ public class ONCGame implements Listener {
                     }
                 }
 
-                int randomTime = random.nextInt(7001 - 5500) + 5500;
+                int randomTime = random.nextInt(9000-6200) + 6200;
 
                 if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
@@ -275,7 +274,9 @@ public class ONCGame implements Listener {
         EventGame.revealPlayerPositions(); // Appel de la méthode statique
         createDark();
         GenerateChest generateChest = new GenerateChest();
+        generateChest.spawnCoffre();
         for (Player player : Bukkit.getOnlinePlayers()) {
+
             player.getPlayer().getInventory().clear();
             FastBoard board = new FastBoard(player);
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
@@ -313,13 +314,13 @@ public class ONCGame implements Listener {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         if (player.getInventory().contains(Material.DRAGON_EGG)) {
                             for(Player player1:Bukkit.getOnlinePlayers()){
-                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"+player.getName()+ChatColor.DARK_PURPLE+"§o, il a gagné  15 000 poudres");
+                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"+player.getName()+ChatColor.DARK_PURPLE+"§o, il a gagné  10 000 poudres");
                                 player1.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f);
 
                             }
                             GamePlayer gamePlayer = GamePlayer.getInstance(player);
-                            gamePlayer.getTeam().addScore(15000);
-                            gamePlayer.addScore(15000);
+                            gamePlayer.getTeam().addScore(10000);
+                            gamePlayer.addScore(10000);
 
                             playersWithEgg.add(player);
                         }
@@ -332,7 +333,7 @@ public class ONCGame implements Listener {
                     // Envoyer le titre à tous les joueurs en ligne
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         // Envoyer le titre avec un sous-titre vide, aucun temps de fade-in ou fade-out et une durée d'affichage de 20 ticks
-                        player.sendTitle(ChatColor.GREEN + "Le PVP est activé", ChatColor.GRAY + "Préparez-vous à combattre !", 0, 20, 10);
+                        player.sendTitle(ChatColor.GREEN + "Le PVP est activé", ChatColor.GRAY + "Préparez-vous à combattre !", 0, 40, 10);
                         // Jouer un son à tous les joueurs
                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                     }

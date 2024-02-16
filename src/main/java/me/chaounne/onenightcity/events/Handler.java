@@ -48,8 +48,10 @@ public class Handler implements Listener {
         Player player = event.getPlayer();
         if (playerDeathStatus.getOrDefault(player, false)) {
             if (player.getWorld().getEnvironment() == World.Environment.THE_END) {
+
+                World world = Bukkit.getWorld("world"); // Assurez-vous que le nom du monde est correct
                 // Si le joueur revient de l'End, définir un point de respawn spécifique pour cette situation
-                Location newSpawnPoint = new Location(player.getWorld(), 0,70,0); // Remplacez X_COORD, Y_COORD, Z_COORD par les coordonnées désirées
+                Location newSpawnPoint = new Location(world, 0,70,0); // Remplacez X_COORD, Y_COORD, Z_COORD par les coordonnées désirées
                 event.setRespawnLocation(newSpawnPoint);
             } else {
                 Location bedSpawnPoint = player.getBedSpawnLocation();
@@ -124,7 +126,7 @@ public class Handler implements Listener {
             killerGamePlayer.getTeam().addScore(500);
             killerGamePlayer.addScore(500);
 
-            killer.sendMessage(ChatColor.GOLD + "Vous avez gagné 500 poudres pour avoir tué " + player.getName() + " !");
+            killer.sendMessage(ChatColor.GOLD + "Vous avez gagné 500 poudres pour avoir tué " + ChatColor.GOLD+player.getName() + " !");
         }
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         playerDeathStatus.put(player, true);
@@ -263,16 +265,16 @@ public class Handler implements Listener {
             };
             // Choisissons un message aléatoire pour ajouter un peu de magie à l'annonce !
             String[] messages = {
-                    "Félicitations ! " + poudresGagnees + " poudres magiques pour votre équipe ! ",
-                    "Gloire ! " + poudresGagnees + " poudres magiques ont été récoltées ! ",
-                    "Seulement " + poudresGagnees + " poudres ont été ajouté à votre équipe ! ",
-                    "Bon y'a mieux mais " + poudresGagnees + " poudres gagnées ! ",
-                    "Encore toi ?  " + poudresGagnees + " poudres encore obtenues ! ",
-                    "WOW mais quel montant incroyable y'a  " + poudresGagnees + " poudres ajoutées à votre équipe ! ",
-                    "Merveilleux ! " + poudresGagnees + " poudres magiques ont été gagnées ! ",
-                    "Ronpich Zzzz ! " + poudresGagnees + " poudres, c'est tout ?! ",
-                    "Espece de rat, t'as que " + poudresGagnees + " poudres en echange pour la peine ! ",
-                    "Oula, c'est peu quand meme : " + poudresGagnees + " poudres ajoutées ! "
+                    "Félicitations ! " + poudresGagnees + " poudre(s) magiques pour votre équipe ! ",
+                    "Gloire ! " + poudresGagnees + " poudre(s) magiques ont été récoltées ! ",
+                    "Seulement " + poudresGagnees + " poudre(s) ont été ajouté à votre équipe ! ",
+                    "Bon y'a mieux mais " + poudresGagnees + " poudre(s) gagnées ! ",
+                    "Encore toi ? " + poudresGagnees + " poudre(s) encore obtenues ! ",
+                    "WOW mais quel montant incroyable y'a " + poudresGagnees + " poudre(s) ajoutées à votre équipe ! ",
+                    "Merveilleux ! " + poudresGagnees + " poudre(s) magiques ont été gagnées ! ",
+                    "Ronpich Zzzz ! " + poudresGagnees + " poudre(s), c'est tout ?! ",
+                    "Espece de rat, t'as que " + poudresGagnees + " poudre(s) en echange pour la peine ! ",
+                    "Oula, c'est peu quand meme : " + poudresGagnees + " poudre(s) ajoutées ! "
             };
 
             // Choisissons au hasard un des messages magiques à envoyer !
