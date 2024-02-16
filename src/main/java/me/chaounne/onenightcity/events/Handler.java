@@ -8,6 +8,7 @@ import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
 import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.inventory.SampleInventory;
+import me.chaounne.onenightcity.villager.*;
 import me.chaounne.onenightcity.villager.spawners.Spawners;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -460,16 +461,67 @@ public class Handler implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteractEntity(PlayerInteractEntityEvent event){
-        if(event.getRightClicked() instanceof Villager){
-
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        if (event.getRightClicked() instanceof Villager) {
             Player player = event.getPlayer();
             Villager villager = (Villager) event.getRightClicked();
-            if(villager.getCustomName() != null && villager.getCustomName().equals("Henry")){
+            if (villager.getCustomName() != null && villager.getCustomName().equals("Henry")) {
                 event.setCancelled(true);
-                SampleInventory sampleInventory = new SampleInventory(9, "Henry");
-                sampleInventory.addItem(new ItemBuilder(Material.WHEAT).lore("100 Poudres").build(), 0, 100);
-                sampleInventory.open(player);
+                HenryEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Beau Thony")) {
+                event.setCancelled(true);
+                BeauThonyEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Cheep Cheap")) {
+                event.setCancelled(true);
+                CheepCheapEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Francis Clodo")) {
+                event.setCancelled(true);
+                ClodoFrancisEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Hutil Itaire")) {
+                event.setCancelled(true);
+                HutilItaireEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jeanneau")) {
+                event.setCancelled(true);
+                JeaneauEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jean Mineur")) {
+                event.setCancelled(true);
+                JeanMineurEntity.openInventory(player);
+            } else if(villager.getCustomName() != null && villager.getCustomName().equals("Justin Puech")){
+                event.setCancelled(true);
+                JustinPuechEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jyka Rouler")){
+                event.setCancelled(true);
+                JykaRoulerEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Kylian MBouffé")){
+                event.setCancelled(true);
+                KilianMBoufféEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Legias")){
+                event.setCancelled(true);
+                LegiasEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Les Pierres")){
+                event.setCancelled(true);
+                LesPierresEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Lucie Acier")){
+                event.setCancelled(true);
+                LucieAcierEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Micose Micode")){
+                event.setCancelled(true);
+                MicoseMicodeEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Négeux Demo")){
+                event.setCancelled(true);
+                NeigeuDemotEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Dr. Raoult")) {
+                event.setCancelled(true);
+                PfizerEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Civique Cosmique Durif")){
+                event.setCancelled(true);
+                DurifSylvainEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Ikikomori")){
+                event.setCancelled(true);
+                IkikomoriEntity.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Sombre Héros")){
+                event.setCancelled(true);
+                SombreHeroEntity.openInventory(player);
             }
         }
     }

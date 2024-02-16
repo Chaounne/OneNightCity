@@ -1,9 +1,12 @@
 package me.chaounne.onenightcity.villager;
 
+import me.chaounne.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.game.PoudreItem;
+import me.chaounne.onenightcity.inventory.SampleInventory;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
@@ -14,12 +17,14 @@ import java.util.List;
 public class CheepCheapEntity {
 
     private static Villager cheap;
+    private static SampleInventory sampleInventory;
 
     public CheepCheapEntity(){
 
     }
 
     public static Villager getEntity(Location loc){
+        setInventory();
         cheap = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         cheap.setCustomName("Cheep Cheap");
@@ -175,4 +180,39 @@ public class CheepCheapEntity {
 
         return cheap;
     }
+
+    public static void setInventory(){
+        sampleInventory = new SampleInventory(18, "Cheep Cheap");
+
+        // Liste des laines avec leurs prix et quantités aléatoires
+        String[] woolColors = {
+                "WHITE_WOOL", "RED_WOOL", "BLUE_WOOL", "GREEN_WOOL", "YELLOW_WOOL",
+                "PURPLE_WOOL", "ORANGE_WOOL", "MAGENTA_WOOL", "LIGHT_BLUE_WOOL",
+                "LIGHT_GRAY_WOOL", "GRAY_WOOL", "BLACK_WOOL", "BROWN_WOOL",
+                "CYAN_WOOL", "LIME_WOOL"
+        };
+
+        for (int i = 0; i < woolColors.length; i++) {
+            int price = (int) (Math.random() * 14) + 2; // Prix entre 2 et 15
+            int amount = (int) (Math.random() * 9) + 1; // Quantité entre 1 et 10
+
+            Material woolMaterial = Material.getMaterial(woolColors[i]);
+            if (woolMaterial != null) {
+                sampleInventory.addItem(
+                        new ItemBuilder(woolMaterial)
+                                .amount(amount)
+                                .addLore("" + price + " Poudres")
+                                .build(),
+                        i,
+                        price
+                );
+            }
+        }
+    }
+
+    public static void openInventory(Player player){
+        sampleInventory.open(player);
+    }
+
+
 }

@@ -2,6 +2,7 @@ package me.chaounne.onenightcity.villager;
 
 
 import me.chaounne.onenightcity.game.PoudreItem;
+import me.chaounne.onenightcity.inventory.SampleInventory;
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
@@ -14,6 +15,7 @@ import java.util.List;
 public class DarkHenryEntity {
 
     public static Villager henry2;
+    private static SampleInventory sampleInventory;
 
     public DarkHenryEntity() {
 

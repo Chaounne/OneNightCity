@@ -17,6 +17,7 @@ public class SampleInventory extends FastInv {
             player.getInventory().removeItem(given);
             gamePlayer.addScore(amountPoudre);
             System.out.println(gamePlayer.getScore());
+            player.sendMessage("Vous avez échangé " + given.getAmount() + " " + given.getType() + " contre " + amountPoudre + " poudres");
         }
 
     }
