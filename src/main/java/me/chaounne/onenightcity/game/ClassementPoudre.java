@@ -30,7 +30,7 @@ public class ClassementPoudre {
         Location hologramLocation = new Location(Bukkit.getWorlds().get(0), -1.5, 72.5, -1.5);
         Hologram scoreboardHologram = DHAPI.createHologram("Classement", hologramLocation);
         String title = ChatColor.RED + "C" + ChatColor.GOLD + "l" + ChatColor.YELLOW + "a" + ChatColor.GREEN + "s" + ChatColor.AQUA + "s" + ChatColor.BLUE + "e" + ChatColor.DARK_BLUE + "m" + ChatColor.DARK_PURPLE + "e" + ChatColor.LIGHT_PURPLE + "n" + ChatColor.RED + "t" + ChatColor.GOLD + " " + ChatColor.YELLOW + "d" + ChatColor.GREEN + "e" + ChatColor.AQUA + "s" + ChatColor.BLUE + " " + ChatColor.DARK_BLUE + "t" + ChatColor.DARK_PURPLE + "e" + ChatColor.LIGHT_PURPLE + "a" + ChatColor.RED + "m" + ChatColor.GOLD + "s" + ChatColor.YELLOW + " :";
-       DHAPI.addHologramLine(scoreboardHologram, title);
+        DHAPI.addHologramLine(scoreboardHologram, title);
 
         // Ajouter une ligne de texte pour chaque équipe, avec les 3 premières équipes en couleur
         for (int i = 0; i < teams.size(); i++) {
@@ -56,7 +56,8 @@ public class ClassementPoudre {
         Bukkit.getScheduler().runTaskLater(OneNightCity.getInstance(), new Runnable() {
             @Override
             public void run() {
-                if(game.isStarted()==true){scoreboardHologram.delete();}
+
+                if(game.isStarted()==true ){scoreboardHologram.delete();}
                 if(game.isStarted()==false){DHAPI.moveHologram(scoreboardHologram, new Location(Bukkit.getWorlds().get(0),122,157,-37));}
             }
         }, 40L);

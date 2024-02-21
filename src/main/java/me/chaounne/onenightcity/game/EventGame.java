@@ -6,22 +6,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.Chest;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Firework;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class EventGame {
     private static Random random = new Random();
@@ -107,25 +99,33 @@ public class EventGame {
                 }
             }
 
-            // Planification de la fin du concours après 25 minutes
-            endTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
-                finConcours(itemToCollect);
-                game = false;
-            }, 20*60*25); // 25 minutes en ticks (20 ticks * 60 secondes * 25 minutes)
-
             // Planification de l'envoi du message de l'action bar toutes les 10 secondes
             String finalItemDisplayName = itemDisplayName;
+            int msgTaskId;
+            AtomicInteger tempsRestant = new AtomicInteger(25);
             if (game) {
 
-                Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
+                msgTaskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                     if (game) {
+                        tempsRestant.getAndDecrement();
                         for (Player player : Bukkit.getOnlinePlayers()) {
-                            String message = ChatColor.GOLD + "Concours Collecte, item à farm: " +ChatColor.GOLD+ finalItemDisplayName;
+                            String message = ChatColor.GOLD + "Concours Collecte, item à farm: " + ChatColor.RED + finalItemDisplayName + ChatColor.GOLD + ", temps restant : " + ChatColor.RED + (tempsRestant.get() > 0 ? tempsRestant + (tempsRestant.get() > 1 ? ChatColor.GOLD + " minutes" : ChatColor.GOLD + " minute") : "fini !");
                             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                         }
                     }
                 }, 60 * 20, 60 * 20); // Envoi toutes les 10 secondes (en ticks)
+            } else {
+                msgTaskId = -1;
             }
+
+            // Planification de la fin du concours après 25 minutes
+            endTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
+                if (msgTaskId != -1) {
+                    Bukkit.getScheduler().cancelTask(msgTaskId);
+                }
+                finConcours(itemToCollect);
+                game = false;
+            }, 20*60*25); // 25 minutes en ticks (20 ticks * 60 secondes * 25 minutes)
         }
     }
 

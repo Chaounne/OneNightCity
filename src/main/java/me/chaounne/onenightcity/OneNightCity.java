@@ -7,6 +7,7 @@ import me.chaounne.onenightcity.commands.CityCompleter;
 import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;
 import me.chaounne.onenightcity.game.ONCGame;
+import me.chaounne.onenightcity.game.Team;
 import org.bukkit.*;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
@@ -18,7 +19,7 @@ public final class OneNightCity extends JavaPlugin {
     @Override
     public void onEnable() {
         Bukkit.getOnlinePlayers().forEach(player -> player.getAdvancementProgress(Bukkit.getAdvancement(NamespacedKey.minecraft("story/root"))).awardCriteria("impossible"));
-
+        ONCGame.getInstance().resetTeams();
         FastInvManager.register(this);
 
         // Plugin startup logic

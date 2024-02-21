@@ -68,12 +68,27 @@ public class Handler implements Listener {
 
         player.getInventory().clear(); // On vide l'inventaire du joueur
         player.getInventory().setArmorContents(null); // On retire l'armure du joueur
-        player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET)); // On équipe le joueur d'un casque en fer
-        player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE)); // On équipe le joueur d'une plastron en fer
-        player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS)); // On équipe le joueur de jambières en fer
-        player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS)); // On équipe le joueur de bottes en fer
-        player.getInventory().addItem(new ItemStack(Material.IRON_SWORD)); // On donne au joueur une épée en fer
-        player.getInventory().addItem(new ItemStack(Material.IRON_PICKAXE)); // On donne au joueur une pioche en fer
+            ItemStack ironSword = new ItemStack(Material.IRON_SWORD);
+            ironSword.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            player.getInventory().addItem(ironSword);
+            ItemStack ironPick = new ItemStack(Material.IRON_PICKAXE);
+            ironPick.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            player.getInventory().addItem(ironPick);
+            ItemStack helmet = new ItemStack(Material.IRON_HELMET);
+            helmet.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);
+            chestplate.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            ItemStack leggings = new ItemStack(Material.IRON_LEGGINGS);
+            leggings.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            ItemStack boots = new ItemStack(Material.IRON_BOOTS);
+            boots.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            ItemStack[] armorContents = {
+                    boots,
+                    leggings,
+                    chestplate,
+                    helmet
+            };
+            player.getInventory().setArmorContents(armorContents);
         }
 
     }
@@ -199,14 +214,14 @@ public class Handler implements Listener {
             for (MerchantRecipe recipe : recipes) {
                 if (player.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
                     World world = Bukkit.getWorlds().get(0);
-                    Location entityLocation = new Location(world, 0, 62, 1);
+//                    Location entityLocation = new Location(world, 0, 63, 1);
 
                     for (Entity entity : world.getEntities()) {
                         if (entity.getWorld().equals(player.getWorld())) { // Vérifier si les mondes sont les mêmes
-                            if (entity.getLocation().equals(entityLocation)) {
+                            if (entity.getName().equals(ChatColor.DARK_RED + "DARKHenry")) {
                                 for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                                     if (onlinePlayer.getWorld().equals(entity.getWorld())) {
-                                        if (player.getLocation().distance(entityLocation) <= 3) {
+                                        if (player.getLocation().distance(entity.getLocation()) <= 6) {
                                             onlinePlayer.sendMessage(ChatColor.RED + "DARKHenry a échangé l'ITEM spécial avec " + player.getName() + " ! DARKHenry s'en va");
                                             onlinePlayer.playSound(onlinePlayer.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
                                             entity.remove();

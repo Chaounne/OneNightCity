@@ -1,5 +1,6 @@
 package me.chaounne.onenightcity.game;
 
+import eu.decentsoftware.holograms.api.DHAPI;
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
 
@@ -7,6 +8,7 @@ import me.chaounne.onenightcity.villager.DarkHenryEntity;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.LivingEntity;
@@ -195,12 +197,12 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 10750) {// Pour supprimer darkHenry le cas ou il spawn
+                if (time > 10799) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
-                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
-                            entity.remove();
-                        }
-                        if (entity instanceof LivingEntity && entity.getName().equals("DARKHenry")) {
+//                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
+//                            entity.remove();
+//                        }
+                        if (entity instanceof LivingEntity && entity.getName().equals(ChatColor.DARK_RED + "DARKHenry")) {
                             entity.remove();
                         }
                     }
@@ -232,7 +234,7 @@ public class ONCGame implements Listener {
                         }
                     }
                 }
-                int randomTime=10700;
+                int randomTime=10798;
              // int randomTime = random.nextInt(3001) + 6000;
                 if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
@@ -283,14 +285,26 @@ public class ONCGame implements Listener {
             player.setFoodLevel(20);
             player.setHealth(20);
             player.setSaturation(20);
-            player.getInventory().addItem(new ItemStack(Material.IRON_SWORD));
-            player.getInventory().addItem(new ItemStack(Material.IRON_PICKAXE));
+            ItemStack ironSword = new ItemStack(Material.IRON_SWORD);
+            ironSword.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            player.getInventory().addItem(ironSword);
+            ItemStack ironPick = new ItemStack(Material.IRON_PICKAXE);
+            ironPick.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            player.getInventory().addItem(ironPick);
             player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 15));
+            ItemStack helmet = new ItemStack(Material.IRON_HELMET);
+            helmet.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);
+            chestplate.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            ItemStack leggings = new ItemStack(Material.IRON_LEGGINGS);
+            leggings.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            ItemStack boots = new ItemStack(Material.IRON_BOOTS);
+            boots.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             ItemStack[] armorContents = {
-                    new ItemStack(Material.IRON_BOOTS),
-                    new ItemStack(Material.IRON_LEGGINGS),
-                    new ItemStack(Material.IRON_CHESTPLATE),
-                    new ItemStack(Material.IRON_HELMET)
+                    boots,
+                    leggings,
+                    chestplate,
+                    helmet
             };
             player.getInventory().setArmorContents(armorContents);
         }
@@ -300,7 +314,9 @@ public class ONCGame implements Listener {
         timer = new BukkitRunnable() {
             @Override
             public void run() {
-                ClassementPoudre.showScoreboard();
+                if(ONCGame.getInstance().isStarted()) {
+                    ClassementPoudre.showScoreboard();
+                }
 
                 if (time == 3600) { // Si il reste 1 heure
                     for (Player player : Bukkit.getOnlinePlayers()) {
@@ -529,6 +545,14 @@ public class ONCGame implements Listener {
         teams.clear();
         players.clear();
         if (started) started = false;
+    }
+
+    public void resetTeams(){
+        for (Team team : teams) {
+            team.reset();
+        }
+        teams.clear();
+        players.clear();
     }
 
 
