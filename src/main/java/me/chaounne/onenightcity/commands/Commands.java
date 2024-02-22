@@ -352,6 +352,9 @@ public class Commands implements CommandExecutor {
                                         if (entity instanceof LivingEntity && entity.getName().equals("util")) {
                                             entity.remove();
                                         }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("justin")) {
+                                            entity.remove();
+                                        }
 
                                 }
 
@@ -414,7 +417,7 @@ public class Commands implements CommandExecutor {
                         JeaneauEntity.getEntity( new Location(Bukkit.getWorld("world"), 50 , 68, -18)
                         );
 
-                        JustinPuechEntity.getEntity( new Location(Bukkit.getWorld("world"), 55 , 68, 0)
+                        JustinPuechEntity.getEntity( new Location(Bukkit.getWorld("world"), 55 , 68, 1)
                         );
 
                         return true;

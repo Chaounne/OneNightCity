@@ -47,7 +47,7 @@ public class JustinPuechEntity {
          * on double le prix des items donc au lieu de 2 melon pour 2 poudres => 2 melon pour 4 poudres
          * else
          * wait(1minutes)
-         */
+
          List<MerchantRecipe> trades = new ArrayList<>();
 
          //trade 1
@@ -138,7 +138,7 @@ public class JustinPuechEntity {
         //ce qu'il veut
       //  recipe.addIngredient(null);
 
-
+         */
 
         return justin;
     }
