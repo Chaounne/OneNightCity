@@ -495,7 +495,7 @@ public class Handler implements Listener {
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Hutil Itaire")) {
                 event.setCancelled(true);
                 HutilItaireEntity.openInventory(player);
-            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jeanneau")) {
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jeaneau")) {
                 event.setCancelled(true);
                 JeaneauEntity.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jean Mineur")) {
