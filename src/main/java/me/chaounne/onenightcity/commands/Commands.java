@@ -352,6 +352,9 @@ public class Commands implements CommandExecutor {
                                         if (entity instanceof LivingEntity && entity.getName().equals("util")) {
                                             entity.remove();
                                         }
+                                        if (entity instanceof LivingEntity && entity.getName().equals("justin")) {
+                                            entity.remove();
+                                        }
 
                                 }
 
@@ -410,6 +413,12 @@ public class Commands implements CommandExecutor {
 
                         MicoseMicodeEntity.getEntity( new Location(Bukkit.getWorld("world"), -21 , 71, -15)
                         ); // Supposons que 100, 70, 100 sont les coordonnées où vous voulez faire apparaître l'entité
+
+                        JeaneauEntity.getEntity( new Location(Bukkit.getWorld("world"), 50 , 68, -18)
+                        );
+
+                        JustinPuechEntity.getEntity( new Location(Bukkit.getWorld("world"), 55 , 68, 1)
+                        );
 
                         return true;
 
