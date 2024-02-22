@@ -197,7 +197,7 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 10799) {// Pour supprimer darkHenry le cas ou il spawn
+                if (time > 1075) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
 //                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
 //                            entity.remove();
@@ -211,7 +211,7 @@ public class ONCGame implements Listener {
                     this.cancel();
                     endGame();
                 }
-                if (time == 10700) {//au bout de 30 min la quine commence
+                if (time == 9000) {//au bout de 30 min la quine commence
                     QuineItem.start();
 
                 }
@@ -234,8 +234,8 @@ public class ONCGame implements Listener {
                         }
                     }
                 }
-                int randomTime=10798;
-             // int randomTime = random.nextInt(3001) + 6000;
+
+             int randomTime = random.nextInt(3001) + 6000;
                 if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));

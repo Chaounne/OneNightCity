@@ -25,6 +25,8 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
@@ -47,6 +49,8 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
+         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+
         if (playerDeathStatus.getOrDefault(player, false)) {
             if (player.getWorld().getEnvironment() == World.Environment.THE_END) {
 
@@ -55,6 +59,7 @@ public class Handler implements Listener {
                 Location newSpawnPoint = new Location(world, 0,70,0); // Remplacez X_COORD, Y_COORD, Z_COORD par les coordonnées désirées
                 event.setRespawnLocation(newSpawnPoint);
             } else {
+
                 Location bedSpawnPoint = player.getBedSpawnLocation();
                 if (bedSpawnPoint == null) {
                     // Le point de spawn du lit est indéfini, fixer à (0, 70, 0) par défaut
@@ -89,6 +94,7 @@ public class Handler implements Listener {
                     helmet
             };
             player.getInventory().setArmorContents(armorContents);
+         
         }
 
     }
@@ -131,6 +137,7 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
+        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
 
 
         Player killer = player.getKiller();
@@ -202,6 +209,7 @@ public class Handler implements Listener {
 
         }
     }
+
         @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         Inventory inventory = event.getInventory();

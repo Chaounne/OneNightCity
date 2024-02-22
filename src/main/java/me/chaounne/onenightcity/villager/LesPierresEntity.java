@@ -178,7 +178,7 @@ public class LesPierresEntity {
         sampleInventory.addItem(new ItemBuilder(Material.PISTON).amount(amount).addLore("" + price + " Poudres").build(), 7, price);
         //STICKY_PISTON (amount 1-10, price 20-250)
         amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 250) + 20;
+        price = (int) (Math.random() * 300) + 30;
         sampleInventory.addItem(new ItemBuilder(Material.STICKY_PISTON).amount(amount).addLore("" + price + " Poudres").build(), 8, price);
         //TRIPWIRE_HOOK (amount 4-10, price 10-100)
         amount = (int) (Math.random() * 7) + 4;

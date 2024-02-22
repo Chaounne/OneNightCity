@@ -20,7 +20,7 @@ public class EventGame {
 
     // Méthode pour révéler la position des joueurs dans 10 secondes avec des feux d'artifice
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 1 * 60 * 20 + random.nextInt(1 * 60 * 20); // Entre 40 et 55 minutes en ticks
+        int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes en ticks
         if (ONCGame.getInstance().isStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().isStarted()) {
@@ -113,7 +113,7 @@ public class EventGame {
                             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
                         }
                     }
-                }, 60 * 20, 60 * 20); // Envoi toutes les 10 secondes (en ticks)
+                }, 60 * 20, 60 * 20); // Envoi toutes les 1 minutes (en ticks)
             } else {
                 msgTaskId = -1;
             }
@@ -211,7 +211,19 @@ public class EventGame {
                 Material.GLOWSTONE_DUST,
                 Material.SPIDER_EYE,
                 Material.PAINTING,
-                Material.OBSIDIAN
+                Material.OBSIDIAN,
+                Material.REDSTONE,
+                Material.LAPIS_BLOCK,
+                Material.COBBLESTONE,
+                Material.OAK_PLANKS,
+                Material.SPRUCE_PLANKS,
+                Material.BIRCH_PLANKS,
+                Material.JUNGLE_PLANKS,
+                Material.ACACIA_PLANKS,
+                Material.DARK_OAK_PLANKS,
+                Material.SANDSTONE,
+                Material.RED_SANDSTONE,
+                Material.STONE
         };
 
         // Sélection aléatoire d'un bloc dans la liste

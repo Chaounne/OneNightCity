@@ -184,20 +184,17 @@ public class GenerateChest implements Listener {
                 }else if (nombre == 3) {
 
                     ressources = new ItemStack[]{
-                            new ItemStack(Material.GOLDEN_CARROT, random.nextInt(4) + 1), // 3 carottes dorées
-                            new ItemStack(Material.FERMENTED_SPIDER_EYE, random.nextInt(4) + 1), // 3 yeux d'araignée fermentés
-                            new ItemStack(Material.BLAZE_POWDER, random.nextInt(4) + 1), // 2 poudres de Blaze
-                            new ItemStack(Material.BREWING_STAND, random.nextInt(4) + 1),
-                            new ItemStack(Material.MAGMA_CREAM, random.nextInt(4) + 1), // Crée un objet ItemStack contenant 6 crèmes de magma.
-                            new ItemStack(Material.NETHERITE_PICKAXE, random.nextInt(1) + 0), // Crée un objet ItemStack contenant une pioche en netherite.
-                            new ItemStack(Material.POTION, 1, (short) 16428), // Potion de résistance au feu
-                            new ItemStack(Material.GHAST_TEAR, random.nextInt(4) + 1),// 2 larmes de Ghast
-                            new ItemStack(Material.DIAMOND, random.nextInt(4) + 1),
-                            new ItemStack(Material.NETHER_WART, random.nextInt(4) + 1),
-                            new ItemStack(Material.NETHER_BRICK, random.nextInt(4) + 1), // Crée un objet ItemStack contenant 16 briques du Nether.
-                            new ItemStack(Material.SOUL_SAND, random.nextInt(4) + 1),
-                            getInvisibilityPotion(1),
-                            getStrengthPotion(1),
+                            new ItemStack(Material.GOLDEN_CARROT, random.nextInt(4) + 1), // 3 golden carrots
+                            new ItemStack(Material.FERMENTED_SPIDER_EYE, random.nextInt(4) + 1), // 3 fermented spider eyes
+                            new ItemStack(Material.BLAZE_POWDER, random.nextInt(4) + 1), // 2 blaze powders
+                            new ItemStack(Material.BREWING_STAND, random.nextInt(4) + 1), // Brewing Stand
+                            new ItemStack(Material.MAGMA_CREAM, random.nextInt(4) + 1), // 6 magma creams
+                            new ItemStack(Material.NETHERITE_PICKAXE, random.nextInt(1) + 0), // Netherite Pickaxe
+                            new ItemStack(Material.GHAST_TEAR, random.nextInt(4) + 1), // 2 ghast tears
+                            new ItemStack(Material.DIAMOND, random.nextInt(4) + 1), // Diamonds
+                            new ItemStack(Material.NETHER_WART, random.nextInt(4) + 1), // Nether Wart
+                            new ItemStack(Material.NETHER_BRICK, random.nextInt(4) + 1), // 16 Nether bricks
+                            new ItemStack(Material.SOUL_SAND, random.nextInt(4) + 1), // Soul Sand
                     };
 
 

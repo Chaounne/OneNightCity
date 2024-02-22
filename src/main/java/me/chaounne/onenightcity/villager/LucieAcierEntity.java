@@ -107,10 +107,10 @@ public class LucieAcierEntity {
 
         //trade 8
         // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
+        amount = (int) (Math.random() * 10) + 3;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
+        price = (int) (Math.random() * 10) + 3;
         trades.get(7).addIngredient(new ItemStack(Material.NETHER_BRICK, price));
 
         //trade 9

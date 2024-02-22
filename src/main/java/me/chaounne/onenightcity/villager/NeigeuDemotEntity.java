@@ -135,7 +135,7 @@ public class NeigeuDemotEntity {
         sampleInventory.addItem(new ItemBuilder(Material.SNOW).amount(amount).addLore("" + price + " Poudres").build(), 2, price);
         //SNOW_BLOCK (amount 1-5, price 5-30)
         amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 30) + 5;
+        price = (int) (Math.random() * 60) + 4;
         sampleInventory.addItem(new ItemBuilder(Material.SNOW_BLOCK).amount(amount).addLore("" + price + " Poudres").build(), 3, price);
         //CARVED_PUMPKIN (amount 1-5, price 2-25)
         amount = (int) (Math.random() * 5) + 1;
