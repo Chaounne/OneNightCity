@@ -112,7 +112,49 @@ public class Commands implements CommandExecutor {
                     return false;
                 }
                 String teamCommand = args[1];
-                if (teamCommand.equals("add")) {
+                if (teamCommand.equals("color")) {
+                    if (GamePlayer.getInstance(player).equals(null)) {
+                        player.sendMessage(ChatColor.RED + "Vous devez etre dans une team !");
+                        return false;
+                    }
+                    Team team = GamePlayer.getInstance(player).getTeam();
+                    if (args.length <= 2) {
+                        player.sendMessage(ChatColor.RED + "Utilisation : /city team color <COLOR>");
+                        return false;
+                    }
+
+                    String colorString = args[2]; // Récupérer la couleur spécifiée en argument
+                    ChatColor chosenColor;
+
+                    // Vérifier si la couleur spécifiée existe
+                    try {
+                        chosenColor = ChatColor.valueOf(colorString.toUpperCase());
+                    } catch (IllegalArgumentException e) {
+
+                        player.sendMessage(ChatColor.RED + "Couleur introuvable ! Voici les couleurs disponibles : ");
+                        StringBuilder availableColorsMessage = new StringBuilder();
+                        for (ChatColor color : ChatColor.values()) {
+                            availableColorsMessage.append(color).append(color.name()).append(ChatColor.RESET).append(", ");
+                        }
+                        String colorsList = availableColorsMessage.toString();
+                        // Retirer la virgule et l'espace en trop à la fin de la liste
+                        colorsList = colorsList.substring(0, colorsList.length() - 2);
+                        player.sendMessage(colorsList);
+                        return false;
+                    }
+                    // Définir la couleur de l'équipe
+                    if (chosenColor == ChatColor.MAGIC||chosenColor == ChatColor.STRIKETHROUGH||chosenColor == ChatColor.RESET) {
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas utiliser la couleur MAGIC ou STRIKTHROUGH ou RESET !");
+                        return false;
+                    }
+                    team.setColor(chosenColor);
+                    team.getScoreboardTeam().setPrefix(chosenColor + "[" + team.getName() + "] ");
+                    team.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                    player.sendMessage("Vous avez changé de couleur " + team.getColor()+ chosenColor);
+                }
+
+
+                else if (teamCommand.equals("add")) {
                     Team team = GamePlayer.getInstance(player).getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
@@ -190,6 +232,10 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     String teamName = args[2];
+                    if(teamName.length()>=14){
+                        player.sendMessage(ChatColor.RED +"Nom de team trop long (11 caractères max)");
+                        return false;
+                    }
                     if (GamePlayer.getInstance(player).getTeam() != null) {
                         player.sendMessage(ChatColor.RED + "Vous êtes déjà dans une équipe !");
                         return false;
@@ -208,6 +254,12 @@ public class Commands implements CommandExecutor {
                     // attribuer une couleur aléatoire à une équipe
                     int random = (int) (Math.random() * availableColors.size());
                     ChatColor color = availableColors.get(random);
+
+                    // Vérifier si la couleur est MAGIC ou STRIKETHROUGH
+                    while (color == ChatColor.MAGIC || color == ChatColor.STRIKETHROUGH || color == ChatColor.RESET) {
+                        random = (int) (Math.random() * availableColors.size());
+                        color = availableColors.get(random);
+                    }
                     team.setColor(color);
                     team.getScoreboardTeam().setPrefix(color + "[" + teamName + "] ");
                     team.getScoreboardTeam().setSuffix(ChatColor.RESET + "");

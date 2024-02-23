@@ -123,6 +123,7 @@ public final class OneNightCity extends JavaPlugin {
         getPlugin(OneNightCity.class).getServer().getPluginManager().registerEvents(new Handler(), this);
     }
 
+
     @Override
     public void onDisable() {
 

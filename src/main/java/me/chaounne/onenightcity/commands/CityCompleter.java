@@ -12,6 +12,9 @@ public class CityCompleter implements TabCompleter {
     List<String> argumentsTeams = new ArrayList<>();
     List<String> argumentsPoudre = new ArrayList<>();
 
+    List<String> argumentsEntity = new ArrayList<>();
+
+    List<String> argumentsColor = new ArrayList<>();
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
@@ -30,11 +33,39 @@ public class CityCompleter implements TabCompleter {
             argumentsTeams.add("disband");
             argumentsTeams.add("leave");
             argumentsTeams.add("list");
+            argumentsTeams.add("color");
 
         }
         if(argumentsPoudre.isEmpty()){
             argumentsPoudre.add("give");
             argumentsPoudre.add("remove");
+        }
+
+        if(argumentsEntity.isEmpty()){
+            argumentsEntity.add("spawn");
+
+        }
+
+        if (argumentsColor.isEmpty()) {
+            argumentsColor.add("black");
+            argumentsColor.add("dark_blue");
+            argumentsColor.add("dark_green");
+            argumentsColor.add("dark_aqua");
+            argumentsColor.add("dark_red");
+            argumentsColor.add("dark_purple");
+            argumentsColor.add("gold");
+            argumentsColor.add("gray");
+            argumentsColor.add("dark_gray");
+            argumentsColor.add("blue");
+            argumentsColor.add("green");
+            argumentsColor.add("aqua");
+            argumentsColor.add("red");
+            argumentsColor.add("light_purple");
+            argumentsColor.add("yellow");
+            argumentsColor.add("white");
+            argumentsColor.add("bold");
+            argumentsColor.add("underline");
+            argumentsColor.add("italic");
         }
 
         List<String> result = new ArrayList<>();
@@ -57,6 +88,21 @@ public class CityCompleter implements TabCompleter {
             } else if(args[0].equalsIgnoreCase("poudre")){
                 for(String a : argumentsPoudre){
                     if(a.toLowerCase().startsWith(args[1].toLowerCase()))
+                        result.add(a);
+                }
+                return result;
+            }else if(args[0].equalsIgnoreCase("entity")){
+                for(String a : argumentsEntity){
+                    if(a.toLowerCase().startsWith(args[1].toLowerCase()))
+                        result.add(a);
+                }
+                return result;
+            }
+        }
+        if(args.length == 3){
+            if(args[1].equalsIgnoreCase("color")){
+                for(String a : argumentsColor){
+                    if(a.toLowerCase().startsWith(args[2].toLowerCase())) // Utilisez args[2] ici
                         result.add(a);
                 }
                 return result;
