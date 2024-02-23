@@ -197,7 +197,7 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
 
-                if (time > 1075) {// Pour supprimer darkHenry le cas ou il spawn
+                if (time > 10750) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
 //                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
 //                            entity.remove();
@@ -236,6 +236,7 @@ public class ONCGame implements Listener {
                 }
 
              int randomTime = random.nextInt(3001) + 6000;
+               // int randomTime = 10749;
                 if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
 
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
@@ -291,7 +292,7 @@ public class ONCGame implements Listener {
             ItemStack ironPick = new ItemStack(Material.IRON_PICKAXE);
             ironPick.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             player.getInventory().addItem(ironPick);
-            player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 15));
+            player.getInventory().addItem(new ItemStack(Material.COOKED_SALMON, 15));
             ItemStack helmet = new ItemStack(Material.IRON_HELMET);
             helmet.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);

@@ -24,7 +24,7 @@ public class GenerateChest implements Listener {
 
     private static Location spawn = new Location(Bukkit.getWorld("world"), 0, 200, 0);
     private static boolean Super = false;
-    private static int rayon = 800;
+    private static int rayon = 1000;
 
     private static ItemStack[] ressources;
     private static String message;
@@ -127,8 +127,9 @@ public class GenerateChest implements Listener {
 
 
         if  (ONCGame.getInstance().isStarted()) {
-                int randomDelayPeriod = 15000 + random.nextInt(20000); // Génère un nombre aléatoire entre 12.5 min et environ 27 min
-                // int randomDelayPeriod = 150 + random.nextInt(200); // Génère un nombre aléatoire entre 1 minute (60000 ms) et 2 minutes (120000 ms)
+
+            int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes en ticks
+            // int randomDelayPeriod = 150 + random.nextInt(200); // Génère un nombre aléatoire entre 1 minute (60000 ms) et 2 minutes (120000 ms)
 
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 int nombre = random.nextInt(10) + 1;

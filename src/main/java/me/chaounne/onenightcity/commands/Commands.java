@@ -1,5 +1,6 @@
 package me.chaounne.onenightcity.commands;
 
+import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
@@ -14,14 +15,14 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Commands implements CommandExecutor {
 
     private ONCGame game;
+
+    private final Map<UUID, FastBoard> boards = new HashMap<>();
+
 
     private List<ChatColor> availableColors = new ArrayList<>(Arrays.asList(ChatColor.values()));
     World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
@@ -53,6 +54,12 @@ public class Commands implements CommandExecutor {
             }
             // sous commandes
             if (subCommand.equals("start")) {
+                GamePlayer gamePlayer = GamePlayer.getInstance(player);
+
+                Team team = gamePlayer.getTeam();
+                if (team.getPlayers().isEmpty()) {
+                    game.removeTeam(team);
+                }
                 if (!(sender.isOp())) {
                     sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
                     return false;
@@ -244,9 +251,15 @@ public class Commands implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                     return false;
                 }
-                team.removePlayer(player);
+
+
+                team.reset();
+
                 gamePlayer.removeTeam();
                 game.removePlayer(gamePlayer);
+                    if (team.getPlayers().isEmpty()) {
+                        game.removeTeam(team);
+                    }
                 player.sendMessage(ChatColor.GREEN + "Vous avez quitté votre équipe !");
                 return true;
 

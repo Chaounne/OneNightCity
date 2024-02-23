@@ -49,16 +49,34 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
-         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+        new BukkitRunnable() {
+            int count = 5; // Compte à rebours initial de 5 secondes
+
+            @Override
+            public void run() {
+                if (count > 0) {
+                    // Envoyer le titre avec le compte à rebours
+                    player.sendTitle("Respawn :", count + " secondes", 10, 30, 10);
+                    count--;
+
+                    // Appliquer les effets de potion
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 2 * 20, 3));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 1 * 20, 3));
+                    player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                } else {
+                    player.playSound(player.getLocation(), Sound.ENCHANT_THORNS_HIT, 1.0f, 1.0f);
+
+                    this.cancel(); // Arrêter le compte à rebours une fois qu'il atteint 0
+                    // Vous pouvez ajouter d'autres actions ici si nécessaire
+                }
+            }
+
+        }.runTaskTimer(OneNightCity.getInstance(), 0L, 20L);
+
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
 
         if (playerDeathStatus.getOrDefault(player, false)) {
             if (player.getWorld().getEnvironment() == World.Environment.THE_END) {
-
-                World world = Bukkit.getWorld("world"); // Assurez-vous que le nom du monde est correct
-                // Si le joueur revient de l'End, définir un point de respawn spécifique pour cette situation
-                Location newSpawnPoint = new Location(world, 0,70,0); // Remplacez X_COORD, Y_COORD, Z_COORD par les coordonnées désirées
-                event.setRespawnLocation(newSpawnPoint);
-            } else {
 
                 Location bedSpawnPoint = player.getBedSpawnLocation();
                 if (bedSpawnPoint == null) {
@@ -66,6 +84,18 @@ public class Handler implements Listener {
                     World world = player.getWorld();
                     Location newSpawnPoint = new Location(world, 0, 70, 0);
                     event.setRespawnLocation(newSpawnPoint);
+                }
+            } else {
+                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
+
+                Location bedSpawnPoint = player.getBedSpawnLocation();
+                if (bedSpawnPoint == null) {
+                    // Le point de spawn du lit est indéfini, fixer à (0, 70, 0) par défaut
+                    World world = player.getWorld();
+                    Location newSpawnPoint = new Location(world, 0, 70, 0);
+                    event.setRespawnLocation(newSpawnPoint);
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
+
                 }
             }
             // Si le joueur est marqué comme mort, effectuez les actions nécessaires
@@ -79,6 +109,7 @@ public class Handler implements Listener {
             ItemStack ironPick = new ItemStack(Material.IRON_PICKAXE);
             ironPick.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             player.getInventory().addItem(ironPick);
+            player.getInventory().addItem(new ItemStack(Material.COOKED_SALMON, 15));
             ItemStack helmet = new ItemStack(Material.IRON_HELMET);
             helmet.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);
@@ -87,6 +118,8 @@ public class Handler implements Listener {
             leggings.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             ItemStack boots = new ItemStack(Material.IRON_BOOTS);
             boots.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
+
             ItemStack[] armorContents = {
                     boots,
                     leggings,
@@ -94,16 +127,20 @@ public class Handler implements Listener {
                     helmet
             };
             player.getInventory().setArmorContents(armorContents);
-         
+
+
         }
+
 
     }
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
         if (event.getPlayer() instanceof Player) {
             Player player = (Player) event.getPlayer();
+
             if (player.getGameMode() == GameMode.SURVIVAL) {
-                 if (player.getInventory().isEmpty()) return;
+
+                if (player.getInventory().isEmpty()) return;
                 GamePlayer gamePlayer = GamePlayer.getInstance(player);
                 if (gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
@@ -125,7 +162,9 @@ public class Handler implements Listener {
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
+
         Player player = event.getPlayer();
+
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         if (gamePlayer.getTeam() != null) {
             event.setFormat(gamePlayer.getTeam().getColor() + "[" + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + event.getMessage());
@@ -184,6 +223,7 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerItemDropped(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
+
         if (player.getGameMode() == GameMode.SURVIVAL) {
             Item item = event.getItemDrop();
             if (Objects.equals(item.getItemStack().getItemMeta(), PoudreItem.getItem().getItemMeta())) {
