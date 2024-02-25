@@ -230,7 +230,11 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerItemDropped(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
-
+        if (!ONCGame.getInstance().isStarted()) {
+            player.sendMessage("Tu peux pas drop ici :)");
+            event.setCancelled(true); // Annuler le drop si le jeu n'est pas démarré
+            return; // Sortir de la méthode, car le drop est déjà annulé
+        }
         if (player.getGameMode() == GameMode.SURVIVAL) {
             Item item = event.getItemDrop();
             if (Objects.equals(item.getItemStack().getItemMeta(), PoudreItem.getItem().getItemMeta())) {

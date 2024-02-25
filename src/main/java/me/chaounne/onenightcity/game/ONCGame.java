@@ -4,6 +4,7 @@ import eu.decentsoftware.holograms.api.DHAPI;
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
 
+import me.chaounne.onenightcity.game.Checkpoint;
 import me.chaounne.onenightcity.villager.DarkHenryEntity;
 
 import org.bukkit.*;
@@ -23,6 +24,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
+import me.chaounne.onenightcity.events.CheckpointListener;
 
 public class ONCGame implements Listener {
 
