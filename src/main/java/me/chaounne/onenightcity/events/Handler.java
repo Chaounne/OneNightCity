@@ -76,19 +76,26 @@ public class Handler implements Listener {
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
 
         if (playerDeathStatus.getOrDefault(player, false)) {
+
+
             if (player.getWorld().getEnvironment() == World.Environment.THE_END) {
 
                 Location bedSpawnPoint = player.getBedSpawnLocation();
                 if (bedSpawnPoint == null) {
                     // Le point de spawn du lit est indéfini, fixer à (0, 70, 0) par défaut
-                    World world = player.getWorld();
+                    World world = Bukkit.getWorlds().get(0); // Obtient le premier monde chargé sur le serveur
                     Location newSpawnPoint = new Location(world, 0, 70, 0);
                     event.setRespawnLocation(newSpawnPoint);
                 }
             } else {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
+                Location bedSpawnPoint = null;
+                try {
+                    bedSpawnPoint = player.getBedSpawnLocation();
 
-                Location bedSpawnPoint = player.getBedSpawnLocation();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                 }
                 if (bedSpawnPoint == null) {
                     // Le point de spawn du lit est indéfini, fixer à (0, 70, 0) par défaut
                     World world = player.getWorld();
