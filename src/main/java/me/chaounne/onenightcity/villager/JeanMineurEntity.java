@@ -224,55 +224,55 @@ public class JeanMineurEntity {
         sampleInventory.addItem(new ItemBuilder(Material.COAL).amount(amount).addLore("" + price + " Poudres").build(), 0, price);
         //DEEPSLATE_COAL_ORE (amount 1-5, price 50-200)
         amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_COAL_ORE).amount(amount).addLore("" + price + " Poudres").build(), 1, price);
         //IRON_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        amount = (int) (Math.random() * 5) + 3;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.IRON_ORE).amount(amount).addLore("" + price + " Poudres").build(), 2, price);
         //DEEPSLATE_IRON_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        amount = (int) (Math.random() * 5) + 3;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_IRON_ORE).amount(amount).addLore("" + price + " Poudres").build(), 3, price);
         //COPPER_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        amount = (int) (Math.random() * 5) + 3;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.COPPER_ORE).amount(amount).addLore("" + price + " Poudres").build(), 4, price);
         //DEEPSLATE_COPPER_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        amount = (int) (Math.random() * 5) + 3;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_COPPER_ORE).amount(amount).addLore("" + price + " Poudres").build(), 5, price);
         //GOLD_ORE (amount 1-5, price 50-200)
         amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.GOLD_ORE).amount(amount).addLore("" + price + " Poudres").build(), 6, price);
         //DEEPSLATE_GOLD_ORE (amount 1-5, price 50-200)
         amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_GOLD_ORE).amount(amount).addLore("" + price + " Poudres").build(), 7, price);
         //REDSTONE_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        amount = (int) (Math.random() * 5) + 2;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.REDSTONE_ORE).amount(amount).addLore("" + price + " Poudres").build(), 8, price);
         //DEEPSLATE_REDSTONE_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        amount = (int) (Math.random() * 5) + 2;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_REDSTONE_ORE).amount(amount).addLore("" + price + " Poudres").build(), 9, price);
         //EMERALD_ORE (amount 1-5, price 50-200)
         amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.EMERALD_ORE).amount(amount).addLore("" + price + " Poudres").build(), 10, price);
         //DEEPSLATE_EMERALD_ORE (amount 1-5, price 50-200)
         amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_EMERALD_ORE).amount(amount).addLore("" + price + " Poudres").build(), 11, price);
         //LAPIS_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        amount = (int) (Math.random() * 5) + 2;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.LAPIS_ORE).amount(amount).addLore("" + price + " Poudres").build(), 12, price);
         //DEEPSLATE_LAPIS_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
+        amount = (int) (Math.random() * 5) + 2;
+        price = (int) (Math.random() * 100) + 25;
         sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_LAPIS_ORE).amount(amount).addLore("" + price + " Poudres").build(), 13, price);
         //DIAMOND_ORE (amount 1-5, price 50-300)
         amount = (int) (Math.random() * 5) + 1;

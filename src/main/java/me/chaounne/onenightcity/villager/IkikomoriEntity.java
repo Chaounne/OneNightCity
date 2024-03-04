@@ -125,7 +125,7 @@ public class IkikomoriEntity {
         sampleInventory.addItem(new ItemBuilder(Material.MOSS_BLOCK).amount(amount).addLore("" + price + " Poudres").build(), 0, price);
         //MOSS_CARPET (amount 1-15, price 2-25)
         amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 25) + 2;
+        price = (int) (Math.random() * 35) + 2;
         sampleInventory.addItem(new ItemBuilder(Material.MOSS_CARPET).amount(amount).addLore("" + price + " Poudres").build(), 1, price);
         //OCHRE_FROGLIGHT (amount 1-5, price 50-150)
         amount = (int) (Math.random() * 5) + 1;
@@ -145,11 +145,11 @@ public class IkikomoriEntity {
         sampleInventory.addItem(new ItemBuilder(Material.AXOLOTL_BUCKET).amount(amount).addLore("" + price + " Poudres").build(), 5, price);
         //MANGROVE_PLANKS (amount 1-20, price 5-10)
         amount = (int) (Math.random() * 20) + 1;
-        price = (int) (Math.random() * 10) + 5;
+        price = (int) (Math.random() * 15) + 5;
         sampleInventory.addItem(new ItemBuilder(Material.MANGROVE_PLANKS).amount(amount).addLore("" + price + " Poudres").build(), 6, price);
         //MANGROVE_LEAVES (amount 1-10, price 4-10)
         amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 10) + 4;
+        price = (int) (Math.random() * 15) + 4;
         sampleInventory.addItem(new ItemBuilder(Material.MANGROVE_LEAVES).amount(amount).addLore("" + price + " Poudres").build(), 7, price);
     }
 

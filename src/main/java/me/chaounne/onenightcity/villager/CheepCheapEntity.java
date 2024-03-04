@@ -193,7 +193,7 @@ public class CheepCheapEntity {
         };
 
         for (int i = 0; i < woolColors.length; i++) {
-            int price = (int) (Math.random() * 14) + 2; // Prix entre 2 et 15
+            int price = (int) (Math.random() * 23) + 2; // Prix entre 2 et 15
             int amount = (int) (Math.random() * 9) + 1; // Quantité entre 1 et 10
 
             Material woolMaterial = Material.getMaterial(woolColors[i]);
