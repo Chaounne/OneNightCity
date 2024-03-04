@@ -180,7 +180,7 @@ public class Handler implements Listener {
                 String message = event.getMessage();
                 event.setCancelled(true);
                 for (Player teamMember : gamePlayer.getTeam().getPlayers()) {
-                    teamMember.sendMessage(gamePlayer.getTeam().getColor() + "[ Chat de l'équipe " + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + message);
+                    teamMember.sendMessage(gamePlayer.getTeam().getColor() + "[Chat de l'équipe " + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + message);
                 }
             }
         } else {
