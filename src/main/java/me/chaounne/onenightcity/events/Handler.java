@@ -175,6 +175,14 @@ public class Handler implements Listener {
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         if (gamePlayer.getTeam() != null) {
             event.setFormat(gamePlayer.getTeam().getColor() + "[" + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + event.getMessage());
+
+            if(event.getMessage().startsWith("@")){
+                String message = event.getMessage();
+                event.setCancelled(true);
+                for (Player teamMember : gamePlayer.getTeam().getPlayers()) {
+                    teamMember.sendMessage(gamePlayer.getTeam().getColor() + "[ Chat de l'équipe " + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + message);
+                }
+            }
         } else {
             event.setFormat(ChatColor.GRAY + player.getName() + ChatColor.RESET + " : " + event.getMessage());
         }
