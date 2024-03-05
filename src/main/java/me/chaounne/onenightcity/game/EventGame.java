@@ -37,7 +37,7 @@ public class EventGame {
                                 for (Player player : Bukkit.getOnlinePlayers()) {
                                     player.sendMessage(ChatColor.RED + "Feu d'artifice ! Position des joueurs révélée !");
                                 }  for (Player player : Bukkit.getOnlinePlayers()) {
-                                    if (!player.isDead()) {
+                                    if (!player.isDead() && !(player.getGameMode() == GameMode.SPECTATOR)) {
                                         Location fireworkLocation = player.getLocation();
                                         Firework firework = player.getWorld().spawn(fireworkLocation, Firework.class);
                                         FireworkMeta fireworkMeta = firework.getFireworkMeta();
