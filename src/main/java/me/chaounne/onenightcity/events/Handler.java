@@ -49,6 +49,10 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
+        if (!ONCGame.getInstance().isStarted()) {
+            event.setRespawnLocation(new Location(player.getWorld(), 122, 155, -40));
+            return;
+        }
         new BukkitRunnable() {
             int count = 5; // Compte à rebours initial de 5 secondes
 
@@ -190,6 +194,8 @@ public class Handler implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
+        if (!ONCGame.getInstance().isStarted()) return;
+        System.out.println("deaaaaaaaaaaaaaad");
         Player player = event.getEntity();
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
 
