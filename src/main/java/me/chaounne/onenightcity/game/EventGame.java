@@ -5,6 +5,8 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import me.chaounne.onenightcity.OneNightCity;
+import me.chaounne.onenightcity.utils.ColorHelper;
+
 import org.bukkit.*;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.Inventory;
@@ -20,7 +22,7 @@ public class EventGame {
 
     // Méthode pour révéler la position des joueurs dans 10 secondes avec des feux d'artifice
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes en ticks
+        int randomDelayPeriod = 60; //30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes en ticks
         if (ONCGame.getInstance().isStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().isStarted()) {
@@ -38,6 +40,10 @@ public class EventGame {
                                     player.sendMessage(ChatColor.RED + "Feu d'artifice ! Position des joueurs révélée !");
                                 }  for (Player player : Bukkit.getOnlinePlayers()) {
                                     if (!player.isDead() && !(player.getGameMode() == GameMode.SPECTATOR)) {
+ 
+                                        GamePlayer gamePlayer = GamePlayer.getInstance(player);
+                                        ChatColor teamColor = gamePlayer.getTeam().getColor();
+                                        Color fireWorkColor = ColorHelper.getColorFromChatColor(teamColor);
                                         Location fireworkLocation = player.getLocation();
                                         Firework firework = player.getWorld().spawn(fireworkLocation, Firework.class);
                                         FireworkMeta fireworkMeta = firework.getFireworkMeta();
@@ -48,8 +54,8 @@ public class EventGame {
                                                 .trail(true)
                                                 .with(FireworkEffect.Type.BURST)
                                                 .with(FireworkEffect.Type.BALL_LARGE)
-                                                .withColor(Color.RED)
-                                                .withFade(Color.ORANGE)
+                                                .withColor(fireWorkColor)
+                                                .withFade(fireWorkColor)
                                                 .build();
 
 
