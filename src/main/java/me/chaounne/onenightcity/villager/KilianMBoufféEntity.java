@@ -168,8 +168,8 @@ public class KilianMBoufféEntity {
         price = (int) (Math.random() * 100) + 20;
         sampleInventory.addItem(new ItemBuilder(Material.COOKIE).amount(amount).addLore("" + price + " Poudres").build(), 7, price);
         //SWEET_BERRIES (amount 1-5, price 20-100)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 100) + 20;
+        amount = (int) (Math.random() * 10) + 1;
+        price = (int) (Math.random() * 25) + 1;
         sampleInventory.addItem(new ItemBuilder(Material.SWEET_BERRIES).amount(amount).addLore("" + price + " Poudres").build(), 8, price);
         //DRIED_KELP (amount 1-10, price 1-10)
         amount = (int) (Math.random() * 10) + 1;
