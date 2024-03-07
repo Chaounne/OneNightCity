@@ -343,7 +343,7 @@ public class CheckpointListener implements Listener {
                 team.getEntries().forEach(entry -> objective.getScore(entry).setScore((int) elapsedTime));
 
                 // Attachez le Scoreboard au joueur
-                player.setScoreboard(scoreboard);
+                //player.setScoreboard(scoreboard);
                 if (ONCGame.getInstance().isStarted()) {
                     checkpoint.setWoolGiven(false);
 
