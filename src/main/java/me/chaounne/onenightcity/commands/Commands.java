@@ -134,7 +134,7 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Couleur introuvable ! Voici les couleurs disponibles : ");
                         StringBuilder availableColorsMessage = new StringBuilder();
                         for (ChatColor color : ChatColor.values()) {
-                            availableColorsMessage.append(color).append(color.name()).append(ChatColor.RESET).append(", ");
+                            if (color.isColor()) availableColorsMessage.append(color).append(color.name()).append(ChatColor.RESET).append(", ");
                         }
                         String colorsList = availableColorsMessage.toString();
                         // Retirer la virgule et l'espace en trop à la fin de la liste
@@ -143,8 +143,8 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     // Définir la couleur de l'équipe
-                    if (chosenColor == ChatColor.MAGIC||chosenColor == ChatColor.STRIKETHROUGH||chosenColor == ChatColor.RESET) {
-                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas utiliser la couleur MAGIC ou STRIKTHROUGH ou RESET !");
+                    if (chosenColor.isFormat()) {
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas utiliser de format, seulement des couleurs !");
                         return false;
                     }
                     team.setColor(chosenColor);
@@ -255,8 +255,8 @@ public class Commands implements CommandExecutor {
                     int random = (int) (Math.random() * availableColors.size());
                     ChatColor color = availableColors.get(random);
 
-                    // Vérifier si la couleur est MAGIC ou STRIKETHROUGH
-                    while (color == ChatColor.MAGIC || color == ChatColor.STRIKETHROUGH || color == ChatColor.RESET) {
+                    // Vérifier si la couleur est une couleur et non un format
+                    while (color.isFormat()) {
                         random = (int) (Math.random() * availableColors.size());
                         color = availableColors.get(random);
                     }
