@@ -195,7 +195,6 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         if (!ONCGame.getInstance().isStarted()) return;
-        System.out.println("deaaaaaaaaaaaaaad");
         Player player = event.getEntity();
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
 
