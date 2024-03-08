@@ -1,6 +1,6 @@
 package me.chaounne.onenightcity.villager;
 
-import me.chaounne.onenightcity.villager.spawners.Spawners;
+import me.chaounne.onenightcity.villager.spawners.SpawnerItems;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -58,19 +58,19 @@ public class DreamEntity {
         items[2] = new ItemStack(Material.DIAMOND, amount);
 
         //trade 1
-        trades.add(new MerchantRecipe(Spawners.getDiamondSpawner(), Integer.MAX_VALUE));
+        trades.add(new MerchantRecipe(SpawnerItems.getDiamondSpawner(), Integer.MAX_VALUE));
         trades.get(0).addIngredient(items[2]);
 
         //trade 2
-        trades.add(new MerchantRecipe(Spawners.getGoldSpawner(), Integer.MAX_VALUE));
+        trades.add(new MerchantRecipe(SpawnerItems.getGoldSpawner(), Integer.MAX_VALUE));
         trades.get(1).addIngredient(items[1]);
 
         //trade 3
-        trades.add(new MerchantRecipe(Spawners.getIronSpawner(), Integer.MAX_VALUE));
+        trades.add(new MerchantRecipe(SpawnerItems.getIronSpawner(), Integer.MAX_VALUE));
         trades.get(2).addIngredient(items[0]);
 
         //trade 4
-        trades.add(new MerchantRecipe(Spawners.getEmeraldSpawner(), Integer.MAX_VALUE));
+        trades.add(new MerchantRecipe(SpawnerItems.getEmeraldSpawner(), Integer.MAX_VALUE));
         trades.get(3).addIngredient(items[(int) (Math.random() * 3)]);
 
         dream.setRecipes(trades);
