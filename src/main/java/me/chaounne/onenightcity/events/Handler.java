@@ -450,7 +450,6 @@ public class Handler implements Listener {
 
     @EventHandler
     public void onBlockPlaced(BlockPlaceEvent event){
-        Player player = event.getPlayer();
         Location blockPos = event.getBlock().getLocation();
         if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Spawner de diamant")) {
             this.spawners.add(new Spawner(Material.DIAMOND, blockPos));

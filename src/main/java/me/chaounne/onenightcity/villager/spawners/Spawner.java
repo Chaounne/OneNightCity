@@ -6,7 +6,9 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Barrel;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Container;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -35,10 +37,12 @@ public class Spawner {
 	}
 
     private void scheduleSpawn() {
-        
+        BlockState blockState = this.pos.getBlock().getState();
+        Barrel barrel = (Barrel) blockState;
+        Inventory inv = barrel.getInventory();
         ItemStack oreToSpawn = new ItemStack(this.material);
         this.taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
-            //inv.addItem(oreToSpawn);
+            inv.addItem(oreToSpawn);
         }, 20, 20);
     }
 

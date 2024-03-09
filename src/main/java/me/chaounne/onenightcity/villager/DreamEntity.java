@@ -46,32 +46,28 @@ public class DreamEntity {
          */
          List<MerchantRecipe> trades = new ArrayList<>();
 
-         ItemStack[] items = new ItemStack[3];
-        int amount = (int) (Math.random() * 30) + 30;
-        if(amount > 64) amount = 64;
-        items[0] = new ItemStack(Material.IRON_INGOT, amount);
-        amount = (int) (Math.random() * 25) + 25;
-        if(amount > 64) amount = 64;
-        items[1] = new ItemStack(Material.GOLD_INGOT, amount);
-        amount = (int) (Math.random() * 20) + 20;
-        if(amount > 64) amount = 64;
-        items[2] = new ItemStack(Material.DIAMOND, amount);
+        ItemStack[] items = new ItemStack[4];
+        items[0] = new ItemStack(Material.IRON_INGOT, 64);
+        items[1] = new ItemStack(Material.GOLD_INGOT, 48);
+        items[2] = new ItemStack(Material.DIAMOND, 32);
+        items[3] = new ItemStack(Material.EMERALD, 16);
+        
 
         //trade 1
-        trades.add(new MerchantRecipe(SpawnerItems.getDiamondSpawner(), Integer.MAX_VALUE));
-        trades.get(0).addIngredient(items[2]);
-
+        trades.add(new MerchantRecipe(SpawnerItems.getIronSpawner(), 1));
+        trades.get(0).addIngredient(items[0]);
+        
         //trade 2
-        trades.add(new MerchantRecipe(SpawnerItems.getGoldSpawner(), Integer.MAX_VALUE));
+        trades.add(new MerchantRecipe(SpawnerItems.getGoldSpawner(), 1));
         trades.get(1).addIngredient(items[1]);
-
+        
         //trade 3
-        trades.add(new MerchantRecipe(SpawnerItems.getIronSpawner(), Integer.MAX_VALUE));
-        trades.get(2).addIngredient(items[0]);
+        trades.add(new MerchantRecipe(SpawnerItems.getDiamondSpawner(), 1));
+        trades.get(2).addIngredient(items[2]);
 
         //trade 4
-        trades.add(new MerchantRecipe(SpawnerItems.getEmeraldSpawner(), Integer.MAX_VALUE));
-        trades.get(3).addIngredient(items[(int) (Math.random() * 3)]);
+        trades.add(new MerchantRecipe(SpawnerItems.getEmeraldSpawner(), 1));
+        trades.get(3).addIngredient(items[3]);
 
         dream.setRecipes(trades);
 
