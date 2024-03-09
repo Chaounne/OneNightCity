@@ -79,7 +79,7 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(hologram4, ChatColor.GREEN + "Amusez-vous bien !");
 
         Location leaderboardLocation = new Location(Bukkit.getWorlds().get(0), 118, 218, -36);
-        Hologram leaderboardHologram = DHAPI.createHologram("Classement", leaderboardLocation);
+        DHAPI.createHologram("Classement", leaderboardLocation);
 
         Checkpoint checkpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 128, 155, -47));
         Checkpoint secondCheckpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 128, 170, -47));
@@ -92,7 +92,7 @@ public final class OneNightCity extends JavaPlugin {
         Checkpoint ninthCheckpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 123, 211, -34));
         Checkpoint finalCheckpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 122, 213, -40));
         
-        JumpHandler jumpHandler = new JumpHandler(leaderboardHologram, 
+        JumpHandler jumpHandler = new JumpHandler( 
             checkpoint, 
             secondCheckpoint,
             thirdCheckpoint, 
