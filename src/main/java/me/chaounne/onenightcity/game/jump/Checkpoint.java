@@ -1,4 +1,4 @@
-package me.chaounne.onenightcity.game;
+package me.chaounne.onenightcity.game.jump;
 
 import org.bukkit.Location;
 
