@@ -9,7 +9,7 @@ import me.chaounne.onenightcity.game.PoudreItem;
 import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.inventory.SampleInventory;
 import me.chaounne.onenightcity.villager.*;
-import me.chaounne.onenightcity.villager.spawners.Spawners;
+import me.chaounne.onenightcity.villager.spawners.Spawner;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
@@ -38,6 +38,8 @@ public class Handler implements Listener {
     private int poudresPersoApresEchange;
     private ONCGame game = ONCGame.getInstance();
     private Map<Player, Boolean> playerDeathStatus = new HashMap<>();
+
+    private List<Spawner> spawners = new ArrayList<Spawner>();
 
     @EventHandler
     public void onPlayerPortal(PlayerPortalEvent event) {
@@ -436,52 +438,30 @@ public class Handler implements Listener {
                 }
             }
         }
+
+        Location location = event.getBlock().getLocation();
+        int size = this.spawners.size();
+        for (int i = size - 1; i >= 0; i--) {
+            if (this.spawners.get(i).checkIfBroken(location)) {
+                this.spawners.remove(i);
+            }
+        }
     }
 
     @EventHandler
     public void onBlockPlaced(BlockPlaceEvent event){
-        // if the block is spawner.getDiamondSpawner
-        ItemStack item = event.getItemInHand();
-        ItemStack diamondSpawner = Spawners.getDiamondSpawner();
-        ItemStack goldSpawner = Spawners.getGoldSpawner();
-        ItemStack ironSpawner = Spawners.getIronSpawner();
-        ItemStack emeraldSpawner = Spawners.getEmeraldSpawner();
-        if(item.equals(diamondSpawner)){
-            // spawn diamond on top of the spawner
-            BukkitRunnable runnable = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if(!game.isStarted()) this.cancel();
-                    event.getBlockPlaced().getWorld().dropItemNaturally(event.getBlockPlaced().getLocation().add(0, 1, 0), new ItemStack(Material.DIAMOND));
-                }};
-            runnable.runTaskTimer(OneNightCity.getInstance(), 0, 200);
-        } else if(item.equals(goldSpawner)){
-            // spawn gold on top of the spawner
-            BukkitRunnable runnable = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if(!game.isStarted()) this.cancel();
-                    event.getBlockPlaced().getWorld().dropItemNaturally(event.getBlockPlaced().getLocation().add(0, 1, 0), new ItemStack(Material.GOLD_INGOT));
-                }};
-            runnable.runTaskTimer(OneNightCity.getInstance(), 0, 200);
-        } else if(item.equals(ironSpawner)){
-            // spawn iron on top of the spawner
-            BukkitRunnable runnable = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if(!game.isStarted()) this.cancel();
-                    event.getBlockPlaced().getWorld().dropItemNaturally(event.getBlockPlaced().getLocation().add(0, 1, 0), new ItemStack(Material.IRON_INGOT));
-                }};
-            runnable.runTaskTimer(OneNightCity.getInstance(), 0, 200);
-        } else if(item.equals(emeraldSpawner)){
-            // spawn emerald on top of the spawner
-            BukkitRunnable runnable = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if(!game.isStarted()) this.cancel();
-                    event.getBlockPlaced().getWorld().dropItemNaturally(event.getBlockPlaced().getLocation().add(0, 1, 0), new ItemStack(Material.EMERALD));
-                }};
-            runnable.runTaskTimer(OneNightCity.getInstance(), 0, 200);
+        Location blockPos = event.getBlock().getLocation();
+        if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Spawner de diamant")) {
+            this.spawners.add(new Spawner(Material.DIAMOND, blockPos));
+        }
+        if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GOLD + "Spawner d'or")) {
+            this.spawners.add(new Spawner(Material.GOLD_INGOT, blockPos));
+        }
+        if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GRAY + "Spawner de fer")) {
+            this.spawners.add(new Spawner(Material.IRON_INGOT, blockPos));
+        }
+        if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Spawner d'émeraude")) {
+            this.spawners.add(new Spawner(Material.EMERALD, blockPos));
         }
     }
 
