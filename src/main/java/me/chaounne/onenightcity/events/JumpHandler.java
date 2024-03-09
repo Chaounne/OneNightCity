@@ -1,9 +1,16 @@
 package me.chaounne.onenightcity.events;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -14,14 +21,17 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
+import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.jump.Checkpoint;
 import me.chaounne.onenightcity.game.jump.JumpManager;
+import me.chaounne.onenightcity.utils.JumpScore;
 
 public class JumpHandler implements Listener {
 
     private Hologram leaderBoard;
+    private HashMap<Player, Long> bestScores;
     private List<Checkpoint> checkpoints;
     private HashMap<Player, JumpManager> playerManagers;
 
@@ -32,6 +42,9 @@ public class JumpHandler implements Listener {
             this.checkpoints.add(cp);
         }
         this.playerManagers = new HashMap<Player, JumpManager>();
+        this.bestScores = new HashMap<Player, Long>();
+
+        this.updateHologram();
     }
 
     @EventHandler
@@ -49,9 +62,21 @@ public class JumpHandler implements Listener {
                     }
                 } 
                 else if (checkLastCheckpoint(clickedBlock, this.checkpoints.get(this.checkpoints.size() - 1))) {
-                    if (!this.playerManagers.get(player).isFinished()) this.playerManagers.get(player).finish();
+                    if (!this.playerManagers.containsKey(player)) return;
+                    if (!this.playerManagers.get(player).isFinished()) {
+                        this.playerManagers.get(player).finish();
+                        if (this.bestScores.containsKey(player)) {
+                            if (this.bestScores.get(player) > this.playerManagers.get(player).getTime()) {
+                                this.bestScores.put(player, this.playerManagers.get(player).getTime());
+                            }
+                        } else {
+                            this.bestScores.put(player, this.playerManagers.get(player).getTime());
+                        }
+                        this.updateHologram();
+                    }
                 }
                 else {
+                    if (!this.playerManagers.containsKey(player)) return;
                     int size = this.checkpoints.size() - 1;
                     for (int i = this.playerManagers.get(player).getCheckpointIndex() + 1; i < size; i++) {
                         if (this.checkCheckpoint(clickedBlock, this.checkpoints.get(i))) {
@@ -96,6 +121,37 @@ public class JumpHandler implements Listener {
         if (this.playerManagers.containsKey(p)) {
             this.playerManagers.get(p).deactivate(msg);
             this.playerManagers.remove(p);
+        }
+    }
+
+    private void updateHologram() {
+        // Récupérez l'hologramme existant ou créez-en un nouveau
+        Hologram leaderboardHologram = DHAPI.getHologram("Classement");
+
+        if (leaderboardHologram == null) {
+            // Créez un nouvel hologramme si celui-ci n'existe pas
+            Location hologramLocation = new Location(Bukkit.getWorlds().get(0), 118, 218, -36);
+            leaderboardHologram = DHAPI.createHologram("Classement", hologramLocation);
+        } else {
+            // Effacez toutes les lignes de l'hologramme existant
+            DHAPI.setHologramLines(leaderboardHologram, Collections.emptyList());
+        }
+
+        // Ajoutez les nouvelles lignes à l'hologramme
+        
+        List<Map.Entry<Player, Long>> sortedTimes = this.bestScores.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .collect(Collectors.toList());
+
+        int count = 1;
+        for (Map.Entry<Player, Long> entry : sortedTimes.subList(0, Math.min(sortedTimes.size(), 10))) {
+            String playerName = entry.getKey().getName();
+            long time = entry.getValue();
+            String formattedTime = ChatColor.YELLOW + "Top " + count + ": " + playerName + " - " + JumpScore.formatJumpTime(time);
+
+            // Ajoutez la nouvelle ligne à l'hologramme
+            DHAPI.addHologramLine(leaderboardHologram, formattedTime);
+            count++;
         }
     }
 

@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import me.chaounne.onenightcity.utils.JumpScore;
+
 public class JumpManager {
     
     private Player player;
@@ -38,12 +40,8 @@ public class JumpManager {
         this.CheckpointIndex = index;
     }
 
-    public String getTime() {
-        int secondes = (int) (this.completeTime / 1000000000);
-        int miliemes = ((int) (this.completeTime % 1000000000) / 1000000);
-        int minutes = secondes / 60;
-        secondes = secondes % 60;
-        return (minutes > 9 ? minutes : "0" + minutes) + ":" + (secondes > 9 ? secondes : "0" + secondes) + "." + (miliemes > 9 ? (miliemes > 99 ? miliemes : "0" + miliemes) : "00" + miliemes);
+    public long getTime() {
+        return this.completeTime;
     }
 
     private void startJump() {
@@ -93,7 +91,7 @@ public class JumpManager {
             player.getInventory().addItem(this.createRestartEmerald());
             this.hasEmerald = true;
         }
-        this.player.sendMessage(ChatColor.AQUA + "Tu as fini le jump en " + this.getTime() + " ! Tu es une légende ! :)");
+        this.player.sendMessage(ChatColor.AQUA + "Tu as fini le jump en " + JumpScore.formatJumpTime(completeTime) + " ! Tu es une légende ! :)");
     }
 
     private ItemStack createOrangeWool() {
