@@ -5,6 +5,8 @@ import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.Team;
+import me.chaounne.onenightcity.utils.ColorHelper;
+import me.chaounne.onenightcity.utils.RandomFromList;
 import me.chaounne.onenightcity.villager.*;
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -107,11 +109,79 @@ public class Commands implements CommandExecutor {
             }
             else if (subCommand.equals("team")) {
                 if (args.length <= 1) {
-                    player.sendMessage(ChatColor.RED + "Utilisation : /city team <add|disband|create|list|remove> <joueur|noméquipe>");
+                    player.sendMessage(ChatColor.RED + "Utilisation : /city team <add|disband|create|list|remove|name|color|marianne|clear> <joueur|noméquipe|couleur>");
                     return false;
                 }
                 String teamCommand = args[1];
-                if (teamCommand.equals("color")) {
+                if (teamCommand.equals("marianne")) {
+                    if (args.length <= 2) {
+                        player.sendMessage(ChatColor.RED + "Utilisation : /city team marianne <nombre_d'équipe>");
+                        return false;
+                    }
+                    if (game.isStarted()) {
+                        player.sendMessage(ChatColor.RED + "Le jeu a déjà commencé !");
+                        return false;
+                    }
+                    String nbTeamStr = args[2];
+                    int nbTeam;
+                    try{
+                        nbTeam = Integer.parseInt(nbTeamStr);
+                    } catch (Exception e) {
+                        player.sendMessage(ChatColor.RED +"Le nombre d'équipe est invalide, ce doit être un nombre !");
+                        return false;
+                    }
+                    if(nbTeam < 2){
+                        player.sendMessage(ChatColor.RED +"Nombre d'équipe trop faible, le nombre d'équipe doit être supérieur ou égal à 2");
+                        return false;
+                    }
+                    List<? extends Player> players = Bukkit.getOnlinePlayers().stream().toList();
+                    if(nbTeam > players.size()){
+                        player.sendMessage(ChatColor.RED +"Nombre d'équipe trop élevés, le nombre d'équipe doit être inférieur ou égal au nombre de joueur");
+                        return false;
+                    }
+                    for (Player p : players) {
+                        if (GamePlayer.getInstance(p).getTeam() != null) {
+                            player.sendMessage(ChatColor.RED + "Certains joueurs sont déja dans des équipes !");
+                            return false;
+                        }
+                    }
+
+                    List<Player> unassignedPlayers = new ArrayList<>();
+                    for (Player p : players) {
+                        unassignedPlayers.add(p);
+                    }
+
+                    Team[] teams = new Team[nbTeam];
+                    // création des équipes
+                    for (int i = 0; i < nbTeam; i++) {
+                        Team team = new Team("~Xx" + (i+1) + "xX~");
+                        game.addTeam(team);
+                        teams[i] = team;
+                        team.setColor(ColorHelper.getRandomChatColor());
+                        Player teamLeader = RandomFromList.get(unassignedPlayers);
+                        teamLeader.sendMessage(ChatColor.AQUA + "Vous avez été séléctionné comme leader de l'équipe " + team.getName());
+                        team.addPlayer(teamLeader);
+                        team.setLeader(teamLeader);
+                        unassignedPlayers.remove(teamLeader);
+                        GamePlayer.getInstance(teamLeader).setTeam(team);
+                        team.getScoreboardTeam().setPrefix(team.getColor() + "[" + team.getName() + "] ");
+                        team.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                    }
+                    int teamIndex = 0;
+                    while (!unassignedPlayers.isEmpty()) {
+                        Player toAssign = RandomFromList.get(unassignedPlayers);
+                        teams[teamIndex].addPlayer(toAssign);
+                        unassignedPlayers.remove(toAssign);
+                        GamePlayer.getInstance(toAssign).setTeam(teams[teamIndex]);
+                        teams[teamIndex].getScoreboardTeam().setPrefix(teams[teamIndex].getColor() + "[" + teams[teamIndex].getName() + "] ");
+                        teams[teamIndex].getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                        teamIndex++;
+                        if (teamIndex >= nbTeam) teamIndex = 0;
+                    }
+                    player.sendMessage(ChatColor.GREEN + "Les équipes sont créées !");
+                }
+
+                else if (teamCommand.equals("color")) {
                     if (GamePlayer.getInstance(player).getTeam() == null) {
                         player.sendMessage(ChatColor.RED + "Vous devez etre dans une team !");
                         return false;
@@ -332,8 +402,7 @@ public class Commands implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                     return false;
                 }
-
-
+                
                 team.reset();
 
                 gamePlayer.removeTeam();
@@ -344,7 +413,28 @@ public class Commands implements CommandExecutor {
                 player.sendMessage(ChatColor.GREEN + "Vous avez quitté votre équipe !");
                 return true;
 
-                } else if (teamCommand.equals("list")) {
+                }
+                else if (teamCommand.equals("clear")) {
+                    List<GamePlayer> players = new ArrayList<>();
+                    for (Player p : Bukkit.getOnlinePlayers()) {
+                        players.add(GamePlayer.getInstance(p));
+                    } 
+
+                    for (GamePlayer gp : players) {
+                        Team team = gp.getTeam();
+                        if (team != null) {
+                            team.reset();
+                            gp.removeTeam();
+                            game.removePlayer(gp);
+                                if (team.getPlayers().isEmpty()) {
+                                    game.removeTeam(team);
+                                }
+                            player.sendMessage(ChatColor.GREEN + "Vous avez quitté votre équipe !");
+                        }
+                    }
+                }
+
+                else if (teamCommand.equals("list")) {
                     if (game.getTeams().size() <= 0) {
                         player.sendMessage(ChatColor.RED + "Aucune équipe !");
                         return false;

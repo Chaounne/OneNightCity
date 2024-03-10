@@ -35,6 +35,8 @@ public class CityCompleter implements TabCompleter {
             argumentsTeams.add("list");
             argumentsTeams.add("color");
             argumentsTeams.add("name");
+            argumentsTeams.add("marianne");
+            argumentsTeams.add("clear");
 
         }
         if(argumentsPoudre.isEmpty()){

@@ -45,4 +45,44 @@ public class ColorHelper {
         return ChatColor.WHITE;
     }
 
+    public static ChatColor getRandomChatColor() {
+        int index = (int) (Math.random() * 16);
+        switch (index) {
+            case 0:
+                return ChatColor.AQUA;
+            case 1:
+                return ChatColor.BLACK;
+            case 2:
+                return ChatColor.BLUE;
+            case 3:
+                return ChatColor.DARK_AQUA;
+            case 4:
+                return ChatColor.DARK_BLUE;
+            case 5:
+                return ChatColor.DARK_GRAY;
+            case 6:
+                return ChatColor.DARK_GREEN;
+            case 7:
+                return ChatColor.DARK_PURPLE;
+            case 8:
+                return ChatColor.DARK_RED;
+            case 9:
+                return ChatColor.GOLD;
+            case 10:
+                return ChatColor.GRAY;
+            case 11:
+                return ChatColor.GREEN;
+            case 12:
+                return ChatColor.LIGHT_PURPLE;
+            case 13:
+                return ChatColor.RED;
+            case 14:
+                return ChatColor.WHITE;
+            case 15:
+                return ChatColor.YELLOW;
+            default:
+                return ChatColor.WHITE;
+        }
+    }
+
 }
