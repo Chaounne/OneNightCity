@@ -1,6 +1,6 @@
 package me.chaounne.onenightcity.game;
 
-import me.chaounne.fastinv.ItemBuilder;
+import fr.mrmicky.fastinv.ItemBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

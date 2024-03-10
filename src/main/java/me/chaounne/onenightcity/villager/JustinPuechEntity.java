@@ -1,7 +1,7 @@
 package me.chaounne.onenightcity.villager;
 
-import me.chaounne.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.game.PoudreItem;
+import fr.mrmicky.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.inventory.SampleInventory;
 import org.bukkit.Location;
 import org.bukkit.Material;

@@ -6,7 +6,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
-import me.chaounne.fastinv.ItemBuilder;
+import fr.mrmicky.fastinv.ItemBuilder;
 
 public class SpawnerItems {
     

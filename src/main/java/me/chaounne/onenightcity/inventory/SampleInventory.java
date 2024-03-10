@@ -1,6 +1,6 @@
 package me.chaounne.onenightcity.inventory;
 
-import me.chaounne.fastinv.FastInv;
+import fr.mrmicky.fastinv.FastInv;
 import me.chaounne.onenightcity.game.GamePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

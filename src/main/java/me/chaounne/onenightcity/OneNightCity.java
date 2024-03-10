@@ -2,7 +2,7 @@ package me.chaounne.onenightcity;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
-import me.chaounne.fastinv.FastInvManager;
+import fr.mrmicky.fastinv.FastInvManager;
 import me.chaounne.onenightcity.commands.CityCompleter;
 import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;

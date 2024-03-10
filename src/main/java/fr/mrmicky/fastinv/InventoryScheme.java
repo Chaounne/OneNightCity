@@ -1,4 +1,4 @@
-package me.chaounne.fastinv;
+package fr.mrmicky.fastinv;
 
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;

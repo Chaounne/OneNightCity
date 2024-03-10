@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package me.chaounne.fastinv;
+package fr.mrmicky.fastinv;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
