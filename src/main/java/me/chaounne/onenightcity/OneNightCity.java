@@ -28,7 +28,7 @@ public final class OneNightCity extends JavaPlugin {
         Location hologramLocation = new Location(Bukkit.getWorlds().get(0), 125, 156, -33);
         Hologram hologram = DHAPI.createHologram("Bienvenue", hologramLocation);
         DHAPI.addHologramLine(hologram, "Bienvenue sur le plugin OneNightCity");
-        DHAPI.addHologramLine(hologram, "fait par Chaounne et Lucastrap09");
+        DHAPI.addHologramLine(hologram, "fait par Chaounne, Lucastrap09 et S0meB0dy_");
         DHAPI.addHologramLine(hologram, "et build par Mazlai et Lucastrap09");
 
         Location hologramLocation1 = new Location(Bukkit.getWorlds().get(0), 121, 157, -33);
@@ -64,10 +64,10 @@ public final class OneNightCity extends JavaPlugin {
         Hologram hologram8 = DHAPI.createHologram("nouveautes", hologramLocation8);
         DHAPI.addHologramLine(hologram8, ChatColor.RED + "NOUVEAUTES");
         DHAPI.addHologramLine(hologram8, "Fix des bugs de la derniere game!");
-        DHAPI.addHologramLine(hologram8,"Evenement Feu d'artifice et Concours Collecte ");
-        DHAPI.addHologramLine(hologram8, " + d'infos sur le wiki de OneNightCity tout fraichement créé.");
-        DHAPI.addHologramLine(hologram8, "Nouvelle interface pour les échanges avec les villageois.");
-        DHAPI.addHologramLine(hologram8, "Amusez-vous bien !");
+        DHAPI.addHologramLine(hologram8, "Rework des générateurs de minerais");
+        DHAPI.addHologramLine(hologram8, "Rework du système de jump au lobby");
+        DHAPI.addHologramLine(hologram8, "Mise à jour de la safe zone (+ de pvp au spawn)");
+        DHAPI.addHologramLine(hologram8, "Plus d'info dans le guide sur discord ! Amusez-vous bien !");
 
         Location hologramLocation4 = new Location(Bukkit.getWorlds().get(0), 125, 157, -40);
         Hologram hologram4 = DHAPI.createHologram("test2", hologramLocation4);
