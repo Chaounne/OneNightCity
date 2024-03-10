@@ -13,6 +13,8 @@ import me.chaounne.onenightcity.game.jump.Checkpoint;
 
 import org.bukkit.*;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +22,22 @@ public final class OneNightCity extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        for (World world : Bukkit.getWorlds()) {
+            // Désactiver la règle de jeu des achievements pour chaque monde
+            world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+        }
+        World world = Bukkit.getWorlds().get(0); // Vous pouvez changer cela si besoin
+
+        for (   Entity entity : world.getEntities()) {
+            if (entity.getType() == EntityType.VILLAGER) {
+                Location entityLocation = entity.getLocation();
+                double distance = entityLocation.distanceSquared(new Location(world, 0, 70, 0));
+                if (distance <= 200 * 200) {
+                    entity.remove();
+                }
+            }
+        }
+
         Bukkit.getOnlinePlayers().forEach(player -> player.getAdvancementProgress(Bukkit.getAdvancement(NamespacedKey.minecraft("story/root"))).awardCriteria("impossible"));
         ONCGame.getInstance().resetTeams();
         FastInvManager.register(this);
