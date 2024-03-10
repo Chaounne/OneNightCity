@@ -29,6 +29,10 @@ public class Team {
         return scoreboardTeam;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setColor(ChatColor color){
         scoreboardTeam.setPrefix(color.toString());
         this.color = color;

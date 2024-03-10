@@ -13,7 +13,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
 
 import java.util.*;
 
@@ -113,7 +112,7 @@ public class Commands implements CommandExecutor {
                 }
                 String teamCommand = args[1];
                 if (teamCommand.equals("color")) {
-                    if (GamePlayer.getInstance(player).equals(null)) {
+                    if (GamePlayer.getInstance(player).getTeam() == null) {
                         player.sendMessage(ChatColor.RED + "Vous devez etre dans une team !");
                         return false;
                     }
@@ -151,6 +150,36 @@ public class Commands implements CommandExecutor {
                     team.getScoreboardTeam().setPrefix(chosenColor + "[" + team.getName() + "] ");
                     team.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
                     player.sendMessage("Vous avez changé de couleur " + team.getColor()+ chosenColor);
+                }
+                else if (teamCommand.equals("name")) {
+                    if (GamePlayer.getInstance(player).getTeam() == null) {
+                        player.sendMessage(ChatColor.RED + "Vous devez etre dans une team !");
+                        return false;
+                    }
+
+                    Team playerTeam = GamePlayer.getInstance(player).getTeam();
+                    if (args.length <= 2) {
+                        player.sendMessage(ChatColor.RED + "Utilisation : /city team name <NAME>");
+                        return false;
+                    }
+
+                    String teamName = args[2];
+                    if(teamName.length()>=14){
+                        player.sendMessage(ChatColor.RED +"Nom de team trop long (11 caractères max)");
+                        return false;
+                    }
+
+                    for (Team team : game.getTeams()) {
+                        if (team.getName().equals(teamName)) {
+                            player.sendMessage(ChatColor.RED + "L'équipe " + teamName + " existe déjà !");
+                            return false;
+                        }
+                    }
+
+                    playerTeam.setName(teamName);
+                    playerTeam.getScoreboardTeam().setPrefix(playerTeam.getColor() + "[" + playerTeam.getName() + "] ");
+                    playerTeam.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                    player.sendMessage("Vous avez changé de nom : " + playerTeam.getName() + " !");
                 }
 
 
