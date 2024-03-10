@@ -6,16 +6,16 @@ import me.chaounne.fastinv.FastInvManager;
 import me.chaounne.onenightcity.commands.CityCompleter;
 import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.events.Handler;
+import me.chaounne.onenightcity.events.JumpHandler;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.Team;
+import me.chaounne.onenightcity.game.jump.Checkpoint;
+
 import org.bukkit.*;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import me.chaounne.onenightcity.game.Checkpoint;
-import me.chaounne.onenightcity.events.CheckpointListener;
 public final class OneNightCity extends JavaPlugin {
 
     @Override
@@ -79,8 +79,7 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(hologram4, ChatColor.GREEN + "Amusez-vous bien !");
 
         Location leaderboardLocation = new Location(Bukkit.getWorlds().get(0), 118, 218, -36);
-        Hologram leaderboardHologram = DHAPI.createHologram("Classement", leaderboardLocation);
-
+        DHAPI.createHologram("Classement", leaderboardLocation);
 
         Checkpoint checkpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 128, 155, -47));
         Checkpoint secondCheckpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 128, 170, -47));
@@ -92,24 +91,21 @@ public final class OneNightCity extends JavaPlugin {
         Checkpoint eighthCheckpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 128, 206, -35));
         Checkpoint ninthCheckpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 123, 211, -34));
         Checkpoint finalCheckpoint = new Checkpoint(new Location(Bukkit.getWorlds().get(0), 122, 213, -40));
-        CheckpointListener checkpointListener = new CheckpointListener(
-                this,
-                leaderboardHologram,
-                checkpoint,
-                secondCheckpoint,
-                thirdCheckpoint,
-                fourthCheckpoint,
-                fifthCheckpoint,
-                sixthCheckpoint,
-                seventhCheckpoint,
-                eighthCheckpoint,
-                ninthCheckpoint,
-                finalCheckpoint
+        
+        JumpHandler jumpHandler = new JumpHandler( 
+            checkpoint, 
+            secondCheckpoint,
+            thirdCheckpoint, 
+            fourthCheckpoint, 
+            fifthCheckpoint, 
+            sixthCheckpoint,
+            seventhCheckpoint,
+            eighthCheckpoint,
+            ninthCheckpoint,
+            finalCheckpoint            
         );
-            getServer().getPluginManager().registerEvents(checkpointListener, this);
 
-        // Affichez le classement initial
-        checkpointListener.updateLeaderboard();
+        getServer().getPluginManager().registerEvents(jumpHandler, this);
 
         System.out.println("One Night City is starting...");
 
