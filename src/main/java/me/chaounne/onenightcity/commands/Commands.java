@@ -686,7 +686,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 GamePlayer.getInstance(playerToRemove).substractScore(amount);
-                GamePlayer.getInstance(playerToRemove).getTeam().removeScore(amount);
+                GamePlayer.getInstance(playerToRemove).getTeam().substractScore(amount);
                 player.sendMessage(ChatColor.RED + "Vous avez retiré " + amount + " poudre à " + playerToRemove.getName() + " !");
                 playerToRemove.sendMessage(ChatColor.RED + "Vous avez perdu " + amount + " poudre de la part de " + player.getName() + " !");
                 return true;

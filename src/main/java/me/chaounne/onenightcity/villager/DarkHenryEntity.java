@@ -17,13 +17,6 @@ public class DarkHenryEntity {
 
     public static Villager henry;
 
-    public static void removeEntity() {
-        if (henry != null) {
-            henry.remove();
-            henry = null;
-        }
-    }
-
     public static Villager getEntity(Location loc) {
         henry = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 

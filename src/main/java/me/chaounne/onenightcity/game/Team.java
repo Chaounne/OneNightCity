@@ -59,10 +59,6 @@ public class Team {
         scoreboardTeam.addEntry(player.getName());
     }
 
-    public int getPlayersSize() {
-        return players.size();
-    }
-
     public void removePlayer(Player player) {
         if(leader == player)
             leader = null;
@@ -74,10 +70,6 @@ public class Team {
         return players;
     }
 
-    public void setScore(int score) {
-        this.score = Math.max(score, 0);
-    }
-
     public int getScore() {
         return score;
     }
@@ -86,12 +78,8 @@ public class Team {
         this.score += score;
     }
 
-    public void removeScore(int score) {
-        if(this.score - score >= 0){
-            this.score -= score;
-        } else {
-            this.score = 0;
-        }
+    public void substractScore(int amount) {
+        score = Math.max(score - amount, 0);
     }
 
     public String getName() {

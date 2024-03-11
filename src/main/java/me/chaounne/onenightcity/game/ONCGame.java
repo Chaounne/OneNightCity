@@ -57,10 +57,6 @@ public class ONCGame implements Listener {
         players.remove(player);
     }
 
-    public List<GamePlayer> getPlayers(){
-        return players;
-    }
-
     public void addTeam(Team team){
         teams.add(team);
     }
@@ -71,23 +67,6 @@ public class ONCGame implements Listener {
 
     public ArrayList<Team> getTeams(){
         return teams;
-    }
-
-    public void randomTeams(){
-        Collections.shuffle(players);
-        Collections.shuffle(teams);
-
-        int team_size = players.size()/teams.size();
-
-        for(GamePlayer player : players){
-            for(Team team : teams){
-                if(team.getPlayers().size() < team_size){
-                    team.addPlayer(player.getPlayer());
-                    player.setTeam(team);
-                    break;
-                }
-            }
-        }
     }
 
     @EventHandler
@@ -190,9 +169,6 @@ public class ONCGame implements Listener {
 
                 if (time > 10750) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
-//                        if (entity.getLocation().getBlockX() == 0 && entity.getLocation().getBlockY() == 62 && entity.getLocation().getBlockZ() == 1) {
-//                            entity.remove();
-//                        }
                         if (entity instanceof LivingEntity && entity.getName().equals(ChatColor.DARK_RED + "DARKHenry")) {
                             entity.remove();
                         }
@@ -226,7 +202,7 @@ public class ONCGame implements Listener {
                     }
                 }
 
-             int randomTime = random.nextInt(3001) + 6000;
+                int randomTime = random.nextInt(3001) + 6000;
                 if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);

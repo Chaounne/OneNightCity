@@ -74,12 +74,6 @@ public class JumpManager {
         if (msg) this.player.sendMessage(ChatColor.GOLD + "Retour au dernier checkpoint");
     }
 
-    public void restart() {
-        this.removeRestartEmerald();
-        this.hasEmerald = false;
-        this.startJump();
-    }
-
     public void deactivate(boolean msg) {
         this.removeWools();
         this.removeRestartEmerald();

@@ -4,16 +4,10 @@ import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
@@ -28,45 +22,6 @@ public class GenerateChest implements Listener {
     private static ItemStack[] ressources;
 
     private static String message;
-
-    private static ItemStack getInvisibilityPotion(int amount) {
-        ItemStack potion = new ItemStack(Material.POTION, amount);
-        PotionMeta meta = (PotionMeta) potion.getItemMeta();
-        meta.addCustomEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 5400, 0), true);
-        meta.setDisplayName("Potion d'invisibilité");
-        meta.setColor(Color.fromRGB(200, 100, 200));
-        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-        potion.setItemMeta(meta);
-        return potion;
-    }
-
-    private static ItemStack getStrengthPotion(int amount) {
-        ItemStack potion = new ItemStack(Material.POTION, amount);
-        PotionMeta meta = (PotionMeta) potion.getItemMeta();
-        meta.addCustomEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3400, 0), true);
-        meta.setDisplayName("Potion de force");
-        meta.setColor(Color.RED);
-        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-        potion.setItemMeta(meta);
-        return potion;
-    }
-
-    private static ItemStack creerLivreEnchanteSharpness(int amount) {
-        // Crée un nouvel item "Livre"
-        ItemStack livre = new ItemStack(Material.ENCHANTED_BOOK, amount);
-
-        // Obtient l'objet "Enchantment" pour l'enchantement "Protection"
-        Enchantment dmg = Enchantment.DAMAGE_ALL;
-
-        // Applique l'enchantement "Protection" de niveau 1 au livre
-        livre.addEnchantment(dmg, 1);
-
-        // Définit le nom personnalisé du livre
-        ItemMeta meta = livre.getItemMeta();
-        meta.setDisplayName("Livre enchanté de Sharpness");
-        livre.setItemMeta(meta);
-        return livre;
-    }
 
     public static void spawnChest(Location location) {
         if (ONCGame.getInstance().hasStarted()) {
