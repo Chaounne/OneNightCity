@@ -2,15 +2,16 @@ package me.chaounne.onenightcity.inventory;
 
 import fr.mrmicky.fastinv.FastInv;
 import me.chaounne.onenightcity.game.GamePlayer;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.ChatColor;
 
 public class SampleInventory extends FastInv {
 
     public SampleInventory(int size, String title) {
         super(size, title);
     }
+
     private final ChatColor[] colors = {
             ChatColor.LIGHT_PURPLE,
             ChatColor.AQUA,
@@ -27,15 +28,15 @@ public class SampleInventory extends FastInv {
     };
 
     private final String[] messages = {
-            "Félicitations ! %d poudre(s) magiques pour votre équipe ! ",
-            "Gloire ! %d poudre(s) magiques ont été récoltées ! ",
-            "Seulement %d poudre(s) ont été ajouté à votre équipe ! ",
+            "Félicitations ! %d poudres magiques pour votre équipe ! ",
+            "Gloire ! %d poudres magiques ont été récoltées ! ",
+            "Seulement %d poudres ont été ajoutées à votre équipe ! ",
             "Bon y'a mieux mais %d poudre(s) gagnées ! ",
-            "Encore toi ? %d poudre(s) encore obtenues ! ",
+            "Encore toi ? %d poudres encore obtenues ! ",
             "WOW mais quel montant incroyable y'a %d poudre(s) ajoutées à votre équipe ! ",
-            "Merveilleux ! %d poudre(s) magiques ont été gagnées ! ",
-            "Ronpich Zzzz ! %d poudre(s), c'est tout ?! ",
-            "Espece de rat, t'as que %d poudre(s) en echange pour la peine ! ",
+            "Merveilleux ! %d poudres magiques ont été gagnées ! ",
+            "Ronpich Zzzz ! %d poudres, c'est tout ?! ",
+            "Espèce de rat, t'as que %d poudre(s) en échange pour la peine ! ",
             "Oula, c'est peu quand meme : %d poudre(s) ajoutées ! "
     };
 
@@ -58,7 +59,6 @@ public class SampleInventory extends FastInv {
                 amountEchange = amountEchange + amountPoudre;
                 nbitem = nbitem - given.getAmount();
             }
-
 
             // Choix aléatoire de l'index du message
             int randomIndex = (int) (Math.random() * messages.length);

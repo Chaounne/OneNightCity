@@ -5,11 +5,17 @@ import org.bukkit.Location;
 public class Checkpoint {
 
     private final Location location;
+
     private long timestamp;
+
     private boolean activated;
+
     private boolean firstCheckpointMessageSent;
+
     private boolean checkpointMessageSent;
+
     private boolean finalCheckpointMessageSent;
+
     private boolean woolGiven;
 
     public Checkpoint(Location location) {

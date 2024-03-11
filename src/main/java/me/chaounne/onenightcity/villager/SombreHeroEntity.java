@@ -16,16 +16,11 @@ import java.util.List;
 
 public class SombreHeroEntity {
 
-    private static Villager warden;
     private static SampleInventory sampleInventory;
-
-    public SombreHeroEntity(){
-
-    }
 
     public static Villager getEntity(Location loc){
         setInventory();
-        warden = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        Villager warden = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         warden.setCustomName("Sombre Héros");
         warden.setCustomNameVisible(true);
@@ -139,46 +134,47 @@ public class SombreHeroEntity {
 
         int amount = (int) (Math.random() * 5) + 1;
         int price = (int) (Math.random() * 70) + 20;
-        sampleInventory.addItem(new ItemBuilder(Material.SCULK).amount(amount).addLore("" + price + " Poudres").build(), 0, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SCULK).amount(amount).addLore(price + " Poudres").build(), 0, price);
 
         amount = (int) (Math.random() * 2) + 1;
         price = (int) (Math.random() * 90) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.SCULK_VEIN).amount(amount).addLore("" + price + " Poudres").build(), 1, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SCULK_VEIN).amount(amount).addLore(price + " Poudres").build(), 1, price);
 
         amount = (int) (Math.random() * 2) + 1;
         price = (int) (Math.random() * 150) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.SCULK_CATALYST).amount(amount).addLore("" + price + " Poudres").build(), 2, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SCULK_CATALYST).amount(amount).addLore(price + " Poudres").build(), 2, price);
 
         amount = (int) (Math.random() * 2) + 1;
         price = (int) (Math.random() * 150) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.SCULK_SENSOR).amount(amount).addLore("" + price + " Poudres").build(), 3, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SCULK_SENSOR).amount(amount).addLore(price + " Poudres").build(), 3, price);
 
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 10) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.COBWEB).amount(amount).addLore("" + price + " Poudres").build(), 4, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COBWEB).amount(amount).addLore(price + " Poudres").build(), 4, price);
 
         amount = 1;
         price = (int) (Math.random() * 5000) + 1000;
-        sampleInventory.addItem(new ItemBuilder(Material.ENCHANTED_GOLDEN_APPLE).amount(amount).addLore("" + price + " Poudres").build(), 5, price);
+        sampleInventory.addItem(new ItemBuilder(Material.ENCHANTED_GOLDEN_APPLE).amount(amount).addLore(price + " Poudres").build(), 5, price);
 
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 8) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_BRICKS).amount(amount).addLore("" + price + " Poudres").build(), 6, price);
+        sampleInventory.addItem(new ItemBuilder(Material.DEEPSLATE_BRICKS).amount(amount).addLore(price + " Poudres").build(), 6, price);
 
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 200) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.CANDLE).amount(amount).addLore("" + price + " Poudres").build(), 7, price);
+        sampleInventory.addItem(new ItemBuilder(Material.CANDLE).amount(amount).addLore(price + " Poudres").build(), 7, price);
 
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 20) + 5;
-        sampleInventory.addItem(new ItemBuilder(Material.SOUL_LANTERN).amount(amount).addLore("" + price + " Poudres").build(), 8, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SOUL_LANTERN).amount(amount).addLore(price + " Poudres").build(), 8, price);
 
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 8) + 5;
-        sampleInventory.addItem(new ItemBuilder(Material.POLISHED_DEEPSLATE).amount(amount).addLore("" + price + " Poudres").build(), 9, price);
+        sampleInventory.addItem(new ItemBuilder(Material.POLISHED_DEEPSLATE).amount(amount).addLore(price + " Poudres").build(), 9, price);
     }
 
     public static void openInventory(Player player){
         sampleInventory.open(player);
     }
+
 }

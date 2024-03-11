@@ -9,33 +9,23 @@ import org.bukkit.inventory.ItemStack;
 
 public class PoudreItem {
 
-    private static ItemStack poudre;
-
-    public static ItemStack getItem(){
-        poudre = new ItemBuilder(Material.SUGAR)
-                .name(ChatColor.GOLD + "Poudre").enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
-
-        return poudre;
+    public static ItemStack getItem() {
+        return new ItemBuilder(Material.SUGAR).name(ChatColor.GOLD + "Poudre")
+                .enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
 
-    public static ItemStack getItem(int amount){
-        poudre = new ItemBuilder(Material.SUGAR)
-                .name(ChatColor.GOLD + "Poudre").amount(amount).enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
-
-        return poudre;
+    public static ItemStack getItem(int amount) {
+        return new ItemBuilder(Material.SUGAR).name(ChatColor.GOLD + "Poudre")
+                .amount(amount).enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
 
-    public static ItemStack getSuperPoudre(){
-        poudre = new ItemBuilder(Material.SUGAR)
-                .name(ChatColor.GOLD + "" + ChatColor.BOLD + "Super Poudre").enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
-
-        return poudre;
+    public static ItemStack getSuperPoudre() {
+        return new ItemBuilder(Material.SUGAR).name(ChatColor.GOLD + "" + ChatColor.BOLD + "Super Poudre")
+                .enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
-    public static ItemStack getSuperPoudre(int amount){
-        poudre = new ItemBuilder(Material.SUGAR)
-                .name(ChatColor.GOLD + ""+ChatColor.BOLD +"Super Poudre").amount(amount).enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
-
-        return poudre;
+    public static ItemStack getSuperPoudre(int amount) {
+        return new ItemBuilder(Material.SUGAR).name(ChatColor.GOLD + ""+ChatColor.BOLD +"Super Poudre")
+                .amount(amount).enchant(Enchantment.LUCK,1).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
 
 

@@ -1,13 +1,9 @@
 package me.chaounne.onenightcity.events;
 
-import java.awt.Color;
-import me.chaounne.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
-import me.chaounne.onenightcity.game.Team;
-import me.chaounne.onenightcity.inventory.SampleInventory;
 import me.chaounne.onenightcity.villager.*;
 import me.chaounne.onenightcity.villager.spawners.Spawner;
 import org.bukkit.*;
@@ -33,13 +29,11 @@ import java.util.*;
 
 public class Handler implements Listener {
 
-    public final List<GamePlayer> test = new ArrayList<>();
-   private int poudresPersoAvantEchange;
-    private int poudresPersoApresEchange;
-    private ONCGame game = ONCGame.getInstance();
-    private Map<Player, Boolean> playerDeathStatus = new HashMap<>();
+    private final ONCGame game = ONCGame.getInstance();
 
-    private List<Spawner> spawners = new ArrayList<Spawner>();
+    private final Map<Player, Boolean> playerDeathStatus = new HashMap<>();
+
+    private final List<Spawner> spawners = new ArrayList<>();
 
     @EventHandler
     public void onPlayerPortal(PlayerPortalEvent event) {
@@ -48,10 +42,11 @@ public class Handler implements Listener {
             player.setBedSpawnLocation(new Location(player.getWorld(), 0,70,0), true);
        }
     }
+
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
-        if (!ONCGame.getInstance().isStarted()) {
+        if (!ONCGame.getInstance().hasStarted()) {
             event.setRespawnLocation(new Location(player.getWorld(), 122, 155, -40));
             return;
         }
@@ -67,7 +62,7 @@ public class Handler implements Listener {
 
                     // Appliquer les effets de potion
                     player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 2 * 20, 3));
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 1 * 20, 3));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20, 3));
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 } else {
                     player.playSound(player.getLocation(), Sound.ENCHANT_THORNS_HIT, 1.0f, 1.0f);
@@ -146,6 +141,7 @@ public class Handler implements Listener {
 
 
     }
+
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
         if (event.getPlayer() instanceof Player) {
@@ -158,7 +154,6 @@ public class Handler implements Listener {
                 if (gamePlayer.getTeam() == null) return;
                 // regarde si le joueur à de la poudre
                 for (ItemStack item : player.getInventory().getContents()) {
-                    poudresPersoAvantEchange = gamePlayer.getScore();
                     if (item != null && Objects.equals(item.getItemMeta(), PoudreItem.getSuperPoudre().getItemMeta())) {
                         // ajoute autant de score à la team du joueur que de poudre ramassée
                         for (int i = 0; i < item.getAmount(); i++) {
@@ -172,10 +167,8 @@ public class Handler implements Listener {
         }
     }
 
-
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
-
         Player player = event.getPlayer();
 
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
@@ -196,10 +189,9 @@ public class Handler implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        if (!ONCGame.getInstance().isStarted()) return;
+        if (!ONCGame.getInstance().hasStarted()) return;
         Player player = event.getEntity();
         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
-
 
         Player killer = player.getKiller();
 
@@ -212,11 +204,10 @@ public class Handler implements Listener {
 
             killer.sendMessage(ChatColor.GOLD + "Vous avez gagné 500 poudres pour avoir tué " + ChatColor.GOLD+player.getName() + " !");
         }
+
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         playerDeathStatus.put(player, true);
         // si le joueur n'a pas de getBedSpawnLocation(), il est tp au 0,0
-
-
 
         if (gamePlayer.hasBounty()) {
             killer = player.getKiller();
@@ -245,7 +236,7 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerItemDropped(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
-        if (!ONCGame.getInstance().isStarted()) {
+        if (!ONCGame.getInstance().hasStarted()) {
             player.sendMessage("Tu peux pas drop ici :)");
             event.setCancelled(true); // Annuler le drop si le jeu n'est pas démarré
             return; // Sortir de la méthode, car le drop est déjà annulé
@@ -257,9 +248,10 @@ public class Handler implements Listener {
             }
         }
     }
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if(!ONCGame.getInstance().isStarted()){
+        if(!ONCGame.getInstance().hasStarted()){
             Player player = event.getPlayer(); // Récupérer le joueur qui rejoint
             World overworld = Bukkit.getWorld("world"); // Make sure "world" is the name of your overworld
 
@@ -276,7 +268,7 @@ public class Handler implements Listener {
         }
     }
 
-        @EventHandler
+    @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         Inventory inventory = event.getInventory();
         Player player = (Player) event.getPlayer();
@@ -515,16 +507,17 @@ public class Handler implements Listener {
     }
 
     @EventHandler
-    public void onFoodLevelChange(FoodLevelChangeEvent event){if(!game.isStarted()) event.setCancelled(true);}
+    public void onFoodLevelChange(FoodLevelChangeEvent event) {
+        if (!game.hasStarted()) event.setCancelled(true);
+    }
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event){
-        if(!game.isStarted()) event.setCancelled(true);
+        if(!game.hasStarted()) event.setCancelled(true);
 
         if(event.getEntity() instanceof Villager){
             event.setCancelled(true);
         }
-
     }
 
     @EventHandler
@@ -561,7 +554,7 @@ public class Handler implements Listener {
                 JykaRoulerEntity.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Kylian MBouffé")){
                 event.setCancelled(true);
-                KilianMBoufféEntity.openInventory(player);
+                KilianMBouffeEntity.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Legias")){
                 event.setCancelled(true);
                 LegiasEntity.openInventory(player);
@@ -593,7 +586,9 @@ public class Handler implements Listener {
         }
     }
 
-
     @EventHandler
-    public void onPlayerItemDamage(PlayerItemDamageEvent e) {e.setCancelled(true);}
+    public void onPlayerItemDamage(PlayerItemDamageEvent e) {
+        e.setCancelled(true);
+    }
+
 }

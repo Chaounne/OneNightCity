@@ -1,6 +1,5 @@
 package me.chaounne.onenightcity.villager;
 
-import me.chaounne.onenightcity.game.PoudreItem;
 import fr.mrmicky.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.inventory.SampleInventory;
 import org.bukkit.Location;
@@ -8,23 +7,14 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.MerchantRecipe;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class JustinPuechEntity {
 
-    private static Villager justin;
     private static SampleInventory sampleInventory;
-    public JustinPuechEntity(){
 
-    }
-
-    public static Villager getEntity(Location loc){
+    public static Villager getEntity(Location loc) {
         setInventory();
-        justin = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        Villager justin = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         justin.setCustomName("Justin Puech");
         justin.setCustomNameVisible(true);
@@ -148,43 +138,41 @@ public class JustinPuechEntity {
         //FISHING_ROD (amount 1, price 10-50)
         int amount = 1;
         int price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.FISHING_ROD).amount(amount).addLore("" + price + " Poudres").build(), 0, price);
+        sampleInventory.addItem(new ItemBuilder(Material.FISHING_ROD).amount(amount).addLore(price + " Poudres").build(), 0, price);
         //WATER_BUCKET (amount 1, price 20-40)
-        amount = 1;
         price = (int) (Math.random() * 40) + 20;
-        sampleInventory.addItem(new ItemBuilder(Material.WATER_BUCKET).amount(amount).addLore("" + price + " Poudres").build(), 1, price);
+        sampleInventory.addItem(new ItemBuilder(Material.WATER_BUCKET).amount(amount).addLore(price + " Poudres").build(), 1, price);
         //PUFFERFISH (amount 1, price 50-150)
-        amount = 1;
         price = (int) (Math.random() * 150) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.PUFFERFISH).amount(amount).addLore("" + price + " Poudres").build(), 2, price);
+        sampleInventory.addItem(new ItemBuilder(Material.PUFFERFISH).amount(amount).addLore(price + " Poudres").build(), 2, price);
         //COOKED_COD (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.COOKED_COD).amount(amount).addLore("" + price + " Poudres").build(), 3, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COOKED_COD).amount(amount).addLore(price + " Poudres").build(), 3, price);
         //SALMON (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.SALMON).amount(amount).addLore("" + price + " Poudres").build(), 4, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SALMON).amount(amount).addLore(price + " Poudres").build(), 4, price);
         //TROPICAL_FISH (amount 1, price 150-500)
         amount = 1;
         price = (int) (Math.random() * 500) + 150;
-        sampleInventory.addItem(new ItemBuilder(Material.TROPICAL_FISH).amount(amount).addLore("" + price + " Poudres").build(), 5, price);
+        sampleInventory.addItem(new ItemBuilder(Material.TROPICAL_FISH).amount(amount).addLore(price + " Poudres").build(), 5, price);
         //COD_BUCKET (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.COD_BUCKET).amount(amount).addLore("" + price + " Poudres").build(), 6, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COD_BUCKET).amount(amount).addLore(price + " Poudres").build(), 6, price);
         //SALMON_BUCKET (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.SALMON_BUCKET).amount(amount).addLore("" + price + " Poudres").build(), 7, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SALMON_BUCKET).amount(amount).addLore(price + " Poudres").build(), 7, price);
         //PUFFERFISH_BUCKET (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.PUFFERFISH_BUCKET).amount(amount).addLore("" + price + " Poudres").build(), 8, price);
+        sampleInventory.addItem(new ItemBuilder(Material.PUFFERFISH_BUCKET).amount(amount).addLore(price + " Poudres").build(), 8, price);
         //TROPICAL_FISH_BUCKET (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.TROPICAL_FISH_BUCKET).amount(amount).addLore("" + price + " Poudres").build(), 9, price);
+        sampleInventory.addItem(new ItemBuilder(Material.TROPICAL_FISH_BUCKET).amount(amount).addLore(price + " Poudres").build(), 9, price);
     }
 
     public static void openInventory(Player player){

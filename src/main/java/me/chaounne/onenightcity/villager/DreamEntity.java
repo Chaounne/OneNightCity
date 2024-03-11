@@ -13,14 +13,8 @@ import java.util.List;
 
 public class DreamEntity {
 
-    private static Villager dream;
-
-    public DreamEntity(){
-
-    }
-
     public static Villager getEntity(Location loc){
-        dream = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        Villager dream = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         dream.setCustomName("Dream");
         dream.setCustomNameVisible(true);

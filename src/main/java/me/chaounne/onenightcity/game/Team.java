@@ -8,10 +8,14 @@ import java.util.ArrayList;
 
 public class Team {
 
-    private ArrayList<Player> players;
+    private final ArrayList<Player> players;
+
     private int score;
+
     private String name;
-    private org.bukkit.scoreboard.Team scoreboardTeam;
+
+    private final org.bukkit.scoreboard.Team scoreboardTeam;
+
     private Player leader;
 
     private ChatColor color;
@@ -71,10 +75,7 @@ public class Team {
     }
 
     public void setScore(int score) {
-        if(score < 0)
-            this.score = 0;
-        else
-            this.score = score;
+        this.score = Math.max(score, 0);
     }
 
     public int getScore() {

@@ -16,16 +16,11 @@ import java.util.List;
 
 public class CheepCheapEntity {
 
-    private static Villager cheap;
     private static SampleInventory sampleInventory;
-
-    public CheepCheapEntity(){
-
-    }
 
     public static Villager getEntity(Location loc){
         setInventory();
-        cheap = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        Villager cheap = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         cheap.setCustomName("Cheep Cheap");
         cheap.setCustomNameVisible(true);
@@ -176,12 +171,10 @@ public class CheepCheapEntity {
         //ce qu'il veut
         //recipe.addIngredient(null);
 
-
-
         return cheap;
     }
 
-    public static void setInventory(){
+    public static void setInventory() {
         sampleInventory = new SampleInventory(18, "Cheep Cheap");
 
         // Liste des laines avec leurs prix et quantités aléatoires
@@ -201,7 +194,7 @@ public class CheepCheapEntity {
                 sampleInventory.addItem(
                         new ItemBuilder(woolMaterial)
                                 .amount(amount)
-                                .addLore("" + price + " Poudres")
+                                .addLore(price + " Poudres")
                                 .build(),
                         i,
                         price
@@ -213,6 +206,5 @@ public class CheepCheapEntity {
     public static void openInventory(Player player){
         sampleInventory.open(player);
     }
-
 
 }

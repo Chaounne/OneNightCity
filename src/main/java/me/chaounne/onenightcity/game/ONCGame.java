@@ -1,10 +1,8 @@
 package me.chaounne.onenightcity.game;
 
-import eu.decentsoftware.holograms.api.DHAPI;
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.villager.DarkHenryEntity;
-
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -25,17 +23,19 @@ import java.util.*;
 
 public class ONCGame implements Listener {
 
-    private ArrayList<Team> teams = new ArrayList<>();
+    private final ArrayList<Team> teams = new ArrayList<>();
 
     private final List<GamePlayer> players = new ArrayList<>();
 
     private static ONCGame instance;
 
-    private boolean started = false;
+    private boolean hasStarted = false;
     Random random = new Random();
 
     private BukkitRunnable timer;
-    private int time = 10800;// Partie de 3 heures
+
+    private int time = 3 * 60 * 60;
+
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame(){
@@ -97,7 +97,7 @@ public class ONCGame implements Listener {
         FastBoard board = new FastBoard(realPlayer);
         board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
         boards.put(realPlayer.getUniqueId(), board);
-        if(isStarted()){
+        if(hasStarted()){
             if(!players.contains(player)) realPlayer.setGameMode(GameMode.SPECTATOR);
         }
     }
@@ -121,48 +121,42 @@ public class ONCGame implements Listener {
 
             if (countdown >= 0) {
                 String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
-                String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
+                String countdownString2 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
                 String countdownString3 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
-
 
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.GOLD + "PVP Activé dans : " + ChatColor.WHITE + countdownString + "s",
-                        ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
+                        ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString2 + "s",
                         ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
             } else if(countdown<=0 && countdown2>=0) {
-                String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
                 String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
-                String countdownString3 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
-
+                String countdownString2 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
 
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.RED + "PVP ACTIVÉ !",
                         ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
-                        ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
+                        ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString2 + "s",
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         "");
             }else if(countdown<=0 && countdown2<=0 && countdown4>=0){
-                String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
-                String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
-                String countdownString3 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
-
+                String countdownString = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
 
                 board.updateLines("",
                             ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                             ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.RED + "PVP ACTIVÉ !",
                         ChatColor.DARK_PURPLE + "END ACTIVÉ !",
-                        ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
+                        ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString + "s",
 
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
@@ -184,13 +178,11 @@ public class ONCGame implements Listener {
         }
     }
 
-    public boolean isStarted(){
-        return started;
+    public boolean hasStarted(){
+        return hasStarted;
     }
 
     public void createDark() {
-        World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
-
         timer = new BukkitRunnable() {
             @Override
             public void run() {
@@ -214,7 +206,7 @@ public class ONCGame implements Listener {
                     QuineItem.start();
 
                 }
-                if(time==7200){
+                if (time==7200) { // au bout d'une heure
                     Location[] locations = new Location[]{
                             new Location(Bukkit.getWorld("world"), 2, 64, 7),
                             new Location(Bukkit.getWorld("world"), 2, 63, 7),
@@ -235,9 +227,7 @@ public class ONCGame implements Listener {
                 }
 
              int randomTime = random.nextInt(3001) + 6000;
-               // int randomTime = 10749;
                 if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
-
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
@@ -257,25 +247,20 @@ public class ONCGame implements Listener {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 50, 1));
                     }
                 }
-
-
             }
         };
         timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
     }
 
-
-
     public void startGame() {
-        if (!started) started = true;
+        if (!hasStarted) hasStarted = true;
 
         //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
 
         EventGame.LancerConcours();
         EventGame.revealPlayerPositions(); // Appel de la méthode statique
         createDark();
-        GenerateChest generateChest = new GenerateChest();
-        generateChest.spawnCoffre();
+        GenerateChest.spawnCoffre();
         for (Player player : Bukkit.getOnlinePlayers()) {
 
             player.getPlayer().getInventory().clear();
@@ -314,7 +299,7 @@ public class ONCGame implements Listener {
         timer = new BukkitRunnable() {
             @Override
             public void run() {
-                if(ONCGame.getInstance().isStarted()) {
+                if(ONCGame.getInstance().hasStarted()) {
                     ClassementPoudre.showScoreboard();
                 }
 
@@ -453,14 +438,11 @@ public class ONCGame implements Listener {
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }
 
-
-
-
     public void endGame(){
             //faire l'appel pour reset ici
 
 
-        if (started) started = false;
+        if (hasStarted) hasStarted = false;
         if (timer != null) timer.cancel();
         World overworld = Bukkit.getWorld("world"); // Make sure "world" is the name of your overworld
 
@@ -544,18 +526,14 @@ public class ONCGame implements Listener {
         }
         teams.clear();
         players.clear();
-        if (started) started = false;
+        if (hasStarted) hasStarted = false;
     }
 
     public void resetTeams(){
-        for (Team team : teams) {
+        for (Team team : teams)
             team.reset();
-        }
         teams.clear();
         players.clear();
     }
-
-
-
 
 }

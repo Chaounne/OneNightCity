@@ -16,16 +16,11 @@ import java.util.List;
 
 public class MicoseMicodeEntity {
 
-    private static Villager champi;
     private static SampleInventory sampleInventory;
-
-    public MicoseMicodeEntity(){
-
-    }
 
     public static Villager getEntity(Location loc){
         setInventory();
-        champi = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        Villager champi = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         champi.setCustomName("Micose Micode");
         champi.setCustomNameVisible(true);
@@ -107,23 +102,23 @@ public class MicoseMicodeEntity {
         //MYCELIUM (amount 1-5, price 50-200)
         int amount = (int) (Math.random() * 5) + 1;
         int price = (int) (Math.random() * 200) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.MYCELIUM).amount(amount).addLore("" + price + " Poudres").build(), 0, price);
+        sampleInventory.addItem(new ItemBuilder(Material.MYCELIUM).amount(amount).addLore(price + " Poudres").build(), 0, price);
         //RED_MUSHROOM_BLOCK (amount 1-5, price 50-200)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 200) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.RED_MUSHROOM_BLOCK).amount(amount).addLore("" + price + " Poudres").build(), 1, price);
+        sampleInventory.addItem(new ItemBuilder(Material.RED_MUSHROOM_BLOCK).amount(amount).addLore(price + " Poudres").build(), 1, price);
         //BROWN_MUSHROOM_BLOCK (amount 1-5, price 50-200)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 200) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.BROWN_MUSHROOM_BLOCK).amount(amount).addLore("" + price + " Poudres").build(), 2, price);
+        sampleInventory.addItem(new ItemBuilder(Material.BROWN_MUSHROOM_BLOCK).amount(amount).addLore(price + " Poudres").build(), 2, price);
         //MUSHROOM_STEM (amount 1-5, price 50-200)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 200) + 50;
-        sampleInventory.addItem(new ItemBuilder(Material.MUSHROOM_STEM).amount(amount).addLore("" + price + " Poudres").build(), 3, price);
+        sampleInventory.addItem(new ItemBuilder(Material.MUSHROOM_STEM).amount(amount).addLore(price + " Poudres").build(), 3, price);
         //SHROOMLIGHT (amount 1-5, price 20-50)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 200) + 20;
-        sampleInventory.addItem(new ItemBuilder(Material.SHROOMLIGHT).amount(amount).addLore("" + price + " Poudres").build(), 4, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SHROOMLIGHT).amount(amount).addLore(price + " Poudres").build(), 4, price);
     }
 
     public static void openInventory(Player player){

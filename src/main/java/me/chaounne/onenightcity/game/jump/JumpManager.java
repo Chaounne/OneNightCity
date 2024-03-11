@@ -12,12 +12,18 @@ import me.chaounne.onenightcity.utils.JumpScore;
 
 public class JumpManager {
     
-    private Player player;
+    private final Player player;
+
     private boolean hasWool, hasEmerald;
+
     private long startTime;
+
     private long completeTime;
+
     private Checkpoint currentCheckpoint;
+
     private int CheckpointIndex;
+
     boolean finished;
 
     public JumpManager(Player p, Checkpoint cp) {
@@ -64,6 +70,7 @@ public class JumpManager {
 
     public void teleport(boolean msg) {
         this.player.teleport(this.currentCheckpoint.getLocation());
+        // TODO ça spam le chat et ça n'a pas d'interret je propose de s'en débarrasser
         if (msg) this.player.sendMessage(ChatColor.GOLD + "Retour au dernier checkpoint");
     }
 

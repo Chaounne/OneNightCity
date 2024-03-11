@@ -11,16 +11,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class ClassementPoudre {
-    private Hologram hologram;
-    private static ONCGame game = ONCGame.getInstance();
 
-    public ClassementPoudre() {
-    }
+    private static final ONCGame game = ONCGame.getInstance();
 
     public static void showScoreboard() {
-        // Envoyer un message à tous les joueurs en ligne
-
-
         // Trier les équipes par score décroissant
         ArrayList<Team> teams = game.getTeams();
         teams.sort(Comparator.comparingInt(Team::getScore).reversed());
@@ -35,15 +29,15 @@ public class ClassementPoudre {
         // Ajouter une ligne de texte pour chaque équipe, avec les 3 premières équipes en couleur
         for (int i = 0; i < teams.size(); i++) {
             ChatColor teamColor;
-            if (i == 0) {
+            if (i == 0)
                 teamColor = ChatColor.GOLD;
-            } else if (i == 1) {
+            else if (i == 1)
                 teamColor = ChatColor.GRAY;
-            } else if (i == 2) {
+            else if (i == 2)
                 teamColor = ChatColor.DARK_RED;
-            } else {
+            else
                 teamColor = teams.get(i).getColor();
-            }
+
             String teamName = teams.get(i).getName();
             String formattedTeamName = teamColor + (i == 0 ? "1er " : "") + (i == 1 ? "2eme " : "") +(i == 2 ? "3eme " : "") + teamName;String hologramText = formattedTeamName + " : " + teams.get(i).getScore() + " poudres";
             DHAPI.addHologramLine(scoreboardHologram, hologramText);
@@ -53,18 +47,12 @@ public class ClassementPoudre {
        scoreboardHologram.showAll();
 
         // Supprimer l'hologramme après 20 secondes
-        Bukkit.getScheduler().runTaskLater(OneNightCity.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-
-                if(game.isStarted()==true ){scoreboardHologram.delete();}
-                if(game.isStarted()==false){DHAPI.moveHologram(scoreboardHologram, new Location(Bukkit.getWorlds().get(0),122,157,-37));}
-            }
+        Bukkit.getScheduler().runTaskLater(OneNightCity.getInstance(), () -> {
+            if (game.hasStarted())
+                scoreboardHologram.delete();
+            if (!game.hasStarted())
+                DHAPI.moveHologram(scoreboardHologram, new Location(Bukkit.getWorlds().get(0),122,157,-37));
         }, 40L);
     }
 
-
-    public void hideHologram() {
-        hologram.delete();
-    }
 }

@@ -1,14 +1,12 @@
 package me.chaounne.onenightcity.game;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.utils.ColorHelper;
-
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.entity.Firework;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -18,14 +16,20 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EventGame {
-    private static Random random = new Random();
+
+    private static final Random random = new Random();
+
+    // Ajoutez cette variable pour stocker l'identifiant de la tâche planifiée pour la fin du concours
+    private static int endTaskID = -1;
+
+    private static boolean game = false;
 
     // Méthode pour révéler la position des joueurs dans 10 secondes avec des feux d'artifice
     public static void revealPlayerPositions() {
         int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes en ticks
-        if (ONCGame.getInstance().isStarted()) {
+        if (ONCGame.getInstance().hasStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
-                if (ONCGame.getInstance().isStarted()) {
+                if (ONCGame.getInstance().hasStarted()) {
 
                     int randomNumber = random.nextInt(3) + 1; // Génère un nombre aléatoire entre 1 et 3
 
@@ -34,7 +38,7 @@ public class EventGame {
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             player.sendMessage(ChatColor.YELLOW + "Position révélée dans 10 secondes !");
                         } Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
-                            if (ONCGame.getInstance().isStarted()) {
+                            if (ONCGame.getInstance().hasStarted()) {
 
                                 for (Player player : Bukkit.getOnlinePlayers()) {
                                     player.sendMessage(ChatColor.RED + "Feu d'artifice ! Position des joueurs révélée !");
@@ -71,14 +75,12 @@ public class EventGame {
             }, randomDelayPeriod, randomDelayPeriod); // 20 ticks * 30 secondes
         }
     }
-    // Ajoutez cette variable pour stocker l'identifiant de la tâche planifiée pour la fin du concours
-    private static int endTaskID = -1;
-    private static boolean game=false;
+
     public static  void LancerConcours() {
-        if (ONCGame.getInstance().isStarted()) {
+        if (ONCGame.getInstance().hasStarted()) {
             int randomDelayPeriod = 40 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes en ticks
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
-                if (ONCGame.getInstance().isStarted()) {
+                if (ONCGame.getInstance().hasStarted()) {
                     game=true;
                     RessourceConcour();
                 }
@@ -135,7 +137,6 @@ public class EventGame {
         }
     }
 
-
     private static void finConcours(ItemStack itemToCollect) {
         Map<Player, Integer> playerResources = new HashMap<>();
 
@@ -153,7 +154,7 @@ public class EventGame {
             game=false;
             if (winners.size() == 1) {
                 for (Player winner : winners) {
-                    Bukkit.broadcastMessage(ChatColor.GREEN + "Le joueur " + winner.getName() + " a remporté le concours avec " + playerResources.get(winner) + " " + itemToCollect.getType().toString() +" ! " +ChatColor.GOLD + " Il gagne 5000 poudres !");
+                    Bukkit.broadcastMessage(ChatColor.GREEN + "Le joueur " + winner.getName() + " a remporté le concours avec " + playerResources.get(winner) + " " + itemToCollect.getType() +" ! " +ChatColor.GOLD + " Il gagne 5000 poudres !");
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
                     }
@@ -183,6 +184,7 @@ public class EventGame {
         // Réinitialisation de la variable endTaskID pour indiquer qu'aucun concours n'est en cours
         endTaskID = -1;
     }
+
     // Méthode pour compter le nombre d'items spécifiques dans l'inventaire d'un joueur
     private static int countItems(Inventory inventory, ItemStack itemToCount) {
         int count = 0;
@@ -268,6 +270,4 @@ public class EventGame {
         return winners;
     }
 
-
-
-    }
+}

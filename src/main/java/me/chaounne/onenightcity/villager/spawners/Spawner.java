@@ -1,5 +1,6 @@
 package me.chaounne.onenightcity.villager.spawners;
 
+import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -8,17 +9,15 @@ import org.bukkit.block.BlockState;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.chaounne.onenightcity.OneNightCity;
-
 public class Spawner {
 
-    private Material material;
-    private Location pos;
+    private final Material material;
+    private final Location location;
     private int taskId;
 
-    public Spawner(Material mat, Location pos) {
-        this.pos = pos;
-        this.material = mat;
+    public Spawner(Material material, Location location) {
+        this.location = location;
+        this.material = material;
         this.scheduleSpawn();
     }
 
@@ -26,18 +25,17 @@ public class Spawner {
 		return material;
 	}
 
-	public Location getPos() {
-		return pos;
+    public Location getLocation() {
+        return location;
 	}
 
     private void scheduleSpawn() {
-        BlockState blockState = this.pos.getBlock().getState();
+        BlockState blockState = this.location.getBlock().getState();
         Barrel barrel = (Barrel) blockState;
         Inventory inv = barrel.getInventory();
         ItemStack oreToSpawn = new ItemStack(this.material);
-        this.taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
-            inv.addItem(oreToSpawn);
-        }, 20, 20);
+        this.taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(),
+                () -> inv.addItem(oreToSpawn), 20, 20);
     }
 
     private void unScheduleSpawn() {
@@ -45,7 +43,7 @@ public class Spawner {
     }
 
     public boolean checkIfBroken(Location brockenBlockLocation) {
-        if(brockenBlockLocation == this.pos) {
+        if (brockenBlockLocation == this.location) {
             this.unScheduleSpawn();
             return true;
         }

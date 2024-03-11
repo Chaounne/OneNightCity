@@ -10,7 +10,7 @@ public class GamePlayer {
 
     private static final Map<UUID, GamePlayer> players = new HashMap<>();
 
-    private Player player;
+    private final Player player;
 
     private Team team;
 
@@ -59,7 +59,7 @@ public class GamePlayer {
     }
 
     public void removeScore(int score) {
-        if(this.score - score >= 0){
+        if (this.score - score >= 0) {
             this.score -= score;
         } else {
             this.score = 0;

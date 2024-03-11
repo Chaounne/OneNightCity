@@ -2,8 +2,9 @@ package me.chaounne.onenightcity.villager;
 
 
 import me.chaounne.onenightcity.game.PoudreItem;
-import me.chaounne.onenightcity.inventory.SampleInventory;
-import org.bukkit.*;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
@@ -14,35 +15,30 @@ import java.util.List;
 
 public class DarkHenryEntity {
 
-    public static Villager henry2;
-    private static SampleInventory sampleInventory;
-
-    public DarkHenryEntity() {
-
-    }
+    public static Villager henry;
 
     public static void removeEntity() {
-        if (henry2 != null) {
-            henry2.remove();
-            henry2 = null;
+        if (henry != null) {
+            henry.remove();
+            henry = null;
         }
     }
 
     public static Villager getEntity(Location loc) {
-        henry2 = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        henry = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
-        henry2.setCustomName(ChatColor.DARK_RED + "DARKHenry");
-        henry2.setCustomNameVisible(true);
-        henry2.setProfession(Villager.Profession.WEAPONSMITH);
-        henry2.setAI(false);
-        henry2.setSilent(true);
-        henry2.setCollidable(false);
-        henry2.setVillagerExperience(5);
-        henry2.setVillagerLevel(5);
-       // henry2.setInvulnerable(true);
-        henry2.setAdult();
-        henry2.setCanPickupItems(false);
-        henry2.setRemoveWhenFarAway(false);
+        henry.setCustomName(ChatColor.DARK_RED + "DARKHenry");
+        henry.setCustomNameVisible(true);
+        henry.setProfession(Villager.Profession.WEAPONSMITH);
+        henry.setAI(false);
+        henry.setSilent(true);
+        henry.setCollidable(false);
+        henry.setVillagerExperience(5);
+        henry.setVillagerLevel(5);
+        // henry.setInvulnerable(true);
+        henry.setAdult();
+        henry.setCanPickupItems(false);
+        henry.setRemoveWhenFarAway(false);
 
         List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.ENCHANTING_TABLE));
@@ -56,17 +52,13 @@ public class DarkHenryEntity {
         items.add(new ItemStack(Material.HONEY_BOTTLE));
         items.add(new ItemStack(Material.GLOW_INK_SAC));
 
-
         List<MerchantRecipe> trades = new ArrayList<>();
         ItemStack tradeItem = items.get((int) (Math.random() * items.size()));
         trades.add(new MerchantRecipe(PoudreItem.getSuperPoudre(5), 1));
         trades.get(0).addIngredient(tradeItem);
-        henry2.setRecipes(trades);
+        henry.setRecipes(trades);
 
-        return henry2;
+        return henry;
     }
 
-
-
 }
-

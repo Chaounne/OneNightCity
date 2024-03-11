@@ -14,18 +14,13 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KilianMBoufféEntity {
+public class KilianMBouffeEntity {
 
-    private static Villager MBouffe;
     private static SampleInventory sampleInventory;
-
-    public KilianMBoufféEntity(){
-
-    }
 
     public static Villager getEntity(Location loc){
         setInventory();
-        MBouffe = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        Villager MBouffe = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         MBouffe.setCustomName("Kylian MBouffé");
         MBouffe.setCustomNameVisible(true);
@@ -93,7 +88,6 @@ public class KilianMBoufféEntity {
         amount = (int) (Math.random() * 10) + 1;
         trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
         // random price
-        price = (int) (Math.random() * 5) + 1;
         trades.get(5).addIngredient(new ItemStack(Material.RABBIT_STEW));
 
         //trade 7
@@ -138,43 +132,43 @@ public class KilianMBoufféEntity {
         //COOKED_BEEF (amount 1-10, price 1-20)
         int amount = (int) (Math.random() * 10) + 1;
         int price = (int) (Math.random() * 20) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.COOKED_BEEF).amount(amount).addLore("" + price + " Poudres").build(), 0, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COOKED_BEEF).amount(amount).addLore(price + " Poudres").build(), 0, price);
         //COOKED_CHICKEN (amount 1-10, price 1-20)
         amount = (int) (Math.random() * 10) + 1;
         price = (int) (Math.random() * 20) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.COOKED_CHICKEN).amount(amount).addLore("" + price + " Poudres").build(), 1, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COOKED_CHICKEN).amount(amount).addLore(price + " Poudres").build(), 1, price);
         //COOKED_PORKCHOP (amount 1-10, price 1-20)
         amount = (int) (Math.random() * 10) + 1;
         price = (int) (Math.random() * 20) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.COOKED_PORKCHOP).amount(amount).addLore("" + price + " Poudres").build(), 2, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COOKED_PORKCHOP).amount(amount).addLore(price + " Poudres").build(), 2, price);
         //COOKED_MUTTON (amount 1-10, price 1-20)
         amount = (int) (Math.random() * 10) + 1;
         price = (int) (Math.random() * 20) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.COOKED_MUTTON).amount(amount).addLore("" + price + " Poudres").build(), 3, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COOKED_MUTTON).amount(amount).addLore(price + " Poudres").build(), 3, price);
         //COOKED_RABBIT (amount 1-5, price 20-100)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 100) + 20;
-        sampleInventory.addItem(new ItemBuilder(Material.COOKED_RABBIT).amount(amount).addLore("" + price + " Poudres").build(), 4, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COOKED_RABBIT).amount(amount).addLore(price + " Poudres").build(), 4, price);
         //RABBIT_STEW (amount 1-5, price 20-100)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 100) + 20;
-        sampleInventory.addItem(new ItemBuilder(Material.RABBIT_STEW).amount(amount).addLore("" + price + " Poudres").build(), 5, price);
+        sampleInventory.addItem(new ItemBuilder(Material.RABBIT_STEW).amount(amount).addLore(price + " Poudres").build(), 5, price);
         //PUMPKIN_PIE (amount 1-5, price 20-100)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 100) + 20;
-        sampleInventory.addItem(new ItemBuilder(Material.PUMPKIN_PIE).amount(amount).addLore("" + price + " Poudres").build(), 6, price);
+        sampleInventory.addItem(new ItemBuilder(Material.PUMPKIN_PIE).amount(amount).addLore(price + " Poudres").build(), 6, price);
         //COOKIE (amount 1-5, price 20-100)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 100) + 20;
-        sampleInventory.addItem(new ItemBuilder(Material.COOKIE).amount(amount).addLore("" + price + " Poudres").build(), 7, price);
+        sampleInventory.addItem(new ItemBuilder(Material.COOKIE).amount(amount).addLore(price + " Poudres").build(), 7, price);
         //SWEET_BERRIES (amount 1-5, price 20-100)
         amount = (int) (Math.random() * 10) + 1;
         price = (int) (Math.random() * 25) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.SWEET_BERRIES).amount(amount).addLore("" + price + " Poudres").build(), 8, price);
+        sampleInventory.addItem(new ItemBuilder(Material.SWEET_BERRIES).amount(amount).addLore(price + " Poudres").build(), 8, price);
         //DRIED_KELP (amount 1-10, price 1-10)
         amount = (int) (Math.random() * 10) + 1;
         price = (int) (Math.random() * 10) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.DRIED_KELP).amount(amount).addLore("" + price + " Poudres").build(), 9, price);
+        sampleInventory.addItem(new ItemBuilder(Material.DRIED_KELP).amount(amount).addLore(price + " Poudres").build(), 9, price);
     }
 
     public static void openInventory(Player player){

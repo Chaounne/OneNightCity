@@ -1,13 +1,11 @@
 package me.chaounne.onenightcity.events;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
+import eu.decentsoftware.holograms.api.DHAPI;
+import eu.decentsoftware.holograms.api.holograms.Hologram;
+import me.chaounne.onenightcity.game.ONCGame;
+import me.chaounne.onenightcity.game.jump.Checkpoint;
+import me.chaounne.onenightcity.game.jump.JumpManager;
+import me.chaounne.onenightcity.utils.JumpScore;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -21,33 +19,28 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
-import eu.decentsoftware.holograms.api.DHAPI;
-import eu.decentsoftware.holograms.api.holograms.Hologram;
-import me.chaounne.onenightcity.game.ONCGame;
-import me.chaounne.onenightcity.game.jump.Checkpoint;
-import me.chaounne.onenightcity.game.jump.JumpManager;
-import me.chaounne.onenightcity.utils.JumpScore;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class JumpHandler implements Listener {
 
-    private HashMap<Player, Long> bestScores;
-    private List<Checkpoint> checkpoints;
-    private HashMap<Player, JumpManager> playerManagers;
+    private final List<Checkpoint> checkpoints;
+
+    private final HashMap<Player, Long> bestScores;
+
+    private final HashMap<Player, JumpManager> playerManagers;
 
     public JumpHandler(Checkpoint... cps) {
-        this.checkpoints = new ArrayList<Checkpoint>();
-        for (Checkpoint cp : cps) {
-            this.checkpoints.add(cp);
-        }
-        this.playerManagers = new HashMap<Player, JumpManager>();
-        this.bestScores = new HashMap<Player, Long>();
-
-        this.updateHologram();
+        checkpoints = new ArrayList<>();
+        Collections.addAll(checkpoints, cps);
+        playerManagers = new HashMap<>();
+        bestScores = new HashMap<>();
+        updateHologram();
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (!ONCGame.getInstance().isStarted()) {
+        if (!ONCGame.getInstance().hasStarted()) {
 
             Player player = event.getPlayer();
             ItemStack item = event.getItem();

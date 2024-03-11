@@ -10,50 +10,52 @@ import java.util.List;
 import java.util.Random;
 
 public class QuineItem {
-    private static int time = 0;
-    private static boolean fini=false;
-    private static
-    ItemStack[] ressources = new ItemStack[]{
-            new ItemStack(Material.CAKE),
-            new ItemStack(Material.JUKEBOX),
-            new ItemStack(Material.PUFFERFISH_BUCKET),
-            new ItemStack(Material.COOKIE),
-            new ItemStack(Material.CLOCK),
-            new ItemStack(Material.EMERALD),
-            new ItemStack(Material.FERMENTED_SPIDER_EYE),
-            new ItemStack(Material.CARROT_ON_A_STICK),
-            new ItemStack(Material.INK_SAC),
-            new ItemStack(Material.MILK_BUCKET),
-            new ItemStack(Material.RABBIT_HIDE),
-            new ItemStack(Material.BLAZE_ROD),
-            new ItemStack(Material.BRICK_STAIRS),
-            new ItemStack(Material.MAGMA_CREAM),
-            new ItemStack(Material.NETHER_WART),
-            new ItemStack(Material.ARMOR_STAND),
-            new ItemStack(Material.AMETHYST_BLOCK),
-            new ItemStack(Material.FLOWER_POT),
-            new ItemStack(Material.SUNFLOWER),
-            new ItemStack(Material.PUMPKIN_PIE),
-            new ItemStack(Material.DIAMOND_SHOVEL),
-            new ItemStack(Material.HAY_BLOCK),
-            new ItemStack(Material.BOOK),
-            new ItemStack(Material.MUSHROOM_STEW),
-            new ItemStack(Material.OAK_SLAB),
-            new ItemStack(Material.CRAFTING_TABLE),
-            new ItemStack(Material.STRING),
-            new ItemStack(Material.WHEAT_SEEDS),
-            new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK),
 
+    private static int time;
 
+    private static boolean fini = false;
+
+    private static final ItemStack[] ressources = new ItemStack[]{
+        new ItemStack(Material.CAKE),
+        new ItemStack(Material.JUKEBOX),
+        new ItemStack(Material.PUFFERFISH_BUCKET),
+        new ItemStack(Material.COOKIE),
+        new ItemStack(Material.CLOCK),
+        new ItemStack(Material.EMERALD),
+        new ItemStack(Material.FERMENTED_SPIDER_EYE),
+        new ItemStack(Material.CARROT_ON_A_STICK),
+        new ItemStack(Material.INK_SAC),
+        new ItemStack(Material.MILK_BUCKET),
+        new ItemStack(Material.RABBIT_HIDE),
+        new ItemStack(Material.BLAZE_ROD),
+        new ItemStack(Material.BRICK_STAIRS),
+        new ItemStack(Material.MAGMA_CREAM),
+        new ItemStack(Material.NETHER_WART),
+        new ItemStack(Material.ARMOR_STAND),
+        new ItemStack(Material.AMETHYST_BLOCK),
+        new ItemStack(Material.FLOWER_POT),
+        new ItemStack(Material.SUNFLOWER),
+        new ItemStack(Material.PUMPKIN_PIE),
+        new ItemStack(Material.DIAMOND_SHOVEL),
+        new ItemStack(Material.HAY_BLOCK),
+        new ItemStack(Material.BOOK),
+        new ItemStack(Material.MUSHROOM_STEW),
+        new ItemStack(Material.OAK_SLAB),
+        new ItemStack(Material.CRAFTING_TABLE),
+        new ItemStack(Material.STRING),
+        new ItemStack(Material.WHEAT_SEEDS),
+        new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK),
     };
 
-    private static ItemStack[] itemsToFind = new ItemStack[3];
+    private static final ItemStack[] itemsToFind = new ItemStack[3];
+
     private static boolean gameEnded = false;
 
     private static boolean test=true;
+
     public static void start() {
         Random random = new Random();
-        List<Integer> indices = new ArrayList<Integer>();
+        List<Integer> indices = new ArrayList<>();
         for (int i = 0; i < ressources.length; i++) {
             indices.add(i);
         }
@@ -69,7 +71,7 @@ public class QuineItem {
         // Affichage des 3 items à trouver aux joueurs
         String message = ChatColor.YELLOW + "Vous avez 30 minutes pour tenter de gagner 10 000 poudres, Les 3 items à trouver sont : ";
         for (ItemStack item : itemsToFind) {
-            message += item.getAmount() + " " + ChatColor.AQUA + item.getType().toString() + ChatColor.YELLOW + ", ";
+            message += item.getAmount() + " " + ChatColor.AQUA + item.getType() + ChatColor.YELLOW + ", ";
         }
         message = message.substring(0, message.length() - 2); // suppression de la dernière virgule et espace
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -118,4 +120,5 @@ public class QuineItem {
             time += 1;
         }, 0L, 20L);
     }
+
 }

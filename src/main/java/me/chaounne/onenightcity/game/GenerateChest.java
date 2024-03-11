@@ -17,16 +17,16 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-
 public class GenerateChest implements Listener {
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
-    private static Location spawn = new Location(Bukkit.getWorld("world"), 0, 200, 0);
-    private static boolean Super = false;
-    private static int rayon = 1000;
+    private static final Location spawn = new Location(Bukkit.getWorld("world"), 0, 200, 0);
+
+    private static final int rayon = 1000;
 
     private static ItemStack[] ressources;
+
     private static String message;
 
     private static ItemStack getInvisibilityPotion(int amount) {
@@ -67,8 +67,9 @@ public class GenerateChest implements Listener {
         livre.setItemMeta(meta);
         return livre;
     }
+
     public static void spawnChest(Location location) {
-        if (ONCGame.getInstance().isStarted()) {
+        if (ONCGame.getInstance().hasStarted()) {
             World world = location.getWorld();
 
             // Génère les ressources du coffre aléatoirement
@@ -92,7 +93,7 @@ public class GenerateChest implements Listener {
             ItemStack perlesEnder = new ItemStack(Material.ENDER_PEARL, random.nextInt(10) + 1);
 
             // Recherche d'un bloc solide sous la position
-            Block block = null;
+            Block block;
             int y = location.getBlockY();
             do {
                 block = world.getBlockAt(location.getBlockX(), y, location.getBlockZ());
@@ -124,9 +125,7 @@ public class GenerateChest implements Listener {
     }
 
     public static void spawnCoffre() {
-
-
-        if  (ONCGame.getInstance().isStarted()) {
+        if  (ONCGame.getInstance().hasStarted()) {
 
             int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes en ticks
             // int randomDelayPeriod = 150 + random.nextInt(200); // Génère un nombre aléatoire entre 1 minute (60000 ms) et 2 minutes (120000 ms)
@@ -136,7 +135,6 @@ public class GenerateChest implements Listener {
 
                 if (nombre == 2 ) {
 
-                    Super = true;
                     ressources = new ItemStack[]{
                             new ItemStack(Material.DIAMOND, random.nextInt(40) + 10),
                             new ItemStack(Material.GOLD_INGOT, random.nextInt(40) + 10),
@@ -185,17 +183,17 @@ public class GenerateChest implements Listener {
                 }else if (nombre == 3) {
 
                     ressources = new ItemStack[]{
-                            new ItemStack(Material.GOLDEN_CARROT, random.nextInt(4) + 1), // 3 golden carrots
-                            new ItemStack(Material.FERMENTED_SPIDER_EYE, random.nextInt(4) + 1), // 3 fermented spider eyes
-                            new ItemStack(Material.BLAZE_POWDER, random.nextInt(4) + 1), // 2 blaze powders
-                            new ItemStack(Material.BREWING_STAND, random.nextInt(4) + 1), // Brewing Stand
-                            new ItemStack(Material.MAGMA_CREAM, random.nextInt(4) + 1), // 6 magma creams
-                            new ItemStack(Material.NETHERITE_PICKAXE, random.nextInt(1) + 0), // Netherite Pickaxe
-                            new ItemStack(Material.GHAST_TEAR, random.nextInt(4) + 1), // 2 ghast tears
-                            new ItemStack(Material.DIAMOND, random.nextInt(4) + 1), // Diamonds
-                            new ItemStack(Material.NETHER_WART, random.nextInt(4) + 1), // Nether Wart
-                            new ItemStack(Material.NETHER_BRICK, random.nextInt(4) + 1), // 16 Nether bricks
-                            new ItemStack(Material.SOUL_SAND, random.nextInt(4) + 1), // Soul Sand
+                        new ItemStack(Material.GOLDEN_CARROT, random.nextInt(4) + 1), // 3 golden carrots
+                        new ItemStack(Material.FERMENTED_SPIDER_EYE, random.nextInt(4) + 1), // 3 fermented spider eyes
+                        new ItemStack(Material.BLAZE_POWDER, random.nextInt(4) + 1), // 2 blaze powders
+                        new ItemStack(Material.BREWING_STAND, random.nextInt(4) + 1), // Brewing Stand
+                        new ItemStack(Material.MAGMA_CREAM, random.nextInt(4) + 1), // 6 magma creams
+                        new ItemStack(Material.NETHERITE_PICKAXE, random.nextInt(1) + 1), // Netherite Pickaxe
+                        new ItemStack(Material.GHAST_TEAR, random.nextInt(4) + 1), // 2 ghast tears
+                        new ItemStack(Material.DIAMOND, random.nextInt(4) + 1), // Diamonds
+                        new ItemStack(Material.NETHER_WART, random.nextInt(4) + 1), // Nether Wart
+                        new ItemStack(Material.NETHER_BRICK, random.nextInt(4) + 1), // 16 Nether bricks
+                        new ItemStack(Material.SOUL_SAND, random.nextInt(4) + 1), // Soul Sand
                     };
 
 
@@ -239,7 +237,7 @@ public class GenerateChest implements Listener {
 
                 }
 
-                if (ONCGame.getInstance().isStarted()) {
+                if (ONCGame.getInstance().hasStarted()) {
                     // Calcul d'une position aléatoire
                     double x, z;
                     do {
@@ -278,8 +276,6 @@ public class GenerateChest implements Listener {
             }, randomDelayPeriod, randomDelayPeriod);// Spawn le coffre une fois toutes les 25 minutes
 
         }
-
-
     }
-}
 
+}

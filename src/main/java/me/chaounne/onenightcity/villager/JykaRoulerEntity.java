@@ -16,17 +16,11 @@ import java.util.List;
 
 public class JykaRoulerEntity {
 
-    private static Villager potter;
     private static SampleInventory sampleInventory;
-
-
-    public JykaRoulerEntity(){
-
-    }
 
     public static Villager getEntity(Location loc){
         setInventory();
-        potter = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        Villager potter = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         potter.setCustomName("Jyka Rouler");
         potter.setCustomNameVisible(true);
@@ -123,40 +117,41 @@ public class JykaRoulerEntity {
 
         return potter;
     }
+
     public static void setInventory(){
         sampleInventory = new SampleInventory(9, "Jyka Rouler");
         //BOOK (amount 1-5, price 10-50)
         int amount = (int) (Math.random() * 5) + 1;
         int price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.BOOK).amount(amount).addLore("" + price + " Poudres").build(), 0, price);
+        sampleInventory.addItem(new ItemBuilder(Material.BOOK).amount(amount).addLore(price + " Poudres").build(), 0, price);
         //BOOKSHELF (amount 1-5, price 60-200)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 200) + 60;
-        sampleInventory.addItem(new ItemBuilder(Material.BOOKSHELF).amount(amount).addLore("" + price + " Poudres").build(), 1, price);
+        sampleInventory.addItem(new ItemBuilder(Material.BOOKSHELF).amount(amount).addLore(price + " Poudres").build(), 1, price);
         //LECTERN (amount 1-5, price 10-100)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 100) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.LECTERN).amount(amount).addLore("" + price + " Poudres").build(), 2, price);
+        sampleInventory.addItem(new ItemBuilder(Material.LECTERN).amount(amount).addLore(price + " Poudres").build(), 2, price);
         //CROSSBOW (amount 1-5, price 10-100)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 100) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.CROSSBOW).amount(amount).addLore("" + price + " Poudres").build(), 3, price);
+        sampleInventory.addItem(new ItemBuilder(Material.CROSSBOW).amount(amount).addLore(price + " Poudres").build(), 3, price);
         //INK_SAC (amount 1-5, price 10-100)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 100) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.INK_SAC).amount(amount).addLore("" + price + " Poudres").build(), 4, price);
+        sampleInventory.addItem(new ItemBuilder(Material.INK_SAC).amount(amount).addLore(price + " Poudres").build(), 4, price);
         //GLOW_INK_SAC (amount 1-5, price 10-200)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 200) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.GLOW_INK_SAC).amount(amount).addLore("" + price + " Poudres").build(), 5, price);
+        sampleInventory.addItem(new ItemBuilder(Material.GLOW_INK_SAC).amount(amount).addLore(price + " Poudres").build(), 5, price);
         //WRITABLE_BOOK (amount 1-5, price 10-70)
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 70) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.WRITABLE_BOOK).amount(amount).addLore("" + price + " Poudres").build(), 6, price);
+        sampleInventory.addItem(new ItemBuilder(Material.WRITABLE_BOOK).amount(amount).addLore(price + " Poudres").build(), 6, price);
         //FEATHER (amount 1-10, price 1-20)
         amount = (int) (Math.random() * 10) + 1;
         price = (int) (Math.random() * 20) + 1;
-        sampleInventory.addItem(new ItemBuilder(Material.FEATHER).amount(amount).addLore("" + price + " Poudres").build(), 7, price);
+        sampleInventory.addItem(new ItemBuilder(Material.FEATHER).amount(amount).addLore(price + " Poudres").build(), 7, price);
     }
 
     public static void openInventory(Player player){
