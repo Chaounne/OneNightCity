@@ -112,34 +112,29 @@ public final class OneNightCity extends JavaPlugin {
         System.out.println("One Night City is starting...");
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            // Téléportez chaque joueur à la position spécifiée et définit son mode de jeu sur Aventure
             player.teleport(new Location(player.getWorld(), 121, 154, -40));
             player.setGameMode(GameMode.ADVENTURE);
-            // Vérifiez si le jeu n'a pas encore commencé
-            if (!ONCGame.getInstance().hasStarted()) {
-                // Vérifiez si le joueur n'a pas de boules de neige
-                Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
-                    // Parcourez chaque joueur en ligne
-                    if (!ONCGame.getInstance().hasStarted()) {
+        }
 
-                        for (Player player1 : Bukkit.getOnlinePlayers()) {
-                            boolean hasSnowball = false;
-                            for (ItemStack item : player1.getInventory().getContents()) {
-                                if (item != null && item.getType() == Material.SNOWBALL) {
-                                    hasSnowball = true;
-                                    break;
-                                }
-                            }
-                            // Si le joueur n'a pas de boules de neige, donnez-lui une boule de neige
-                            if (!hasSnowball) {
-                                ItemStack snowball = new ItemStack(Material.SNOWBALL, 1); // Créez une boule de neige
-                                player1.getInventory().addItem(snowball); // Donnez-la au joueur
-                                player1.updateInventory(); // Mettez à jour l'inventaire du joueur
+        if (!ONCGame.getInstance().hasStarted()) {
+            Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
+                if (!ONCGame.getInstance().hasStarted()) {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        boolean hasSnowball = false;
+                        for (ItemStack item : player.getInventory().getContents()) {
+                            if (item != null && item.getType() == Material.SNOWBALL) {
+                                hasSnowball = true;
+                                break;
                             }
                         }
+                        if (!hasSnowball) {
+                            ItemStack snowball = new ItemStack(Material.SNOWBALL, 1);
+                            player.getInventory().addItem(snowball);
+                            player.updateInventory();
+                        }
                     }
-                }, 0L, 50); // Planifiez la tâche toutes les 60 secondes (20 ticks par seconde)
-            }
+                }
+            }, 0, 50);
         }
 
         CommandExecutor cmd = new Commands();
