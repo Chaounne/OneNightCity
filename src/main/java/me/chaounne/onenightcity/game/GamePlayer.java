@@ -14,13 +14,7 @@ public class GamePlayer {
 
     private Team team;
 
-    private int score = 0;
-
-    private int bounty;
-
-    private boolean isBounty = false;
-
-    private GamePlayer bet = null;
+    private int score;
 
     private GamePlayer(Player player) {
         this.player = player;
@@ -58,42 +52,8 @@ public class GamePlayer {
         this.score += score;
     }
 
-    public void removeScore(int score) {
-        if (this.score - score >= 0) {
-            this.score -= score;
-        } else {
-            this.score = 0;
-        }
-    }
-
-    public boolean hasBounty() {
-        return isBounty;
-    }
-
-    public void setBounty(int bounty) {
-        this.bounty = bounty;
-        this.isBounty = true;
-    }
-
-    public void removeBounty() {
-        this.bounty = 0;
-        this.isBounty = false;
-    }
-
-    public int getBounty() {
-        return bounty;
-    }
-
-    public GamePlayer getBeter() {
-        return bet;
-    }
-
-    public void setBeter(GamePlayer bet) {
-        this.bet = bet;
-    }
-
-    public void removeBeter() {
-        this.bet = null;
+    public void substractScore(int amount) {
+        score = Math.max(score - amount, 0);
     }
 
 }

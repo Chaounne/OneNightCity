@@ -208,29 +208,6 @@ public class Handler implements Listener {
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
         playerDeathStatus.put(player, true);
         // si le joueur n'a pas de getBedSpawnLocation(), il est tp au 0,0
-
-        if (gamePlayer.hasBounty()) {
-            killer = player.getKiller();
-            if (killer != null) {
-                GamePlayer gameKiller = GamePlayer.getInstance(killer);
-                GamePlayer beter = gamePlayer.getBeter();
-
-                if (beter != null && beter.getTeam() != null && beter.getTeam() != gameKiller.getTeam() && beter.getTeam() != gamePlayer.getTeam()) {
-                    beter.addScore((int) (gamePlayer.getBounty() * 1.25));
-                    beter.getTeam().addScore((int) (gamePlayer.getBounty() * 1.25));
-
-                    gameKiller.addScore(gamePlayer.getBounty());
-                    gameKiller.getTeam().addScore(gamePlayer.getBounty());
-
-                    beter.getPlayer().sendMessage("Vous avez récupéré la prime de " + gamePlayer.getBounty() + " points multipliée par 1.25 !");
-                    gameKiller.getPlayer().sendMessage("Vous avez tué " + player.getName() + " et récupéré sa prime de " + gamePlayer.getBounty() + " points !");
-                    gamePlayer.getPlayer().sendMessage("Vous avez été tué par " + killer.getName() + " et perdu votre prime de " + gamePlayer.getBounty() + " points !");
-
-                    gamePlayer.removeBounty();
-                    gamePlayer.removeBeter();
-                }
-            }
-        }
     }
 
     @EventHandler

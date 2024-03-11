@@ -9,7 +9,3 @@ commands:
   city:
     description: Commande principale de One Night City
     aliases: onc
-
-  bounty:
-    description: bounty
-    usage: /bounty <amount> <player>

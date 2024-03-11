@@ -10,6 +10,7 @@ import me.chaounne.onenightcity.events.JumpHandler;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.jump.Checkpoint;
 import org.bukkit.*;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -141,12 +142,11 @@ public final class OneNightCity extends JavaPlugin {
             }
         }
 
-        Commands cmd = new Commands();
+        CommandExecutor cmd = new Commands();
         TabCompleter tab = new Completer();
 
         getCommand("city").setExecutor(cmd);
         getCommand("city").setTabCompleter(tab);
-        getCommand("bounty").setExecutor(cmd);
         getPlugin(OneNightCity.class).getServer().getPluginManager().registerEvents(new Handler(), this);
     }
 
