@@ -48,8 +48,8 @@ public class Completer implements TabCompleter {
             argumentsTeams.add("leave");
             argumentsTeams.add("members");
             argumentsTeams.add("marianne");
-            argumentsTeams.add("name");
             argumentsTeams.add("remove");
+            argumentsTeams.add("rename");
         }
 
         if (argumentsColor.isEmpty()) {

@@ -112,7 +112,7 @@ public class Commands implements CommandExecutor {
         }
         else if (subCommand.equals("team")) {
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Usage : /city team <add | clear | color | create | disband | leave | members | marianne | name | remove> <player | teamname>");
+                player.sendMessage(ChatColor.RED + "Usage : /city team <add | clear | color | create | disband | leave | members | marianne | remove | rename> <player | teamname>");
                 return false;
             }
             String teamCommand = args[1];
@@ -124,7 +124,7 @@ public class Commands implements CommandExecutor {
                     }
                     Team team = GamePlayer.getInstance(player).getTeam();
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Utilisation : /city team color <COLOR>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team color <COLOR>");
                         return false;
                     }
 
@@ -160,16 +160,15 @@ public class Commands implements CommandExecutor {
                     player.sendMessage("Vous avez changé de couleur " + team.getColor() + chosenColor);
                     break;
                 }
-                case "name": {
-                    // TODO renommer cette commande "rename"
+                case "rename": {
                     if (GamePlayer.getInstance(player).getTeam() == null) {
-                        player.sendMessage(ChatColor.RED + "Vous devez etre dans une team !");
+                        player.sendMessage(ChatColor.RED + "Vous devez être dans une team !");
                         return false;
                     }
 
                     Team playerTeam = GamePlayer.getInstance(player).getTeam();
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Utilisation : /city team name <NAME>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team rename <newname>");
                         return false;
                     }
 
@@ -199,7 +198,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Utilisation : /city team add <joueur>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team add <joueur>");
                         return false;
                     }
                     // obtenir le joueur
@@ -265,7 +264,7 @@ public class Commands implements CommandExecutor {
                 }
                 case "create": {
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Utilisation : /city team create <noméquipe>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team create <noméquipe>");
                         return false;
                     }
                     if (game.hasStarted()) {
@@ -319,7 +318,7 @@ public class Commands implements CommandExecutor {
                     }
                     Team team = GamePlayer.getInstance(player).getTeam();
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Utilisation : /city team remove <joueur>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team remove <joueur>");
                         return false;
                     }
                     if (!player.equals(team.getLeader())) {
@@ -342,7 +341,7 @@ public class Commands implements CommandExecutor {
                 }
                 case "marianne":
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Utilisation : /city team marianne <team_amount>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team marianne <team_amount>");
                         return false;
                     }
                     if (game.hasStarted()) {
@@ -462,7 +461,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 default:
-                    player.sendMessage(ChatColor.RED + "Usage : /city team <add | clear | color | create | disband | leave | members | marianne | name | remove> <player | teamname>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city team <add | clear | color | create | disband | leave | members | marianne | remove | rename> <player | teamname>");
                     return false;
             }
         }
@@ -626,13 +625,13 @@ public class Commands implements CommandExecutor {
                 return true;
             }
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Utilisation : /city poudre <give | remove>");
+                player.sendMessage(ChatColor.RED + "Usage : /city poudre <give | remove>");
                 return true;
             }
             String poudreCommand = args[1];
             if (poudreCommand.equals("give")) {
                 if (args.length <= 3) {
-                    player.sendMessage(ChatColor.RED + "Utilisation : /city poudre give <joueur> <montant>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city poudre give <joueur> <montant>");
                     return true;
                 }
                 Player playerToGive = player.getServer().getPlayer(args[2]);
@@ -662,7 +661,7 @@ public class Commands implements CommandExecutor {
                 return true;
             } else if (poudreCommand.equals("remove")) {
                 if (args.length <= 3) {
-                    player.sendMessage(ChatColor.RED + "Utilisation : /city poudre remove <joueur> <montant>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city poudre remove <joueur> <montant>");
                     return true;
                 }
                 Player playerToRemove = player.getServer().getPlayer(args[2]);
@@ -691,7 +690,7 @@ public class Commands implements CommandExecutor {
                 playerToRemove.sendMessage(ChatColor.RED + "Vous avez perdu " + amount + " poudre de la part de " + player.getName() + " !");
                 return true;
             } else {
-                player.sendMessage(ChatColor.RED + "Utilisation : /city poudre <give | remove>");
+                player.sendMessage(ChatColor.RED + "Usage : /city poudre <give | remove>");
                 return true;
             }
         }
