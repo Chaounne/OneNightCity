@@ -117,6 +117,7 @@ public class Commands implements CommandExecutor {
             }
             String teamCommand = args[1];
             switch (teamCommand) {
+                // TODO mettre dans l'ordre alphabétique
                 case "color": {
                     if (GamePlayer.getInstance(player).getTeam() == null) {
                         player.sendMessage(ChatColor.RED + "Vous devez etre dans une team !");
@@ -192,6 +193,7 @@ public class Commands implements CommandExecutor {
                     break;
                 }
                 case "add": {
+                    // TODO renommer en "hire"
                     Team team = GamePlayer.getInstance(player).getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
@@ -312,6 +314,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "remove": {
+                    // TODO renommer en "fire"
                     if (GamePlayer.getInstance(player).getTeam() == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
