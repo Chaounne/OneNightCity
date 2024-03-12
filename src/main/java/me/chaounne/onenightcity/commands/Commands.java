@@ -29,7 +29,7 @@ public class Commands implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.RED + "/city <chest|entity|poudre|start|stop|team>");
+            player.sendMessage(ChatColor.RED + "/city <chest | entity | poudre | start | stop | team>");
             return false;
         }
 
@@ -112,7 +112,7 @@ public class Commands implements CommandExecutor {
         }
         else if (subCommand.equals("team")) {
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Usage : /city team <add|clear|color|create|disband|leave|list|marianne|name|remove> <player|teamname>");
+                player.sendMessage(ChatColor.RED + "Usage : /city team <add | clear | color | create | disband | leave | members | marianne | name | remove> <player | teamname>");
                 return false;
             }
             String teamCommand = args[1];
@@ -441,7 +441,7 @@ public class Commands implements CommandExecutor {
                     player.sendMessage(ChatColor.GREEN + "Vous avez quitté votre équipe !");
                     return true;
                 }
-                case "list": {
+                case "members": {
                     if (game.getTeams().isEmpty()) {
                         player.sendMessage(ChatColor.RED + "Aucune équipe !");
                         return false;
@@ -462,13 +462,13 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 default:
-                    player.sendMessage(ChatColor.RED + "Usage : /city team <add|clear|color|create|disband|leave|list|marianne|name|remove> <player|teamname>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city team <add | clear | color | create | disband | leave | members | marianne | name | remove> <player | teamname>");
                     return false;
             }
         }
         else if (subCommand.equals("entity")) {
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED+"Usage : /city entity <henry|??>");
+                player.sendMessage(ChatColor.RED+"Usage : /city entity <henry | ??>");
                 return false;
             }
             String entityName = args[1];
@@ -616,7 +616,7 @@ public class Commands implements CommandExecutor {
                     HutilItaireEntity.getEntity(player.getLocation());
                     return true;
                 default:
-                    player.sendMessage(ChatColor.RED + "Usage : /city entity <henry|??>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city entity <henry | ??>");
                     return false;
             }
         }
@@ -626,7 +626,7 @@ public class Commands implements CommandExecutor {
                 return true;
             }
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Utilisation : /city poudre <give|remove>");
+                player.sendMessage(ChatColor.RED + "Utilisation : /city poudre <give | remove>");
                 return true;
             }
             String poudreCommand = args[1];
@@ -691,7 +691,7 @@ public class Commands implements CommandExecutor {
                 playerToRemove.sendMessage(ChatColor.RED + "Vous avez perdu " + amount + " poudre de la part de " + player.getName() + " !");
                 return true;
             } else {
-                player.sendMessage(ChatColor.RED + "Utilisation : /city poudre <give|remove>");
+                player.sendMessage(ChatColor.RED + "Utilisation : /city poudre <give | remove>");
                 return true;
             }
         }
