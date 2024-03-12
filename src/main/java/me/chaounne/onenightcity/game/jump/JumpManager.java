@@ -55,7 +55,6 @@ public class JumpManager {
 
         if (!this.hasWool) {
             player.getInventory().addItem(createOrangeWool());
-            player.getInventory().addItem(createRedWool());
             this.hasWool = true;
         }
         this.finished = false;
@@ -65,22 +64,19 @@ public class JumpManager {
 
     public void setCheckpoint(Checkpoint cp) {
         this.currentCheckpoint = cp;
-        this.player.sendMessage(ChatColor.YELLOW + "Nouveau checkpoint ! GG :)");
+        this.player.sendMessage(ChatColor.YELLOW + "Nouveau checkpoint atteint ! GG :)");
     }
 
-    public void teleport(boolean msg) {
+    public void teleport() {
         this.player.teleport(this.currentCheckpoint.getLocation());
-        // TODO ça spam le chat et ça n'a pas d'interret je propose de s'en débarrasser
-        if (msg) this.player.sendMessage(ChatColor.GOLD + "Retour au dernier checkpoint");
     }
 
-    public void deactivate(boolean msg) {
+    public void deactivate() {
         this.removeWools();
         this.removeRestartEmerald();
         this.hasWool = false;
         this.hasEmerald = false;
         this.player.teleport(new Location(Bukkit.getWorlds().get(0), 122, 154, -40));
-        if (msg) this.player.sendMessage(ChatColor.RED + "Tu abandonnes le jump. :(");
     }
 
     public void finish() {
@@ -98,17 +94,9 @@ public class JumpManager {
     private ItemStack createOrangeWool() {
         ItemStack orangeWool = new ItemStack(Material.ORANGE_WOOL);
         ItemMeta orangeMeta = orangeWool.getItemMeta();
-        orangeMeta.setDisplayName(ChatColor.GOLD + "Revenir au checkpoint");
+        orangeMeta.setDisplayName(ChatColor.GOLD + "Revenir au dernier checkpoint");
         orangeWool.setItemMeta(orangeMeta);
         return orangeWool;
-    }
-
-    private ItemStack createRedWool() {
-        ItemStack redWool = new ItemStack(Material.RED_WOOL);
-        ItemMeta redMeta = redWool.getItemMeta();
-        redMeta.setDisplayName(ChatColor.RED + "Abandonner");
-        redWool.setItemMeta(redMeta);
-        return redWool;
     }
 
     private void removeWools() {

@@ -51,7 +51,7 @@ public class JumpHandler implements Listener {
                     if (!this.playerManagers.containsKey(player)) {
                         this.playerManagers.put(player, new JumpManager(player, this.checkpoints.get(0)));
                     }
-                } 
+                }
                 else if (checkLastCheckpoint(clickedBlock, this.checkpoints.get(this.checkpoints.size() - 1))) {
                     if (!this.playerManagers.containsKey(player)) return;
                     if (!this.playerManagers.get(player).isFinished()) {
@@ -68,7 +68,7 @@ public class JumpHandler implements Listener {
                 }
                 else {
                     if (!this.playerManagers.containsKey(player)) return;
-                    int size = this.checkpoints.size() - 1;
+                    int size = this.checkpoints.size();
                     for (int i = this.playerManagers.get(player).getCheckpointIndex() + 1; i < size; i++) {
                         if (this.checkCheckpoint(clickedBlock, this.checkpoints.get(i))) {
                             this.playerManagers.get(player).setCheckpoint(this.checkpoints.get(i));
@@ -77,40 +77,37 @@ public class JumpHandler implements Listener {
                     }
                 }
             }
-            
-            if (item != null && item.getType() == Material.RED_WOOL && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-                this.deactivateJumpManagerForPlayer(player, true);
+
+            if (item != null && item.getType() == Material.ORANGE_WOOL && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+                this.playerManagers.get(player).teleport();
             }
-            else if (item != null && item.getType() == Material.ORANGE_WOOL && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-                this.playerManagers.get(player).teleport(true);
-            } 
             else if (item != null && item.getType() == Material.EMERALD && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-                this.deactivateJumpManagerForPlayer(player, false);
+                this.deactivateJumpManagerForPlayer(player);
                 this.playerManagers.put(player, new JumpManager(player, this.checkpoints.get(0)));
-                this.playerManagers.get(player).teleport(false);
+                this.playerManagers.get(player).teleport();
             }
         }
     }
 
     private boolean checkCheckpoint(Block clickedBlock, Checkpoint checkpoint) {
-        return clickedBlock.getType().equals(Material.HEAVY_WEIGHTED_PRESSURE_PLATE) &&
-                clickedBlock.getLocation().equals(checkpoint.getLocation());
+        return clickedBlock.getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE &&
+                clickedBlock.getLocation().toVector().isInSphere(checkpoint.getLocation().toVector(), 0.75);
     }
 
     private boolean checkLastCheckpoint(Block clickedBlock, Checkpoint checkpoint) {
-        return clickedBlock.getType().equals(Material.LIGHT_WEIGHTED_PRESSURE_PLATE) &&
+        return clickedBlock.getType() == Material.LIGHT_WEIGHTED_PRESSURE_PLATE &&
                 clickedBlock.getLocation().equals(checkpoint.getLocation());
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        deactivateJumpManagerForPlayer(player, false);
+        deactivateJumpManagerForPlayer(player);
     }
 
-    private void deactivateJumpManagerForPlayer(Player p, boolean msg) {
+    private void deactivateJumpManagerForPlayer(Player p) {
         if (this.playerManagers.containsKey(p)) {
-            this.playerManagers.get(p).deactivate(msg);
+            this.playerManagers.get(p).deactivate();
             this.playerManagers.remove(p);
         }
     }

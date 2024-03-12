@@ -71,8 +71,8 @@ public final class OneNightCity extends JavaPlugin {
         Hologram details = DHAPI.createHologram("details", new Location(world, 114, 157, -48));
         DHAPI.addHologramLine(details, "Concernant l'item spécial : la Poudre .");
         DHAPI.addHologramLine(details, "Vous pouvez en avoir en tradant des items au spawn.");
-        DHAPI.addHologramLine(details, ChatColor.GOLD + "Il existe une " + ChatColor.BOLD + "SuperPoudre " + ChatColor.GOLD + "qui vaut " + ChatColor.BOLD + " 1000 " + "Poudres.");
-        DHAPI.addHologramLine(details, "Il risque d'y avoir des bugs, merci de nous les signaler.");
+        DHAPI.addHologramLine(details, ChatColor.GOLD + "Il existe une " + ChatColor.BOLD + "SuperPoudre " + ChatColor.GOLD + "qui vaut" + ChatColor.BOLD + " 1000 Poudres.");
+        DHAPI.addHologramLine(details, "Si vous rencontrez un bug, merci de nous le signaler.");
         DHAPI.addHologramLine(details, "Et pour finir amusez-vous bien et bon jeu ! GL HF");
 
         Hologram news = DHAPI.createHologram("nouveautes", new Location(world, 123, 158, -49));
@@ -84,7 +84,7 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(news, "Plus d'info dans le guide sur discord ! Amusez-vous bien !");
 
         Hologram help = DHAPI.createHologram("aide", new Location(world, 125, 157, -40));
-        DHAPI.addHologramLine(help, ChatColor.RED + "Création et gestion de team :");
+        DHAPI.addHologramLine(help, ChatColor.RED + "Création et gestion de team");
         DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour créer une team : /city team create \"NomDeLaTeam\"");
         DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour ajouter un joueur à votre équipe : /city team add \"NomDuJoueur\"");
         DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour voir les membres de votre équipe : /city team list");
@@ -93,23 +93,20 @@ public final class OneNightCity extends JavaPlugin {
         Location leaderboardLoc = new Location(world, 118, 218, -36);
         DHAPI.createHologram("Classement", leaderboardLoc);
 
-        // TODO ajouter orientation aux checkpoints
         JumpHandler jumpHandler = new JumpHandler(
-                new Checkpoint(new Location(world, 128, 155, -47)),
-                new Checkpoint(new Location(world, 128, 170, -47)),
-                new Checkpoint(new Location(world, 128, 175, -34)),
-                new Checkpoint(new Location(world, 115, 186, -34)),
-                new Checkpoint(new Location(world, 128, 190, -40)),
-                new Checkpoint(new Location(world, 129, 198, -40)),
-                new Checkpoint(new Location(world, 120, 203, -46)),
-                new Checkpoint(new Location(world, 128, 206, -35)),
-                new Checkpoint(new Location(world, 123, 211, -34)),
+                new Checkpoint(new Location(world, 128.5, 155, -46.5)),
+                new Checkpoint(new Location(world, 128.5, 170, -46.5, 90, 0)),
+                new Checkpoint(new Location(world, 128.5, 175, -33.5, 90, 0)),
+                new Checkpoint(new Location(world, 115.5, 186, -33.5, -90, 0)),
+                new Checkpoint(new Location(world, 128.5, 190, -39.5, 90, 0)),
+                new Checkpoint(new Location(world, 129.5, 198, -39.5, -90, 0)),
+                new Checkpoint(new Location(world, 120.5, 203, -45.5)),
+                new Checkpoint(new Location(world, 128.5, 206, -34.5, 90, 0)),
+                new Checkpoint(new Location(world, 123.5, 211, -33.5, 180, 0)),
                 new Checkpoint(new Location(world, 122, 213, -40))
         );
 
         getServer().getPluginManager().registerEvents(jumpHandler, this);
-
-        System.out.println("One Night City is starting...");
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.teleport(new Location(player.getWorld(), 121, 154, -40));
