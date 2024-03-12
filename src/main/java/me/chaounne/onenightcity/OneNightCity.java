@@ -32,12 +32,12 @@ public final class OneNightCity extends JavaPlugin {
 
         World world = Bukkit.getWorlds().get(0);
 
-        // supprime les villageois du spawn
+        // supprime les villageois à 100 blocks de rayon du spawn
         for (Entity entity : world.getEntities()) {
             if (entity.getType() == EntityType.VILLAGER) {
                 Location entityLocation = entity.getLocation();
-                double distance = entityLocation.distanceSquared(new Location(world, 0, 70, 0));
-                if (distance <= 200 * 200)
+                double distance = entityLocation.distance(new Location(world, 0, 70, 0));
+                if (distance <= 100)
                     entity.remove();
             }
         }
