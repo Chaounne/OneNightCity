@@ -41,7 +41,6 @@ public class Completer implements TabCompleter {
 
         if (argumentsTeams.isEmpty()) {
             argumentsTeams.add("color");
-            argumentsTeams.add("clear");
             argumentsTeams.add("create");
             argumentsTeams.add("disband");
             argumentsTeams.add("fire");
@@ -49,6 +48,7 @@ public class Completer implements TabCompleter {
             argumentsTeams.add("leave");
             argumentsTeams.add("members");
             argumentsTeams.add("marianne");
+            argumentsTeams.add("purge");
             argumentsTeams.add("rename");
         }
 

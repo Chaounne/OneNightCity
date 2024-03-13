@@ -112,7 +112,7 @@ public class Commands implements CommandExecutor {
         }
         else if (subCommand.equals("team")) {
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Usage : /city team <clear | color | create | disband | fire | hire | leave | members | marianne | rename> <player | teamname>");
+                player.sendMessage(ChatColor.RED + "Usage : /city team <color | create | disband | fire | hire | leave | members | marianne | purge | rename> <player | teamname>");
                 return false;
             }
             String teamCommand = args[1];
@@ -265,7 +265,7 @@ public class Commands implements CommandExecutor {
                 }
                 case "create": {
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Usage : /city team create <noméquipe>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team create <team_name>");
                         return false;
                     }
                     if (game.hasStarted()) {
@@ -405,9 +405,8 @@ public class Commands implements CommandExecutor {
                     }
                     player.sendMessage(ChatColor.GREEN + "Les équipes sont créées !");
                     return true;
-                case "clear":
+                case "purge":
                     // TODO un nom OP ne devrait pas pouvoir faire ça
-                    // TODO renomer cette commande "purge"
                     // TODO dire "équipe purgées" dans le chat
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         GamePlayer gp = GamePlayer.getInstance(p);
@@ -462,7 +461,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 default:
-                    player.sendMessage(ChatColor.RED + "Usage : /city team <clear | color | create | disband | fire |hire | leave | members | marianne | rename> <player | teamname>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city team <color | create | disband | fire |hire | leave | members | marianne | purge | rename> <player | teamname>");
                     return false;
             }
         }
