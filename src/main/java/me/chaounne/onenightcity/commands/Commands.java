@@ -407,7 +407,6 @@ public class Commands implements CommandExecutor {
                     return true;
                 case "purge":
                     // TODO un nom OP ne devrait pas pouvoir faire ça
-                    // TODO dire "équipe purgées" dans le chat
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         GamePlayer gp = GamePlayer.getInstance(p);
                         Team team = gp.getTeam();
@@ -418,8 +417,8 @@ public class Commands implements CommandExecutor {
                             if (team.getPlayers().isEmpty()) {
                                 game.removeTeam(team);
                             }
-                            player.sendMessage(ChatColor.GREEN + "Vous avez quitté votre équipe !");
                         }
+                        player.sendMessage(ChatColor.GOLD + "Toutes les équipes ont été supprimées.");
                     }
                     return true;
                 case "leave": {
