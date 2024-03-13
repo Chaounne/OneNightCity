@@ -14,7 +14,6 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO ÉCRIRE UNE CLASSE GÉNÉRALE POUR LES VILLAGEOIS (pourquoi c'est pas déjà le cas omg)
 public class BeauThonyEntity {
 
     private static SampleInventory sampleInventory;
