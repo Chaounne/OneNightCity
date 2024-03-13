@@ -112,7 +112,7 @@ public class Commands implements CommandExecutor {
         }
         else if (subCommand.equals("team")) {
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Usage : /city team <add | clear | color | create | disband | leave | members | marianne | remove | rename> <player | teamname>");
+                player.sendMessage(ChatColor.RED + "Usage : /city team <clear | color | create | disband | hire | leave | members | marianne | remove | rename> <player | teamname>");
                 return false;
             }
             String teamCommand = args[1];
@@ -192,15 +192,14 @@ public class Commands implements CommandExecutor {
                     player.sendMessage("Vous avez changé de nom : " + playerTeam.getName() + " !");
                     break;
                 }
-                case "add": {
-                    // TODO renommer en "hire"
+                case "hire": {
                     Team team = GamePlayer.getInstance(player).getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
                     }
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Usage : /city team add <joueur>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team hire <joueur>");
                         return false;
                     }
                     // obtenir le joueur

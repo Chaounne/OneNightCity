@@ -40,11 +40,11 @@ public class Completer implements TabCompleter {
         }
 
         if (argumentsTeams.isEmpty()) {
-            argumentsTeams.add("add");
             argumentsTeams.add("color");
             argumentsTeams.add("clear");
             argumentsTeams.add("create");
             argumentsTeams.add("disband");
+            argumentsTeams.add("hire");
             argumentsTeams.add("leave");
             argumentsTeams.add("members");
             argumentsTeams.add("marianne");
