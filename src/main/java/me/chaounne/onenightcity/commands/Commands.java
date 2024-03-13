@@ -112,7 +112,7 @@ public class Commands implements CommandExecutor {
         }
         else if (subCommand.equals("team")) {
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Usage : /city team <clear | color | create | disband | hire | leave | members | marianne | remove | rename> <player | teamname>");
+                player.sendMessage(ChatColor.RED + "Usage : /city team <clear | color | create | disband | fire | hire | leave | members | marianne | rename> <player | teamname>");
                 return false;
             }
             String teamCommand = args[1];
@@ -312,15 +312,14 @@ public class Commands implements CommandExecutor {
                     player.sendMessage(ChatColor.GREEN + "Vous avez créé l'équipe " + team.getColor() + teamName + ChatColor.GREEN + " !");
                     return true;
                 }
-                case "remove": {
-                    // TODO renommer en "fire"
+                case "fire": {
                     if (GamePlayer.getInstance(player).getTeam() == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
                     }
                     Team team = GamePlayer.getInstance(player).getTeam();
                     if (args.length == 2) {
-                        player.sendMessage(ChatColor.RED + "Usage : /city team remove <joueur>");
+                        player.sendMessage(ChatColor.RED + "Usage : /city team fire <joueur>");
                         return false;
                     }
                     if (!player.equals(team.getLeader())) {
@@ -463,7 +462,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 default:
-                    player.sendMessage(ChatColor.RED + "Usage : /city team <add | clear | color | create | disband | leave | members | marianne | remove | rename> <player | teamname>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city team <clear | color | create | disband | fire |hire | leave | members | marianne | rename> <player | teamname>");
                     return false;
             }
         }

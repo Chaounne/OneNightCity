@@ -44,11 +44,11 @@ public class Completer implements TabCompleter {
             argumentsTeams.add("clear");
             argumentsTeams.add("create");
             argumentsTeams.add("disband");
+            argumentsTeams.add("fire");
             argumentsTeams.add("hire");
             argumentsTeams.add("leave");
             argumentsTeams.add("members");
             argumentsTeams.add("marianne");
-            argumentsTeams.add("remove");
             argumentsTeams.add("rename");
         }
 
