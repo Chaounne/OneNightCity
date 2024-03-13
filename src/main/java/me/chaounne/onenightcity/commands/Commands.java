@@ -29,7 +29,7 @@ public class Commands implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.RED + "/city <chest | entity | pouder | start | stop | team>");
+            player.sendMessage(ChatColor.RED + "/city <chest | entity | powder | start | stop | team>");
             return false;
         }
 
@@ -625,19 +625,19 @@ public class Commands implements CommandExecutor {
                     return false;
             }
         }
-        else if (subCommand.equals("pouder")) {
+        else if (subCommand.equals("powder")) {
             if (!player.isOp()) {
                 player.sendMessage(ChatColor.RED + "Vous n'êtes pas autorisé à faire cela !");
                 return true;
             }
             if (args.length == 1) {
-                player.sendMessage(ChatColor.RED + "Usage : /city pouder <give | remove>");
+                player.sendMessage(ChatColor.RED + "Usage : /city powder <give | remove> <player> <amount>");
                 return true;
             }
-            String pouderCommand = args[1];
-            if (pouderCommand.equals("give")) {
+            String powderCommand = args[1];
+            if (powderCommand.equals("give")) {
                 if (args.length <= 3) {
-                    player.sendMessage(ChatColor.RED + "Usage : /city pouder give <player> <amount>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city powder give <player> <amount>");
                     return true;
                 }
                 Player playerToGive = player.getServer().getPlayer(args[2]);
@@ -665,9 +665,9 @@ public class Commands implements CommandExecutor {
                 player.sendMessage(ChatColor.GREEN + "Vous avez donné " + amount + " poudre à " + playerToGive.getName() + " !");
                 playerToGive.sendMessage(ChatColor.GREEN + "Vous avez reçu " + amount + " poudre de la part de " + player.getName() + " !");
                 return true;
-            } else if (pouderCommand.equals("remove")) {
+            } else if (powderCommand.equals("remove")) {
                 if (args.length <= 3) {
-                    player.sendMessage(ChatColor.RED + "Usage : /city pouder remove <player> <amount>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city powder remove <player> <amount>");
                     return true;
                 }
                 Player playerToRemove = player.getServer().getPlayer(args[2]);
@@ -696,7 +696,7 @@ public class Commands implements CommandExecutor {
                 playerToRemove.sendMessage(ChatColor.RED + "Vous avez perdu " + amount + " poudre de la part de " + player.getName() + " !");
                 return true;
             } else {
-                player.sendMessage(ChatColor.RED + "Usage : /city pouder <give | remove>");
+                player.sendMessage(ChatColor.RED + "Usage : /city powder <give | remove> <player> <amount>");
                 return true;
             }
         }

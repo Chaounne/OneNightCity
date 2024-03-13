@@ -24,7 +24,7 @@ public class Completer implements TabCompleter {
         if (argumentsCity.isEmpty()) {
             argumentsCity.add("chest");
             argumentsCity.add("entity");
-            argumentsCity.add("pouder");
+            argumentsCity.add("powder");
             argumentsCity.add("start");
             argumentsCity.add("stop");
             argumentsCity.add("team");
@@ -89,7 +89,7 @@ public class Completer implements TabCompleter {
                         result.add(a);
                 }
                 return result;
-            } else if (args[0].equalsIgnoreCase("pouder")) {
+            } else if (args[0].equalsIgnoreCase("powder")) {
                 for (String a : argumentsPouder) {
                     if (a.toLowerCase().startsWith(args[1].toLowerCase()))
                         result.add(a);
