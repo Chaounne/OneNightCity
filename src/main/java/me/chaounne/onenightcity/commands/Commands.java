@@ -36,6 +36,10 @@ public class Commands implements CommandExecutor {
         ONCGame game = ONCGame.getInstance();
         String subCommand = args[0];
         if (subCommand.equals("chest")) {
+            if (!(sender.isOp())) {
+                sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
+                return false;
+            }
             Location playerLocation = player.getLocation();
             GenerateChest.spawnChest(playerLocation);
             player.sendMessage("Coffre placé");
@@ -103,7 +107,7 @@ public class Commands implements CommandExecutor {
         }
         else if (subCommand.equals("stop")) {
             if (!(sender.isOp())) {
-                sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter les commandes OneNightCity !");
+                sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande.");
                 return false;
             }
             if (!game.hasStarted()) {
@@ -348,6 +352,10 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "marianne":
+                    if (!(sender.isOp())) {
+                        sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
+                        return false;
+                    }
                     if (args.length == 2) {
                         player.sendMessage(ChatColor.RED + "Usage : /city team marianne <team_amount>");
                         return false;
@@ -413,7 +421,10 @@ public class Commands implements CommandExecutor {
                     player.sendMessage(ChatColor.GREEN + "Les équipes sont créées !");
                     return true;
                 case "purge":
-                    // TODO un nom OP ne devrait pas pouvoir faire ça
+                    if (!(sender.isOp())) {
+                        sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
+                        return false;
+                    }
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         GamePlayer gp = GamePlayer.getInstance(p);
                         Team team = gp.getTeam();
@@ -472,6 +483,10 @@ public class Commands implements CommandExecutor {
             }
         }
         else if (subCommand.equals("entity")) {
+            if (!(sender.isOp())) {
+                sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
+                return false;
+            }
             if (args.length == 1) {
                 player.sendMessage(ChatColor.RED+"Usage : /city entity <henry | ??>");
                 return false;
@@ -626,9 +641,9 @@ public class Commands implements CommandExecutor {
             }
         }
         else if (subCommand.equals("powder")) {
-            if (!player.isOp()) {
-                player.sendMessage(ChatColor.RED + "Vous n'êtes pas autorisé à faire cela !");
-                return true;
+            if (!(sender.isOp())) {
+                sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
+                return false;
             }
             if (args.length == 1) {
                 player.sendMessage(ChatColor.RED + "Usage : /city powder <give | remove> <player> <amount>");
