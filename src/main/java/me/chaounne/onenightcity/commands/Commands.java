@@ -418,7 +418,7 @@ public class Commands implements CommandExecutor {
                         teamIndex++;
                         if (teamIndex >= nbTeam) teamIndex = 0;
                     }
-                    player.sendMessage(ChatColor.GREEN + "Les équipes sont créées !");
+                    Bukkit.broadcastMessage(ChatColor.GREEN + "Chaque jouer a été attribuer à une équipe aléatoire !");
                     return true;
                 case "purge":
                     if (!(sender.isOp())) {
@@ -436,7 +436,7 @@ public class Commands implements CommandExecutor {
                                 game.removeTeam(team);
                             }
                         }
-                        player.sendMessage(ChatColor.GOLD + "Toutes les équipes ont été supprimées.");
+                        Bukkit.broadcastMessage(ChatColor.GOLD + "Toutes les équipes ont été supprimées.");
                     }
                     return true;
                 case "leave": {
