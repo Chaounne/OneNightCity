@@ -64,6 +64,9 @@ public class Commands implements CommandExecutor {
                 return false;
             }
 
+            World world = Bukkit.getWorlds().get(0);
+            world.setGameRule(GameRule.FALL_DAMAGE, true);
+
             game.startGame();
 
             HenryEntity.getEntity(new Location(Bukkit.getWorld("world"), -25 , 69, -62));
@@ -107,6 +110,10 @@ public class Commands implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "Le jeu n'a pas démarré !");
                 return false;
             }
+
+            World world = Bukkit.getWorlds().get(0);
+            world.setGameRule(GameRule.FALL_DAMAGE, false);
+
             game.endGame();
             return true;
         }
