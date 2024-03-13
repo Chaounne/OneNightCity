@@ -13,7 +13,7 @@ public class Completer implements TabCompleter {
 
     private final List<String> argumentsEntity = new ArrayList<>();
 
-    private final List<String> argumentsPoudre = new ArrayList<>();
+    private final List<String> argumentsPouder = new ArrayList<>();
 
     private final List<String> argumentsTeams = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class Completer implements TabCompleter {
         if (argumentsCity.isEmpty()) {
             argumentsCity.add("chest");
             argumentsCity.add("entity");
-            argumentsCity.add("poudre");
+            argumentsCity.add("pouder");
             argumentsCity.add("start");
             argumentsCity.add("stop");
             argumentsCity.add("team");
@@ -34,9 +34,9 @@ public class Completer implements TabCompleter {
             argumentsEntity.add("spawn");
         }
 
-        if (argumentsPoudre.isEmpty()) {
-            argumentsPoudre.add("give");
-            argumentsPoudre.add("remove");
+        if (argumentsPouder.isEmpty()) {
+            argumentsPouder.add("give");
+            argumentsPouder.add("remove");
         }
 
         if (argumentsTeams.isEmpty()) {
@@ -89,8 +89,8 @@ public class Completer implements TabCompleter {
                         result.add(a);
                 }
                 return result;
-            } else if (args[0].equalsIgnoreCase("poudre")) {
-                for (String a : argumentsPoudre) {
+            } else if (args[0].equalsIgnoreCase("pouder")) {
+                for (String a : argumentsPouder) {
                     if (a.toLowerCase().startsWith(args[1].toLowerCase()))
                         result.add(a);
                 }
