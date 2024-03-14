@@ -40,10 +40,6 @@ public class GamePlayer {
         this.team = team;
     }
 
-    public void removeTeam() {
-        this.team = null;
-    }
-
     public int getScore() {
         return score;
     }

@@ -62,6 +62,7 @@ public class Team {
     public void removePlayer(Player player) {
         if(leader == player)
             leader = null;
+        GamePlayer.getInstance(player).setTeam(null);
         players.remove(player);
         scoreboardTeam.removeEntry(player.getName());
     }

@@ -264,7 +264,7 @@ public class Commands implements CommandExecutor {
                         Player p = iterator.next();
                         p.sendMessage(ChatColor.RED + "Votre équipe a été dissoute !");
                         iterator.remove(); // Utiliser l'itérateur pour supprimer l'élément
-                        GamePlayer.getInstance(p).removeTeam();
+                        GamePlayer.getInstance(p).setTeam(null);
                         game.removePlayer(GamePlayer.getInstance(p));
                         // Supprimer l'équipe dissoute
                         game.removeTeam(team);
@@ -345,7 +345,6 @@ public class Commands implements CommandExecutor {
                     }
                     // supprimer le joueur de l'équipe
                     GamePlayer.getInstance(playerARemove).getTeam().removePlayer(playerARemove);
-                    GamePlayer.getInstance(playerARemove).removeTeam();
                     game.removePlayer(GamePlayer.getInstance(playerARemove));
                     player.sendMessage(ChatColor.GREEN + "Joueur " + playerARemove.getName() + " supprimé de votre équipe !");
                     playerARemove.sendMessage(ChatColor.GREEN + "Vous avez été supprimé de " + team.getName() + " !");
@@ -382,10 +381,10 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     for (Player p : players) {
-                        if (GamePlayer.getInstance(p).getTeam() != null) {
-                            // TODO remove la team des ses gens serait mieux imo
-                            player.sendMessage(ChatColor.RED + "Certains joueurs sont déja dans des équipes !");
-                            return false;
+                        // TODO remove la team des ses gens serait mieux imo
+                        Team team = GamePlayer.getInstance(p).getTeam();
+                        if (team != null) {
+                            team.reset();
                         }
                     }
 
@@ -430,7 +429,6 @@ public class Commands implements CommandExecutor {
                         Team team = gp.getTeam();
                         if (team != null) {
                             team.reset();
-                            gp.removeTeam();
                             game.removePlayer(gp);
                             if (team.getPlayers().isEmpty()) {
                                 game.removeTeam(team);
@@ -446,10 +444,7 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
                     }
-
                     team.reset();
-
-                    gamePlayer.removeTeam();
                     game.removePlayer(gamePlayer);
                     if (team.getPlayers().isEmpty()) {
                         game.removeTeam(team);
