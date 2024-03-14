@@ -128,7 +128,6 @@ public class Commands implements CommandExecutor {
             }
             String teamCommand = args[1];
             switch (teamCommand) {
-                // TODO mettre dans l'ordre alphabétique
                 case "color": {
                     if (GamePlayer.getInstance(player).getTeam() == null) {
                         player.sendMessage(ChatColor.RED + "Vous devez etre dans une team !");
