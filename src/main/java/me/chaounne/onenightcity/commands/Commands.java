@@ -381,7 +381,6 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     for (Player p : players) {
-                        // TODO remove la team des ses gens serait mieux imo
                         Team team = GamePlayer.getInstance(p).getTeam();
                         if (team != null) {
                             team.reset();
