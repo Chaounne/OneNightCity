@@ -401,6 +401,7 @@ public class Commands implements CommandExecutor {
                         team.setLeader(teamLeader);
                         unassignedPlayers.remove(teamLeader);
                         GamePlayer.getInstance(teamLeader).setTeam(team);
+                        game.addPlayer(GamePlayer.getInstance(teamLeader));
                         team.getScoreboardTeam().setPrefix(team.getColor() + "[" + team.getName() + "] ");
                         team.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
                     }
@@ -410,6 +411,7 @@ public class Commands implements CommandExecutor {
                         teams[teamIndex].addPlayer(toAssign);
                         unassignedPlayers.remove(toAssign);
                         GamePlayer.getInstance(toAssign).setTeam(teams[teamIndex]);
+                        game.addPlayer(GamePlayer.getInstance(toAssign));
                         teams[teamIndex].getScoreboardTeam().setPrefix(teams[teamIndex].getColor() + "[" + teams[teamIndex].getName() + "] ");
                         teams[teamIndex].getScoreboardTeam().setSuffix(ChatColor.RESET + "");
                         teamIndex++;
