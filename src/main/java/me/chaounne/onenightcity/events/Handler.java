@@ -66,51 +66,23 @@ public class Handler implements Listener {
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 } else {
                     player.playSound(player.getLocation(), Sound.ENCHANT_THORNS_HIT, 1.0f, 1.0f);
-
                     this.cancel(); // Arrêter le compte à rebours une fois qu'il atteint 0
                     // Vous pouvez ajouter d'autres actions ici si nécessaire
                 }
             }
-
         }.runTaskTimer(OneNightCity.getInstance(), 0L, 20L);
 
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
 
         if (playerDeathStatus.getOrDefault(player, false)) {
-
-
-            if (player.getWorld().getEnvironment() == World.Environment.THE_END) {
-
-                Location bedSpawnPoint = player.getBedSpawnLocation();
-                if (bedSpawnPoint == null) {
-                    // Le point de spawn du lit est indéfini, fixer à (0, 70, 0) par défaut
-                    World world = Bukkit.getWorlds().get(0); // Obtient le premier monde chargé sur le serveur
-                    Location newSpawnPoint = new Location(world, 0, 70, 0);
-                    event.setRespawnLocation(newSpawnPoint);
-                }
-            } else {
-                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
-                Location bedSpawnPoint = null;
-                try {
-                    bedSpawnPoint = player.getBedSpawnLocation();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                 }
-                if (bedSpawnPoint == null) {
-                    // Le point de spawn du lit est indéfini, fixer à (0, 70, 0) par défaut
-                    World world = player.getWorld();
-                    Location newSpawnPoint = new Location(world, 0, 70, 0);
-                    event.setRespawnLocation(newSpawnPoint);
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
-
-                }
+            // marche aussi avec le respawn anchor
+            Location bedSpawnPoint = player.getBedSpawnLocation();
+            if (bedSpawnPoint == null) {
+                World overworld = Bukkit.getWorlds().get(0);
+                event.setRespawnLocation(new Location(overworld, 0, 70, 0));
             }
-            // Si le joueur est marqué comme mort, effectuez les actions nécessaires
-            playerDeathStatus.put(player, false); // Réinitialise le statut de mort du joueur
-
-        player.getInventory().clear(); // On vide l'inventaire du joueur
-        player.getInventory().setArmorContents(null); // On retire l'armure du joueur
+            playerDeathStatus.put(player, false);
+            player.getInventory().clear();
             ItemStack ironSword = new ItemStack(Material.IRON_SWORD);
             ironSword.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             player.getInventory().addItem(ironSword);
@@ -126,6 +98,7 @@ public class Handler implements Listener {
             leggings.addEnchantment(Enchantment.VANISHING_CURSE, 1);
             ItemStack boots = new ItemStack(Material.IRON_BOOTS);
             boots.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            player.setFireTicks(0);
             player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 3));
 
             ItemStack[] armorContents = {
@@ -135,11 +108,7 @@ public class Handler implements Listener {
                     helmet
             };
             player.getInventory().setArmorContents(armorContents);
-
-
         }
-
-
     }
 
     @EventHandler
@@ -195,18 +164,14 @@ public class Handler implements Listener {
 
         Player killer = player.getKiller();
 
-        if (killer instanceof Player) {
+        if (killer != null) {
             GamePlayer killerGamePlayer = GamePlayer.getInstance(killer);
-
-            // Add 200 poudres to the killer
             killerGamePlayer.getTeam().addScore(500);
             killerGamePlayer.addScore(500);
-
-            killer.sendMessage(ChatColor.GOLD + "Vous avez gagné 500 poudres pour avoir tué " + ChatColor.GOLD+player.getName() + " !");
+            killer.sendMessage(ChatColor.GOLD + "Vous avez gagné 500 poudres pour avoir tué " + ChatColor.GOLD + player.getName() + " !");
         }
 
         playerDeathStatus.put(player, true);
-        // si le joueur n'a pas de getBedSpawnLocation(), il est tp au 0,0
     }
 
     @EventHandler
