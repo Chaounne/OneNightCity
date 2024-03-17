@@ -145,7 +145,6 @@ public final class OneNightCity extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // À NE PAS ACTIVER QUAND ON LANCERA L'EVENT
         Bukkit.getScoreboardManager().getMainScoreboard().getTeams().forEach(Team::unregister);
     }
 
