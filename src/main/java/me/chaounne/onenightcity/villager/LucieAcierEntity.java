@@ -183,9 +183,9 @@ public class LucieAcierEntity {
         amount = (int) (Math.random() * 5) + 1;
         price = (int) (Math.random() * 40) + 10;
         sampleInventory.addItem(new ItemBuilder(Material.QUARTZ).amount(amount).addLore(price + " Poudres").build(), 6, price);
-        //NETHER_BRICK (amount 1-10, price 10-40)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 40) + 10;
+        //NETHER_BRICK (amount 2-3, price 15-20)
+        amount = (int) (Math.random() * 2) + 2;
+        price = (int) (Math.random() * 6) + 15;
         sampleInventory.addItem(new ItemBuilder(Material.NETHER_BRICK).amount(amount).addLore(price + " Poudres").build(), 7, price);
         //NETHER_BRICK_FENCE (amount 1-10, price 10-40)
         amount = (int) (Math.random() * 10) + 1;
