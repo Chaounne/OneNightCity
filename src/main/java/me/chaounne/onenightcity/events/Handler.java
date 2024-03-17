@@ -47,7 +47,7 @@ public class Handler implements Listener {
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
         if (!ONCGame.getInstance().hasStarted()) {
-            event.setRespawnLocation(new Location(player.getWorld(), 122, 155, -40));
+            event.setRespawnLocation(new Location(Bukkit.getWorlds().get(0), 122, 154, -39));
             return;
         }
         new BukkitRunnable() {
@@ -193,16 +193,10 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         if(!ONCGame.getInstance().hasStarted()){
-            Player player = event.getPlayer(); // Récupérer le joueur qui rejoint
-            World overworld = Bukkit.getWorld("world"); // Make sure "world" is the name of your overworld
-
-            // Téléporter le joueur en 0 70 0
-            player.getPlayer().teleport(new Location(overworld,122,154,-39));
-
-            // Mettre le joueur en mode aventure (gamemode adventure)
+            Player player = event.getPlayer();
+            World overworld = Bukkit.getWorlds().get(0);
+            player.getPlayer().teleport(new Location(overworld, 122, 154, -39));
             player.setGameMode(GameMode.ADVENTURE);
-
-            // Vider l'inventaire du joueur
             PlayerInventory playerInventory = player.getInventory();
             playerInventory.clear();
 

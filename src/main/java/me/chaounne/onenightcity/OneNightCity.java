@@ -111,7 +111,7 @@ public final class OneNightCity extends JavaPlugin {
         getServer().getPluginManager().registerEvents(jumpHandler, this);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.teleport(new Location(player.getWorld(), 121, 154, -40));
+            player.teleport(new Location(Bukkit.getWorlds().get(0), 122, 154, -39));
             player.setGameMode(GameMode.ADVENTURE);
             player.getInventory().clear();
             player.updateInventory();

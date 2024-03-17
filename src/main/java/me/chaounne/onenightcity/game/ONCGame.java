@@ -418,7 +418,7 @@ public class ONCGame implements Listener {
             player.setLevel(0);
 
             // Créer un feu d'artifice près de la localisation spécifiée
-            Location fireworkLocation = new Location(player.getWorld(), 122, 154, -39);
+            Location fireworkLocation = new Location(overworld, 122, 154, -39);
 
             Firework firework = player.getWorld().spawn(fireworkLocation, Firework.class);
             FireworkMeta fireworkMeta = firework.getFireworkMeta();

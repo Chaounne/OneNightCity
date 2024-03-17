@@ -76,7 +76,7 @@ public class JumpManager {
         this.removeRestartEmerald();
         this.hasWool = false;
         this.hasEmerald = false;
-        this.player.teleport(new Location(Bukkit.getWorlds().get(0), 122, 154, -40));
+        this.player.teleport(new Location(Bukkit.getWorlds().get(0), 122, 154, -39));
     }
 
     public void finish() {
