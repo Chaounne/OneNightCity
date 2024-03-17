@@ -70,6 +70,7 @@ public class Commands implements CommandExecutor {
 
             World world = Bukkit.getWorlds().get(0);
             world.setGameRule(GameRule.FALL_DAMAGE, true);
+            world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 
             game.startGame();
 
@@ -114,9 +115,6 @@ public class Commands implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "Le jeu n'a pas démarré !");
                 return false;
             }
-
-            World world = Bukkit.getWorlds().get(0);
-            world.setGameRule(GameRule.FALL_DAMAGE, false);
 
             game.endGame();
             return true;

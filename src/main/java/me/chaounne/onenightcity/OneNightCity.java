@@ -33,6 +33,8 @@ public final class OneNightCity extends JavaPlugin {
 
         World world = Bukkit.getWorlds().get(0);
         world.setGameRule(GameRule.FALL_DAMAGE, false);
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        world.setTime(0);
 
         // supprime les villageois à 100 blocks de rayon du spawn
         for (Entity entity : world.getEntities()) {

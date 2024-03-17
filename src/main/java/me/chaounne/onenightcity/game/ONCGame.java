@@ -407,6 +407,10 @@ public class ONCGame implements Listener {
         if (timer != null) timer.cancel();
         World overworld = Bukkit.getWorlds().get(0);
 
+        overworld.setGameRule(GameRule.FALL_DAMAGE, false);
+        overworld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        overworld.setTime(0);
+
         for (Player player : Bukkit.getOnlinePlayers()) {
 
             player.getPlayer().teleport(new Location(overworld,122,154,-39));
