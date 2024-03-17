@@ -149,10 +149,6 @@ public class JustinPuechEntity {
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
         sampleInventory.addItem(new ItemBuilder(Material.COOKED_COD).amount(amount).addLore(price + " Poudres").build(), 3, price);
-        //SALMON (amount 1-3, price 10-50)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        sampleInventory.addItem(new ItemBuilder(Material.COOKED_SALMON).amount(amount).addLore(price + " Poudres").build(), 4, price);
         //TROPICAL_FISH (amount 2-3, price 150-200)
         amount = (int) (Math.random() * 2) + 2;
         price = (int) (Math.random() * 51) + 150;
