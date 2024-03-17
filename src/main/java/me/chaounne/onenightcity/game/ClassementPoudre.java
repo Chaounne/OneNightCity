@@ -16,8 +16,8 @@ public class ClassementPoudre {
 
     public static void showScoreboard() {
         // Trier les équipes par score décroissant
-        ArrayList<Team> teams = game.getTeams();
-        teams.sort(Comparator.comparingInt(Team::getScore).reversed());
+        ArrayList<GameTeam> teams = game.getTeams();
+        teams.sort(Comparator.comparingInt(GameTeam::getScore).reversed());
         DHAPI.removeHologram("Classement");
 
         // Créer un hologramme pour afficher le classement

@@ -3,10 +3,11 @@ package me.chaounne.onenightcity.game;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 import java.util.ArrayList;
 
-public class Team {
+public class GameTeam {
 
     private final ArrayList<Player> players;
 
@@ -14,13 +15,13 @@ public class Team {
 
     private String name;
 
-    private final org.bukkit.scoreboard.Team scoreboardTeam;
+    private final Team scoreboardTeam;
 
     private Player leader;
 
     private ChatColor color;
 
-    public Team(String name) {
+    public GameTeam(String name) {
         players = new ArrayList<>();
         score = 0;
         this.name = name;

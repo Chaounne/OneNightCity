@@ -1,9 +1,9 @@
 package me.chaounne.onenightcity.commands;
 
 import me.chaounne.onenightcity.game.GamePlayer;
+import me.chaounne.onenightcity.game.GameTeam;
 import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
-import me.chaounne.onenightcity.game.Team;
 import me.chaounne.onenightcity.utils.ColorHelper;
 import me.chaounne.onenightcity.utils.RandomFromList;
 import me.chaounne.onenightcity.villager.*;
@@ -47,7 +47,7 @@ public class Commands implements CommandExecutor {
         else if (subCommand.equals("start")) {
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
 
-            Team team = gamePlayer.getTeam();
+            GameTeam team = gamePlayer.getTeam();
             if (team != null && team.getPlayers().isEmpty()) {
                 game.removeTeam(team);
             }
@@ -133,7 +133,7 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Vous devez etre dans une team !");
                         return false;
                     }
-                    Team team = GamePlayer.getInstance(player).getTeam();
+                    GameTeam team = GamePlayer.getInstance(player).getTeam();
                     if (args.length == 2) {
                         player.sendMessage(ChatColor.RED + "Usage : /city team color <COLOR>");
                         return false;
@@ -177,7 +177,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
 
-                    Team playerTeam = GamePlayer.getInstance(player).getTeam();
+                    GameTeam playerTeam = GamePlayer.getInstance(player).getTeam();
                     if (args.length == 2) {
                         player.sendMessage(ChatColor.RED + "Usage : /city team rename <newname>");
                         return false;
@@ -189,7 +189,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
 
-                    for (Team team : game.getTeams()) {
+                    for (GameTeam team : game.getTeams()) {
                         if (team.getName().equals(teamName)) {
                             player.sendMessage(ChatColor.RED + "L'équipe " + teamName + " existe déjà !");
                             return false;
@@ -203,7 +203,7 @@ public class Commands implements CommandExecutor {
                     break;
                 }
                 case "hire": {
-                    Team team = GamePlayer.getInstance(player).getTeam();
+                    GameTeam team = GamePlayer.getInstance(player).getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
@@ -235,7 +235,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "disband": {
-                    Team team = GamePlayer.getInstance(player).getTeam();
+                    GameTeam team = GamePlayer.getInstance(player).getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
@@ -246,7 +246,7 @@ public class Commands implements CommandExecutor {
                     }
                     if (sender.isOp() && args.length > 2) {
                         String teamName = args[2];
-                        for (Team t : game.getTeams()) {
+                        for (GameTeam t : game.getTeams()) {
                             if (t.getName().equals(teamName)) {
                                 team = t;
                                 break;
@@ -291,14 +291,14 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Vous êtes déjà dans une équipe !");
                         return false;
                     }
-                    for (Team team : game.getTeams()) {
+                    for (GameTeam team : game.getTeams()) {
                         if (team.getName().equals(teamName)) {
                             player.sendMessage(ChatColor.RED + "L'équipe " + teamName + " existe déjà !");
                             return false;
                         }
                     }
                     // créer une nouvelle équipe
-                    Team team = new Team(teamName);
+                    GameTeam team = new GameTeam(teamName);
                     game.addTeam(team);
                     team.addPlayer(player);
                     team.setLeader(player);
@@ -327,7 +327,7 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
                     }
-                    Team team = GamePlayer.getInstance(player).getTeam();
+                    GameTeam team = GamePlayer.getInstance(player).getTeam();
                     if (args.length == 2) {
                         player.sendMessage(ChatColor.RED + "Usage : /city team fire <joueur>");
                         return false;
@@ -380,7 +380,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     for (Player p : players) {
-                        Team team = GamePlayer.getInstance(p).getTeam();
+                        GameTeam team = GamePlayer.getInstance(p).getTeam();
                         if (team != null) {
                             team.reset();
                         }
@@ -388,10 +388,10 @@ public class Commands implements CommandExecutor {
 
                     List<Player> unassignedPlayers = new ArrayList<>(players);
 
-                    Team[] teams = new Team[nbTeam];
+                    GameTeam[] teams = new GameTeam[nbTeam];
                     // création des équipes
                     for (int i = 0; i < nbTeam; i++) {
-                        Team team = new Team("~Xx" + (i + 1) + "xX~");
+                        GameTeam team = new GameTeam("~Xx" + (i + 1) + "xX~");
                         game.addTeam(team);
                         teams[i] = team;
                         team.setColor(ColorHelper.getRandomChatColor());
@@ -426,7 +426,7 @@ public class Commands implements CommandExecutor {
                     }
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         GamePlayer gp = GamePlayer.getInstance(p);
-                        Team team = gp.getTeam();
+                        GameTeam team = gp.getTeam();
                         if (team != null) {
                             team.reset();
                             game.removePlayer(gp);
@@ -439,7 +439,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 case "leave": {
                     GamePlayer gamePlayer = GamePlayer.getInstance(player);
-                    Team team = gamePlayer.getTeam();
+                    GameTeam team = gamePlayer.getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
@@ -457,7 +457,7 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Aucune équipe !");
                         return false;
                     }
-                    Team team = GamePlayer.getInstance(player).getTeam();
+                    GameTeam team = GamePlayer.getInstance(player).getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;

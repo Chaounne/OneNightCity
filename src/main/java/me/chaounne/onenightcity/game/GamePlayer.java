@@ -12,7 +12,7 @@ public class GamePlayer {
 
     private final Player player;
 
-    private Team team;
+    private GameTeam team;
 
     private int score;
 
@@ -32,11 +32,11 @@ public class GamePlayer {
         return player;
     }
 
-    public Team getTeam() {
+    public GameTeam getTeam() {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void setTeam(GameTeam team) {
         this.team = team;
     }
 

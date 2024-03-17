@@ -23,7 +23,7 @@ import java.util.*;
 
 public class ONCGame implements Listener {
 
-    private final ArrayList<Team> teams = new ArrayList<>();
+    private final ArrayList<GameTeam> teams = new ArrayList<>();
 
     private final List<GamePlayer> players = new ArrayList<>();
 
@@ -57,15 +57,15 @@ public class ONCGame implements Listener {
         players.remove(player);
     }
 
-    public void addTeam(Team team){
+    public void addTeam(GameTeam team){
         teams.add(team);
     }
 
-    public void removeTeam(Team team){
+    public void removeTeam(GameTeam team){
         teams.remove(team);
     }
 
-    public ArrayList<Team> getTeams(){
+    public ArrayList<GameTeam> getTeams(){
         return teams;
     }
 
@@ -453,19 +453,19 @@ public class ONCGame implements Listener {
         }
 
         // Calcul des points de chaque équipe
-        Map<Team, Integer> teamScores = new HashMap<>();
+        Map<GameTeam, Integer> teamScores = new HashMap<>();
         for (Player player : Bukkit.getOnlinePlayers()) {
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
-            Team playerTeam = gamePlayer.getTeam();
+            GameTeam playerTeam = gamePlayer.getTeam();
             int playerScore = gamePlayer.getScore();
             teamScores.put(playerTeam, teamScores.getOrDefault(playerTeam, 0) + playerScore);
         }
 
 // Vérifier s'il y a un gagnant ou une égalité
         boolean hasWinner = false;
-        Team winningTeam = null;
+        GameTeam winningTeam = null;
         int maxScore = 0;
-        for (Map.Entry<Team, Integer> entry : teamScores.entrySet()) {
+        for (Map.Entry<GameTeam, Integer> entry : teamScores.entrySet()) {
             int score = entry.getValue();
             if (score > maxScore) {
                 maxScore = score;
@@ -497,7 +497,7 @@ public class ONCGame implements Listener {
                 } }
         }
 
-        for (Team team : teams) {
+        for (GameTeam team : teams) {
             team.reset();
         }
         teams.clear();
@@ -506,7 +506,7 @@ public class ONCGame implements Listener {
     }
 
     public void resetTeams(){
-        for (Team team : teams)
+        for (GameTeam team : teams)
             team.reset();
         teams.clear();
         players.clear();
