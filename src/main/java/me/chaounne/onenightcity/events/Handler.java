@@ -436,49 +436,24 @@ public class Handler implements Listener {
     // bouffe déjà cuite
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event){
-        Entity entity = event.getEntity();
-        if (entity instanceof Pig){
-            for (ItemStack item : event.getDrops()) {
-                if(item.getType().equals(Material.PORKCHOP)){
-                    item.setType(Material.COOKED_PORKCHOP);
-                }
-            }
-        } else if(entity instanceof Cow){
-            for (ItemStack item : event.getDrops()) {
-                if(item.getType().equals(Material.BEEF)){
-                    item.setType(Material.COOKED_BEEF);
-                }
-            }
-        } else if (entity instanceof Sheep){
-            for (ItemStack item : event.getDrops()) {
-                if(item.getType().equals(Material.MUTTON)){
-                    item.setType(Material.COOKED_MUTTON);
-                }
-            }
-        } else if (entity instanceof Chicken){
-            for (ItemStack item : event.getDrops()) {
-                if(item.getType().equals(Material.CHICKEN)){
-                    item.setType(Material.COOKED_CHICKEN);
-                }
-            }
-        } else if(entity instanceof Rabbit){
-            for (ItemStack item : event.getDrops()) {
-                if(item.getType().equals(Material.RABBIT)){
-                    item.setType(Material.COOKED_RABBIT);
-                }
-            }
-        } else if(entity instanceof Salmon){
-            for (ItemStack item : event.getDrops()) {
-                if(item.getType().equals(Material.SALMON)){
-                    item.setType(Material.COOKED_SALMON);
-                }
-            }
-        } else if(entity instanceof Cod){
-            for (ItemStack item : event.getDrops()) {
-                if(item.getType().equals(Material.COD)){
-                    item.setType(Material.COOKED_COD);
-                }
-            }
+        if (event.getEntity() instanceof Player)
+            return;
+
+        for (ItemStack item : event.getDrops()) {
+            if (item.getType().equals(Material.BEEF))
+                item.setType(Material.COOKED_BEEF);
+            else if (item.getType().equals(Material.CHICKEN))
+                item.setType(Material.COOKED_CHICKEN);
+            else if (item.getType().equals(Material.COD))
+                item.setType(Material.COOKED_COD);
+            else if (item.getType().equals(Material.MUTTON))
+                item.setType(Material.COOKED_MUTTON);
+            else if (item.getType().equals(Material.RABBIT))
+                item.setType(Material.COOKED_RABBIT);
+            else if (item.getType().equals(Material.SALMON))
+                item.setType(Material.COOKED_SALMON);
+            else if (item.getType().equals(Material.PORKCHOP))
+                item.setType(Material.COOKED_PORKCHOP);
         }
     }
 
