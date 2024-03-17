@@ -38,15 +38,13 @@ public class ONCGame implements Listener {
 
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
-    private ONCGame(){
+    private ONCGame() {
         Bukkit.getPluginManager().registerEvents(this, OneNightCity.getInstance());
+        instance = this;
     }
 
-    public static ONCGame getInstance(){
-        if(instance==null){
-            instance = new ONCGame();
-        }
-        return instance;
+    public static ONCGame getInstance() {
+        return instance == null ? new ONCGame() : instance;
     }
 
     public void addPlayer(GamePlayer player){
@@ -165,7 +163,7 @@ public class ONCGame implements Listener {
         timer = new BukkitRunnable() {
             @Override
             public void run() {
-                World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
+                World world = Bukkit.getWorlds().get(0);
 
                 if (time > 10750) {// Pour supprimer darkHenry le cas ou il spawn
                     for (Entity entity : world.getEntities()) {
@@ -183,22 +181,37 @@ public class ONCGame implements Listener {
 
                 }
                 if (time==7200) { // au bout d'une heure
-                    Location[] locations = new Location[]{
-                            new Location(Bukkit.getWorld("world"), 2, 64, 7),
-                            new Location(Bukkit.getWorld("world"), 2, 63, 7),
-                            new Location(Bukkit.getWorld("world"), 2, 62, 7),
-                            new Location(Bukkit.getWorld("world"), 1, 64, 7),
-                            new Location(Bukkit.getWorld("world"), 1, 63, 7),
-                            new Location(Bukkit.getWorld("world"), 1, 62, 7)
+                    Location[] endGateBlocks = new Location[] {
+                            new Location(world, 2, 64, 7),
+                            new Location(world, 2, 63, 7),
+                            new Location(world, 2, 62, 7),
+                            new Location(world, 1, 64, 7),
+                            new Location(world, 1, 63, 7),
+                            new Location(world, 1, 62, 7)
                     };
-                    for(Player player: Bukkit.getOnlinePlayers()){
-                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 10 000"+ChatColor.DARK_PURPLE+" points");
-                    }
-                    for (Location location : locations) {
+                    for (Location location : endGateBlocks) {
                         Block block = location.getBlock();
                         if (block.getType() != Material.AIR) {
                             block.breakNaturally();
                         }
+                    }
+                    Location[] endChests = new Location[] {
+                            new Location(world, -8, 54, 16),
+                            new Location(world, -5, 54, 11),
+                            new Location(world, -14, 52, 8),
+                            new Location(world, -21, 52, 13),
+                            new Location(world, -20, 52, 9),
+                            new Location(world, -4, 54, 20),
+                            new Location(world, -9, 54, 28),
+                            new Location(world, -16, 54, 23),
+                            new Location(world, -19, 54, 15),
+                            new Location(world, 1, 54, 26),
+                    };
+                    for (Location location : endChests) {
+                        GenerateChest.spawnEndChest(location);
+                    }
+                    for(Player player: Bukkit.getOnlinePlayers()){
+                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 10 000"+ChatColor.DARK_PURPLE+" points");
                     }
                 }
 
@@ -234,11 +247,10 @@ public class ONCGame implements Listener {
         //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
 
         EventGame.LancerConcours();
-        EventGame.revealPlayerPositions(); // Appel de la méthode statique
+        EventGame.revealPlayerPositions();
         createDark();
         GenerateChest.spawnCoffre();
         for (Player player : Bukkit.getOnlinePlayers()) {
-
             player.getPlayer().getInventory().clear();
             FastBoard board = new FastBoard(player);
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
@@ -269,7 +281,7 @@ public class ONCGame implements Listener {
             };
             player.getInventory().setArmorContents(armorContents);
         }
-        World world = Bukkit.getWorlds().get(0); // Récupère le premier monde de la liste
+        World world = Bukkit.getWorlds().get(0);
         world.setPVP(false);
         List<Player> playersWithEgg = new ArrayList<>();
         timer = new BukkitRunnable() {
@@ -301,7 +313,6 @@ public class ONCGame implements Listener {
                             playersWithEgg.add(player);
                         }
                     }
-
                 }
                 if(time==10200) {// Temps au bout de 10 min de jeu
                     world.setPVP(true);
@@ -492,6 +503,8 @@ public class ONCGame implements Listener {
         teams.clear();
         players.clear();
         if (hasStarted) hasStarted = false;
+
+        time = 3 * 60 * 60;
     }
 
     public void resetTeams(){

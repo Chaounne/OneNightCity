@@ -23,59 +23,22 @@ public class GenerateChest implements Listener {
 
     private static String message;
 
-    public static void spawnChest(Location location) {
+    public static void spawnEndChest(Location location) {
         if (ONCGame.getInstance().hasStarted()) {
-            World world = location.getWorld();
-
-            // Génère les ressources du coffre aléatoirement
             ItemStack[] ressources = new ItemStack[]{
                     new ItemStack(Material.DIAMOND, random.nextInt(5) + 1),
                     new ItemStack(Material.GOLD_INGOT, random.nextInt(5) + 1),
                     new ItemStack(Material.IRON_INGOT, random.nextInt(5) + 1),
                     new ItemStack(Material.EMERALD, random.nextInt(5) + 1),
                     PoudreItem.getItem(random.nextInt(50) + 10),
+                    new ItemStack(Material.GOLDEN_APPLE, random.nextInt(5) + 1),
+                    new ItemStack(Material.ENDER_PEARL, random.nextInt(10) + 1)
             };
-
-            // Ajout des arcs avec des puissances aléatoires
-
-
-
-            // Ajout des pommes dorées
-            ItemStack pommesDorees = new ItemStack(Material.GOLDEN_APPLE, random.nextInt(5) + 1);
-
-
-            // Ajout des perles de l'Ender
-            ItemStack perlesEnder = new ItemStack(Material.ENDER_PEARL, random.nextInt(10) + 1);
-
-            // Recherche d'un bloc solide sous la position
-            Block block;
-            int y = location.getBlockY();
-            do {
-                block = world.getBlockAt(location.getBlockX(), y, location.getBlockZ());
-                if (block.getType().isSolid()) {
-                    location.setY(y + 2);
-                    break;
-                }
-                y--;
-            } while (y > 0);
-
-            // Crée le coffre et ajoute les ressources
-            if (block != null && block.getType().isSolid()) {
-                block.setType(Material.CHEST);
-                Chest chest = (Chest) block.getState();
-                Inventory inventory = chest.getInventory();
-
-                // Ajout des ressources
-                inventory.setContents(ressources);
-
-
-
-                // Ajout des flèches, pommes dorées, épées en diamant et perles de l'Ender
-                inventory.addItem( pommesDorees, perlesEnder);
-            } else {
-                // Impossible de placer le coffre à la position fournie
-                System.out.println("Impossible de placer le coffre à la position spécifiée.");
-            }
+            Block block = location.getBlock();
+            block.setType(Material.CHEST);
+            Chest chest = (Chest) block.getState();
+            Inventory inventory = chest.getInventory();
+            inventory.setContents(ressources);
         }
     }
 

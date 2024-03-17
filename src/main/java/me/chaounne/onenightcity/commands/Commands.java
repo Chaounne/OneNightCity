@@ -34,6 +34,7 @@ public class Commands implements CommandExecutor {
         }
 
         ONCGame game = ONCGame.getInstance();
+
         String subCommand = args[0];
         if (subCommand.equals("chest")) {
             if (!(sender.isOp())) {
@@ -41,8 +42,8 @@ public class Commands implements CommandExecutor {
                 return false;
             }
             Location playerLocation = player.getLocation();
-            GenerateChest.spawnChest(playerLocation);
-            player.sendMessage("Coffre placé");
+            GenerateChest.spawnEndChest(playerLocation);
+            player.sendMessage(ChatColor.GREEN + "Coffre placé");
         }
         else if (subCommand.equals("start")) {
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
