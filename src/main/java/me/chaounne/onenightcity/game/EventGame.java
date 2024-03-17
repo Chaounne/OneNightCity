@@ -24,19 +24,18 @@ public class EventGame {
 
     private static boolean game = false;
 
-    // Méthode pour révéler la position des joueurs dans 10 secondes avec des feux d'artifice
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes en ticks
+        int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes
         if (ONCGame.getInstance().hasStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().hasStarted()) {
 
-                    int randomNumber = random.nextInt(3) + 1; // Génère un nombre aléatoire entre 1 et 3
+                    int randomNumber = random.nextInt(3) + 1;
 
                     if (randomNumber == 1 || randomNumber == 2) {
 
                         for (Player player : Bukkit.getOnlinePlayers()) {
-                            player.sendMessage(ChatColor.YELLOW + "Position révélée dans 10 secondes !");
+                            player.sendMessage(ChatColor.YELLOW + "Position révélée dans 5 secondes !");
                         } Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
                             if (ONCGame.getInstance().hasStarted()) {
 
@@ -52,7 +51,6 @@ public class EventGame {
                                         Firework firework = player.getWorld().spawn(fireworkLocation, Firework.class);
                                         FireworkMeta fireworkMeta = firework.getFireworkMeta();
 
-                                        // Création de l'effet de feu d'artifice
                                         FireworkEffect effect = FireworkEffect.builder()
                                                 .flicker(true)
                                                 .trail(true)
@@ -62,17 +60,16 @@ public class EventGame {
                                                 .withFade(fireWorkColor)
                                                 .build();
 
-
                                         fireworkMeta.addEffect(effect);
                                         fireworkMeta.setPower(2);
                                         firework.setFireworkMeta(fireworkMeta);
                                     }
                                 }
                             }
-                        }, 10*20); // 20 ticks * 10 seconde
+                        }, 5 * 20);
                     }
                 }
-            }, randomDelayPeriod, randomDelayPeriod); // 20 ticks * 30 secondes
+            }, randomDelayPeriod, randomDelayPeriod);
         }
     }
 
