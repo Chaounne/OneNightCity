@@ -36,6 +36,8 @@ public class ONCGame implements Listener {
 
     private int time = 3 * 60 * 60;
 
+    private int randomTime;
+
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
     private ONCGame() {
@@ -214,9 +216,7 @@ public class ONCGame implements Listener {
                         player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 10 000"+ChatColor.DARK_PURPLE+" points");
                     }
                 }
-
-                int randomTime = random.nextInt(3001) + 6000;
-                if (time == randomTime) { //Darkhenry spawn au bout de 2 heures  et quelques je crois ; remettre a 6250
+                if (time == randomTime) { // Darkhenry spawn entre 30m et 1h20 ; remettre à 6250
                     DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
@@ -284,6 +284,7 @@ public class ONCGame implements Listener {
         World world = Bukkit.getWorlds().get(0);
         world.setPVP(false);
         List<Player> playersWithEgg = new ArrayList<>();
+        randomTime = random.nextInt(3001) + 6000;
         timer = new BukkitRunnable() {
             @Override
             public void run() {
