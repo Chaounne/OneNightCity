@@ -2,6 +2,7 @@ package me.chaounne.onenightcity;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
+import fr.mrmicky.fastboard.FastBoard;
 import fr.mrmicky.fastinv.FastInvManager;
 import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.commands.Completer;
@@ -86,9 +87,9 @@ public final class OneNightCity extends JavaPlugin {
 
         Hologram help = DHAPI.createHologram("aide", new Location(world, 125, 157, -40));
         DHAPI.addHologramLine(help, ChatColor.RED + "Création et gestion de team");
-        DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour créer une team : /city team create \"NomDeLaTeam\"");
-        DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour ajouter un joueur à votre équipe : /city team add \"NomDuJoueur\"");
-        DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour voir les membres de votre équipe : /city team list");
+        DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour créer une team : /city team create <team_name>");
+        DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour ajouter un joueur à votre équipe : /city team hire <player_name>");
+        DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour voir les membres de votre équipe : /city team members");
         DHAPI.addHologramLine(help, ChatColor.GREEN + "Amusez-vous bien !");
 
         Location leaderboardLoc = new Location(world, 118, 218, -36);
@@ -112,6 +113,12 @@ public final class OneNightCity extends JavaPlugin {
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.teleport(new Location(player.getWorld(), 121, 154, -40));
             player.setGameMode(GameMode.ADVENTURE);
+            player.getInventory().clear();
+            player.updateInventory();
+            FastBoard board = new FastBoard(player);
+            board.delete();
+            player.setExp(0);
+            player.setLevel(0);
         }
 
         if (!ONCGame.getInstance().hasStarted()) {

@@ -106,8 +106,8 @@ public class ONCGame implements Listener {
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
-                        ChatColor.GOLD + "PVP Activé dans : " + ChatColor.WHITE + countdownString + "s",
-                        ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString2 + "s",
+                        ChatColor.GOLD + "PVP activé dans : " + ChatColor.WHITE + countdownString + "s",
+                        ChatColor.GOLD + "END activé dans : " + ChatColor.WHITE + countdownString2 + "s",
                         ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
@@ -121,7 +121,7 @@ public class ONCGame implements Listener {
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.RED + "PVP ACTIVÉ !",
-                        ChatColor.GOLD + "END Activé dans : " + ChatColor.WHITE + countdownString1 + "s",
+                        ChatColor.GOLD + "END activé dans : " + ChatColor.WHITE + countdownString1 + "s",
                         ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString2 + "s",
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
@@ -395,32 +395,17 @@ public class ONCGame implements Listener {
 
                     }
                 }
-
-
-
-
-
                 time--;
                 updateBoard();
-
-
-
             }
         };
-
-
-
-
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
     }
 
     public void endGame(){
-            //faire l'appel pour reset ici
-
-
         if (hasStarted) hasStarted = false;
         if (timer != null) timer.cancel();
-        World overworld = Bukkit.getWorld("world"); // Make sure "world" is the name of your overworld
+        World overworld = Bukkit.getWorlds().get(0);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
 
@@ -461,7 +446,7 @@ public class ONCGame implements Listener {
             teamScores.put(playerTeam, teamScores.getOrDefault(playerTeam, 0) + playerScore);
         }
 
-// Vérifier s'il y a un gagnant ou une égalité
+        // Vérifier s'il y a un gagnant ou une égalité
         boolean hasWinner = false;
         GameTeam winningTeam = null;
         int maxScore = 0;
@@ -476,7 +461,7 @@ public class ONCGame implements Listener {
             }
         }
 
-// Diffuser le message aux joueurs en fonction du résultat
+        // Diffuser le message aux joueurs en fonction du résultat
         if (hasWinner) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle(ChatColor.GREEN + " Félicitations à l'équipe gagnante !", ChatColor.AQUA + winningTeam.getName(), 10, 70, 20);
@@ -497,9 +482,9 @@ public class ONCGame implements Listener {
                 } }
         }
 
-        for (GameTeam team : teams) {
+        for (GameTeam team : teams)
             team.reset();
-        }
+
         teams.clear();
         players.clear();
         if (hasStarted) hasStarted = false;

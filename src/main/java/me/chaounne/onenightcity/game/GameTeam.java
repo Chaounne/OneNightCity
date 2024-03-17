@@ -88,18 +88,12 @@ public class GameTeam {
         return name;
     }
 
-    public void reset(){
-        // Supprimer l'équipe du scoreboard
-
-        // Retirer les joueurs de l'équipe et réinitialiser leurs références
-        for(Player player : players){
+    public void reset() {
+        for (Player player : players) {
             scoreboardTeam.removeEntry(player.getName());
             GamePlayer.getInstance(player).setTeam(null);
         }
         scoreboardTeam.unregister();
-
-
-        // Réinitialiser les autres attributs de l'équipe
         players.clear();
         score = 0;
         leader = null;
