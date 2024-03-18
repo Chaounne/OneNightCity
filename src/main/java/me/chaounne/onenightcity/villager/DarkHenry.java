@@ -13,22 +13,17 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DarkHenryEntity {
+public class DarkHenry {
 
-    public static Villager henry;
-
-    public static Villager getEntity(Location loc) {
-        henry = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+    public static void create(Location loc) {
+        Villager henry = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         henry.setCustomName(ChatColor.DARK_RED + "DARKHenry");
         henry.setCustomNameVisible(true);
         henry.setProfession(Villager.Profession.WEAPONSMITH);
         henry.setAI(false);
         henry.setSilent(true);
-        henry.setCollidable(false);
-        henry.setVillagerExperience(5);
         henry.setVillagerLevel(5);
-        henry.setAdult();
         henry.setCanPickupItems(false);
         henry.setRemoveWhenFarAway(false);
 
@@ -50,7 +45,6 @@ public class DarkHenryEntity {
         trades.get(0).addIngredient(tradeItem);
         henry.setRecipes(trades);
 
-        return henry;
     }
 
 }

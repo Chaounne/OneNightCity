@@ -2,7 +2,7 @@ package me.chaounne.onenightcity.game;
 
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
-import me.chaounne.onenightcity.villager.DarkHenryEntity;
+import me.chaounne.onenightcity.villager.DarkHenry;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -217,7 +217,7 @@ public class ONCGame implements Listener {
                     }
                 }
                 if (time == randomTime) { // Darkhenry spawn entre 30m et 1h20 ; remettre à 6250
-                    DarkHenryEntity.getEntity(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
+                    DarkHenry.create(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
                     world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);

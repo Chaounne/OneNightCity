@@ -11,9 +11,9 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DreamEntity {
+public class Dream {
 
-    public static Villager getEntity(Location loc) {
+    public static void create(Location loc) {
         Villager dream = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         dream.setCustomName("Dream");
@@ -21,12 +21,8 @@ public class DreamEntity {
         dream.setVillagerType(Villager.Type.SAVANNA);
         dream.setProfession(Villager.Profession.CARTOGRAPHER);
         dream.setAI(false);
-        dream.setInvulnerable(true);
         dream.setSilent(true);
-        dream.setCollidable(false);
-        dream.setVillagerExperience(5);
         dream.setVillagerLevel(5);
-        dream.setAdult();
         dream.setCanPickupItems(false);
         dream.setRemoveWhenFarAway(false);
 
@@ -56,6 +52,5 @@ public class DreamEntity {
 
         dream.setRecipes(trades);
 
-        return dream;
     }
 }

@@ -4,38 +4,29 @@ import fr.mrmicky.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.inventory.SampleInventory;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
-import java.util.ArrayList;
+public class Henry extends Trader {
 
-public class HenryEntity {
+    private static Trader instance;
 
-    private static SampleInventory inventory;
-
-    public static Villager getEntity(Location loc) {
-        setInventory();
-        Villager henry = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
-
-        henry.setCustomName("Henry");
-        henry.setCustomNameVisible(true);
-        henry.setProfession(Villager.Profession.FARMER);
-        henry.setAI(false);
-        henry.setSilent(true);
-        henry.setCollidable(false);
-        henry.setVillagerExperience(5);
-        henry.setVillagerLevel(5);
-        henry.setAdult();
-        henry.setCanPickupItems(false);
-        henry.setRemoveWhenFarAway(false);
-        henry.setRecipes(new ArrayList<>());
-
-        return henry;
+    private Henry(Location loc) {
+        super(loc, "Henry", null, Villager.Profession.FARMER, 9);
+        instance = this;
     }
 
-    public static void setInventory() {
-        inventory = new SampleInventory(9, "Henry");
+    public static void create(Location loc) {
+        if (instance == null)
+            new Henry(loc);
+    }
+
+    public static void openInventory(Player player) {
+        instance.inventory.open(player);
+    }
+
+    @Override
+    public void addTrades() {
         //entre 1 et 3 wheat
         int amount = (int) (Math.random() * 3) + 1;
         //entre 2 et 15 poudre
@@ -73,14 +64,6 @@ public class HenryEntity {
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 15) + 10;
         inventory.addItem(new ItemBuilder(Material.COCOA_BEANS).amount(amount).addLore(price + " Poudres").build(), 8, price);
-    }
-
-    public SampleInventory getInventory() {
-        return inventory;
-    }
-
-    public static void openInventory(Player player) {
-        inventory.open(player);
     }
 
 }

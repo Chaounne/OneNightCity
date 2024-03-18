@@ -437,61 +437,61 @@ public class Handler implements Listener {
             Villager villager = (Villager) event.getRightClicked();
             if (villager.getCustomName() != null && villager.getCustomName().equals("Henry")) {
                 event.setCancelled(true);
-                HenryEntity.openInventory(player);
+                Henry.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Beau Thony")) {
                 event.setCancelled(true);
-                BeauThonyEntity.openInventory(player);
+                BeauThony.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Cheep Cheap")) {
                 event.setCancelled(true);
-                CheepCheapEntity.openInventory(player);
+                CheepCheap.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Francis Clodo")) {
                 event.setCancelled(true);
-                ClodoFrancisEntity.openInventory(player);
+                ClodoFrancis.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Hutil Itaire")) {
                 event.setCancelled(true);
-                HutilItaireEntity.openInventory(player);
+                HutilItaire.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jeaneau")) {
                 event.setCancelled(true);
-                JeaneauEntity.openInventory(player);
+                Jeaneau.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jean Mineur")) {
                 event.setCancelled(true);
-                JeanMineurEntity.openInventory(player);
+                JeanMineur.openInventory(player);
             } else if(villager.getCustomName() != null && villager.getCustomName().equals("Justin Puech")){
                 event.setCancelled(true);
-                JustinPuechEntity.openInventory(player);
+                JustinPuech.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Jyka Rouler")){
                 event.setCancelled(true);
-                JykaRoulerEntity.openInventory(player);
+                JykaRouler.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Kylian MBouffé")){
                 event.setCancelled(true);
-                KilianMBouffeEntity.openInventory(player);
+                KilianMBouffe.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Legias")){
                 event.setCancelled(true);
-                LegiasEntity.openInventory(player);
+                Legias.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Les Pierres")){
                 event.setCancelled(true);
-                LesPierresEntity.openInventory(player);
+                LesPierres.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Lucie Acier")){
                 event.setCancelled(true);
-                LucieAcierEntity.openInventory(player);
+                LucieAcier.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Micose Micode")){
                 event.setCancelled(true);
-                MicoseMicodeEntity.openInventory(player);
+                MicoseMicode.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Négeux Demo")){
                 event.setCancelled(true);
-                NeigeuDemotEntity.openInventory(player);
+                NeigeuDemot.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Dr. Raoult")) {
                 event.setCancelled(true);
-                PfizerEntity.openInventory(player);
+                Pfizer.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Civique Cosmique Durif")){
                 event.setCancelled(true);
-                DurifSylvainEntity.openInventory(player);
+                DurifSylvain.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Ikikomori")){
                 event.setCancelled(true);
-                IkikomoriEntity.openInventory(player);
+                Ikikomori.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Sombre Héros")){
                 event.setCancelled(true);
-                SombreHeroEntity.openInventory(player);
+                SombreHero.openInventory(player);
             }
         }
     }

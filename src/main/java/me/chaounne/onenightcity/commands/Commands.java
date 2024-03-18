@@ -75,26 +75,26 @@ public class Commands implements CommandExecutor {
 
             game.startGame();
 
-            HenryEntity.getEntity(new Location(Bukkit.getWorld("world"), -25 , 69, -62));
-            LesPierresEntity.getEntity(new Location(Bukkit.getWorld("world"), -21 , 70, 17));
-            KilianMBouffeEntity.getEntity(new Location(Bukkit.getWorld("world"), -14 , 70, 22));
-            HutilItaireEntity.getEntity(new Location(Bukkit.getWorld("world"), -20 , 71, -20));
-            CheepCheapEntity.getEntity(new Location(Bukkit.getWorld("world"), 57 , 69, -17));
-            JeanMineurEntity.getEntity(new Location(Bukkit.getWorld("world"), -19 , 70, 21));
-            DreamEntity.getEntity(new Location(Bukkit.getWorld("world"), 45 , 68, -11));
-            LegiasEntity.getEntity(new Location(Bukkit.getWorld("world"), 55 , 68, 4));
-            JykaRoulerEntity.getEntity(new Location(Bukkit.getWorld("world"), 50 , 68, -11));
-            ClodoFrancisEntity.getEntity(new Location(Bukkit.getWorld("world"), 44 , 68, -18));
-            PfizerEntity.getEntity(new Location(Bukkit.getWorld("world"), 17 , 70, 22));
-            LucieAcierEntity.getEntity(new Location(Bukkit.getWorld("world"), 22 , 70, 16));
-            DurifSylvainEntity.getEntity(new Location(Bukkit.getWorld("world"), 22 , 70, 21));
-            IkikomoriEntity.getEntity(new Location(Bukkit.getWorld("world"), 21 , 71, -20));
-            NeigeuDemotEntity.getEntity(new Location(Bukkit.getWorld("world"), 22 , 71, -16));
-            SombreHeroEntity.getEntity(new Location(Bukkit.getWorld("world"), 16 , 71, -21));
-            BeauThonyEntity.getEntity(new Location(Bukkit.getWorld("world"), -16 , 71, -20));
-            MicoseMicodeEntity.getEntity(new Location(Bukkit.getWorld("world"), -21 , 71, -15));
-            JeaneauEntity.getEntity(new Location(Bukkit.getWorld("world"), 50 , 68, -18));
-            JustinPuechEntity.getEntity(new Location(Bukkit.getWorld("world"), 55 , 68, 1));
+            Henry.create(new Location(world, -25 , 69, -62));
+            LesPierres.create(new Location(world, -21 , 70, 17));
+            KilianMBouffe.create(new Location(world, -14 , 70, 22));
+            HutilItaire.create(new Location(world, -20 , 71, -20));
+            CheepCheap.create(new Location(world, 57 , 69, -17));
+            JeanMineur.create(new Location(world, -19 , 70, 21));
+            Dream.create(new Location(world, 45 , 68, -11));
+            Legias.create(new Location(world, 55 , 68, 4));
+            JykaRouler.create(new Location(world, 50 , 68, -11));
+            ClodoFrancis.create(new Location(world, 44 , 68, -18));
+            Pfizer.create(new Location(world, 17 , 70, 22));
+            LucieAcier.create(new Location(world, 22 , 70, 16));
+            DurifSylvain.create(new Location(world, 22 , 70, 21));
+            Ikikomori.create(new Location(world, 21 , 71, -20));
+            NeigeuDemot.create(new Location(world, 22 , 71, -16));
+            SombreHero.create(new Location(world, 16 , 71, -21));
+            BeauThony.create(new Location(world, -16 , 71, -20));
+            MicoseMicode.create(new Location(world, -21 , 71, -15));
+            Jeaneau.create(new Location(world, 50 , 68, -18));
+            JustinPuech.create(new Location(world, 55 , 68, 1));
 
             Bukkit.broadcastMessage(ChatColor.GREEN + "La partie commence !");
             for (Player players : Bukkit.getOnlinePlayers()) {
@@ -546,89 +546,89 @@ public class Commands implements CommandExecutor {
                         }
                     }
 
-                    HenryEntity.getEntity(new Location(Bukkit.getWorld("world"), -25 , 69, -62));
-                    LesPierresEntity.getEntity(new Location(Bukkit.getWorld("world"), -21 , 70, 17));
-                    KilianMBouffeEntity.getEntity(new Location(Bukkit.getWorld("world"), -14 , 70, 22));
-                    HutilItaireEntity.getEntity(new Location(Bukkit.getWorld("world"), -20 , 71, -20));
-                    CheepCheapEntity.getEntity(new Location(Bukkit.getWorld("world"), 57 , 69, -17));
-                    JeanMineurEntity.getEntity(new Location(Bukkit.getWorld("world"), -19 , 70, 21));
-                    DreamEntity.getEntity(new Location(Bukkit.getWorld("world"), 45 , 68, -11));
-                    LegiasEntity.getEntity(new Location(Bukkit.getWorld("world"), 55 , 68, 4));
-                    JykaRoulerEntity.getEntity(new Location(Bukkit.getWorld("world"), 50 , 68, -11));
-                    ClodoFrancisEntity.getEntity(new Location(Bukkit.getWorld("world"), 44 , 68, -18));
-                    PfizerEntity.getEntity(new Location(Bukkit.getWorld("world"), 17 , 70, 22));
-                    LucieAcierEntity.getEntity(new Location(Bukkit.getWorld("world"), 22 , 70, 16));
-                    DurifSylvainEntity.getEntity(new Location(Bukkit.getWorld("world"), 22 , 70, 21));
-                    IkikomoriEntity.getEntity(new Location(Bukkit.getWorld("world"), 21 , 71, -20));
-                    NeigeuDemotEntity.getEntity(new Location(Bukkit.getWorld("world"), 22 , 71, -16));
-                    SombreHeroEntity.getEntity(new Location(Bukkit.getWorld("world"), 16 , 71, -21));
-                    BeauThonyEntity.getEntity(new Location(Bukkit.getWorld("world"), -16 , 71, -20));
-                    MicoseMicodeEntity.getEntity(new Location(Bukkit.getWorld("world"), -21 , 71, -15));
-                    JeaneauEntity.getEntity(new Location(Bukkit.getWorld("world"), 50 , 68, -18));
-                    JustinPuechEntity.getEntity(new Location(Bukkit.getWorld("world"), 55 , 68, 1));
+                    Henry.create(new Location(world, -25 , 69, -62));
+                    LesPierres.create(new Location(world, -21 , 70, 17));
+                    KilianMBouffe.create(new Location(world, -14 , 70, 22));
+                    HutilItaire.create(new Location(world, -20 , 71, -20));
+                    CheepCheap.create(new Location(world, 57 , 69, -17));
+                    JeanMineur.create(new Location(world, -19 , 70, 21));
+                    Dream.create(new Location(world, 45 , 68, -11));
+                    Legias.create(new Location(world, 55 , 68, 4));
+                    JykaRouler.create(new Location(world, 50 , 68, -11));
+                    ClodoFrancis.create(new Location(world, 44 , 68, -18));
+                    Pfizer.create(new Location(world, 17 , 70, 22));
+                    LucieAcier.create(new Location(world, 22 , 70, 16));
+                    DurifSylvain.create(new Location(world, 22 , 70, 21));
+                    Ikikomori.create(new Location(world, 21 , 71, -20));
+                    NeigeuDemot.create(new Location(world, 22 , 71, -16));
+                    SombreHero.create(new Location(world, 16 , 71, -21));
+                    BeauThony.create(new Location(world, -16 , 71, -20));
+                    MicoseMicode.create(new Location(world, -21 , 71, -15));
+                    Jeaneau.create(new Location(world, 50 , 68, -18));
+                    JustinPuech.create(new Location(world, 55 , 68, 1));
 
                     return true;
 
                 case "henry":
-                    HenryEntity.getEntity(player.getLocation());
+                    Henry.create(player.getLocation());
                     return true;
                 case "jeaneau":
-                    JeaneauEntity.getEntity(player.getLocation());
+                    Jeaneau.create(player.getLocation());
                     return true;
 
                 case "aypierre":
-                    LesPierresEntity.getEntity(player.getLocation());
+                    LesPierres.create(player.getLocation());
                     return true;
                 case "kiks":
-                    KilianMBouffeEntity.getEntity(player.getLocation());
+                    KilianMBouffe.create(player.getLocation());
                     return true;
                 case "justin":
-                    JustinPuechEntity.getEntity(player.getLocation());
+                    JustinPuech.create(player.getLocation());
                     return true;
                 case "cheep":
-                    CheepCheapEntity.getEntity(player.getLocation());
+                    CheepCheap.create(player.getLocation());
                     return true;
                 case "mineur":
-                    JeanMineurEntity.getEntity(player.getLocation());
+                    JeanMineur.create(player.getLocation());
                     return true;
                 case "dream":
-                    DreamEntity.getEntity(player.getLocation());
+                    Dream.create(player.getLocation());
                     return true;
                 case "legolas":
-                    LegiasEntity.getEntity(player.getLocation());
+                    Legias.create(player.getLocation());
                     return true;
                 case "potter":
-                    JykaRoulerEntity.getEntity(player.getLocation());
+                    JykaRouler.create(player.getLocation());
                     return true;
                 case "francois":
-                    ClodoFrancisEntity.getEntity(player.getLocation());
+                    ClodoFrancis.create(player.getLocation());
                     return true;
                 case "dose":
-                    PfizerEntity.getEntity(player.getLocation());
+                    Pfizer.create(player.getLocation());
                     return true;
                 case "lucie":
-                    LucieAcierEntity.getEntity(player.getLocation());
+                    LucieAcier.create(player.getLocation());
                     return true;
                 case "cosmique":
-                    DurifSylvainEntity.getEntity(player.getLocation());
+                    DurifSylvain.create(player.getLocation());
                     return true;
                 case "nolife":
-                    IkikomoriEntity.getEntity(player.getLocation());
+                    Ikikomori.create(player.getLocation());
                     return true;
                 case "neigeux":
-                    NeigeuDemotEntity.getEntity(player.getLocation());
+                    NeigeuDemot.create(player.getLocation());
                     return true;
                 case "warden":
-                    SombreHeroEntity.getEntity(player.getLocation());
+                    SombreHero.create(player.getLocation());
                     return true;
                 case "plante":
-                    BeauThonyEntity.getEntity(player.getLocation());
+                    BeauThony.create(player.getLocation());
                     return true;
                 case "champi":
-                    MicoseMicodeEntity.getEntity(player.getLocation());
+                    MicoseMicode.create(player.getLocation());
                     return true;
                 case "util":
-                    HutilItaireEntity.getEntity(player.getLocation());
+                    HutilItaire.create(player.getLocation());
                     return true;
                 default:
                     player.sendMessage(ChatColor.RED + "Usage : /city entity <henry | ??>");
