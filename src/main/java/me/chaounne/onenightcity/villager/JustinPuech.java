@@ -11,7 +11,7 @@ public class JustinPuech extends Trader {
     private static Trader instance;
 
     private JustinPuech(Location loc) {
-        super(loc, "Justin Puech", Villager.Type.SNOW, Villager.Profession.FISHERMAN, 18);
+        super(loc, "Justin Puech", Villager.Type.SNOW, Villager.Profession.FISHERMAN, 9);
         instance = this;
     }
 
@@ -43,23 +43,23 @@ public class JustinPuech extends Trader {
         //TROPICAL_FISH (amount 2-3, price 150-200)
         amount = (int) (Math.random() * 2) + 2;
         price = (int) (Math.random() * 51) + 150;
-        inventory.addItem(new ItemBuilder(Material.TROPICAL_FISH).amount(amount).addLore(price + " Poudres").build(), 5, price);
+        inventory.addItem(new ItemBuilder(Material.TROPICAL_FISH).amount(amount).addLore(price + " Poudres").build(), 4, price);
         //COD_BUCKET (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        inventory.addItem(new ItemBuilder(Material.COD_BUCKET).amount(amount).addLore(price + " Poudres").build(), 6, price);
+        inventory.addItem(new ItemBuilder(Material.COD_BUCKET).amount(amount).addLore(price + " Poudres").build(), 5, price);
         //SALMON_BUCKET (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        inventory.addItem(new ItemBuilder(Material.SALMON_BUCKET).amount(amount).addLore(price + " Poudres").build(), 7, price);
+        inventory.addItem(new ItemBuilder(Material.SALMON_BUCKET).amount(amount).addLore(price + " Poudres").build(), 6, price);
         //PUFFERFISH_BUCKET (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        inventory.addItem(new ItemBuilder(Material.PUFFERFISH_BUCKET).amount(amount).addLore(price + " Poudres").build(), 8, price);
+        inventory.addItem(new ItemBuilder(Material.PUFFERFISH_BUCKET).amount(amount).addLore(price + " Poudres").build(), 7, price);
         //TROPICAL_FISH_BUCKET (amount 1-3, price 10-50)
         amount = (int) (Math.random() * 3) + 1;
         price = (int) (Math.random() * 50) + 10;
-        inventory.addItem(new ItemBuilder(Material.TROPICAL_FISH_BUCKET).amount(amount).addLore(price + " Poudres").build(), 9, price);
+        inventory.addItem(new ItemBuilder(Material.TROPICAL_FISH_BUCKET).amount(amount).addLore(price + " Poudres").build(), 8, price);
     }
 
 }
