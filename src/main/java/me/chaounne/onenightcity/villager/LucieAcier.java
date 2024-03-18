@@ -10,14 +10,9 @@ public class LucieAcier extends Trader {
 
     private static Trader instance;
 
-    private LucieAcier(Location loc) {
+    public LucieAcier(Location loc) {
         super(loc, "Lucie Acier", Villager.Type.JUNGLE, Villager.Profession.BUTCHER, 18);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new LucieAcier(loc);
     }
 
     public static void openInventory(Player player) {

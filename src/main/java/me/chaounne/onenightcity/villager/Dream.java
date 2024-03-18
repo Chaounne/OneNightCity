@@ -12,16 +12,8 @@ import java.util.List;
 
 public class Dream extends Trader {
 
-    private static Trader instance;
-
-    private Dream(Location loc) {
+    public Dream(Location loc) {
         super(loc, "Dream", Villager.Type.SAVANNA, Villager.Profession.CARTOGRAPHER, 9);
-        instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new Dream(loc);
     }
 
     @Override

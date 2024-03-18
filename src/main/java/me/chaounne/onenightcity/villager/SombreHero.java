@@ -10,14 +10,9 @@ public class SombreHero extends Trader {
 
     private static Trader instance;
 
-    private SombreHero(Location loc) {
+    public SombreHero(Location loc) {
         super(loc, "Sombre Héros", Villager.Type.SWAMP, Villager.Profession.ARMORER, 18);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new SombreHero(loc);
     }
 
     public static void openInventory(Player player) {

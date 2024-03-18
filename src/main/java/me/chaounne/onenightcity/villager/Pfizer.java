@@ -10,14 +10,9 @@ public class Pfizer extends Trader {
 
     private static Trader instance;
 
-    private Pfizer(Location loc) {
+    public Pfizer(Location loc) {
         super(loc, "Dr. Raoult", Villager.Type.DESERT, Villager.Profession.CLERIC, 18);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new Pfizer(loc);
     }
 
     public static void openInventory(Player player) {

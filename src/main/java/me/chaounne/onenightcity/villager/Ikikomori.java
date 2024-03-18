@@ -10,14 +10,9 @@ public class Ikikomori extends Trader {
 
     private static Trader instance;
 
-    private Ikikomori(Location loc) {
+    public Ikikomori(Location loc) {
         super(loc, "Ikikomori", Villager.Type.PLAINS, Villager.Profession.TOOLSMITH, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new Ikikomori(loc);
     }
 
     public static void openInventory(Player player) {

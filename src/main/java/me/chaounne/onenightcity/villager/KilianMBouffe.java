@@ -10,14 +10,9 @@ public class KilianMBouffe extends Trader {
 
     private static Trader instance;
 
-    private KilianMBouffe(Location loc) {
+    public KilianMBouffe(Location loc) {
         super(loc, "Kylian MBouffé", null, Villager.Profession.BUTCHER, 18);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new KilianMBouffe(loc);
     }
 
     public static void openInventory(Player player) {

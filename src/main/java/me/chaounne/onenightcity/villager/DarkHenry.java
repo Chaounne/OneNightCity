@@ -13,16 +13,8 @@ import java.util.List;
 
 public class DarkHenry extends Trader {
 
-    private static Trader instance;
-
-    private DarkHenry(Location loc) {
+    public DarkHenry(Location loc) {
         super(loc, ChatColor.DARK_RED + "Dark Henry", null, Villager.Profession.WEAPONSMITH, 9);
-        instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new DarkHenry(loc);
     }
 
     @Override

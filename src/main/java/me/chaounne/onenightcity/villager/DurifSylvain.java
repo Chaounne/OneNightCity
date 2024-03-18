@@ -10,14 +10,9 @@ public class DurifSylvain extends Trader {
 
     private static Trader instance;
 
-    private DurifSylvain(Location loc) {
+    public DurifSylvain(Location loc) {
         super(loc, "Civique Cosmique Durif", Villager.Type.SWAMP, Villager.Profession.LEATHERWORKER, 18);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new DurifSylvain(loc);
     }
 
     public static void openInventory(Player player) {

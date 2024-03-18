@@ -208,7 +208,7 @@ public class ONCGame implements Listener {
                     }
                 }
                 if (time == randomTime) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
-                    DarkHenry.create(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
+                    new DarkHenry(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
                     world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);

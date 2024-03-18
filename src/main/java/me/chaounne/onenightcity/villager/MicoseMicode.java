@@ -10,14 +10,9 @@ public class MicoseMicode extends Trader {
 
     private static Trader instance;
 
-    private MicoseMicode(Location loc) {
+    public MicoseMicode(Location loc) {
         super(loc, "Micose Micode", Villager.Type.SWAMP, Villager.Profession.FLETCHER, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new MicoseMicode(loc);
     }
 
     public static void openInventory(Player player) {

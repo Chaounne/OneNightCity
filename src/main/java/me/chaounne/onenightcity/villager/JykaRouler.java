@@ -10,14 +10,9 @@ public class JykaRouler extends Trader {
 
     private static Trader instance;
 
-    private JykaRouler(Location loc) {
+    public JykaRouler(Location loc) {
         super(loc, "Jyka Rouler", Villager.Type.PLAINS, Villager.Profession.LIBRARIAN, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new JykaRouler(loc);
     }
 
     public static void openInventory(Player player) {

@@ -10,14 +10,9 @@ public class Jeaneau extends Trader {
 
     private static Trader instance;
 
-    private Jeaneau(Location loc) {
+    public Jeaneau(Location loc) {
         super(loc, "Jeaneau", Villager.Type.PLAINS, Villager.Profession.FISHERMAN, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new Jeaneau(loc);
     }
 
     public static void openInventory(Player player) {

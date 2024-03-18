@@ -10,14 +10,9 @@ public class ClodoFrancis extends Trader {
 
     private static Trader instance;
 
-    private ClodoFrancis(Location loc) {
+    public ClodoFrancis(Location loc) {
         super(loc, "Francis Clodo", Villager.Type.SWAMP, Villager.Profession.BUTCHER, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new ClodoFrancis(loc);
     }
 
     public static void openInventory(Player player) {

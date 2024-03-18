@@ -11,14 +11,9 @@ public class BeauThony extends Trader {
 
     private static Trader instance;
 
-    private BeauThony(Location loc) {
+    public BeauThony(Location loc) {
         super(loc, "Beau Thony", Villager.Type.JUNGLE, Villager.Profession.CARTOGRAPHER, 18);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new BeauThony(loc);
     }
 
     public static void openInventory(Player player) {

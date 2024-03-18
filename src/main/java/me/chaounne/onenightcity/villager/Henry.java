@@ -11,14 +11,9 @@ public class Henry extends Trader {
 
     private static Trader instance;
 
-    private Henry(Location loc) {
+    public Henry(Location loc) {
         super(loc, "Henry", null, Villager.Profession.FARMER, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new Henry(loc);
     }
 
     public static void openInventory(Player player) {

@@ -10,14 +10,9 @@ public class CheepCheap extends Trader {
 
     private static Trader instance;
 
-    private CheepCheap(Location loc) {
+    public CheepCheap(Location loc) {
         super(loc, "Cheep Cheap", Villager.Type.TAIGA, Villager.Profession.SHEPHERD, 18);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new CheepCheap(loc);
     }
 
     public static void openInventory(Player player) {

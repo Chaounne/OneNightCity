@@ -10,14 +10,9 @@ public class HutilItaire extends Trader {
 
     private static Trader instance;
 
-    private HutilItaire(Location loc) {
+    public HutilItaire(Location loc) {
         super(loc, "Hutil Itaire", Villager.Type.PLAINS, Villager.Profession.CARTOGRAPHER, 18);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new HutilItaire(loc);
     }
 
     public static void openInventory(Player player) {

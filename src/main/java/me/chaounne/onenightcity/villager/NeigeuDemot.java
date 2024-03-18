@@ -10,14 +10,9 @@ public class NeigeuDemot extends Trader {
 
     private static Trader instance;
 
-    private NeigeuDemot(Location loc) {
+    public NeigeuDemot(Location loc) {
         super(loc, "Négeux Demo", Villager.Type.SNOW, Villager.Profession.MASON, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new NeigeuDemot(loc);
     }
 
     public static void openInventory(Player player) {

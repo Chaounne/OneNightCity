@@ -10,14 +10,9 @@ public class Legias extends Trader {
 
     private static Trader instance;
 
-    private Legias(Location loc) {
+    public Legias(Location loc) {
         super(loc, "Legias", Villager.Type.SWAMP, Villager.Profession.FLETCHER, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new Legias(loc);
     }
 
     public static void openInventory(Player player) {

@@ -75,26 +75,26 @@ public class Commands implements CommandExecutor {
 
             game.startGame();
 
-            Henry.create(new Location(world, -25 , 69, -62));
-            LesPierres.create(new Location(world, -21 , 70, 17));
-            KilianMBouffe.create(new Location(world, -14 , 70, 22));
-            HutilItaire.create(new Location(world, -20 , 71, -20));
-            CheepCheap.create(new Location(world, 57 , 69, -17));
-            JeanMineur.create(new Location(world, -19 , 70, 21));
-            Dream.create(new Location(world, 45 , 68, -11));
-            Legias.create(new Location(world, 55 , 68, 4));
-            JykaRouler.create(new Location(world, 50 , 68, -11));
-            ClodoFrancis.create(new Location(world, 44 , 68, -18));
-            Pfizer.create(new Location(world, 17 , 70, 22));
-            LucieAcier.create(new Location(world, 22 , 70, 16));
-            DurifSylvain.create(new Location(world, 22 , 70, 21));
-            Ikikomori.create(new Location(world, 21 , 71, -20));
-            NeigeuDemot.create(new Location(world, 22 , 71, -16));
-            SombreHero.create(new Location(world, 16 , 71, -21));
-            BeauThony.create(new Location(world, -16 , 71, -20));
-            MicoseMicode.create(new Location(world, -21 , 71, -15));
-            Jeaneau.create(new Location(world, 50 , 68, -18));
-            JustinPuech.create(new Location(world, 55 , 68, 1));
+            new Henry(new Location(world, -25 , 69, -62));
+            new LesPierres(new Location(world, -21 , 70, 17));
+            new KilianMBouffe(new Location(world, -14 , 70, 22));
+            new HutilItaire(new Location(world, -20 , 71, -20));
+            new CheepCheap(new Location(world, 57 , 69, -17));
+            new JeanMineur(new Location(world, -19 , 70, 21));
+            new Dream(new Location(world, 45 , 68, -11));
+            new Legias(new Location(world, 55 , 68, 4));
+            new JykaRouler(new Location(world, 50 , 68, -11));
+            new ClodoFrancis(new Location(world, 44 , 68, -18));
+            new Pfizer(new Location(world, 17 , 70, 22));
+            new LucieAcier(new Location(world, 22 , 70, 16));
+            new DurifSylvain(new Location(world, 22 , 70, 21));
+            new Ikikomori(new Location(world, 21 , 71, -20));
+            new NeigeuDemot(new Location(world, 22 , 71, -16));
+            new SombreHero(new Location(world, 16 , 71, -21));
+            new BeauThony(new Location(world, -16 , 71, -20));
+            new MicoseMicode(new Location(world, -21 , 71, -15));
+            new Jeaneau(new Location(world, 50 , 68, -18));
+            new JustinPuech(new Location(world, 55 , 68, 1));
 
             Bukkit.broadcastMessage(ChatColor.GREEN + "La partie commence !");
             for (Player players : Bukkit.getOnlinePlayers()) {
@@ -546,89 +546,89 @@ public class Commands implements CommandExecutor {
                         }
                     }
 
-                    Henry.create(new Location(world, -25 , 69, -62));
-                    LesPierres.create(new Location(world, -21 , 70, 17));
-                    KilianMBouffe.create(new Location(world, -14 , 70, 22));
-                    HutilItaire.create(new Location(world, -20 , 71, -20));
-                    CheepCheap.create(new Location(world, 57 , 69, -17));
-                    JeanMineur.create(new Location(world, -19 , 70, 21));
-                    Dream.create(new Location(world, 45 , 68, -11));
-                    Legias.create(new Location(world, 55 , 68, 4));
-                    JykaRouler.create(new Location(world, 50 , 68, -11));
-                    ClodoFrancis.create(new Location(world, 44 , 68, -18));
-                    Pfizer.create(new Location(world, 17 , 70, 22));
-                    LucieAcier.create(new Location(world, 22 , 70, 16));
-                    DurifSylvain.create(new Location(world, 22 , 70, 21));
-                    Ikikomori.create(new Location(world, 21 , 71, -20));
-                    NeigeuDemot.create(new Location(world, 22 , 71, -16));
-                    SombreHero.create(new Location(world, 16 , 71, -21));
-                    BeauThony.create(new Location(world, -16 , 71, -20));
-                    MicoseMicode.create(new Location(world, -21 , 71, -15));
-                    Jeaneau.create(new Location(world, 50 , 68, -18));
-                    JustinPuech.create(new Location(world, 55 , 68, 1));
+                    new Henry(new Location(world, -25 , 69, -62));
+                    new LesPierres(new Location(world, -21 , 70, 17));
+                    new KilianMBouffe(new Location(world, -14 , 70, 22));
+                    new HutilItaire(new Location(world, -20 , 71, -20));
+                    new CheepCheap(new Location(world, 57 , 69, -17));
+                    new JeanMineur(new Location(world, -19 , 70, 21));
+                    new Dream(new Location(world, 45 , 68, -11));
+                    new Legias(new Location(world, 55 , 68, 4));
+                    new JykaRouler(new Location(world, 50 , 68, -11));
+                    new ClodoFrancis(new Location(world, 44 , 68, -18));
+                    new Pfizer(new Location(world, 17 , 70, 22));
+                    new LucieAcier(new Location(world, 22 , 70, 16));
+                    new DurifSylvain(new Location(world, 22 , 70, 21));
+                    new Ikikomori(new Location(world, 21 , 71, -20));
+                    new NeigeuDemot(new Location(world, 22 , 71, -16));
+                    new SombreHero(new Location(world, 16 , 71, -21));
+                    new BeauThony(new Location(world, -16 , 71, -20));
+                    new MicoseMicode(new Location(world, -21 , 71, -15));
+                    new Jeaneau(new Location(world, 50 , 68, -18));
+                    new JustinPuech(new Location(world, 55 , 68, 1));
 
                     return true;
 
                 case "henry":
-                    Henry.create(player.getLocation());
+                    new Henry(player.getLocation());
                     return true;
                 case "jeaneau":
-                    Jeaneau.create(player.getLocation());
+                    new Jeaneau(player.getLocation());
                     return true;
 
                 case "aypierre":
-                    LesPierres.create(player.getLocation());
+                    new LesPierres(player.getLocation());
                     return true;
                 case "kiks":
-                    KilianMBouffe.create(player.getLocation());
+                    new KilianMBouffe(player.getLocation());
                     return true;
                 case "justin":
-                    JustinPuech.create(player.getLocation());
+                    new JustinPuech(player.getLocation());
                     return true;
                 case "cheep":
-                    CheepCheap.create(player.getLocation());
+                    new CheepCheap(player.getLocation());
                     return true;
                 case "mineur":
-                    JeanMineur.create(player.getLocation());
+                    new JeanMineur(player.getLocation());
                     return true;
                 case "dream":
-                    Dream.create(player.getLocation());
+                    new Dream(player.getLocation());
                     return true;
                 case "legolas":
-                    Legias.create(player.getLocation());
+                    new Legias(player.getLocation());
                     return true;
                 case "potter":
-                    JykaRouler.create(player.getLocation());
+                    new JykaRouler(player.getLocation());
                     return true;
                 case "francois":
-                    ClodoFrancis.create(player.getLocation());
+                    new ClodoFrancis(player.getLocation());
                     return true;
                 case "dose":
-                    Pfizer.create(player.getLocation());
+                    new Pfizer(player.getLocation());
                     return true;
                 case "lucie":
-                    LucieAcier.create(player.getLocation());
+                    new LucieAcier(player.getLocation());
                     return true;
                 case "cosmique":
-                    DurifSylvain.create(player.getLocation());
+                    new DurifSylvain(player.getLocation());
                     return true;
                 case "nolife":
-                    Ikikomori.create(player.getLocation());
+                    new Ikikomori(player.getLocation());
                     return true;
                 case "neigeux":
-                    NeigeuDemot.create(player.getLocation());
+                    new NeigeuDemot(player.getLocation());
                     return true;
                 case "warden":
-                    SombreHero.create(player.getLocation());
+                    new SombreHero(player.getLocation());
                     return true;
                 case "plante":
-                    BeauThony.create(player.getLocation());
+                    new BeauThony(player.getLocation());
                     return true;
                 case "champi":
-                    MicoseMicode.create(player.getLocation());
+                    new MicoseMicode(player.getLocation());
                     return true;
                 case "util":
-                    HutilItaire.create(player.getLocation());
+                    new HutilItaire(player.getLocation());
                     return true;
                 default:
                     player.sendMessage(ChatColor.RED + "Usage : /city entity <henry | ??>");

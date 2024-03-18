@@ -10,14 +10,9 @@ public class JustinPuech extends Trader {
 
     private static Trader instance;
 
-    private JustinPuech(Location loc) {
+    public JustinPuech(Location loc) {
         super(loc, "Justin Puech", Villager.Type.SNOW, Villager.Profession.FISHERMAN, 9);
         instance = this;
-    }
-
-    public static void create(Location loc) {
-        if (instance == null)
-            new JustinPuech(loc);
     }
 
     public static void openInventory(Player player) {
