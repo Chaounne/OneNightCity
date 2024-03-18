@@ -215,15 +215,14 @@ public class Handler implements Listener {
             for (MerchantRecipe recipe : recipes) {
                 if (player.getInventory().containsAtLeast(recipe.getResult(), recipe.getResult().getAmount())) {
                     World world = Bukkit.getWorlds().get(0);
-//                    Location entityLocation = new Location(world, 0, 63, 1);
 
                     for (Entity entity : world.getEntities()) {
                         if (entity.getWorld().equals(player.getWorld())) { // Vérifier si les mondes sont les mêmes
-                            if (entity.getName().equals(ChatColor.DARK_RED + "DARKHenry")) {
+                            if (entity.getName().equals(ChatColor.DARK_RED + "Dark Henry")) {
                                 for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                                     if (onlinePlayer.getWorld().equals(entity.getWorld())) {
                                         if (player.getLocation().distance(entity.getLocation()) <= 6) {
-                                            onlinePlayer.sendMessage(ChatColor.RED + "DARKHenry a échangé l'ITEM spécial avec " + player.getName() + " ! DARKHenry s'en va");
+                                            onlinePlayer.sendMessage(ChatColor.RED + "Dark Henry a échangé l'item spécial avec " + player.getName() + " ! Dark Henry s'en va");
                                             onlinePlayer.playSound(onlinePlayer.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 1f, 1f);
                                             entity.remove();
                                         }

@@ -6,9 +6,7 @@ import me.chaounne.onenightcity.villager.DarkHenry;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Firework;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -167,13 +165,6 @@ public class ONCGame implements Listener {
             public void run() {
                 World world = Bukkit.getWorlds().get(0);
 
-                if (time > 10750) {// Pour supprimer darkHenry le cas ou il spawn
-                    for (Entity entity : world.getEntities()) {
-                        if (entity instanceof LivingEntity && entity.getName().equals(ChatColor.DARK_RED + "DARKHenry")) {
-                            entity.remove();
-                        }
-                    }
-                }
                 if (time == 0) {
                     this.cancel();
                     endGame();
@@ -216,14 +207,14 @@ public class ONCGame implements Listener {
                         player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 10 000"+ChatColor.DARK_PURPLE+" points");
                     }
                 }
-                if (time == randomTime) { // Darkhenry spawn entre 30m et 1h20 ; remettre à 6250
+                if (time == randomTime) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
                     DarkHenry.create(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
                     world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);
 
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        p.sendTitle(ChatColor.RED + "DARKHENRY vient d'arriver au marché", "", 10, 70, 20);
+                        p.sendTitle(ChatColor.RED + "Dark Henry vient d'arriver au marché", "", 10, 70, 20);
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
                         p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10f, 10f);
 
