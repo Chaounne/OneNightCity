@@ -28,7 +28,6 @@ public class DarkHenryEntity {
         henry.setCollidable(false);
         henry.setVillagerExperience(5);
         henry.setVillagerLevel(5);
-        // henry.setInvulnerable(true);
         henry.setAdult();
         henry.setCanPickupItems(false);
         henry.setRemoveWhenFarAway(false);

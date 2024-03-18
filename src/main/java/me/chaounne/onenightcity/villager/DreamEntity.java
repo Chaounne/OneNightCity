@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DreamEntity {
 
-    public static Villager getEntity(Location loc){
+    public static Villager getEntity(Location loc) {
         Villager dream = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         dream.setCustomName("Dream");
@@ -30,22 +30,13 @@ public class DreamEntity {
         dream.setCanPickupItems(false);
         dream.setRemoveWhenFarAway(false);
 
-        /**int i = 69
-         * int alea = random 100
-         * if alea = i
-         * message everyone "Prix doublé pendant 5 minutes"
-         * on double le prix des items donc au lieu de 2 melon pour 2 poudres => 2 melon pour 4 poudres
-         * else
-         * wait(1minutes)
-         */
-         List<MerchantRecipe> trades = new ArrayList<>();
+        List<MerchantRecipe> trades = new ArrayList<>();
 
         ItemStack[] items = new ItemStack[4];
         items[0] = new ItemStack(Material.IRON_INGOT, 64);
         items[1] = new ItemStack(Material.GOLD_INGOT, 48);
         items[2] = new ItemStack(Material.DIAMOND, 32);
         items[3] = new ItemStack(Material.EMERALD, 16);
-        
 
         //trade 1
         trades.add(new MerchantRecipe(SpawnerItems.getIronSpawner(), 1));

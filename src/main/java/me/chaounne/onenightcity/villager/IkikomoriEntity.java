@@ -1,24 +1,20 @@
 package me.chaounne.onenightcity.villager;
 
 import fr.mrmicky.fastinv.ItemBuilder;
-import me.chaounne.onenightcity.game.PoudreItem;
 import me.chaounne.onenightcity.inventory.SampleInventory;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.MerchantRecipe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class IkikomoriEntity {
 
     private static SampleInventory sampleInventory;
 
-    public static Villager getEntity(Location loc){
+    public static Villager getEntity(Location loc) {
         setInventory();
         Villager nolife = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
@@ -35,85 +31,12 @@ public class IkikomoriEntity {
         nolife.setAdult();
         nolife.setCanPickupItems(false);
         nolife.setRemoveWhenFarAway(false);
-
-        /**int i = 69
-         * int alea = random 100
-         * if alea = i
-         * message everyone "Prix doublé pendant 5 minutes"
-         * on double le prix des items donc au lieu de 2 melon pour 2 poudres => 2 melon pour 4 poudres
-         * else
-         * wait(1minutes)
-         */
-         List<MerchantRecipe> trades = new ArrayList<>();
-        // random amount of poudre
-        int amount = (int) (Math.random() * 15) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        int price = (int) (Math.random() * 5) + 5;
-        trades.get(0).addIngredient(new ItemStack(Material.MOSS_BLOCK, price));
-
-        //trade 2
-        // random amount of poudre
-        amount = (int) (Math.random() * 15) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(1).addIngredient(new ItemStack(Material.MOSS_CARPET, price));
-
-        //trade 3
-        // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(2).addIngredient(new ItemStack(Material.OCHRE_FROGLIGHT, price));
-
-        //trade 4
-        // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(3).addIngredient(new ItemStack(Material.PEARLESCENT_FROGLIGHT, price));
-
-        //trade 5
-        // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(4).addIngredient(new ItemStack(Material.VERDANT_FROGLIGHT, price));
-
-        //trade 6
-        // random amount of poudre
-        amount = (int) (Math.random() * 5) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 5) + 1;
-        trades.get(5).addIngredient(new ItemStack(Material.AXOLOTL_BUCKET, price));
-
-        //trade 7
-        // random amount of poudre
-        amount = (int) (Math.random() * 10) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 10) + 5;
-        trades.get(6).addIngredient(new ItemStack(Material.MANGROVE_PLANKS, price));
-
-        //trade 8
-        // random amount of poudre
-        amount = (int) (Math.random() * 10) + 1;
-        trades.add(new MerchantRecipe(PoudreItem.getItem(amount), Integer.MAX_VALUE));
-        // random price
-        price = (int) (Math.random() * 10) + 10;
-        trades.get(7).addIngredient(new ItemStack(Material.MANGROVE_LEAVES, price));
-
-        nolife.setRecipes(trades);
+        nolife.setRecipes(new ArrayList<>());
 
         return nolife;
     }
 
-    public static void setInventory(){
+    public static void setInventory() {
         sampleInventory = new SampleInventory(9, "Ikikomori");
         //MOSS_BLOCK (amount 1-15, price 2-35)
         int amount = (int) (Math.random() * 15) + 1;
@@ -149,7 +72,7 @@ public class IkikomoriEntity {
         sampleInventory.addItem(new ItemBuilder(Material.MANGROVE_LEAVES).amount(amount).addLore(price + " Poudres").build(), 7, price);
     }
 
-    public static void openInventory(Player player){
+    public static void openInventory(Player player) {
         sampleInventory.open(player);
     }
 
