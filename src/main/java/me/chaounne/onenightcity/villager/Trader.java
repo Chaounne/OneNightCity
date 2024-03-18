@@ -11,13 +11,15 @@ public abstract class Trader {
 
     protected SampleInventory inventory;
 
+    protected Villager villager;
+
     protected Trader(Location loc, String name, Villager.Type type, Villager.Profession profession, int size) {
         createTrader(loc, name, type, profession, size);
         addTrades();
     }
 
     protected void createTrader(Location loc, String name, Villager.Type type, Villager.Profession profession, int size) {
-        Villager villager = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+        villager = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         villager.setCustomName(name);
         villager.setCustomNameVisible(true);
