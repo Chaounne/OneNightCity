@@ -6,6 +6,8 @@ import me.chaounne.onenightcity.villager.DarkHenry;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -487,6 +489,15 @@ public class ONCGame implements Listener {
                     p.sendTitle(ChatColor.GREEN + " Egalitée entre plusieurs equipe !.","", 10, 70, 20);
                     p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
                 } }
+        }
+
+        // supprime les villageois à 100 blocks de rayon du spawn
+        Location spawn = new Location(overworld, 0, 70, 0);
+        for (Entity entity : overworld.getEntities()) {
+            if (entity.getType() == EntityType.VILLAGER) {
+                if (entity.getLocation().distance(spawn) <= 100)
+                    entity.remove();
+            }
         }
 
         for (GameTeam team : teams)
