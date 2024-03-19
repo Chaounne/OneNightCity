@@ -35,6 +35,7 @@ public class SombreHeros extends Trader {
         items.put(Material.CANDLE, new Integer[] {Random.between(1, 3), Random.between(50, 500)});
         items.put(Material.SOUL_LANTERN, new Integer[] {Random.between(1, 3), Random.between(5, 20)});
         items.put(Material.POLISHED_DEEPSLATE, new Integer[] {Random.between(1, 5), Random.between(5, 20)});
+        items.put(Material.ECHO_SHARD, new Integer[] {Random.between(1, 1), Random.between(6000, 12000)});
 
         return items;
     }
