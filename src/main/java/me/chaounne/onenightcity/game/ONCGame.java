@@ -2,7 +2,7 @@ package me.chaounne.onenightcity.game;
 
 import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
-import me.chaounne.onenightcity.villager.DarkHenry;
+import me.chaounne.onenightcity.villager.*;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -210,7 +210,7 @@ public class ONCGame implements Listener {
                     }
                 }
                 if (time == randomTime) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
-                    new DarkHenry(new Location(Bukkit.getWorlds().get(0), 0, 62, 1));
+                    new DarkHenry(new Location(Bukkit.getWorlds().get(0), 0, 62.5, 1.5, 90, 0));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
                     world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);
@@ -405,6 +405,33 @@ public class ONCGame implements Listener {
             }
         };
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
+
+        // nord-est
+        new SombreHero(new Location(world, 16, 71, -21));
+        new Ikikomori(new Location(world, 20.5, 71, -20.5, 45, 0));
+        new NeigeuDemot(new Location(world, 22, 71, -16, 90, 0));
+        // sud-est
+        new LucieAcier(new Location(world, 22, 70, 16, 90, 0));
+        new DurifSylvain(new Location(world, 21.5, 70, 20.5, 135, 0));
+        new Pfizer(new Location(world, 17, 70, 22, 180, 0));
+        // sud-ouest
+        new KilianMBouffe(new Location(world, -15, 70, 22, 180, 0));
+        new JeanMineur(new Location(world, -19.5, 70, 21.5, -135, 0));
+        new LesPierres(new Location(world, -21, 70, 17, -90, 0));
+        // nord-ouest
+        new MicoseMicode(new Location(world, -21, 71, -15, -90, 0));
+        new HutilItaire(new Location(world, -20.5, 71, -19.5, -45, 0));
+        new BeauThony(new Location(world, -16, 71, -21));
+        // henry
+        new Henry(new Location(world, -25, 69, -62));
+        // port
+        new Dream(new Location(world, 45, 68, -11.5, 90, 0));
+        new JykaRouler(new Location(world, 50, 68, -11.5, -90, 0));
+        new ClodoFrancis(new Location(world, 45, 68, -18.5, 90, 0));
+        new Jeaneau(new Location(world, 50, 68, -18.5, -90, 0));
+        new CheepCheap(new Location(world, 57.5, 69, -17.5, 90, 0));
+        new JustinPuech(new Location(world, 55.5, 68, 1, 90, 0));
+        new Legias(new Location(world, 55.5, 68, 4, 90, 0));
     }
 
     public void endGame(){

@@ -75,27 +75,6 @@ public class Commands implements CommandExecutor {
 
             game.startGame();
 
-            new Henry(new Location(world, -25 , 69, -62));
-            new LesPierres(new Location(world, -21 , 70, 17));
-            new KilianMBouffe(new Location(world, -14 , 70, 22));
-            new HutilItaire(new Location(world, -20 , 71, -20));
-            new CheepCheap(new Location(world, 57 , 69, -17));
-            new JeanMineur(new Location(world, -19 , 70, 21));
-            new Dream(new Location(world, 45 , 68, -11));
-            new Legias(new Location(world, 55 , 68, 4));
-            new JykaRouler(new Location(world, 50 , 68, -11));
-            new ClodoFrancis(new Location(world, 44 , 68, -18));
-            new Pfizer(new Location(world, 17 , 70, 22));
-            new LucieAcier(new Location(world, 22 , 70, 16));
-            new DurifSylvain(new Location(world, 22 , 70, 21));
-            new Ikikomori(new Location(world, 21 , 71, -20));
-            new NeigeuDemot(new Location(world, 22 , 71, -16));
-            new SombreHero(new Location(world, 16 , 71, -21));
-            new BeauThony(new Location(world, -16 , 71, -20));
-            new MicoseMicode(new Location(world, -21 , 71, -15));
-            new Jeaneau(new Location(world, 50 , 68, -18));
-            new JustinPuech(new Location(world, 55 , 68, 1));
-
             Bukkit.broadcastMessage(ChatColor.GREEN + "La partie commence !");
             for (Player players : Bukkit.getOnlinePlayers()) {
                 players.teleport(new Location(player.getWorld(), 0, 70, 0));
