@@ -491,6 +491,9 @@ public class Handler implements Listener {
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Sombre Héros")){
                 event.setCancelled(true);
                 SombreHeros.openInventory(player);
+            } else if (villager.getCustomName() != null && villager.getCustomName().equals("Vigne Hill")){
+                event.setCancelled(true);
+                VigneHill.openInventory(player);
             }
         }
     }
