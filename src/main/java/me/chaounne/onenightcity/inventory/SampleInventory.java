@@ -51,9 +51,8 @@ public class SampleInventory extends FastInv {
             int invItemAmount = 0;
 
             for (ItemStack slot : player.getInventory().getContents()) {
-                if (slot != null && slot.getType() == item.getType()) {
+                if (slot != null && slot.getType() == item.getType())
                     invItemAmount += slot.getAmount();
-                }
             }
 
             while (invItemAmount >= item.getAmount()) {

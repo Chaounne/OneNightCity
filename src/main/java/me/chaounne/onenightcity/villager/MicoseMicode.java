@@ -1,11 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -23,29 +22,14 @@ public class MicoseMicode extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        //MYCELIUM (amount 1-5, price 50-200)
-        int amount = (int) (Math.random() * 5) + 1;
-        int price = (int) (Math.random() * 200) + 50;
-        items.put(new ItemBuilder(Material.MYCELIUM).amount(amount).build(), price);
-        //RED_MUSHROOM_BLOCK (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
-        items.put(new ItemBuilder(Material.RED_MUSHROOM_BLOCK).amount(amount).build(), price);
-        //BROWN_MUSHROOM_BLOCK (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
-        items.put(new ItemBuilder(Material.BROWN_MUSHROOM_BLOCK).amount(amount).build(), price);
-        //MUSHROOM_STEM (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
-        items.put(new ItemBuilder(Material.MUSHROOM_STEM).amount(amount).build(), price);
-        //SHROOMLIGHT (amount 1-5, price 20-50)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 20;
-        items.put(new ItemBuilder(Material.SHROOMLIGHT).amount(amount).build(), price);
+        items.put(Material.MYCELIUM, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
+        items.put(Material.RED_MUSHROOM_BLOCK, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
+        items.put(Material.BROWN_MUSHROOM_BLOCK, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
+        items.put(Material.MUSHROOM_STEM, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
+        items.put(Material.SHROOMLIGHT, new Integer[] {Random.between(1, 5), Random.between(20, 50)});
 
         return items;
     }

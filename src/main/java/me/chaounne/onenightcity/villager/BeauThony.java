@@ -1,12 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -24,20 +22,20 @@ public class BeauThony extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(new ItemBuilder(Material.ACACIA_SAPLING).amount(Random.between(3, 10)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.BAMBOO).amount(Random.between(5, 10)).build(), Random.between(5, 15));
-        items.put(new ItemBuilder(Material.BIRCH_SAPLING).amount(Random.between(3, 12)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.DARK_OAK_SAPLING).amount(Random.between(3, 10)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.SPRUCE_SAPLING).amount(Random.between(3, 10)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.JUNGLE_SAPLING).amount(Random.between(3, 10)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.OAK_SAPLING).amount(Random.between(5, 10)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.FLOWER_POT).amount(Random.between(1, 10)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.MANGROVE_PROPAGULE).amount(Random.between(3, 10)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.AZALEA).amount(Random.between(1, 10)).build(), Random.between(50, 150));
-        items.put(new ItemBuilder(Material.AZALEA_LEAVES).amount(Random.between(1, 10)).build(), Random.between(50, 150));
+        items.put(Material.ACACIA_SAPLING, new Integer[] {Random.between(3, 10), Random.between(50, 150)});
+        items.put(Material.BAMBOO, new Integer[] {Random.between(5, 10), Random.between(5, 15)});
+        items.put(Material.BIRCH_SAPLING, new Integer[] {Random.between(3, 12), Random.between(50, 150)});
+        items.put(Material.DARK_OAK_SAPLING, new Integer[] {Random.between(3, 10), Random.between(50, 150)});
+        items.put(Material.SPRUCE_SAPLING, new Integer[] {Random.between(3, 10), Random.between(50, 150)});
+        items.put(Material.JUNGLE_SAPLING, new Integer[] {Random.between(3, 10), Random.between(50, 150)});
+        items.put(Material.OAK_SAPLING, new Integer[] {Random.between(5, 10), Random.between(50, 150)});
+        items.put(Material.FLOWER_POT, new Integer[] {Random.between(1, 10), Random.between(50, 150)});
+        items.put(Material.MANGROVE_PROPAGULE, new Integer[] {Random.between(3, 10), Random.between(50, 150)});
+        items.put(Material.AZALEA, new Integer[] {Random.between(1, 10), Random.between(50, 150)});
+        items.put(Material.AZALEA_LEAVES, new Integer[] {Random.between(1, 10), Random.between(50, 150)});
 
         return items;
     }

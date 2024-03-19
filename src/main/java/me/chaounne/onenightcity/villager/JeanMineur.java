@@ -1,11 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -23,81 +22,27 @@ public class JeanMineur extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        //COAL (amount 1-15, price 10-50)
-        int amount = (int) (Math.random() * 15) + 1;
-        int price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.COAL).amount(amount).build(), price);
-        //DEEPSLATE_COAL_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 1000) + 500;
-        items.put(new ItemBuilder(Material.DEEPSLATE_COAL_ORE).amount(amount).build(), price);
-        //IRON_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.IRON_ORE).amount(amount).build(), price);
-        //DEEPSLATE_IRON_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 100) + 20;
-        items.put(new ItemBuilder(Material.DEEPSLATE_IRON_ORE).amount(amount).build(), price);
-        //COPPER_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.COPPER_ORE).amount(amount).build(), price);
-        //DEEPSLATE_COPPER_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.DEEPSLATE_COPPER_ORE).amount(amount).build(), price);
-        //GOLD_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 100) + 20;
-        items.put(new ItemBuilder(Material.GOLD_ORE).amount(amount).build(), price);
-        //DEEPSLATE_GOLD_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 100) + 20;
-        items.put(new ItemBuilder(Material.DEEPSLATE_GOLD_ORE).amount(amount).build(), price);
-        //REDSTONE_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 500) + 50;
-        items.put(new ItemBuilder(Material.REDSTONE_ORE).amount(amount).build(), price);
-        //DEEPSLATE_REDSTONE_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 100) + 10;
-        items.put(new ItemBuilder(Material.DEEPSLATE_REDSTONE_ORE).amount(amount).build(), price);
-        //EMERALD_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 0) + 1;
-        price = (int) (Math.random() * 1000) + 500;
-        items.put(new ItemBuilder(Material.EMERALD_ORE).amount(amount).build(), price);
-        //DEEPSLATE_EMERALD_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 0) + 1;
-        price = (int) (Math.random() * 1000) + 500;
-        items.put(new ItemBuilder(Material.DEEPSLATE_EMERALD_ORE).amount(amount).build(), price);
-        //LAPIS_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 500) + 50;
-        items.put(new ItemBuilder(Material.LAPIS_ORE).amount(amount).build(), price);
-        //DEEPSLATE_LAPIS_ORE (amount 1-5, price 50-200)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 500) + 50;
-        items.put(new ItemBuilder(Material.DEEPSLATE_LAPIS_ORE).amount(amount).build(), price);
-        //DIAMOND_ORE (amount 1-5, price 50-300)
-        amount = (int) (Math.random() * 0) + 1;
-        price = (int) (Math.random() * 1000) + 500;
-        items.put(new ItemBuilder(Material.DIAMOND_ORE).amount(amount).build(), price);
-        //DEEPSLATE_DIAMOND_ORE (amount 1-5, price 50-300)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 200) + 50;
-        items.put(new ItemBuilder(Material.DEEPSLATE_DIAMOND_ORE).amount(amount).build(), price);
-        //NETHER_GOLD_ORE (amount 1-5, price 50-150)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.NETHER_GOLD_ORE).amount(amount).build(), price);
-        //ANCIENT_DEBRIS (amount 1-3, price 100-500)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 1000) + 500;
-        items.put(new ItemBuilder(Material.ANCIENT_DEBRIS).amount(amount).build(), price);
+        items.put(Material.COAL, new Integer[] {Random.between(1, 15), Random.between(10, 50)});
+        items.put(Material.DEEPSLATE_COAL_ORE, new Integer[] {Random.between(1, 5), Random.between(500, 2000)});
+        items.put(Material.IRON_ORE, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
+        items.put(Material.DEEPSLATE_IRON_ORE, new Integer[] {Random.between(1, 5), Random.between(20, 100)});
+        items.put(Material.COPPER_ORE, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
+        items.put(Material.DEEPSLATE_COPPER_ORE, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
+        items.put(Material.GOLD_ORE, new Integer[] {Random.between(1, 5), Random.between(20, 100)});
+        items.put(Material.DEEPSLATE_GOLD_ORE, new Integer[] {Random.between(1, 5), Random.between(20, 100)});
+        items.put(Material.REDSTONE_ORE, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
+        items.put(Material.DEEPSLATE_REDSTONE_ORE, new Integer[] {Random.between(1, 5), Random.between(10, 100)});
+        items.put(Material.EMERALD_ORE, new Integer[] {Random.between(1, 5), Random.between(500, 2000)});
+        items.put(Material.DEEPSLATE_EMERALD_ORE, new Integer[] {Random.between(1, 5), Random.between(1000, 10000)});
+        items.put(Material.LAPIS_ORE, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
+        items.put(Material.DEEPSLATE_LAPIS_ORE, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
+        items.put(Material.DIAMOND_ORE, new Integer[] {Random.between(1, 5), Random.between(500, 1000)});
+        items.put(Material.DEEPSLATE_DIAMOND_ORE, new Integer[] {Random.between(1, 5), Random.between(50, 200)});
+        items.put(Material.NETHER_GOLD_ORE, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
+        items.put(Material.ANCIENT_DEBRIS, new Integer[] {Random.between(1, 5), Random.between(500, 1500)});
 
         return items;
     }

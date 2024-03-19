@@ -1,12 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -24,8 +22,8 @@ public class CheepCheap extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
         String[] woolColors = {
                 "WHITE_WOOL", "RED_WOOL", "BLUE_WOOL", "GREEN_WOOL", "YELLOW_WOOL",
@@ -36,7 +34,7 @@ public class CheepCheap extends Trader {
 
         for (String woolColor : woolColors) {
             Material woolMaterial = Material.getMaterial(woolColor);
-            items.put(new ItemBuilder(woolMaterial).amount(Random.between(1, 5)).build(), Random.between(2, 15));
+            items.put(woolMaterial, new Integer[] {Random.between(1, 5), Random.between(2, 15)});
         }
 
         return items;

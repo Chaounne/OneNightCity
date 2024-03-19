@@ -1,11 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -23,45 +22,18 @@ public class Legias extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        //ARROW (amount 4-16, price 20-30)
-        int amount = (int) (Math.random() * 13) + 4;
-        int price = (int) (Math.random() * 30) + 20;
-        items.put(new ItemBuilder(Material.ARROW).amount(amount).build(), price);
-        //BOW (amount 1, price 10-200)
-        amount = 1;
-        price = (int) (Math.random() * 200) + 10;
-        items.put(new ItemBuilder(Material.BOW).amount(amount).build(), price);
-        //SPECTRAL_ARROW (amount 4-16, price 10-150)
-        amount = (int) (Math.random() * 13) + 4;
-        price = (int) (Math.random() * 150) + 10;
-        items.put(new ItemBuilder(Material.SPECTRAL_ARROW).amount(amount).build(), price);
-        //CROSSBOW (amount 1, price 40-250)
-        amount = 1;
-        price = (int) (Math.random() * 250) + 40;
-        items.put(new ItemBuilder(Material.CROSSBOW).amount(amount).build(), price);
-        //BIG_DRIPLEAF (amount 1-10, price 15-30)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 30) + 15;
-        items.put(new ItemBuilder(Material.BIG_DRIPLEAF).amount(amount).build(), price);
-        //SMALL_DRIPLEAF (amount 1-10, price 15-30)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 30) + 15;
-        items.put(new ItemBuilder(Material.SMALL_DRIPLEAF).amount(amount).build(), price);
-        //SPORE_BLOSSOM (amount 1-5, price 40-250)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 250) + 40;
-        items.put(new ItemBuilder(Material.SPORE_BLOSSOM).amount(amount).build(), price);
-        //VINE (amount 1-10, price 15-30)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 30) + 15;
-        items.put(new ItemBuilder(Material.VINE).amount(amount).build(), price);
-        //LILY_PAD (amount 1-10, price 15-30)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 30) + 15;
-        items.put(new ItemBuilder(Material.LILY_PAD).amount(amount).build(), price);
+        items.put(Material.ARROW, new Integer[] {Random.between(4, 16), Random.between(20, 300)});
+        items.put(Material.BOW, new Integer[] {Random.between(1, 1), Random.between(10, 1000)});
+        items.put(Material.SPECTRAL_ARROW, new Integer[] {Random.between(4, 16), Random.between(10, 150)});
+        items.put(Material.CROSSBOW, new Integer[] {Random.between(1, 1), Random.between(40, 500)});
+        items.put(Material.BIG_DRIPLEAF, new Integer[] {Random.between(1, 10), Random.between(15, 100)});
+        items.put(Material.SMALL_DRIPLEAF, new Integer[] {Random.between(1, 10), Random.between(15, 100)});
+        items.put(Material.SPORE_BLOSSOM, new Integer[] {Random.between(1, 5), Random.between(40, 250)});
+        items.put(Material.VINE, new Integer[] {Random.between(1, 10), Random.between(15, 30)});
+        items.put(Material.LILY_PAD, new Integer[] {Random.between(1, 10), Random.between(15, 100)});
 
         return items;
     }

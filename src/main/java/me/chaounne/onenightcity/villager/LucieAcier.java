@@ -1,11 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -23,61 +22,22 @@ public class LucieAcier extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        //NETHER_WART (amount 1-10, price 10-40)
-        int amount = (int) (Math.random() * 10) + 1;
-        int price = (int) (Math.random() * 40) + 10;
-        items.put(new ItemBuilder(Material.NETHER_WART).amount(amount).build(), price);
-        //NETHER_WART_BLOCK (amount 1-10, price 1-25)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 25) + 1;
-        items.put(new ItemBuilder(Material.NETHER_WART_BLOCK).amount(amount).build(), price);
-        //WARPED_WART_BLOCK (amount 1-10, price 1-25)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 25) + 1;
-        items.put(new ItemBuilder(Material.WARPED_WART_BLOCK).amount(amount).build(), price);
-        //WARPED_FUNGUS (amount 1-10, price 1-25)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 25) + 1;
-        items.put(new ItemBuilder(Material.WARPED_FUNGUS).amount(amount).build(), price);
-        //WARPED_FUNGUS_ON_A_STICK (amount 1, price 10-100)
-        amount = 1;
-        price = (int) (Math.random() * 100) + 10;
-        items.put(new ItemBuilder(Material.WARPED_FUNGUS_ON_A_STICK).amount(amount).build(), price);
-        //QUARTZ_BLOCK (amount 1-5, price 20-50)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 50) + 20;
-        items.put(new ItemBuilder(Material.QUARTZ_BLOCK).amount(amount).build(), price);
-        //QUARTZ (amount 1-5, price 10-40)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 40) + 10;
-        items.put(new ItemBuilder(Material.QUARTZ).amount(amount).build(), price);
-        //NETHER_BRICK (amount 2-3, price 15-20)
-        amount = (int) (Math.random() * 2) + 2;
-        price = (int) (Math.random() * 6) + 15;
-        items.put(new ItemBuilder(Material.NETHER_BRICK).amount(amount).build(), price);
-        //NETHER_BRICK_FENCE (amount 1-10, price 10-40)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 40) + 10;
-        items.put(new ItemBuilder(Material.NETHER_BRICK_FENCE).amount(amount).build(), price);
-        //NETHER_BRICK_SLAB (amount 1-10, price 10-40)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 40) + 10;
-        items.put(new ItemBuilder(Material.NETHER_BRICK_SLAB).amount(amount).build(), price);
-        //NETHER_BRICK_STAIRS (amount 1-10, price 10-40)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 40) + 10;
-        items.put(new ItemBuilder(Material.NETHER_BRICK_STAIRS).amount(amount).build(), price);
-        //NETHERITE_SCRAP (amount 1-3, price 100-600)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 600) + 100;
-        items.put(new ItemBuilder(Material.NETHERITE_SCRAP).amount(amount).build(), price);
-        //NETHERITE_INGOT (amount 1-3, price 100-800)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 800) + 100;
-        items.put(new ItemBuilder(Material.NETHERITE_INGOT).amount(amount).build(), price);
+       items.put(Material.NETHER_WART, new Integer[] {Random.between(1, 10), Random.between(10, 70)});
+       items.put(Material.NETHER_WART_BLOCK, new Integer[] {Random.between(1, 10), Random.between(1, 25)});
+       items.put(Material.WARPED_WART_BLOCK, new Integer[] {Random.between(1, 10), Random.between(1, 25)});
+       items.put(Material.WARPED_FUNGUS, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
+       items.put(Material.WARPED_FUNGUS_ON_A_STICK, new Integer[] {Random.between(1, 1), Random.between(10, 1500)});
+       items.put(Material.QUARTZ_BLOCK, new Integer[] {Random.between(1, 2), Random.between(20, 50)});
+       items.put(Material.QUARTZ, new Integer[] {Random.between(1, 2), Random.between(10, 40)});
+       items.put(Material.NETHER_BRICK, new Integer[] {Random.between(1, 10), Random.between(1, 10)});
+       items.put(Material.NETHER_BRICK_FENCE, new Integer[] {Random.between(1, 10), Random.between(10, 40)});
+       items.put(Material.NETHER_BRICK_SLAB, new Integer[] {Random.between(1, 10), Random.between(10, 40)});
+       items.put(Material.NETHER_BRICK_STAIRS, new Integer[] {Random.between(1, 10), Random.between(10, 40)});
+       items.put(Material.NETHERITE_SCRAP, new Integer[] {Random.between(1, 1), Random.between(500, 1500)});
+       items.put(Material.NETHERITE_INGOT, new Integer[] {Random.between(1, 1), Random.between(3000, 9000)});
 
         return items;
     }

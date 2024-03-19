@@ -1,11 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -23,45 +22,18 @@ public class Jeaneau extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        //PRISMARINE (amount 1-15, price 10-50)
-        int amount = (int) (Math.random() * 15) + 1;
-        int price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE).amount(amount).build(), price);
-        //PRISMARINE_SHARD (amount 1-15, price 10-50)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE_SHARD).amount(amount).build(), price);
-        //PRISMARINE_BRICKS (amount 1-15, price 10-50)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE_BRICKS).amount(amount).build(), price);
-        //PRISMARINE_CRYSTALS (amount 1-15, price 10-50)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE_CRYSTALS).amount(amount).build(), price);
-        //PRISMARINE_BRICK_SLAB (amount 1-15, price 10-50)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE_BRICK_SLAB).amount(amount).build(), price);
-        //PRISMARINE_BRICK_STAIRS (amount 1-15, price 10-50)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE_BRICK_STAIRS).amount(amount).build(), price);
-        //PRISMARINE_SLAB (amount 1-15, price 10-50)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE_SLAB).amount(amount).build(), price);
-        //PRISMARINE_STAIRS (amount 1-15, price 10-50)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE_STAIRS).amount(amount).build(), price);
-        //PRISMARINE_WALL (amount 1-15, price 10-50)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 50) + 10;
-        items.put(new ItemBuilder(Material.PRISMARINE_WALL).amount(amount).build(), price);
+        items.put(Material.PRISMARINE, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE_SHARD, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE_BRICKS, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE_CRYSTALS, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE_BRICK_SLAB, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE_BRICK_STAIRS, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE_SLAB, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE_STAIRS, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE_WALL, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
 
         return items;
     }

@@ -1,11 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -23,46 +22,18 @@ public class Henry extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        //entre 1 et 3 wheat
-        int amount = (int) (Math.random() * 3) + 1;
-        //entre 2 et 15 poudre
-        int price = (int) (Math.random() * 15) + 2;
-        items.put(new ItemBuilder(Material.WHEAT).amount(amount).build(), price);
-        //add melon (amount 1-3, price 2-15)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 15) + 2;
-        items.put(new ItemBuilder(Material.MELON).amount(amount).build(), price);
-        //add pumpkin (amount 1-3, price 2-16)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 15) + 2;
-        items.put(new ItemBuilder(Material.PUMPKIN).amount(amount).build(), price);
-        //add carrot (amount 1-3, price 2-15)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 15) + 2;
-        items.put(new ItemBuilder(Material.CARROT).amount(amount).build(), price);
-        //add potato (amount 1-3, price 2-15)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 15) + 2;
-        items.put(new ItemBuilder(Material.POTATO).amount(amount).build(), price);
-        //add beetroot (amount 1-3, price 2-15)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 15) + 2;
-        items.put(new ItemBuilder(Material.BEETROOT).amount(amount).build(), price);
-        //add apple (amount 1-3, price 10-15)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 15) + 10;
-        items.put(new ItemBuilder(Material.APPLE).amount(amount).build(), price);
-        //sugar_cane (amount 1-5, price 2-15)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 15) + 2;
-        items.put(new ItemBuilder(Material.SUGAR_CANE).amount(amount).build(), price);
-        //cocoa_beans (amount 1-3, price 10-15)
-        amount = (int) (Math.random() * 3) + 1;
-        price = (int) (Math.random() * 15) + 10;
-        items.put(new ItemBuilder(Material.COCOA_BEANS).amount(amount).build(), price);
+        items.put(Material.WHEAT, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
+        items.put(Material.MELON, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
+        items.put(Material.PUMPKIN, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
+        items.put(Material.CARROT, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
+        items.put(Material.POTATO, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
+        items.put(Material.BEETROOT, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
+        items.put(Material.APPLE, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
+        items.put(Material.SUGAR_CANE, new Integer[] {Random.between(1, 5), Random.between(10, 25)});
+        items.put(Material.COCOA_BEANS, new Integer[] {Random.between(1, 3), Random.between(10, 25)});
 
         return items;
     }

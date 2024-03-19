@@ -1,11 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -23,41 +22,18 @@ public class NegeuxDemo extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        //SNOWBALL (amount 1-5, price 1-15)
-        int amount = (int) (Math.random() * 5) + 1;
-        int price = (int) (Math.random() * 15) + 1;
-        items.put(new ItemBuilder(Material.SNOWBALL).amount(amount).build(), price);
-        //POWDER_SNOW_BUCKET (amount 1, price 1-15)
-        amount = 1;
-        price = (int) (Math.random() * 15) + 1;
-        items.put(new ItemBuilder(Material.POWDER_SNOW_BUCKET).amount(amount).build(), price);
-        //SNOW (amount 1-5, price 5-25)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 25) + 5;
-        items.put(new ItemBuilder(Material.SNOW).amount(amount).build(), price);
-        //SNOW_BLOCK (amount 1-5, price 5-30)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 60) + 4;
-        items.put(new ItemBuilder(Material.SNOW_BLOCK).amount(amount).build(), price);
-        //CARVED_PUMPKIN (amount 1-5, price 2-25)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 25) + 2;
-        items.put(new ItemBuilder(Material.CARVED_PUMPKIN).amount(amount).build(), price);
-        //ICE (amount 1-5, price 1-100)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 100) + 1;
-        items.put(new ItemBuilder(Material.ICE).amount(amount).build(), price);
-        //BLUE_ICE (amount 1-5, price 1-100)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 100) + 1;
-        items.put(new ItemBuilder(Material.BLUE_ICE).amount(amount).build(), price);
-        //PACKED_ICE (amount 1-5, price 1-100)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 100) + 1;
-        items.put(new ItemBuilder(Material.PACKED_ICE).amount(amount).build(), price);
+        items.put(Material.SNOWBALL, new Integer[] {Random.between(2, 5), Random.between(15, 30)});
+        items.put(Material.POWDER_SNOW_BUCKET, new Integer[] {Random.between(1, 1), Random.between(100, 500)});
+        items.put(Material.SNOW, new Integer[] {Random.between(1, 5), Random.between(5, 25)});
+        items.put(Material.SNOW_BLOCK, new Integer[] {Random.between(1, 5), Random.between(4, 60)});
+        items.put(Material.CARVED_PUMPKIN, new Integer[] {Random.between(1, 5), Random.between(2, 25)});
+        items.put(Material.ICE, new Integer[] {Random.between(1, 5), Random.between(5, 50)});
+        items.put(Material.BLUE_ICE, new Integer[] {Random.between(1, 5), Random.between(25, 75)});
+        items.put(Material.PACKED_ICE, new Integer[] {Random.between(1, 5), Random.between(50, 100)});
+        items.put(Material.GOAT_HORN, new Integer[] {Random.between(1, 1), Random.between(10000, 25000)});
 
         return items;
     }

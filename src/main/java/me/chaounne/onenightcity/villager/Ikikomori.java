@@ -1,11 +1,10 @@
 package me.chaounne.onenightcity.villager;
 
-import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -23,41 +22,17 @@ public class Ikikomori extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
-        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+    public LinkedHashMap<Material, Integer[]> getTrades() {
+        LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        //MOSS_BLOCK (amount 1-15, price 2-35)
-        int amount = (int) (Math.random() * 15) + 1;
-        int price = (int) (Math.random() * 35) + 2;
-        items.put(new ItemBuilder(Material.MOSS_BLOCK).amount(amount).build(), price);
-        //MOSS_CARPET (amount 1-15, price 2-25)
-        amount = (int) (Math.random() * 15) + 1;
-        price = (int) (Math.random() * 35) + 2;
-        items.put(new ItemBuilder(Material.MOSS_CARPET).amount(amount).build(), price);
-        //OCHRE_FROGLIGHT (amount 1-5, price 50-150)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 150) + 50;
-        items.put(new ItemBuilder(Material.OCHRE_FROGLIGHT).amount(amount).build(), price);
-        //PEARLESCENT_FROGLIGHT (amount 1-5, price 50-150)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 150) + 50;
-        items.put(new ItemBuilder(Material.PEARLESCENT_FROGLIGHT).amount(amount).build(), price);
-        //VERDANT_FROGLIGHT (amount 1-5, price 50-150)
-        amount = (int) (Math.random() * 5) + 1;
-        price = (int) (Math.random() * 150) + 50;
-        items.put(new ItemBuilder(Material.VERDANT_FROGLIGHT).amount(amount).build(), price);
-        //AXOLOTL_BUCKET (amount 1, price 20-50)
-        amount = 1;
-        price = (int) (Math.random() * 50) + 20;
-        items.put(new ItemBuilder(Material.AXOLOTL_BUCKET).amount(amount).build(), price);
-        //MANGROVE_PLANKS (amount 1-20, price 5-10)
-        amount = (int) (Math.random() * 20) + 1;
-        price = (int) (Math.random() * 15) + 5;
-        items.put(new ItemBuilder(Material.MANGROVE_PLANKS).amount(amount).build(), price);
-        //MANGROVE_LEAVES (amount 1-10, price 4-10)
-        amount = (int) (Math.random() * 10) + 1;
-        price = (int) (Math.random() * 15) + 4;
-        items.put(new ItemBuilder(Material.MANGROVE_LEAVES).amount(amount).build(), price);
+        items.put(Material.MOSS_BLOCK, new Integer[] {Random.between(1, 15), Random.between(2, 35)});
+        items.put(Material.MOSS_CARPET, new Integer[] {Random.between(1, 15), Random.between(2, 25)});
+        items.put(Material.OCHRE_FROGLIGHT, new Integer[] {Random.between(1, 5), Random.between(50, 1000)});
+        items.put(Material.PEARLESCENT_FROGLIGHT, new Integer[] {Random.between(1, 5), Random.between(50, 1000)});
+        items.put(Material.VERDANT_FROGLIGHT, new Integer[] {Random.between(1, 5), Random.between(50, 1000)});
+        items.put(Material.AXOLOTL_BUCKET, new Integer[] {Random.between(1, 1), Random.between(20, 500)});
+        items.put(Material.MANGROVE_PLANKS, new Integer[] {Random.between(1, 20), Random.between(5, 40)});
+        items.put(Material.MANGROVE_LEAVES, new Integer[] {Random.between(1, 10), Random.between(4, 40)});
 
         return items;
     }

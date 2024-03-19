@@ -18,7 +18,7 @@ public class Dream extends Trader {
     }
 
     @Override
-    protected LinkedHashMap<ItemStack, Integer> getTrades() {
+    public LinkedHashMap<Material, Integer[]> getTrades() {
         List<MerchantRecipe> trades = new ArrayList<>();
 
         trades.add(new MerchantRecipe(SpawnerItems.getIronSpawner(), 1));

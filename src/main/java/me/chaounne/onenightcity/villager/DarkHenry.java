@@ -19,7 +19,7 @@ public class DarkHenry extends Trader {
     }
 
     @Override
-    public LinkedHashMap<ItemStack, Integer> getTrades() {
+    public LinkedHashMap<Material, Integer[]> getTrades() {
         List<ItemStack> possibleItems = new ArrayList<>();
         possibleItems.add(new ItemStack(Material.ENCHANTING_TABLE));
         possibleItems.add(new ItemStack(Material.ENDER_EYE));
