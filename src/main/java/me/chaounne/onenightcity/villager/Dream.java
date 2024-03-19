@@ -8,16 +8,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Dream extends Trader {
 
     public Dream(Location loc) {
-        super(loc, "Dream", Villager.Type.SAVANNA, Villager.Profession.CARTOGRAPHER, 9);
+        super(loc, "Dream", Villager.Type.SAVANNA, Villager.Profession.CARTOGRAPHER);
     }
 
     @Override
-    protected void addTrades() {
+    protected LinkedHashMap<ItemStack, Integer> getTrades() {
         List<MerchantRecipe> trades = new ArrayList<>();
 
         trades.add(new MerchantRecipe(SpawnerItems.getIronSpawner(), 1));
@@ -33,5 +34,7 @@ public class Dream extends Trader {
         trades.get(3).addIngredient(new ItemStack(Material.EMERALD, 16));
 
         villager.setRecipes(trades);
+
+        return null;
     }
 }

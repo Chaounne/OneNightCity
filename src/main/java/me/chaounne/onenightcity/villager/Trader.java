@@ -4,8 +4,9 @@ import me.chaounne.onenightcity.inventory.SampleInventory;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
+import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public abstract class Trader {
 
@@ -13,12 +14,17 @@ public abstract class Trader {
 
     protected Villager villager;
 
-    protected Trader(Location loc, String name, Villager.Type type, Villager.Profession profession, int size) {
-        createTrader(loc, name, type, profession, size);
-        addTrades();
+    protected Trader(Location loc, String name, Villager.Type type, Villager.Profession profession) {
+        createTrader(loc, name, type, profession);
+        LinkedHashMap<ItemStack, Integer> trades = getTrades();
+        if (trades != null && !trades.isEmpty()) {
+            int size = (int) Math.ceil((double) trades.size() / 9) * 9;
+            inventory = new SampleInventory(size, name);
+            trades.forEach((item, price) -> inventory.addItem(item, price));
+        }
     }
 
-    protected void createTrader(Location loc, String name, Villager.Type type, Villager.Profession profession, int size) {
+    protected void createTrader(Location loc, String name, Villager.Type type, Villager.Profession profession) {
         villager = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
         villager.setCustomName(name);
@@ -31,10 +37,8 @@ public abstract class Trader {
         villager.setVillagerLevel(5);
         villager.setCanPickupItems(false);
         villager.setRemoveWhenFarAway(false);
-
-        inventory = new SampleInventory(size, name);
     }
 
-    protected abstract void addTrades();
+    protected abstract LinkedHashMap<ItemStack, Integer> getTrades();
 
 }

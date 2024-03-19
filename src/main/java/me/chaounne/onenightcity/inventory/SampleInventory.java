@@ -5,6 +5,9 @@ import me.chaounne.onenightcity.game.GamePlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.Collections;
 
 public class SampleInventory extends FastInv {
 
@@ -66,15 +69,19 @@ public class SampleInventory extends FastInv {
             ChatColor randomColor = colors[(int) (Math.random() * colors.length)];
             // Sélection du message aléatoire
             String randomMessage = String.format(messages[randomIndex], amountEchange);
-
             // Envoi du message avec la couleur et le message aléatoire
             player.sendMessage(randomColor + randomMessage);
         }
 
     }
 
-    public void addItem(ItemStack item, int slot, int amountPoudre){
-        setItem(slot, item, e -> {
+    public void addItem(ItemStack item, int amountPoudre) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null)
+            meta.setLore(Collections.singletonList(amountPoudre + " Poudres"));
+        item.setItemMeta(meta);
+
+        addItem(item, e -> {
             ItemStack itemStack = new ItemStack(item.getType(), item.getAmount());
             trade(amountPoudre, itemStack, (Player) e.getWhoClicked());
         });

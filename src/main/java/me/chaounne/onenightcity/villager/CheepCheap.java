@@ -1,17 +1,21 @@
 package me.chaounne.onenightcity.villager;
 
 import fr.mrmicky.fastinv.ItemBuilder;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.LinkedHashMap;
 
 public class CheepCheap extends Trader {
 
     private static Trader instance;
 
     public CheepCheap(Location loc) {
-        super(loc, "Cheep Cheap", Villager.Type.TAIGA, Villager.Profession.SHEPHERD, 18);
+        super(loc, "Cheep Cheap", Villager.Type.TAIGA, Villager.Profession.SHEPHERD);
         instance = this;
     }
 
@@ -20,7 +24,9 @@ public class CheepCheap extends Trader {
     }
 
     @Override
-    public void addTrades() {
+    public LinkedHashMap<ItemStack, Integer> getTrades() {
+        LinkedHashMap<ItemStack, Integer> items = new LinkedHashMap<>();
+
         String[] woolColors = {
                 "WHITE_WOOL", "RED_WOOL", "BLUE_WOOL", "GREEN_WOOL", "YELLOW_WOOL",
                 "PURPLE_WOOL", "ORANGE_WOOL", "MAGENTA_WOOL", "LIGHT_BLUE_WOOL",
@@ -28,22 +34,12 @@ public class CheepCheap extends Trader {
                 "CYAN_WOOL", "LIME_WOOL"
         };
 
-        for (int i = 0; i < woolColors.length; i++) {
-            int price = (int) (Math.random() * 23) + 2;
-            int amount = (int) (Math.random() * 9) + 1;
-
-            Material woolMaterial = Material.getMaterial(woolColors[i]);
-            if (woolMaterial != null) {
-                inventory.addItem(
-                        new ItemBuilder(woolMaterial)
-                                .amount(amount)
-                                .addLore(price + " Poudres")
-                                .build(),
-                        i,
-                        price
-                );
-            }
+        for (String woolColor : woolColors) {
+            Material woolMaterial = Material.getMaterial(woolColor);
+            items.put(new ItemBuilder(woolMaterial).amount(Random.between(1, 5)).build(), Random.between(2, 15));
         }
+
+        return items;
     }
 
 }

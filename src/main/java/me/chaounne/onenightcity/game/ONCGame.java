@@ -407,15 +407,15 @@ public class ONCGame implements Listener {
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
 
         // nord-est
-        new SombreHero(new Location(world, 16, 71, -21));
+        new SombreHeros(new Location(world, 16, 71, -21));
         new Ikikomori(new Location(world, 20.5, 71, -20.5, 45, 0));
-        new NeigeuDemot(new Location(world, 22, 71, -16, 90, 0));
+        new NegeuxDemo(new Location(world, 22, 71, -16, 90, 0));
         // sud-est
         new LucieAcier(new Location(world, 22, 70, 16, 90, 0));
-        new DurifSylvain(new Location(world, 21.5, 70, 20.5, 135, 0));
-        new Pfizer(new Location(world, 17, 70, 22, 180, 0));
+        new SylvainDurif(new Location(world, 21.5, 70, 20.5, 135, 0));
+        new DrRaoult(new Location(world, 17, 70, 22, 180, 0));
         // sud-ouest
-        new KilianMBouffe(new Location(world, -15, 70, 22, 180, 0));
+        new KylianMBouffe(new Location(world, -15, 70, 22, 180, 0));
         new JeanMineur(new Location(world, -19.5, 70, 21.5, -135, 0));
         new LesPierres(new Location(world, -21, 70, 17, -90, 0));
         // nord-ouest
@@ -427,7 +427,7 @@ public class ONCGame implements Listener {
         // port
         new Dream(new Location(world, 45, 68, -11.5, 90, 0));
         new JykaRouler(new Location(world, 50, 68, -11.5, -90, 0));
-        new ClodoFrancis(new Location(world, 45, 68, -18.5, 90, 0));
+        new FrancisClodo(new Location(world, 45, 68, -18.5, 90, 0));
         new Jeaneau(new Location(world, 50, 68, -18.5, -90, 0));
         new CheepCheap(new Location(world, 57.5, 69, -17.5, 90, 0));
         new JustinPuech(new Location(world, 55.5, 68, 1, 90, 0));

@@ -9,16 +9,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class DarkHenry extends Trader {
 
     public DarkHenry(Location loc) {
-        super(loc, ChatColor.DARK_RED + "Dark Henry", null, Villager.Profession.WEAPONSMITH, 9);
+        super(loc, ChatColor.DARK_RED + "Dark Henry", null, Villager.Profession.WEAPONSMITH);
     }
 
     @Override
-    public void addTrades() {
+    public LinkedHashMap<ItemStack, Integer> getTrades() {
         List<ItemStack> possibleItems = new ArrayList<>();
         possibleItems.add(new ItemStack(Material.ENCHANTING_TABLE));
         possibleItems.add(new ItemStack(Material.ENDER_EYE));
@@ -35,6 +36,8 @@ public class DarkHenry extends Trader {
         recipe.addIngredient(possibleItems.get((int) (Math.random() * possibleItems.size())));
 
         villager.setRecipe(0, recipe);
+
+        return null;
     }
 
 }

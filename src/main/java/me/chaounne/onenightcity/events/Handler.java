@@ -445,7 +445,7 @@ public class Handler implements Listener {
                 CheepCheap.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Francis Clodo")) {
                 event.setCancelled(true);
-                ClodoFrancis.openInventory(player);
+                FrancisClodo.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Hutil Itaire")) {
                 event.setCancelled(true);
                 HutilItaire.openInventory(player);
@@ -463,7 +463,7 @@ public class Handler implements Listener {
                 JykaRouler.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Kylian MBouffé")){
                 event.setCancelled(true);
-                KilianMBouffe.openInventory(player);
+                KylianMBouffe.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Legias")){
                 event.setCancelled(true);
                 Legias.openInventory(player);
@@ -478,19 +478,19 @@ public class Handler implements Listener {
                 MicoseMicode.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Négeux Demo")){
                 event.setCancelled(true);
-                NeigeuDemot.openInventory(player);
+                NegeuxDemo.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Dr. Raoult")) {
                 event.setCancelled(true);
-                Pfizer.openInventory(player);
+                DrRaoult.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Civique Cosmique Durif")){
                 event.setCancelled(true);
-                DurifSylvain.openInventory(player);
+                SylvainDurif.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Ikikomori")){
                 event.setCancelled(true);
                 Ikikomori.openInventory(player);
             } else if (villager.getCustomName() != null && villager.getCustomName().equals("Sombre Héros")){
                 event.setCancelled(true);
-                SombreHero.openInventory(player);
+                SombreHeros.openInventory(player);
             }
         }
     }
