@@ -29,7 +29,6 @@ public class FrancisClodo extends Trader {
         items.put(Material.HONEY_BOTTLE, new Integer[] {Random.between(1, 5), Random.between(15, 30)});
         items.put(Material.MILK_BUCKET, new Integer[] {Random.between(1, 1), Random.between(20, 250)});
         items.put(Material.BEETROOT_SOUP, new Integer[] {Random.between(1, 1), Random.between(50, 200)});
-        items.put(Material.MUSHROOM_STEW, new Integer[] {Random.between(1, 1), Random.between(15, 35)});
         items.put(Material.ENCHANTING_TABLE, new Integer[] {Random.between(1, 2), Random.between(750, 1500)});
         items.put(Material.GHAST_TEAR, new Integer[] {Random.between(1, 1), Random.between(2000, 4000)});
         items.put(Material.HEART_OF_THE_SEA, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
@@ -43,6 +42,7 @@ public class FrancisClodo extends Trader {
         items.put(Material.CHAINMAIL_CHESTPLATE, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
         items.put(Material.CHAINMAIL_LEGGINGS, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
         items.put(Material.CHAINMAIL_BOOTS, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
+        items.put(Material.ENCHANTED_GOLDEN_APPLE, new Integer[] {Random.between(1, 1), Random.between(10000, 25000)});
 
         return items;
     }

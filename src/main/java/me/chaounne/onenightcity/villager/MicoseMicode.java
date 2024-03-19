@@ -30,6 +30,7 @@ public class MicoseMicode extends Trader {
         items.put(Material.BROWN_MUSHROOM_BLOCK, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
         items.put(Material.MUSHROOM_STEM, new Integer[] {Random.between(1, 5), Random.between(50, 500)});
         items.put(Material.SHROOMLIGHT, new Integer[] {Random.between(1, 5), Random.between(20, 50)});
+        items.put(Material.MUSHROOM_STEW, new Integer[] {Random.between(1, 1), Random.between(15, 35)});
 
         return items;
     }
