@@ -11,8 +11,6 @@ public class Completer implements TabCompleter {
 
     private final List<String> argumentsCity = new ArrayList<>();
 
-    private final List<String> argumentsEntity = new ArrayList<>();
-
     private final List<String> argumentsPouder = new ArrayList<>();
 
     private final List<String> argumentsTeams = new ArrayList<>();
@@ -23,15 +21,10 @@ public class Completer implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (argumentsCity.isEmpty()) {
             argumentsCity.add("chest");
-            argumentsCity.add("entity");
             argumentsCity.add("powder");
             argumentsCity.add("start");
             argumentsCity.add("stop");
             argumentsCity.add("team");
-        }
-
-        if (argumentsEntity.isEmpty()) {
-            argumentsEntity.add("spawn");
         }
 
         if (argumentsPouder.isEmpty()) {
@@ -91,12 +84,6 @@ public class Completer implements TabCompleter {
                 return result;
             } else if (args[0].equalsIgnoreCase("powder")) {
                 for (String a : argumentsPouder) {
-                    if (a.toLowerCase().startsWith(args[1].toLowerCase()))
-                        result.add(a);
-                }
-                return result;
-            } else if (args[0].equalsIgnoreCase("entity")) {
-                for (String a : argumentsEntity) {
                     if (a.toLowerCase().startsWith(args[1].toLowerCase()))
                         result.add(a);
                 }

@@ -6,13 +6,10 @@ import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.utils.ColorHelper;
 import me.chaounne.onenightcity.utils.RandomFromList;
-import me.chaounne.onenightcity.villager.*;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -29,7 +26,7 @@ public class Commands implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.RED + "/city <chest | entity | powder | start | stop | team>");
+            player.sendMessage(ChatColor.RED + "/city <chest | powder | start | stop | team>");
             return false;
         }
 
@@ -453,164 +450,6 @@ public class Commands implements CommandExecutor {
                 }
                 default:
                     player.sendMessage(ChatColor.RED + "Usage : /city team <color | create | disband | fire |hire | leave | members | marianne | purge | rename> <player | teamname>");
-                    return false;
-            }
-        }
-        else if (subCommand.equals("entity")) {
-            if (!(sender.isOp())) {
-                sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
-                return false;
-            }
-            if (args.length == 1) {
-                player.sendMessage(ChatColor.RED+"Usage : /city entity <henry | ??>");
-                return false;
-            }
-            String entityName = args[1];
-            switch (entityName) {
-                case "spawn":
-                    // Liste des noms des entités à supprimer
-                    // Parcours de toutes les entités du monde
-                    // Vérifie si l'entité est une LivingEntity
-                    World world = Bukkit.getWorlds().get(0);
-                    for (Entity entity : world.getEntities()) {
-                        if (entity instanceof LivingEntity) {
-                            if (entity.getName().equals("Henry")) {
-                                entity.remove();
-                                System.out.println("HENRY");
-                            }
-                            if (entity.getName().equals("Jeaneau")) {
-                                entity.remove();
-                                System.out.println("AUTRE");
-                            }
-                            if (entity.getName().equals("kiks")) {
-                                entity.remove();
-                                System.out.println("AUTRE");
-                            }
-                            if (entity.getName().equals("aypierre")) {
-                                entity.remove();
-                                System.out.println("AUTRE");
-                            }
-                            if (entity.getName().equals("cheep"))
-                                entity.remove();
-                            if (entity.getName().equals("mineur"))
-                                entity.remove();
-                            if (entity.getName().equals("dream"))
-                                entity.remove();
-                            if (entity.getName().equals("legolas"))
-                                entity.remove();
-                            if (entity.getName().equals("potter"))
-                                entity.remove();
-                            if (entity.getName().equals("francois"))
-                                entity.remove();
-                            if (entity.getName().equals("dose"))
-                                entity.remove();
-                            if (entity.getName().equals("lucie"))
-                                entity.remove();
-                            if (entity.getName().equals("cosmique"))
-                                entity.remove();
-                            if (entity.getName().equals("nolife"))
-                                entity.remove();
-                            if (entity.getName().equals("neigeux"))
-                                entity.remove();
-                            if (entity.getName().equals("warden"))
-                                entity.remove();
-                            if (entity.getName().equals("plante"))
-                                entity.remove();
-                            if (entity.getName().equals("champi"))
-                                entity.remove();
-                            if (entity.getName().equals("util"))
-                                entity.remove();
-                            if (entity.getName().equals("justin"))
-                                entity.remove();
-                        }
-                    }
-
-                    new Henry(new Location(world, -25 , 69, -62));
-                    new LesPierres(new Location(world, -21 , 70, 17));
-                    new KilianMBouffe(new Location(world, -14 , 70, 22));
-                    new HutilItaire(new Location(world, -20 , 71, -20));
-                    new CheepCheap(new Location(world, 57 , 69, -17));
-                    new JeanMineur(new Location(world, -19 , 70, 21));
-                    new Dream(new Location(world, 45 , 68, -11));
-                    new Legias(new Location(world, 55 , 68, 4));
-                    new JykaRouler(new Location(world, 50 , 68, -11));
-                    new ClodoFrancis(new Location(world, 44 , 68, -18));
-                    new Pfizer(new Location(world, 17 , 70, 22));
-                    new LucieAcier(new Location(world, 22 , 70, 16));
-                    new DurifSylvain(new Location(world, 22 , 70, 21));
-                    new Ikikomori(new Location(world, 21 , 71, -20));
-                    new NeigeuDemot(new Location(world, 22 , 71, -16));
-                    new SombreHero(new Location(world, 16 , 71, -21));
-                    new BeauThony(new Location(world, -16 , 71, -20));
-                    new MicoseMicode(new Location(world, -21 , 71, -15));
-                    new Jeaneau(new Location(world, 50 , 68, -18));
-                    new JustinPuech(new Location(world, 55 , 68, 1));
-
-                    return true;
-
-                case "henry":
-                    new Henry(player.getLocation());
-                    return true;
-                case "jeaneau":
-                    new Jeaneau(player.getLocation());
-                    return true;
-
-                case "aypierre":
-                    new LesPierres(player.getLocation());
-                    return true;
-                case "kiks":
-                    new KilianMBouffe(player.getLocation());
-                    return true;
-                case "justin":
-                    new JustinPuech(player.getLocation());
-                    return true;
-                case "cheep":
-                    new CheepCheap(player.getLocation());
-                    return true;
-                case "mineur":
-                    new JeanMineur(player.getLocation());
-                    return true;
-                case "dream":
-                    new Dream(player.getLocation());
-                    return true;
-                case "legolas":
-                    new Legias(player.getLocation());
-                    return true;
-                case "potter":
-                    new JykaRouler(player.getLocation());
-                    return true;
-                case "francois":
-                    new ClodoFrancis(player.getLocation());
-                    return true;
-                case "dose":
-                    new Pfizer(player.getLocation());
-                    return true;
-                case "lucie":
-                    new LucieAcier(player.getLocation());
-                    return true;
-                case "cosmique":
-                    new DurifSylvain(player.getLocation());
-                    return true;
-                case "nolife":
-                    new Ikikomori(player.getLocation());
-                    return true;
-                case "neigeux":
-                    new NeigeuDemot(player.getLocation());
-                    return true;
-                case "warden":
-                    new SombreHero(player.getLocation());
-                    return true;
-                case "plante":
-                    new BeauThony(player.getLocation());
-                    return true;
-                case "champi":
-                    new MicoseMicode(player.getLocation());
-                    return true;
-                case "util":
-                    new HutilItaire(player.getLocation());
-                    return true;
-                default:
-                    player.sendMessage(ChatColor.RED + "Usage : /city entity <henry | ??>");
                     return false;
             }
         }
