@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Collections;
+import java.util.List;
 
 public class SampleInventory extends FastInv {
 
@@ -78,7 +78,7 @@ public class SampleInventory extends FastInv {
     public void addItem(ItemStack item, int amountPoudre) {
         ItemMeta meta = item.getItemMeta();
         if (meta != null)
-            meta.setLore(Collections.singletonList(amountPoudre + " Poudres"));
+            meta.setLore(List.of(amountPoudre + " Poudres"));
         item.setItemMeta(meta);
 
         addItem(item, e -> {
