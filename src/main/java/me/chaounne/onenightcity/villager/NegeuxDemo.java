@@ -33,7 +33,6 @@ public class NegeuxDemo extends Trader {
         items.put(Material.ICE, new Integer[] {Random.between(1, 5), Random.between(5, 50)});
         items.put(Material.BLUE_ICE, new Integer[] {Random.between(1, 5), Random.between(25, 75)});
         items.put(Material.PACKED_ICE, new Integer[] {Random.between(1, 5), Random.between(50, 100)});
-        items.put(Material.GOAT_HORN, new Integer[] {Random.between(1, 1), Random.between(10000, 25000)});
 
         return items;
     }
