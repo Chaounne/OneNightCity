@@ -2,9 +2,9 @@ package me.chaounne.onenightcity.villager;
 
 import me.chaounne.onenightcity.inventory.SampleInventory;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedHashMap;
 
@@ -16,11 +16,11 @@ public abstract class Trader {
 
     protected Trader(Location loc, String name, Villager.Type type, Villager.Profession profession) {
         createTrader(loc, name, type, profession);
-        LinkedHashMap<ItemStack, Integer> trades = getTrades();
+        LinkedHashMap<Material, Integer[]> trades = getTrades();
         if (trades != null && !trades.isEmpty()) {
             int size = (int) Math.ceil((double) trades.size() / 9) * 9;
             inventory = new SampleInventory(size, name);
-            trades.forEach((item, price) -> inventory.addItem(item, price));
+            trades.forEach((item, info) -> inventory.addItem(item, info[0], info[1]));
         }
     }
 
@@ -39,6 +39,6 @@ public abstract class Trader {
         villager.setRemoveWhenFarAway(false);
     }
 
-    protected abstract LinkedHashMap<ItemStack, Integer> getTrades();
+    protected abstract LinkedHashMap<Material, Integer[]> getTrades();
 
 }

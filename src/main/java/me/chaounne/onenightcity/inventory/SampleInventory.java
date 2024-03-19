@@ -1,13 +1,13 @@
 package me.chaounne.onenightcity.inventory;
 
 import fr.mrmicky.fastinv.FastInv;
+import fr.mrmicky.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.game.GamePlayer;
+import me.chaounne.onenightcity.utils.Random;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.List;
 
 public class SampleInventory extends FastInv {
 
@@ -43,47 +43,38 @@ public class SampleInventory extends FastInv {
             "Oula, c'est peu quand meme : %d poudre(s) ajoutées ! "
     };
 
-    public void trade(int amountPoudre, ItemStack given, Player player){
-        if(player.getInventory().containsAtLeast(given, given.getAmount())){
+    public void trade(int price, ItemStack item, Player player) {
+        if (player.getInventory().containsAtLeast(item, item.getAmount())) {
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
-            //player.sendMessage(given+""+given.getAmount());
-            int amountEchange = 0;
-            int nbitem = 0;
-            for (ItemStack item : player.getInventory().getContents()) {
-                if (item != null && item.getType() == given.getType()) {
-                    nbitem = nbitem + item.getAmount();
+
+            int powderGained = 0;
+            int invItemAmount = 0;
+
+            for (ItemStack slot : player.getInventory().getContents()) {
+                if (slot != null && slot.getType() == item.getType()) {
+                    invItemAmount += slot.getAmount();
                 }
             }
 
-            while (nbitem >= given.getAmount()) {
-                player.getInventory().removeItem(given);
-                gamePlayer.addScore(amountPoudre);
-                gamePlayer.getTeam().addScore(amountPoudre);
-                amountEchange = amountEchange + amountPoudre;
-                nbitem = nbitem - given.getAmount();
+            while (invItemAmount >= item.getAmount()) {
+                player.getInventory().removeItem(item);
+                invItemAmount -= item.getAmount();
+                gamePlayer.addScore(price);
+                gamePlayer.getTeam().addScore(price);
+                powderGained += price;
             }
 
-            // Choix aléatoire de l'index du message
-            int randomIndex = (int) (Math.random() * messages.length);
-            // Choix aléatoire de la couleur
-            ChatColor randomColor = colors[(int) (Math.random() * colors.length)];
-            // Sélection du message aléatoire
-            String randomMessage = String.format(messages[randomIndex], amountEchange);
-            // Envoi du message avec la couleur et le message aléatoire
+            ChatColor randomColor = colors[Random.between(0, colors.length - 1)];
+            String randomMessage = String.format(messages[Random.between(0, messages.length - 1)], powderGained);
             player.sendMessage(randomColor + randomMessage);
         }
-
     }
 
-    public void addItem(ItemStack item, int amountPoudre) {
-        ItemMeta meta = item.getItemMeta();
-        if (meta != null)
-            meta.setLore(List.of(amountPoudre + " Poudres"));
-        item.setItemMeta(meta);
-
-        addItem(item, e -> {
-            ItemStack itemStack = new ItemStack(item.getType(), item.getAmount());
-            trade(amountPoudre, itemStack, (Player) e.getWhoClicked());
+    public void addItem(Material material, int amount, int price) {
+        ItemStack tradeItem = new ItemBuilder(material).amount(amount).addLore(price + " Poudres").build();
+        addItem(tradeItem, e -> {
+            ItemStack item = new ItemStack(tradeItem.getType(), tradeItem.getAmount());
+            trade(price, item, (Player) e.getWhoClicked());
         });
     }
 
