@@ -1,12 +1,16 @@
-package me.chaounne.onenightcity.villager.spawners;
+package me.chaounne.onenightcity.game;
 
+import fr.mrmicky.fastinv.ItemBuilder;
 import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Barrel;
 import org.bukkit.block.BlockState;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 public class Spawner {
@@ -48,6 +52,26 @@ public class Spawner {
             return true;
         }
         return false;
+    }
+
+    public static ItemStack getIronSpawner() {
+        return new ItemBuilder(Material.BARREL).name(ChatColor.GRAY + "Spawner de fer")
+                .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
+    }
+
+    public static ItemStack getGoldSpawner() {
+        return new ItemBuilder(Material.BARREL).name(ChatColor.GOLD + "Spawner d'or")
+                .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
+    }
+
+    public static ItemStack getDiamondSpawner() {
+        return new ItemBuilder(Material.BARREL).name(ChatColor.BLUE + "Spawner de diamant")
+                .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
+    }
+
+    public static ItemStack getEmeraldSpawner() {
+        return new ItemBuilder(Material.BARREL).name(ChatColor.GREEN + "Spawner d'émeraude")
+                .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
 
 }

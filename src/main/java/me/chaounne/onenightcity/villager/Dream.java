@@ -1,6 +1,6 @@
 package me.chaounne.onenightcity.villager;
 
-import me.chaounne.onenightcity.villager.spawners.SpawnerItems;
+import me.chaounne.onenightcity.game.Spawner;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Villager;
@@ -21,16 +21,19 @@ public class Dream extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         List<MerchantRecipe> trades = new ArrayList<>();
 
-        trades.add(new MerchantRecipe(SpawnerItems.getIronSpawner(), 1));
+        trades.add(new MerchantRecipe(Spawner.getIronSpawner(), 1));
         trades.get(0).addIngredient(new ItemStack(Material.IRON_INGOT, 64));
 
-        trades.add(new MerchantRecipe(SpawnerItems.getGoldSpawner(), 1));
+        trades.add(new MerchantRecipe(Spawner.getGoldSpawner(), 1));
         trades.get(1).addIngredient(new ItemStack(Material.GOLD_INGOT, 48));
 
-        trades.add(new MerchantRecipe(SpawnerItems.getDiamondSpawner(), 1));
+        trades.add(new MerchantRecipe(Spawner.getDiamondSpawner(), 1));
         trades.get(2).addIngredient(new ItemStack(Material.DIAMOND, 32));
 
-        trades.add(new MerchantRecipe(SpawnerItems.getEmeraldSpawner(), 1));
+        trades.add(new MerchantRecipe(Spawner.getEmeraldSpawner(), 1));
+        trades.get(3).addIngredient(new ItemStack(Material.EMERALD, 16));
+
+        trades.add(new MerchantRecipe(Spawner.getEmeraldSpawner(), 1));
         trades.get(3).addIngredient(new ItemStack(Material.EMERALD, 16));
 
         villager.setRecipes(trades);

@@ -5,7 +5,7 @@ import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
 import me.chaounne.onenightcity.villager.*;
-import me.chaounne.onenightcity.villager.spawners.Spawner;
+import me.chaounne.onenightcity.game.Spawner;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
