@@ -30,12 +30,6 @@ public class Dream extends Trader {
         trades.add(new MerchantRecipe(Spawner.getDiamondSpawner(), 1));
         trades.get(2).addIngredient(new ItemStack(Material.DIAMOND, 32));
 
-        trades.add(new MerchantRecipe(Spawner.getEmeraldSpawner(), 1));
-        trades.get(3).addIngredient(new ItemStack(Material.EMERALD, 16));
-
-        trades.add(new MerchantRecipe(Spawner.getEmeraldSpawner(), 1));
-        trades.get(3).addIngredient(new ItemStack(Material.EMERALD, 16));
-
         villager.setRecipes(trades);
 
         return null;
