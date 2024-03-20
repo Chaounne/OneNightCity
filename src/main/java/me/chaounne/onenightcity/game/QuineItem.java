@@ -69,7 +69,7 @@ public class QuineItem {
         }
 
         // Affichage des 3 items à trouver aux joueurs
-        String message = ChatColor.YELLOW + "Vous avez 1 heure pour tenter de gagner 25 000 poudres, les 3 items à trouver sont : ";
+        String message = ChatColor.YELLOW + "Vous avez 30 minutes pour tenter de gagner 25 000 poudres, les 3 items à trouver sont : ";
         for (ItemStack item : itemsToFind) {
             message += item.getAmount() + " " + ChatColor.AQUA + item.getType() + ChatColor.YELLOW + ", ";
         }
