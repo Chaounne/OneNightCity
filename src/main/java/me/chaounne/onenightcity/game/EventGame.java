@@ -22,7 +22,7 @@ public class EventGame {
     private static boolean game = false;
 
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 100; // 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes
+        int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes
         if (ONCGame.getInstance().hasStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().hasStarted()) {
