@@ -22,15 +22,11 @@ public class DarkHenry extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         List<ItemStack> possibleItems = new ArrayList<>();
         possibleItems.add(new ItemStack(Material.ENCHANTING_TABLE));
-        possibleItems.add(new ItemStack(Material.ENDER_EYE));
+        possibleItems.add(new ItemStack(Material.GHAST_TEAR));
         possibleItems.add(new ItemStack(Material.END_CRYSTAL));
         possibleItems.add(new ItemStack(Material.DRAGON_HEAD));
-        possibleItems.add(new ItemStack(Material.BLAZE_POWDER));
-        possibleItems.add(new ItemStack(Material.MAGMA_CREAM));
+        possibleItems.add(new ItemStack(Material.HEART_OF_THE_SEA));
         possibleItems.add(new ItemStack(Material.SHULKER_SHELL));
-        possibleItems.add(new ItemStack(Material.NAME_TAG));
-        possibleItems.add(new ItemStack(Material.HONEY_BOTTLE));
-        possibleItems.add(new ItemStack(Material.GLOW_INK_SAC));
 
         MerchantRecipe recipe = new MerchantRecipe(PoudreItem.getSuperPoudre(15), 1);
         recipe.addIngredient(possibleItems.get((int) (Math.random() * possibleItems.size())));
