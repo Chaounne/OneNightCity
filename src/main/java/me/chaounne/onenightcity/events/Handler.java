@@ -2,16 +2,20 @@ package me.chaounne.onenightcity.events;
 
 import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
+import me.chaounne.onenightcity.game.Generator;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PoudreItem;
 import me.chaounne.onenightcity.villager.*;
-import me.chaounne.onenightcity.game.Spawner;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -21,6 +25,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -33,7 +38,7 @@ public class Handler implements Listener {
 
     private final Map<Player, Boolean> playerDeathStatus = new HashMap<>();
 
-    private final List<Spawner> spawners = new ArrayList<>();
+    private final List<Generator> generators = new ArrayList<>();
 
     @EventHandler
     public void onPlayerPortal(PlayerPortalEvent event) {
@@ -317,8 +322,8 @@ public class Handler implements Listener {
 
     // cut clean
     @EventHandler
-    public void onBlockBreakEvent(BlockBreakEvent event){
-        if(event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+    public void onBlockBreakEvent(BlockBreakEvent event) {
+        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             int skilkTouchLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.SILK_TOUCH);
             if(skilkTouchLevel > 0) return;
             if(event.getBlock().getType().equals(Material.GOLD_ORE) || event.getBlock().getType().equals(Material.DEEPSLATE_GOLD_ORE)){
@@ -362,30 +367,42 @@ public class Handler implements Listener {
                 }
             }
         }
+    }
 
+    @EventHandler
+    public void onBlockDrop(BlockDropItemEvent event) {
+        // arrête les générateurs et gère leur drop
         Location location = event.getBlock().getLocation();
-        int size = this.spawners.size();
+        int size = generators.size();
         for (int i = size - 1; i >= 0; i--) {
-            if (this.spawners.get(i).checkIfBroken(location)) {
-                this.spawners.remove(i);
+            if (generators.get(i).getLocation().equals(location)) {
+                generators.get(i).unScheduleSpawn();
+                generators.remove(i);
+                ItemStack itemStack = event.getItems().get(0).getItemStack();
+                itemStack.addUnsafeEnchantment(Enchantment.LUCK, 1);
+                ItemMeta meta = itemStack.getItemMeta();
+                if (meta != null)
+                    meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemStack.setItemMeta(meta);
             }
         }
     }
 
     @EventHandler
-    public void onBlockPlaced(BlockPlaceEvent event){
-        Location blockPos = event.getBlock().getLocation();
-        if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Spawner de diamant")) {
-            this.spawners.add(new Spawner(Material.DIAMOND, blockPos));
-        }
-        if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GOLD + "Spawner d'or")) {
-            this.spawners.add(new Spawner(Material.GOLD_INGOT, blockPos));
-        }
-        if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GRAY + "Spawner de fer")) {
-            this.spawners.add(new Spawner(Material.IRON_INGOT, blockPos));
-        }
-        if (event.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Spawner d'émeraude")) {
-            this.spawners.add(new Spawner(Material.EMERALD, blockPos));
+    public void onBlockPlaced(BlockPlaceEvent event) {
+        ItemMeta meta = event.getItemInHand().getItemMeta();
+        if (meta != null) {
+            Location blockLoc = event.getBlock().getLocation();
+            String name = meta.getDisplayName();
+            if (name.equals(ChatColor.BLUE + "Générateur de diamant")) {
+                generators.add(new Generator(Material.DIAMOND, blockLoc));
+            }
+            if (name.equals(ChatColor.GOLD + "Générateur d'or")) {
+                generators.add(new Generator(Material.GOLD_INGOT, blockLoc));
+            }
+            if (name.equals(ChatColor.GRAY + "Générateur de fer")) {
+                generators.add(new Generator(Material.IRON_INGOT, blockLoc));
+            }
         }
     }
 
