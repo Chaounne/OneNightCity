@@ -430,7 +430,7 @@ public class ONCGame implements Listener {
         new CheepCheap(new Location(world, 57.5, 69, -17.5, 90, 0));
         new JustinPuech(new Location(world, 55.5, 68, 1, 90, 0));
         new Legias(new Location(world, 55.5, 68, 4, 90, 0));
-        new VigneHill(new Location(world, 58.5, 68, -37.5, 0, 0));
+        new VigneHill(new Location(world, 52.5, 69, 16.5, 0, 0));
     }
 
     public void endGame(){
