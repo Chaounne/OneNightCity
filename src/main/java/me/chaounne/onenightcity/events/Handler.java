@@ -169,9 +169,9 @@ public class Handler implements Listener {
 
         if (killer != null) {
             GamePlayer killerGamePlayer = GamePlayer.getInstance(killer);
-            killerGamePlayer.getTeam().addScore(500);
-            killerGamePlayer.addScore(500);
-            killer.sendMessage(ChatColor.GOLD + "Vous avez gagné 500 poudres pour avoir tué " + ChatColor.GOLD + player.getName() + " !");
+            killerGamePlayer.getTeam().addScore(1000);
+            killerGamePlayer.addScore(1000);
+            killer.sendMessage(ChatColor.GOLD + "Vous avez gagné 1000 poudres pour avoir tué " + ChatColor.GOLD + player.getName() + " !");
         }
 
         playerDeathStatus.put(player, true);
