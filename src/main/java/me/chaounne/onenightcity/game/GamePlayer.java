@@ -22,9 +22,8 @@ public class GamePlayer {
 
     public static GamePlayer getInstance(Player player) {
         UUID playerUUID = player.getUniqueId();
-        if (!players.containsKey(playerUUID)) {
+        if (!players.containsKey(playerUUID))
             players.put(playerUUID, new GamePlayer(player));
-        }
         return players.get(playerUUID);
     }
 

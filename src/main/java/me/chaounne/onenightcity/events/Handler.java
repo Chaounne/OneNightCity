@@ -139,20 +139,18 @@ public class Handler implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
+        String message = event.getMessage();
 
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
-        if (gamePlayer.getTeam() != null) {
-            event.setFormat(gamePlayer.getTeam().getColor() + "[" + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + event.getMessage());
 
-            if(event.getMessage().startsWith("@")){
-                String message = event.getMessage();
+        if (gamePlayer.getTeam() != null) {
+            event.setFormat(gamePlayer.getTeam().getColor() + "[" + gamePlayer.getTeam().getName() + "] " + player.getName() + " : " + ChatColor.RESET + message);
+
+            if (message.startsWith("@")) {
                 event.setCancelled(true);
-                for (Player teamMember : gamePlayer.getTeam().getPlayers()) {
-                    teamMember.sendMessage(gamePlayer.getTeam().getColor() + "[Chat de l'équipe " + gamePlayer.getTeam().getName() + "] " + player.getName() + ChatColor.RESET + " : " + message);
-                }
+                for (Player teamMember : gamePlayer.getTeam().getPlayers())
+                    teamMember.sendMessage("" + gamePlayer.getTeam().getColor() + ChatColor.BOLD + "<Privé> [" + gamePlayer.getTeam().getName() + "] " + player.getName() + " : " + ChatColor.RESET + message.substring(1));
             }
-        } else {
-            event.setFormat(ChatColor.GRAY + player.getName() + ChatColor.RESET + " : " + event.getMessage());
         }
     }
 
