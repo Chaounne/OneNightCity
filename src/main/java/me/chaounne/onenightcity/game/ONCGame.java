@@ -209,7 +209,7 @@ public class ONCGame implements Listener {
                         player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 25 000"+ChatColor.DARK_PURPLE+" poudres");
                     }
                 }
-                if (time == 10790) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
+                if (time == randomTime) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
                     new DarkHenry(new Location(Bukkit.getWorlds().get(0), 0, 62.5, 1.5, 90, 0));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
