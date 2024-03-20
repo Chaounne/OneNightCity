@@ -159,8 +159,9 @@ public class Commands implements CommandExecutor {
                     }
 
                     String teamName = args[2];
-                    if (teamName.length() >= 14) {
-                        player.sendMessage(ChatColor.RED + "Nom de team trop long (11 caractères max)");
+                    teamName = teamName.replace("_", " ");
+                    if (teamName.length() > 20) {
+                        player.sendMessage(ChatColor.RED + "Nom de team trop long (20 caractères max)");
                         return false;
                     }
 
@@ -258,8 +259,9 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     String teamName = args[2];
-                    if (teamName.length() >= 14) {
-                        player.sendMessage(ChatColor.RED + "Nom de team trop long (11 caractères max)");
+                    teamName = teamName.replace("_", " ");
+                    if (teamName.length() > 20) {
+                        player.sendMessage(ChatColor.RED + "Nom de team trop long (20 caractères max)");
                         return false;
                     }
                     if (GamePlayer.getInstance(player).getTeam() != null) {
@@ -324,7 +326,7 @@ public class Commands implements CommandExecutor {
                     playerARemove.sendMessage(ChatColor.GREEN + "Vous avez été supprimé de " + team.getName() + " !");
                     return true;
                 }
-                case "marianne":
+                case "marianne": {
                     if (!(sender.isOp())) {
                         sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
                         return false;
@@ -395,7 +397,8 @@ public class Commands implements CommandExecutor {
                     }
                     Bukkit.broadcastMessage(ChatColor.GREEN + "Chaque jouer a été attribué à une équipe aléatoirement !");
                     return true;
-                case "purge":
+                }
+                case "purge": {
                     if (!(sender.isOp())) {
                         sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
                         return false;
@@ -413,6 +416,7 @@ public class Commands implements CommandExecutor {
                         Bukkit.broadcastMessage(ChatColor.GOLD + "Toutes les équipes ont été supprimées.");
                     }
                     return true;
+                }
                 case "leave": {
                     GamePlayer gamePlayer = GamePlayer.getInstance(player);
                     GameTeam team = gamePlayer.getTeam();
