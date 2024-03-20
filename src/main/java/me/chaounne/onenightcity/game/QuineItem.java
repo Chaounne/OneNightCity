@@ -69,7 +69,7 @@ public class QuineItem {
         }
 
         // Affichage des 3 items à trouver aux joueurs
-        String message = ChatColor.YELLOW + "Vous avez 30 minutes pour tenter de gagner 10 000 poudres, Les 3 items à trouver sont : ";
+        String message = ChatColor.YELLOW + "Vous avez 1 heure pour tenter de gagner 25 000 poudres, les 3 items à trouver sont : ";
         for (ItemStack item : itemsToFind) {
             message += item.getAmount() + " " + ChatColor.AQUA + item.getType() + ChatColor.YELLOW + ", ";
         }
@@ -103,15 +103,15 @@ public class QuineItem {
                     }
                     if (hasAllItems && !gameEnded) {
                         fini=true;
-                        player.sendMessage(ChatColor.GREEN + "Vous avez réussi à compléter la Quine d'item, vous gagnez 10 000 points!");
+                        player.sendMessage(ChatColor.GREEN + "Vous avez réussi à compléter la Quine, vous gagnez 25 000 poudres!");
                         for(Player playerE: Bukkit.getOnlinePlayers()){
                             playerE.sendMessage(ChatColor.GOLD + "Le joueur : " + player.getName() + " a réussi la QUINE");
                             playerE.playSound(playerE.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_1, 5f, 5f);
                         }
                         gameEnded = true;
                         GamePlayer player1 = GamePlayer.getInstance(player);
-                        player1.getTeam().addScore(10000);
-                        player1.addScore(10000);
+                        player1.getTeam().addScore(25000);
+                        player1.addScore(25000);
                         player.getInventory().removeItem(ressources);
 
                     }

@@ -32,7 +32,7 @@ public class DarkHenry extends Trader {
         possibleItems.add(new ItemStack(Material.HONEY_BOTTLE));
         possibleItems.add(new ItemStack(Material.GLOW_INK_SAC));
 
-        MerchantRecipe recipe = new MerchantRecipe(PoudreItem.getSuperPoudre(5), 1);
+        MerchantRecipe recipe = new MerchantRecipe(PoudreItem.getSuperPoudre(15), 1);
         recipe.addIngredient(possibleItems.get((int) (Math.random() * possibleItems.size())));
 
         villager.setRecipe(0, recipe);

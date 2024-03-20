@@ -206,10 +206,10 @@ public class ONCGame implements Listener {
                         GenerateChest.spawnEndChest(location);
                     }
                     for(Player player: Bukkit.getOnlinePlayers()){
-                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 10 000"+ChatColor.DARK_PURPLE+" points");
+                        player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 25 000"+ChatColor.DARK_PURPLE+" poudres");
                     }
                 }
-                if (time == randomTime) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
+                if (time == 10790) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
                     new DarkHenry(new Location(Bukkit.getWorlds().get(0), 0, 62.5, 1.5, 90, 0));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
@@ -295,15 +295,13 @@ public class ONCGame implements Listener {
                 if (playersWithEgg.isEmpty()) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         if (player.getInventory().contains(Material.DRAGON_EGG)) {
-                            for(Player player1:Bukkit.getOnlinePlayers()){
-                                player1.sendMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n" + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"+player.getName()+ChatColor.DARK_PURPLE+"§o, il a gagné  10 000 poudres");
-                                player1.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f);
-
-                            }
+                            Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + "§lL'oeuf de Dragon' a été récupéré !§r\n"
+                                    + ChatColor.DARK_PURPLE + "§oVoici le joueur qui a récuperer l'oeuf : §r"
+                                    + player.getName() + ChatColor.DARK_PURPLE + "§o, il a gagné  25 000 poudres");
+                            Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_AMBIENT, 10f, 10f));
                             GamePlayer gamePlayer = GamePlayer.getInstance(player);
-                            gamePlayer.getTeam().addScore(10000);
-                            gamePlayer.addScore(10000);
-
+                            gamePlayer.getTeam().addScore(25000);
+                            gamePlayer.addScore(25000);
                             playersWithEgg.add(player);
                         }
                     }

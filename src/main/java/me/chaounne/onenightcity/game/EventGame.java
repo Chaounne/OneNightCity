@@ -81,7 +81,7 @@ public class EventGame {
             // Annonce du début du concours
             for (Player player : Bukkit.getOnlinePlayers()) {
                 if (game) {
-                    player.sendMessage(ChatColor.GREEN + "Début du concours de collecte, durée 25 minutes ! "+ChatColor.GOLD + "5000 poudres à gagner ! "+ChatColor.GREEN + "L'item à récupérer : " + ChatColor.RED + itemDisplayName);
+                    player.sendMessage(ChatColor.GREEN + "Début du concours de collecte, durée 25 minutes ! "+ChatColor.GOLD + "10 000 poudres à gagner ! "+ChatColor.GREEN + "L'item à récupérer : " + ChatColor.RED + itemDisplayName);
                     // Afficher le message dans la barre de titre du joueur
 
                     player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
@@ -135,27 +135,27 @@ public class EventGame {
             game=false;
             if (winners.size() == 1) {
                 for (Player winner : winners) {
-                    Bukkit.broadcastMessage(ChatColor.GREEN + "Le joueur " + winner.getName() + " a remporté le concours avec " + playerResources.get(winner) + " " + itemToCollect.getType() +" ! " +ChatColor.GOLD + " Il gagne 5000 poudres !");
+                    Bukkit.broadcastMessage(ChatColor.GREEN + "Le joueur " + winner.getName() + " a remporté le concours avec " + playerResources.get(winner) + " " + itemToCollect.getType() +" ! " +ChatColor.GOLD + " Il gagne 10 000 poudres !");
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
                     }
                     GamePlayer gamePlayer = GamePlayer.getInstance(winner);
-                    gamePlayer.getTeam().addScore(5000);
-                    gamePlayer.addScore(5000);
+                    gamePlayer.getTeam().addScore(10000);
+                    gamePlayer.addScore(10000);
                 }
             } else {
                 Bukkit.broadcastMessage(ChatColor.GREEN + "Les joueurs suivants ont remporté le concours avec le même nombre d'objets (" + playerResources.get(winners.get(0)) + ") : ");
                 for (Player winner : winners) {
                     Bukkit.broadcastMessage(ChatColor.GREEN + "- " + winner.getName());
                 }
-                Bukkit.broadcastMessage(ChatColor.GREEN + "Chacun gagne 5000 poudres !");
+                Bukkit.broadcastMessage(ChatColor.GREEN + "Chacun gagne 10 000 poudres !");
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     player.playSound(player.getLocation(), Sound.BLOCK_BEACON_AMBIENT, 10f, 10f);
                 }
                 for (Player winner : winners) {
                     GamePlayer gamePlayer = GamePlayer.getInstance(winner);
-                    gamePlayer.getTeam().addScore(5000);
-                    gamePlayer.addScore(5000);
+                    gamePlayer.getTeam().addScore(10000);
+                    gamePlayer.addScore(10000);
                 }
             }
         } else {
