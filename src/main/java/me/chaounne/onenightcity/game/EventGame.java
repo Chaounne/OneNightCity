@@ -1,15 +1,13 @@
 package me.chaounne.onenightcity.game;
 
+import fr.skytasul.guardianbeam.Laser;
 import me.chaounne.onenightcity.OneNightCity;
-import me.chaounne.onenightcity.utils.ColorHelper;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
-import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
@@ -19,54 +17,40 @@ public class EventGame {
 
     private static final Random random = new Random();
 
-    // Ajoutez cette variable pour stocker l'identifiant de la tâche planifiée pour la fin du concours
     private static int endTaskID = -1;
 
     private static boolean game = false;
 
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes
+        int randomDelayPeriod = 100; // 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes
         if (ONCGame.getInstance().hasStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().hasStarted()) {
-
                     int randomNumber = random.nextInt(3) + 1;
-
                     if (randomNumber == 1 || randomNumber == 2) {
+                        for (Player player : Bukkit.getOnlinePlayers())
+                            player.sendMessage(ChatColor.YELLOW + "Rayons planétaires en approche, ils vont arriver d'ici 10 secondes !");
 
-                        for (Player player : Bukkit.getOnlinePlayers()) {
-                            player.sendMessage(ChatColor.YELLOW + "Position révélée dans 5 secondes !");
-                        } Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
                             if (ONCGame.getInstance().hasStarted()) {
-
                                 for (Player player : Bukkit.getOnlinePlayers()) {
-                                    player.sendMessage(ChatColor.RED + "Feu d'artifice ! Position des joueurs révélée !");
-                                }  for (Player player : Bukkit.getOnlinePlayers()) {
                                     if (!player.isDead() && !(player.getGameMode() == GameMode.SPECTATOR)) {
- 
-                                        GamePlayer gamePlayer = GamePlayer.getInstance(player);
-                                        ChatColor teamColor = gamePlayer.getTeam().getColor();
-                                        Color fireWorkColor = ColorHelper.getColorFromChatColor(teamColor);
-                                        Location fireworkLocation = player.getLocation();
-                                        Firework firework = player.getWorld().spawn(fireworkLocation, Firework.class);
-                                        FireworkMeta fireworkMeta = firework.getFireworkMeta();
-
-                                        FireworkEffect effect = FireworkEffect.builder()
-                                                .flicker(true)
-                                                .trail(true)
-                                                .with(FireworkEffect.Type.BURST)
-                                                .with(FireworkEffect.Type.BALL_LARGE)
-                                                .withColor(fireWorkColor)
-                                                .withFade(fireWorkColor)
-                                                .build();
-
-                                        fireworkMeta.addEffect(effect);
-                                        fireworkMeta.setPower(2);
-                                        firework.setFireworkMeta(fireworkMeta);
+                                        Location locationStart = player.getLocation().clone();
+                                        locationStart.setY(-64);
+                                        Location locationEnd = player.getLocation().clone();
+                                        locationEnd.setY(319);
+                                        try {
+                                            Laser.CrystalLaser laser = new Laser.CrystalLaser(locationStart, locationEnd, 10, -1);
+                                            laser.start(OneNightCity.getInstance());
+                                            player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
+                                        } catch (ReflectiveOperationException e) {
+                                            player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
+                                            player.sendMessage(ChatColor.RED + "Bizarrement aucun rayon ne vous a atteint !?");
+                                        }
                                     }
                                 }
                             }
-                        }, 5 * 20);
+                        }, 10 * 20);
                     }
                 }
             }, randomDelayPeriod, randomDelayPeriod);
