@@ -33,7 +33,30 @@ public class Commands implements CommandExecutor {
         ONCGame game = ONCGame.getInstance();
 
         String subCommand = args[0];
-        if (subCommand.equals("chest")) {
+        if (subCommand.equals("calc")) {
+            if (args.length != 4) {
+                player.sendMessage(ChatColor.RED + "Usage : /city calc <trade_price> <trade_amount> <item_stack>");
+                return false;
+            }
+
+            int tradePrice, tradeAmount, itemStack;
+            try {
+                tradePrice = Integer.parseInt(args[1]);
+                tradeAmount = Integer.parseInt(args[2]);
+                itemStack = Integer.parseInt(args[3]);
+            } catch (NumberFormatException e) {
+                player.sendMessage(ChatColor.RED + "Les arguments doivent être des nombres entiers.");
+                return false;
+            }
+
+            double itemValue = (double) tradePrice / tradeAmount;
+            int stack = (int) (itemValue * itemStack);
+            int chest = stack * 27;
+            int inv = stack * 37;
+            player.sendMessage(String.format("§6Item = §l%.1f§r§6 | Stack = §l%d§r§6 | Chest = §l%d§r§6 | Inv = §l%d§r§6", itemValue, stack, chest, inv));
+            return true;
+        }
+        else if (subCommand.equals("chest")) {
             if (!(sender.isOp())) {
                 sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
                 return false;
@@ -464,7 +487,7 @@ public class Commands implements CommandExecutor {
             }
             if (args.length == 1) {
                 player.sendMessage(ChatColor.RED + "Usage : /city powder <give | remove> <player> <amount>");
-                return true;
+                return false;
             }
             String powderCommand = args[1];
             if (powderCommand.equals("give")) {

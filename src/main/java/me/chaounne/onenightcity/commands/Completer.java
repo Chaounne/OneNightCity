@@ -20,6 +20,7 @@ public class Completer implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (argumentsCity.isEmpty()) {
+            argumentsCity.add("calc");
             argumentsCity.add("chest");
             argumentsCity.add("powder");
             argumentsCity.add("start");
@@ -74,32 +75,41 @@ public class Completer implements TabCompleter {
                 if (a.toLowerCase().startsWith(args[0].toLowerCase()))
                     result.add(a);
             }
-            return result;
         } else if (args.length == 2) {
-            if (args[0].equalsIgnoreCase("team")) {
+            if (args[0].equalsIgnoreCase("calc")) {
+                result.add("<trade_price>");
+            } else if (args[0].equalsIgnoreCase("team")) {
                 for (String a : argumentsTeams) {
                     if (a.toLowerCase().startsWith(args[1].toLowerCase()))
                         result.add(a);
                 }
-                return result;
             } else if (args[0].equalsIgnoreCase("powder")) {
                 for (String a : argumentsPouder) {
                     if (a.toLowerCase().startsWith(args[1].toLowerCase()))
                         result.add(a);
                 }
-                return result;
             }
         } else if (args.length == 3) {
-            if (args[1].equalsIgnoreCase("color")) {
+            if (args[0].equalsIgnoreCase("calc")) {
+                result.add("<trade_amount>");
+            } else if (args[1].equalsIgnoreCase("color")) {
                 for (String a : argumentsColor) {
-                    if (a.toLowerCase().startsWith(args[2].toLowerCase())) // Utilisez args[2] ici
+                    if (a.toLowerCase().startsWith(args[2].toLowerCase()))
                         result.add(a);
                 }
-                return result;
+            }
+        } else if (args.length == 4) {
+            if (args[0].equalsIgnoreCase("calc")) {
+                result.add("<item_stack>");
+            } else if (args[1].equalsIgnoreCase("color")) {
+                for (String a : argumentsColor) {
+                    if (a.toLowerCase().startsWith(args[2].toLowerCase()))
+                        result.add(a);
+                }
             }
         }
 
-        return null;
+        return result;
     }
 
 }
