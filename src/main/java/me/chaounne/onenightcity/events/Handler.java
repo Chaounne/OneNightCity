@@ -56,23 +56,21 @@ public class Handler implements Listener {
             return;
         }
         new BukkitRunnable() {
-            int count = 5; // Compte à rebours initial de 5 secondes
+            int count = 5;
 
             @Override
             public void run() {
                 if (count > 0) {
-                    // Envoyer le titre avec le compte à rebours
                     player.sendTitle("Respawn :", count + " secondes", 10, 30, 10);
-                    count--;
-
-                    // Appliquer les effets de potion
                     player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 2 * 20, 3));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20, 3));
+                    player.setInvulnerable(true);
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                    count--;
                 } else {
                     player.playSound(player.getLocation(), Sound.ENCHANT_THORNS_HIT, 1.0f, 1.0f);
-                    this.cancel(); // Arrêter le compte à rebours une fois qu'il atteint 0
-                    // Vous pouvez ajouter d'autres actions ici si nécessaire
+                    player.setInvulnerable(false);
+                    this.cancel();
                 }
             }
         }.runTaskTimer(OneNightCity.getInstance(), 0L, 20L);
