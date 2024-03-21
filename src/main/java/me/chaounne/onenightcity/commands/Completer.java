@@ -21,7 +21,6 @@ public class Completer implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (argumentsCity.isEmpty()) {
             argumentsCity.add("calc");
-            argumentsCity.add("chest");
             argumentsCity.add("powder");
             argumentsCity.add("start");
             argumentsCity.add("stop");

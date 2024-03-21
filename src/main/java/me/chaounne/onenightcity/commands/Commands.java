@@ -2,7 +2,6 @@ package me.chaounne.onenightcity.commands;
 
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.GameTeam;
-import me.chaounne.onenightcity.game.GenerateChest;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.utils.ColorHelper;
 import me.chaounne.onenightcity.utils.RandomFromList;
@@ -26,7 +25,7 @@ public class Commands implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.RED + "/city <chest | powder | start | stop | team>");
+            player.sendMessage(ChatColor.RED + "/city <calc | powder | start | stop | team>");
             return false;
         }
 
@@ -55,15 +54,6 @@ public class Commands implements CommandExecutor {
             int inv = stack * 37;
             player.sendMessage(String.format("§6Item = §l%.1f§r§6 | Stack = §l%d§r§6 | Chest = §l%d§r§6 | Inv = §l%d§r§6", itemValue, stack, chest, inv));
             return true;
-        }
-        else if (subCommand.equals("chest")) {
-            if (!(sender.isOp())) {
-                sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
-                return false;
-            }
-            Location playerLocation = player.getLocation();
-            GenerateChest.spawnEndChest(playerLocation);
-            player.sendMessage(ChatColor.GREEN + "Coffre placé");
         }
         else if (subCommand.equals("start")) {
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
