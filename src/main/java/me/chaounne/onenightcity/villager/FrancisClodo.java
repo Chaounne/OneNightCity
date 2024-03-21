@@ -37,7 +37,6 @@ public class FrancisClodo extends Trader {
         items.put(Material.DIAMOND_HORSE_ARMOR, new Integer[] {Random.between(1, 1), Random.between(2000, 4000)});
         items.put(Material.GOLDEN_HORSE_ARMOR, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
         items.put(Material.IRON_HORSE_ARMOR, new Integer[] {Random.between(1, 1), Random.between(1000, 2000)});
-        items.put(Material.LEATHER_HORSE_ARMOR, new Integer[] {Random.between(1, 1), Random.between(1000, 1500)});
         items.put(Material.CHAINMAIL_HELMET, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
         items.put(Material.CHAINMAIL_CHESTPLATE, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
         items.put(Material.CHAINMAIL_LEGGINGS, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
