@@ -116,7 +116,7 @@ public class ONCGame implements Listener {
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
-
+                        ChatColor.RED + "Morts : " + ChatColor.WHITE + player.getDeaths(),
                         "");
             } else if(countdown<=0 && countdown2>=0) {
                 String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
@@ -132,6 +132,7 @@ public class ONCGame implements Listener {
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
+                        ChatColor.RED + "Morts : " + ChatColor.WHITE + player.getDeaths(),
 
                         "");
             }else if(countdown<=0 && countdown2<=0 && countdown4>=0){
@@ -148,6 +149,7 @@ public class ONCGame implements Listener {
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
+                        ChatColor.RED + "Morts : " + ChatColor.WHITE + player.getDeaths(),
 
                         "");
             }else {
@@ -161,6 +163,7 @@ public class ONCGame implements Listener {
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
+                        ChatColor.RED + "Morts : " + ChatColor.WHITE + player.getDeaths(),
 
                         "");
             }
@@ -248,7 +251,7 @@ public class ONCGame implements Listener {
 
 
     public void startGame() {
-    
+
         if (!hasStarted) hasStarted = true;
 
         //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
@@ -263,6 +266,7 @@ public class ONCGame implements Listener {
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
 
             gamePlayer.resetKills();
+            gamePlayer.resetDeaths();
             FastBoard board = new FastBoard(player);
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
             boards.put(player.getUniqueId(), board);
@@ -294,8 +298,7 @@ public class ONCGame implements Listener {
         }
         World world = Bukkit.getWorlds().get(0);
         world.setPVP(false);
-        world.setPVP(true);
-
+        
         List<Player> playersWithEgg = new ArrayList<>();
         randomTime = random.nextInt(3001) + 6000;
         timer = new BukkitRunnable() {

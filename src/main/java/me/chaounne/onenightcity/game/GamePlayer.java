@@ -64,8 +64,15 @@ public class GamePlayer {
         }
     }
     public int getDeaths(){
+
+          return    player.getStatistic(Statistic.DEATHS);
+
+
+    }
+
+    public int resetDeaths() {
         if (player != null) {
-            player.getStatistic(Statistic.DEATHS);
+            player.setStatistic(Statistic.DEATHS,0);
             return 0;
         } else {
             return -1;
