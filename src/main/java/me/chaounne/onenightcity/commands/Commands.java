@@ -416,6 +416,10 @@ public class Commands implements CommandExecutor {
                         sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
                         return false;
                     }
+                    if (game.getTeams().isEmpty()) {
+                        player.sendMessage(ChatColor.RED + "Aucune équipe !");
+                        return false;
+                    }
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         GamePlayer gp = GamePlayer.getInstance(p);
                         GameTeam team = gp.getTeam();
@@ -426,8 +430,8 @@ public class Commands implements CommandExecutor {
                                 game.removeTeam(team);
                             }
                         }
-                        Bukkit.broadcastMessage(ChatColor.GOLD + "Toutes les équipes ont été supprimées.");
                     }
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "Toutes les équipes ont été supprimées.");
                     return true;
                 }
                 case "leave": {
@@ -466,7 +470,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 default:
-                    player.sendMessage(ChatColor.RED + "Usage : /city team <color | create | disband | fire |hire | leave | members | marianne | purge | rename> <player | teamname>");
+                    player.sendMessage(ChatColor.RED + "Usage : /city team <color | create | disband | fire | hire | leave | members | marianne | purge | rename> <player | team_name>");
                     return false;
             }
         }

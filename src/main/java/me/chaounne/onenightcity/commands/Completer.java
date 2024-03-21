@@ -11,7 +11,7 @@ public class Completer implements TabCompleter {
 
     private final List<String> argumentsCity = new ArrayList<>();
 
-    private final List<String> argumentsPouder = new ArrayList<>();
+    private final List<String> argumentsPowder = new ArrayList<>();
 
     private final List<String> argumentsTeams = new ArrayList<>();
 
@@ -27,9 +27,9 @@ public class Completer implements TabCompleter {
             argumentsCity.add("team");
         }
 
-        if (argumentsPouder.isEmpty()) {
-            argumentsPouder.add("give");
-            argumentsPouder.add("remove");
+        if (argumentsPowder.isEmpty()) {
+            argumentsPowder.add("give");
+            argumentsPowder.add("remove");
         }
 
         if (argumentsTeams.isEmpty()) {
@@ -70,42 +70,36 @@ public class Completer implements TabCompleter {
         List<String> result = new ArrayList<>();
 
         if (args.length == 1) {
-            for (String a : argumentsCity) {
-                if (a.toLowerCase().startsWith(args[0].toLowerCase()))
-                    result.add(a);
+            for (String arg : argumentsCity) {
+                if (arg.startsWith(args[0].toLowerCase()))
+                    result.add(arg);
             }
         } else if (args.length == 2) {
-            if (args[0].equalsIgnoreCase("calc")) {
+            if (args[0].equalsIgnoreCase("calc"))
                 result.add("<trade_price>");
-            } else if (args[0].equalsIgnoreCase("team")) {
-                for (String a : argumentsTeams) {
-                    if (a.toLowerCase().startsWith(args[1].toLowerCase()))
-                        result.add(a);
+            else if (args[0].equalsIgnoreCase("team")) {
+                for (String arg : argumentsTeams) {
+                    if (arg.startsWith(args[1].toLowerCase()))
+                        result.add(arg);
                 }
             } else if (args[0].equalsIgnoreCase("powder")) {
-                for (String a : argumentsPouder) {
-                    if (a.toLowerCase().startsWith(args[1].toLowerCase()))
-                        result.add(a);
+                for (String arg : argumentsPowder) {
+                    if (arg.startsWith(args[1].toLowerCase()))
+                        result.add(arg);
                 }
             }
         } else if (args.length == 3) {
-            if (args[0].equalsIgnoreCase("calc")) {
+            if (args[0].equalsIgnoreCase("calc"))
                 result.add("<trade_amount>");
-            } else if (args[1].equalsIgnoreCase("color")) {
-                for (String a : argumentsColor) {
-                    if (a.toLowerCase().startsWith(args[2].toLowerCase()))
-                        result.add(a);
+            else if (args[1].equalsIgnoreCase("color")) {
+                for (String arg : argumentsColor) {
+                    if (arg.startsWith(args[2].toLowerCase()))
+                        result.add(arg);
                 }
             }
         } else if (args.length == 4) {
-            if (args[0].equalsIgnoreCase("calc")) {
+            if (args[0].equalsIgnoreCase("calc"))
                 result.add("<item_stack>");
-            } else if (args[1].equalsIgnoreCase("color")) {
-                for (String a : argumentsColor) {
-                    if (a.toLowerCase().startsWith(args[2].toLowerCase()))
-                        result.add(a);
-                }
-            }
         }
 
         return result;
