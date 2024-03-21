@@ -84,7 +84,7 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(details, "Si vous rencontrez un bug, merci de nous le signaler.");
         DHAPI.addHologramLine(details, "Et pour finir amusez-vous bien et bon jeu ! GL HF");
 
-        Hologram news = DHAPI.createHologram("nouveautes", new Location(world, 123, 158, -49));
+        Hologram news = DHAPI.createHologram("nouveautes", new Location(world, 121.5, 158, -49));
         DHAPI.addHologramLine(news, ChatColor.RED + "NOUVEAUTÉS");
         DHAPI.addHologramLine(news, "Fix des bugs de la derniere game!");
         DHAPI.addHologramLine(news, "Rework des générateurs de minerais");
@@ -98,6 +98,12 @@ public final class OneNightCity extends JavaPlugin {
         DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour ajouter un joueur à votre équipe : /city team hire <player_name>");
         DHAPI.addHologramLine(help, ChatColor.WHITE + "Pour voir les membres de votre équipe : /city team members");
         DHAPI.addHologramLine(help, ChatColor.GREEN + "Amusez-vous bien !");
+
+        Hologram jump_leaderboard = DHAPI.createHologram("jump_leaderboard", new Location(world, 128.5, 158, -49));
+        DHAPI.addHologramLine(jump_leaderboard, ChatColor.RED + "Leaderboard Jump");
+        DHAPI.addHologramLine(jump_leaderboard, ChatColor.GOLD + "1er : Yaourt - 02:59:969");
+        DHAPI.addHologramLine(jump_leaderboard, ChatColor.GRAY + "2e - ...");
+        DHAPI.addHologramLine(jump_leaderboard, "3e - ...");
 
         Location leaderboardLoc = new Location(world, 118, 218, -36);
         DHAPI.createHologram("Classement", leaderboardLoc);

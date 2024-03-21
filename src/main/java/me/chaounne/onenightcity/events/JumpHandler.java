@@ -134,11 +134,13 @@ public class JumpHandler implements Listener {
                 .sorted(Map.Entry.comparingByValue())
                 .collect(Collectors.toList());
 
+        DHAPI.addHologramLine(leaderboardHologram, ChatColor.RED + "Classement de la session");
+
         int count = 1;
         for (Map.Entry<Player, Long> entry : sortedTimes.subList(0, Math.min(sortedTimes.size(), 10))) {
             String playerName = entry.getKey().getName();
             long time = entry.getValue();
-            String formattedTime = ChatColor.YELLOW + "Top " + count + ": " + playerName + " - " + JumpScore.formatJumpTime(time);
+            String formattedTime = ChatColor.YELLOW + "Top " + count + " : " + playerName + " - " + JumpScore.formatJumpTime(time);
 
             DHAPI.addHologramLine(leaderboardHologram, formattedTime);
             count++;
