@@ -376,7 +376,7 @@ public class Handler implements Listener {
         int size = generators.size();
         for (int i = size - 1; i >= 0; i--) {
             if (generators.get(i).getLocation().equals(location)) {
-                generators.get(i).unScheduleSpawn();
+                generators.get(i).unScheduleGeneration();
                 generators.remove(i);
                 ItemStack itemStack = event.getItems().get(0).getItemStack();
                 itemStack.addUnsafeEnchantment(Enchantment.LUCK, 1);

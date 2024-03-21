@@ -21,44 +21,44 @@ public class Generator {
     public Generator(Material material, Location location) {
         this.location = location;
         this.material = material;
-        scheduleSpawn();
+        scheduleGeneration();
     }
 
     public Location getLocation() {
         return location;
     }
 
-    private void scheduleSpawn() {
+    private void scheduleGeneration() {
         Barrel barrel = (Barrel) location.getBlock().getState();
         Inventory inv = barrel.getInventory();
-        ItemStack oreToSpawn = new ItemStack(material);
+        ItemStack item = new ItemStack(material);
         int period = 20;
         if (material == Material.EMERALD)
             period = 40;
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(),
-                () -> inv.addItem(oreToSpawn), period, period);
+                () -> inv.addItem(item), period, period);
     }
 
-    public void unScheduleSpawn() {
+    public void unScheduleGeneration() {
         Bukkit.getScheduler().cancelTask(taskId);
     }
 
-    public static ItemStack getIronSpawner() {
+    public static ItemStack getIronGenerator() {
         return new ItemBuilder(Material.BARREL).name(ChatColor.GRAY + "Générateur de fer")
                 .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
 
-    public static ItemStack getGoldSpawner() {
+    public static ItemStack getGoldGenerator() {
         return new ItemBuilder(Material.BARREL).name(ChatColor.GOLD + "Générateur d'or")
                 .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
 
-    public static ItemStack getDiamondSpawner() {
+    public static ItemStack getDiamondGenerator() {
         return new ItemBuilder(Material.BARREL).name(ChatColor.BLUE + "Générateur de diamant")
                 .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
 
-    public static ItemStack getEmeraldSpawner() {
+    public static ItemStack getEmeraldGenerator() {
         return new ItemBuilder(Material.BARREL).name(ChatColor.GREEN + "Générateur d'émeraude")
                 .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
     }

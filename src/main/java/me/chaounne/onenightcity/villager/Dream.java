@@ -21,16 +21,16 @@ public class Dream extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         List<MerchantRecipe> trades = new ArrayList<>();
 
-        trades.add(new MerchantRecipe(Generator.getIronSpawner(), 1));
+        trades.add(new MerchantRecipe(Generator.getIronGenerator(), 1));
         trades.get(0).addIngredient(new ItemStack(Material.IRON_INGOT, 64));
 
-        trades.add(new MerchantRecipe(Generator.getGoldSpawner(), 1));
+        trades.add(new MerchantRecipe(Generator.getGoldGenerator(), 1));
         trades.get(1).addIngredient(new ItemStack(Material.GOLD_INGOT, 48));
 
-        trades.add(new MerchantRecipe(Generator.getDiamondSpawner(), 1));
+        trades.add(new MerchantRecipe(Generator.getDiamondGenerator(), 1));
         trades.get(2).addIngredient(new ItemStack(Material.DIAMOND, 32));
 
-        trades.add(new MerchantRecipe(Generator.getEmeraldSpawner(), 1));
+        trades.add(new MerchantRecipe(Generator.getEmeraldGenerator(), 1));
         trades.get(3).addIngredient(new ItemStack(Material.EMERALD, 16));
 
         villager.setRecipes(trades);
