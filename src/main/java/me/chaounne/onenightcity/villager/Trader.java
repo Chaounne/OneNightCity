@@ -33,6 +33,7 @@ public abstract class Trader {
             villager.setVillagerType(type);
         villager.setProfession(profession);
         villager.setAI(false);
+        villager.setInvulnerable(true);
         villager.setSilent(true);
         villager.setVillagerLevel(5);
         villager.setCanPickupItems(false);

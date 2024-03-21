@@ -439,15 +439,6 @@ public class Handler implements Listener {
     }
 
     @EventHandler
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent event){
-        if(!game.hasStarted()) event.setCancelled(true);
-
-        if(event.getEntity() instanceof Villager){
-            event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
         if (event.getRightClicked() instanceof Villager) {
             Player player = event.getPlayer();
