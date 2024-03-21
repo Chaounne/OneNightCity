@@ -17,7 +17,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -55,25 +54,30 @@ public class Handler implements Listener {
             event.setRespawnLocation(new Location(Bukkit.getWorlds().get(0), 122, 154, -39));
             return;
         }
-        new BukkitRunnable() {
-            int count = 5;
+        // pas de malus si respawn dans le chateau
+        Location loc = event.getRespawnLocation().clone();
+        loc.setY(71);
+        if (loc.distance(new Location(Bukkit.getWorlds().get(0), 0, 71, 0)) > 5) {
+            new BukkitRunnable() {
+                int count = 5;
 
-            @Override
-            public void run() {
-                if (count > 0) {
-                    player.sendTitle("Respawn :", count + " secondes", 10, 30, 10);
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 2 * 20, 3));
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20, 3));
-                    player.setInvulnerable(true);
-                    player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
-                    count--;
-                } else {
-                    player.playSound(player.getLocation(), Sound.ENCHANT_THORNS_HIT, 1.0f, 1.0f);
-                    player.setInvulnerable(false);
-                    this.cancel();
+                @Override
+                public void run() {
+                    if (count > 0) {
+                        player.sendTitle("Respawn :", count + " secondes", 10, 30, 10);
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 2 * 20, 3));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20, 3));
+                        player.setInvulnerable(true);
+                        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                        count--;
+                    } else {
+                        player.playSound(player.getLocation(), Sound.ENCHANT_THORNS_HIT, 1.0f, 1.0f);
+                        player.setInvulnerable(false);
+                        this.cancel();
+                    }
                 }
-            }
-        }.runTaskTimer(OneNightCity.getInstance(), 0L, 20L);
+            }.runTaskTimer(OneNightCity.getInstance(), 0L, 20L);
+        }
 
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
 
