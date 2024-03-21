@@ -1,5 +1,6 @@
 package me.chaounne.onenightcity.game;
 
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -16,9 +17,10 @@ public class GamePlayer {
 
     private int score;
 
-    private GamePlayer(Player player) {
+    public GamePlayer(Player player) {
         this.player = player;
     }
+
 
     public static GamePlayer getInstance(Player player) {
         UUID playerUUID = player.getUniqueId();
@@ -50,5 +52,23 @@ public class GamePlayer {
     public void substractScore(int amount) {
         score = Math.max(score - amount, 0);
     }
-
+    public int getKills() {
+        return player.getStatistic(Statistic.PLAYER_KILLS);
+    }
+    public int resetKills() {
+        if (player != null) {
+            player.setStatistic(Statistic.PLAYER_KILLS, 0);
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+    public int getDeaths(){
+        if (player != null) {
+            player.getStatistic(Statistic.DEATHS);
+            return 0;
+        } else {
+            return -1;
+        }
+    }
 }

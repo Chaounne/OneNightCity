@@ -34,6 +34,7 @@ public final class OneNightCity extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         for (World world : Bukkit.getWorlds())
             world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 

@@ -237,10 +237,12 @@ public class Commands implements CommandExecutor {
                         }
                     }
 
+
                     playerTeam.setName(teamName);
                     playerTeam.getScoreboardTeam().setColor(playerTeam.getColor());
                     playerTeam.getScoreboardTeam().setPrefix("[" + playerTeam.getName() + "] ");
                     player.sendMessage("Vous avez changé de nom : " + playerTeam.getName() + " !");
+
                     break;
                 }
                 case "hire": {
@@ -423,6 +425,7 @@ public class Commands implements CommandExecutor {
                     }
                     for (Player p : players) {
                         GameTeam team = GamePlayer.getInstance(p).getTeam();
+
                         if (team != null) {
                             team.reset();
                             ONCGame.getInstance().removeTeam(team);
@@ -434,6 +437,7 @@ public class Commands implements CommandExecutor {
                     GameTeam[] teams = new GameTeam[nbTeam];
                     // création des équipes
                     for (int i = 0; i < nbTeam; i++) {
+
                         GameTeam team = new GameTeam("Team " + (i + 1));
                         game.addTeam(team);
                         teams[i] = team;
@@ -460,7 +464,7 @@ public class Commands implements CommandExecutor {
                         teamIndex++;
                         if (teamIndex >= nbTeam) teamIndex = 0;
                     }
-                    Bukkit.broadcastMessage(ChatColor.GREEN + "Chaque jouer a été attribué à une équipe aléatoirement !");
+                    Bukkit.broadcastMessage(ChatColor.GREEN + "Chaque joueur a été attribué à une équipe aléatoirement !");
                     return true;
                 }
                 case "purge": {

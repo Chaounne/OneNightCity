@@ -18,6 +18,8 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.*;
 
@@ -83,6 +85,7 @@ public class ONCGame implements Listener {
 
     public void updateBoard() {
         for (GamePlayer player : players) {
+
             FastBoard board = boards.get(player.getPlayer().getUniqueId());
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
 
@@ -112,6 +115,8 @@ public class ONCGame implements Listener {
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
+
                         "");
             } else if(countdown<=0 && countdown2>=0) {
                 String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
@@ -126,6 +131,8 @@ public class ONCGame implements Listener {
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
+
                         "");
             }else if(countdown<=0 && countdown2<=0 && countdown4>=0){
                 String countdownString = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
@@ -140,6 +147,8 @@ public class ONCGame implements Listener {
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
+
                         "");
             }else {
                 board.updateLines("",
@@ -151,6 +160,8 @@ public class ONCGame implements Listener {
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
+
                         "");
             }
 
@@ -165,6 +176,7 @@ public class ONCGame implements Listener {
         timer = new BukkitRunnable() {
             @Override
             public void run() {
+
                 World world = Bukkit.getWorlds().get(0);
 
                 if (time == 0) {
@@ -234,7 +246,9 @@ public class ONCGame implements Listener {
         timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
     }
 
+
     public void startGame() {
+    
         if (!hasStarted) hasStarted = true;
 
         //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
@@ -243,8 +257,12 @@ public class ONCGame implements Listener {
         EventGame.revealPlayerPositions();
         createDark();
         GenerateChest.spawnCoffre();
+
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.getPlayer().getInventory().clear();
+            GamePlayer gamePlayer = GamePlayer.getInstance(player);
+
+            gamePlayer.resetKills();
             FastBoard board = new FastBoard(player);
             board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
             boards.put(player.getUniqueId(), board);
@@ -276,6 +294,8 @@ public class ONCGame implements Listener {
         }
         World world = Bukkit.getWorlds().get(0);
         world.setPVP(false);
+        world.setPVP(true);
+
         List<Player> playersWithEgg = new ArrayList<>();
         randomTime = random.nextInt(3001) + 6000;
         timer = new BukkitRunnable() {
