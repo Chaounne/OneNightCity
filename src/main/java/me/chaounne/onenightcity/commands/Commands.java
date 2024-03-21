@@ -206,8 +206,8 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     team.setColor(chosenColor);
-                    team.getScoreboardTeam().setPrefix(chosenColor + "[" + team.getName() + "] ");
-                    team.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                    team.getScoreboardTeam().setColor(chosenColor);
+                    team.getScoreboardTeam().setPrefix("[" + team.getName() + "] ");
                     player.sendMessage("Vous avez changé de couleur " + team.getColor() + chosenColor);
                     break;
                 }
@@ -238,8 +238,8 @@ public class Commands implements CommandExecutor {
                     }
 
                     playerTeam.setName(teamName);
-                    playerTeam.getScoreboardTeam().setPrefix(playerTeam.getColor() + "[" + playerTeam.getName() + "] ");
-                    playerTeam.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                    playerTeam.getScoreboardTeam().setColor(playerTeam.getColor());
+                    playerTeam.getScoreboardTeam().setPrefix("[" + playerTeam.getName() + "] ");
                     player.sendMessage("Vous avez changé de nom : " + playerTeam.getName() + " !");
                     break;
                 }
@@ -355,8 +355,8 @@ public class Commands implements CommandExecutor {
                         color = availableColors.get(random);
                     }
                     team.setColor(color);
-                    team.getScoreboardTeam().setPrefix(color + "[" + teamName + "] ");
-                    team.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                    team.getScoreboardTeam().setColor(color);
+                    team.getScoreboardTeam().setPrefix("[" + teamName + "] ");
                     availableColors.remove(random);
                     // attribuer l'équipe au joueur
                     GamePlayer.getInstance(player).setTeam(team);
@@ -445,8 +445,8 @@ public class Commands implements CommandExecutor {
                         unassignedPlayers.remove(teamLeader);
                         GamePlayer.getInstance(teamLeader).setTeam(team);
                         game.addPlayer(GamePlayer.getInstance(teamLeader));
-                        team.getScoreboardTeam().setPrefix(team.getColor() + "[" + team.getName() + "] ");
-                        team.getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                        team.getScoreboardTeam().setColor(team.getColor());
+                        team.getScoreboardTeam().setPrefix("[" + team.getName() + "] ");
                     }
                     int teamIndex = 0;
                     while (!unassignedPlayers.isEmpty()) {
@@ -455,8 +455,8 @@ public class Commands implements CommandExecutor {
                         unassignedPlayers.remove(toAssign);
                         GamePlayer.getInstance(toAssign).setTeam(teams[teamIndex]);
                         game.addPlayer(GamePlayer.getInstance(toAssign));
-                        teams[teamIndex].getScoreboardTeam().setPrefix(teams[teamIndex].getColor() + "[" + teams[teamIndex].getName() + "] ");
-                        teams[teamIndex].getScoreboardTeam().setSuffix(ChatColor.RESET + "");
+                        teams[teamIndex].getScoreboardTeam().setColor(teams[teamIndex].getColor());
+                        teams[teamIndex].getScoreboardTeam().setPrefix("[" + teams[teamIndex].getName() + "] ");
                         teamIndex++;
                         if (teamIndex >= nbTeam) teamIndex = 0;
                     }
