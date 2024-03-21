@@ -397,11 +397,14 @@ public class Handler implements Listener {
             if (name.equals(ChatColor.BLUE + "Générateur de diamant")) {
                 generators.add(new Generator(Material.DIAMOND, blockLoc));
             }
-            if (name.equals(ChatColor.GOLD + "Générateur d'or")) {
+            else if (name.equals(ChatColor.GOLD + "Générateur d'or")) {
                 generators.add(new Generator(Material.GOLD_INGOT, blockLoc));
             }
-            if (name.equals(ChatColor.GRAY + "Générateur de fer")) {
+            else if (name.equals(ChatColor.GRAY + "Générateur de fer")) {
                 generators.add(new Generator(Material.IRON_INGOT, blockLoc));
+            }
+            else if (name.equals(ChatColor.GREEN + "Générateur d'émeraude")) {
+                generators.add(new Generator(Material.EMERALD, blockLoc));
             }
         }
     }

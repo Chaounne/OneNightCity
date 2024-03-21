@@ -32,8 +32,11 @@ public class Generator {
         Barrel barrel = (Barrel) location.getBlock().getState();
         Inventory inv = barrel.getInventory();
         ItemStack oreToSpawn = new ItemStack(material);
+        int period = 20;
+        if (material == Material.EMERALD)
+            period = 40;
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(),
-                () -> inv.addItem(oreToSpawn), 20, 20);
+                () -> inv.addItem(oreToSpawn), period, period);
     }
 
     public void unScheduleSpawn() {
@@ -52,6 +55,11 @@ public class Generator {
 
     public static ItemStack getDiamondSpawner() {
         return new ItemBuilder(Material.BARREL).name(ChatColor.BLUE + "Générateur de diamant")
+                .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
+    }
+
+    public static ItemStack getEmeraldSpawner() {
+        return new ItemBuilder(Material.BARREL).name(ChatColor.GREEN + "Générateur d'émeraude")
                 .enchant(Enchantment.LUCK).flags(ItemFlag.HIDE_ENCHANTS).build();
     }
 
