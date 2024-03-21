@@ -5,7 +5,7 @@ import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.jump.Checkpoint;
 import me.chaounne.onenightcity.game.jump.JumpManager;
-import me.chaounne.onenightcity.utils.JumpScore;
+import me.chaounne.onenightcity.game.jump.JumpScore;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -26,9 +26,9 @@ public class JumpHandler implements Listener {
 
     private final List<Checkpoint> checkpoints;
 
-    private final HashMap<Player, Long> bestScores;
+    private final Map<Player, Long> bestScores;
 
-    private final HashMap<Player, JumpManager> playerManagers;
+    private final Map<Player, JumpManager> playerManagers;
 
     public JumpHandler(Checkpoint... cps) {
         checkpoints = new ArrayList<>();
@@ -36,6 +36,14 @@ public class JumpHandler implements Listener {
         playerManagers = new HashMap<>();
         bestScores = new HashMap<>();
         updateHologram();
+    }
+
+    public Map<Player, JumpManager> getPlayerManagers() {
+        return playerManagers;
+    }
+
+    public List<Checkpoint> getCheckpoints() {
+        return checkpoints;
     }
 
     @EventHandler
@@ -49,7 +57,7 @@ public class JumpHandler implements Listener {
             if (clickedBlock != null) {
                 if (checkCheckpoint(clickedBlock, this.checkpoints.get(0))) {
                     if (!this.playerManagers.containsKey(player)) {
-                        this.playerManagers.put(player, new JumpManager(player, this.checkpoints.get(0)));
+                        this.playerManagers.put(player, new JumpManager(player));
                     }
                 }
                 else if (checkLastCheckpoint(clickedBlock, this.checkpoints.get(this.checkpoints.size() - 1))) {
@@ -83,7 +91,7 @@ public class JumpHandler implements Listener {
             }
             else if (item != null && item.getType() == Material.EMERALD && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
                 this.deactivateJumpManagerForPlayer(player);
-                this.playerManagers.put(player, new JumpManager(player, this.checkpoints.get(0)));
+                this.playerManagers.put(player, new JumpManager(player));
                 this.playerManagers.get(player).teleport();
             }
         }
@@ -105,7 +113,7 @@ public class JumpHandler implements Listener {
         deactivateJumpManagerForPlayer(player);
     }
 
-    private void deactivateJumpManagerForPlayer(Player p) {
+    public void deactivateJumpManagerForPlayer(Player p) {
         if (this.playerManagers.containsKey(p)) {
             this.playerManagers.get(p).deactivate();
             this.playerManagers.remove(p);

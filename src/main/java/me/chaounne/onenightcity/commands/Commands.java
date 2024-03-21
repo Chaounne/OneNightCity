@@ -1,8 +1,11 @@
 package me.chaounne.onenightcity.commands;
 
+import me.chaounne.onenightcity.OneNightCity;
+import me.chaounne.onenightcity.events.JumpHandler;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.GameTeam;
 import me.chaounne.onenightcity.game.ONCGame;
+import me.chaounne.onenightcity.game.jump.JumpManager;
 import me.chaounne.onenightcity.utils.ColorHelper;
 import me.chaounne.onenightcity.utils.RandomFromList;
 import org.bukkit.*;
@@ -53,6 +56,55 @@ public class Commands implements CommandExecutor {
             int chest = stack * 27;
             int inv = stack * 37;
             player.sendMessage(String.format("§6Item = §l%.1f§r§6 | Stack = §l%d§r§6 | Chest = §l%d§r§6 | Inv = §l%d§r§6", itemValue, stack, chest, inv));
+            return true;
+        }
+        else if (subCommand.equals("jump")) {
+            if (args.length != 2) {
+                player.sendMessage(ChatColor.RED + "Usage : /city jump <restart | start | stop>");
+                return false;
+            }
+            if (game.hasStarted()) {
+                player.sendMessage(ChatColor.RED + "Vous ne pouvez pas aire ça pendant une partie !");
+                return false;
+            }
+
+            JumpHandler jumpHandler = OneNightCity.getInstance().getJumpHandler();
+
+            switch (args[1]) {
+                case "restart": {
+                    if (!jumpHandler.getPlayerManagers().containsKey(player)) {
+                        player.sendMessage(ChatColor.RED + "Vous n'avez pas commencé le jump.");
+                        return false;
+                    }
+                    jumpHandler.deactivateJumpManagerForPlayer(player);
+                    JumpManager jumpManager = new JumpManager(player);
+                    jumpHandler.getPlayerManagers().put(player, jumpManager);
+                    jumpManager.teleport();
+                    break;
+                }
+                case "start": {
+                    if (jumpHandler.getPlayerManagers().containsKey(player)) {
+                        player.sendMessage(ChatColor.RED + "Vous avez déjà commencé le jump.");
+                        return false;
+                    }
+                    JumpManager jumpManager = new JumpManager(player);
+                    jumpHandler.getPlayerManagers().put(player, jumpManager);
+                    jumpManager.teleport();
+                    break;
+                }
+                case "stop": {
+                    if (!jumpHandler.getPlayerManagers().containsKey(player)) {
+                        player.sendMessage(ChatColor.RED + "Vous n'avez pas commencé le jump.");
+                        return false;
+                    }
+                    jumpHandler.deactivateJumpManagerForPlayer(player);
+                    break;
+                }
+                default: {
+                    player.sendMessage(ChatColor.RED + "Usage : /city jump <restart | start | stop>");
+                    return false;
+                }
+            }
             return true;
         }
         else if (subCommand.equals("start")) {

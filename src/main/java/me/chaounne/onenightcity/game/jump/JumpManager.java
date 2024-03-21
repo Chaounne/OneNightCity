@@ -1,5 +1,6 @@
 package me.chaounne.onenightcity.game.jump;
 
+import me.chaounne.onenightcity.OneNightCity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -7,8 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import me.chaounne.onenightcity.utils.JumpScore;
 
 public class JumpManager {
     
@@ -26,9 +25,9 @@ public class JumpManager {
 
     boolean finished;
 
-    public JumpManager(Player p, Checkpoint cp) {
+    public JumpManager(Player p) {
         this.player = p;
-        this.currentCheckpoint = cp;
+        this.currentCheckpoint = OneNightCity.getInstance().getJumpHandler().getCheckpoints().get(0);
         this.startJump();
         this.hasWool = false;
         this.hasEmerald = false;

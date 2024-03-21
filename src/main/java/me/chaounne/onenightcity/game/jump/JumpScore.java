@@ -1,4 +1,4 @@
-package me.chaounne.onenightcity.utils;
+package me.chaounne.onenightcity.game.jump;
 
 public class JumpScore {
     

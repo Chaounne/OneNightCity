@@ -22,8 +22,14 @@ import org.bukkit.scoreboard.Team;
 
 public final class OneNightCity extends JavaPlugin {
 
+    private JumpHandler jumpHandler;
+
     public static OneNightCity getInstance() {
         return getPlugin(OneNightCity.class);
+    }
+
+    public JumpHandler getJumpHandler() {
+        return jumpHandler;
     }
 
     @Override
@@ -96,7 +102,7 @@ public final class OneNightCity extends JavaPlugin {
         Location leaderboardLoc = new Location(world, 118, 218, -36);
         DHAPI.createHologram("Classement", leaderboardLoc);
 
-        JumpHandler jumpHandler = new JumpHandler(
+        jumpHandler = new JumpHandler(
                 new Checkpoint(new Location(world, 128.5, 155, -46.5)),
                 new Checkpoint(new Location(world, 128.5, 170, -46.5, 90, 0)),
                 new Checkpoint(new Location(world, 128.5, 175, -33.5, 90, 0)),
