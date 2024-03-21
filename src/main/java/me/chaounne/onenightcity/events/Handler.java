@@ -57,7 +57,7 @@ public class Handler implements Listener {
         // pas de malus si respawn dans le chateau
         Location loc = event.getRespawnLocation().clone();
         loc.setY(71);
-        if (loc.distance(new Location(Bukkit.getWorlds().get(0), 0, 71, 0)) > 5) {
+        if (loc.getWorld() != Bukkit.getWorlds().get(0) || loc.distance(new Location(Bukkit.getWorlds().get(0), 0, 71, 0)) > 5) {
             new BukkitRunnable() {
                 int count = 5;
 
