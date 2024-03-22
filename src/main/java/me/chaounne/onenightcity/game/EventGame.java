@@ -26,32 +26,29 @@ public class EventGame {
         if (ONCGame.getInstance().hasStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().hasStarted()) {
-                    int randomNumber = random.nextInt(3) + 1;
-                    if (randomNumber == 1 || randomNumber == 2) {
-                        for (Player player : Bukkit.getOnlinePlayers())
-                            player.sendMessage(ChatColor.YELLOW + "Rayons planétaires en approche, ils vont arriver d'ici 10 secondes !");
+                    for (Player player : Bukkit.getOnlinePlayers())
+                        player.sendMessage(ChatColor.YELLOW + "Rayons planétaires en approche, ils vont arriver d'ici 10 secondes !");
 
-                        Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
-                            if (ONCGame.getInstance().hasStarted()) {
-                                for (Player player : Bukkit.getOnlinePlayers()) {
-                                    if (!player.isDead() && !(player.getGameMode() == GameMode.SPECTATOR)) {
-                                        Location locationStart = player.getLocation().clone();
-                                        locationStart.setY(-64);
-                                        Location locationEnd = player.getLocation().clone();
-                                        locationEnd.setY(319);
-                                        try {
-                                            Laser.CrystalLaser laser = new Laser.CrystalLaser(locationStart, locationEnd, 10, -1);
-                                            laser.start(OneNightCity.getInstance());
-                                            player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
-                                        } catch (ReflectiveOperationException e) {
-                                            player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
-                                            player.sendMessage(ChatColor.RED + "Bizarrement aucun rayon ne vous a atteint !?");
-                                        }
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
+                        if (ONCGame.getInstance().hasStarted()) {
+                            for (Player player : Bukkit.getOnlinePlayers()) {
+                                if (!player.isDead() && !(player.getGameMode() == GameMode.SPECTATOR)) {
+                                    Location locationStart = player.getLocation().clone();
+                                    locationStart.setY(-64);
+                                    Location locationEnd = player.getLocation().clone();
+                                    locationEnd.setY(319);
+                                    try {
+                                        Laser.CrystalLaser laser = new Laser.CrystalLaser(locationStart, locationEnd, 10, -1);
+                                        laser.start(OneNightCity.getInstance());
+                                        player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
+                                    } catch (ReflectiveOperationException e) {
+                                        player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
+                                        player.sendMessage(ChatColor.RED + "Bizarrement aucun rayon ne vous a atteint !?");
                                     }
                                 }
                             }
-                        }, 10 * 20);
-                    }
+                        }
+                    }, 10 * 20);
                 }
             }, randomDelayPeriod, randomDelayPeriod);
         }
