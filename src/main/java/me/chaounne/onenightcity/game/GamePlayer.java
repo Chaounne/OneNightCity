@@ -17,10 +17,9 @@ public class GamePlayer {
 
     private int score;
 
-    public GamePlayer(Player player) {
+    private GamePlayer(Player player) {
         this.player = player;
     }
-
 
     public static GamePlayer getInstance(Player player) {
         UUID playerUUID = player.getUniqueId();
@@ -52,30 +51,21 @@ public class GamePlayer {
     public void substractScore(int amount) {
         score = Math.max(score - amount, 0);
     }
+
     public int getKills() {
         return player.getStatistic(Statistic.PLAYER_KILLS);
     }
-    public int resetKills() {
-        if (player != null) {
-            player.setStatistic(Statistic.PLAYER_KILLS, 0);
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-    public int getDeaths(){
 
-          return    player.getStatistic(Statistic.DEATHS);
-
-
+    public int getDeaths() {
+        return player.getStatistic(Statistic.DEATHS);
     }
 
-    public int resetDeaths() {
-        if (player != null) {
-            player.setStatistic(Statistic.DEATHS,0);
-            return 0;
-        } else {
-            return -1;
-        }
+    public void resetKills() {
+        player.setStatistic(Statistic.PLAYER_KILLS, 0);
     }
+
+    public void resetDeaths() {
+        player.setStatistic(Statistic.DEATHS,0);
+    }
+
 }

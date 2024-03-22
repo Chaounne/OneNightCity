@@ -18,8 +18,6 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.*;
 
@@ -251,8 +249,7 @@ public class ONCGame implements Listener {
 
 
     public void startGame() {
-
-        if (!hasStarted) hasStarted = true;
+        hasStarted = true;
 
         //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
 
@@ -457,7 +454,7 @@ public class ONCGame implements Listener {
     }
 
     public void endGame(){
-        if (hasStarted) hasStarted = false;
+        hasStarted = false;
         if (timer != null) timer.cancel();
         World overworld = Bukkit.getWorlds().get(0);
 
@@ -554,7 +551,6 @@ public class ONCGame implements Listener {
 
         teams.clear();
         players.clear();
-        if (hasStarted) hasStarted = false;
 
         time = 3 * 60 * 60;
     }

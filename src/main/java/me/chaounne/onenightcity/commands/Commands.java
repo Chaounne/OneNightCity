@@ -246,79 +246,83 @@ public class Commands implements CommandExecutor {
                     break;
                 }
                 case "hire": {
-                    if (!ONCGame.getInstance().hasStarted()) {
-                        GameTeam team = GamePlayer.getInstance(player).getTeam();
-                        if (team == null) {
-                            player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
-                            return false;
-                        }
-                        if (args.length == 2) {
-                            player.sendMessage(ChatColor.RED + "Usage : /city team hire <joueur>");
-                            return false;
-                        }
-                        // obtenir le joueur
-                        Player player1 = player.getServer().getPlayer(args[2]);
-                        if (player1 == null) {
-                            player.sendMessage(ChatColor.RED + "Joueur introuvable !");
-                            return false;
-                        }
-                        if (GamePlayer.getInstance(player1).getTeam() != null) {
-                            player.sendMessage(ChatColor.RED + "Le joueur " + player1.getName() + " est déjà dans une équipe !");
-                            return false;
-                        }
-                        if (player1.equals(player)) {
-                            player.sendMessage(ChatColor.RED + "Vous êtes déjà dans votre équipe !");
-                            return false;
-                        }
-                        // ajouter le joueur à l'équipe
-                        team.addPlayer(player1);
-                        GamePlayer.getInstance(player1).setTeam(team);
-                        game.addPlayer(GamePlayer.getInstance(player1));
-                        player.sendMessage(ChatColor.GREEN + "Joueur " + player1.getName() + " ajouté à votre équipe !");
-                        player1.sendMessage(ChatColor.GREEN + "Vous avez été ajouté à " + team.getName() + " !");
-                        return true;
-                    }else{return false;}
+                    if (game.hasStarted()) {
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
+                        return false;
+                    }
+                    GameTeam team = GamePlayer.getInstance(player).getTeam();
+                    if (team == null) {
+                        player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
+                        return false;
+                    }
+                    if (args.length == 2) {
+                        player.sendMessage(ChatColor.RED + "Usage : /city team hire <joueur>");
+                        return false;
+                    }
+                    // obtenir le joueur
+                    Player player1 = player.getServer().getPlayer(args[2]);
+                    if (player1 == null) {
+                        player.sendMessage(ChatColor.RED + "Joueur introuvable !");
+                        return false;
+                    }
+                    if (GamePlayer.getInstance(player1).getTeam() != null) {
+                        player.sendMessage(ChatColor.RED + "Le joueur " + player1.getName() + " est déjà dans une équipe !");
+                        return false;
+                    }
+                    if (player1.equals(player)) {
+                        player.sendMessage(ChatColor.RED + "Vous êtes déjà dans votre équipe !");
+                        return false;
+                    }
+                    // ajouter le joueur à l'équipe
+                    team.addPlayer(player1);
+                    GamePlayer.getInstance(player1).setTeam(team);
+                    game.addPlayer(GamePlayer.getInstance(player1));
+                    player.sendMessage(ChatColor.GREEN + "Joueur " + player1.getName() + " ajouté à votre équipe !");
+                    player1.sendMessage(ChatColor.GREEN + "Vous avez été ajouté à " + team.getName() + " !");
+                    return true;
                 }
                 case "disband": {
-                    if (!ONCGame.getInstance().hasStarted()) {
-                        GameTeam team = GamePlayer.getInstance(player).getTeam();
+                    if (game.hasStarted()) {
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
+                        return false;
+                    }
+                    GameTeam team = GamePlayer.getInstance(player).getTeam();
+                    if (team == null) {
+                        player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
+                        return false;
+                    }
+                    if (!(player.equals(team.getLeader()))) {
+                        player.sendMessage(ChatColor.RED + "Vous n'êtes pas le chef de votre équipe !");
+                        return false;
+                    }
+                    if (sender.isOp() && args.length > 2) {
+                        String teamName = args[2];
+                        for (GameTeam t : game.getTeams()) {
+                            if (t.getName().equals(teamName)) {
+                                team = t;
+                                break;
+                            }
+                        }
                         if (team == null) {
-                            player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
+                            player.sendMessage(ChatColor.RED + "Équipe introuvable !");
                             return false;
                         }
-                        if (!(player.equals(team.getLeader()))) {
-                            player.sendMessage(ChatColor.RED + "Vous n'êtes pas le chef de votre équipe !");
-                            return false;
-                        }
-                        if (sender.isOp() && args.length > 2) {
-                            String teamName = args[2];
-                            for (GameTeam t : game.getTeams()) {
-                                if (t.getName().equals(teamName)) {
-                                    team = t;
-                                    break;
-                                }
-                            }
-                            if (team == null) {
-                                player.sendMessage(ChatColor.RED + "Équipe introuvable !");
-                                return false;
-                            }
-                        }
-                        // retirer l'équipe des joueurs
-                        Iterator<Player> iterator = team.getPlayers().iterator();
-                        while (iterator.hasNext()) {
-                            Player p = iterator.next();
-                            p.sendMessage(ChatColor.RED + "Votre équipe a été dissoute !");
-                            iterator.remove(); // Utiliser l'itérateur pour supprimer l'élément
-                            GamePlayer.getInstance(p).setTeam(null);
-                            game.removePlayer(GamePlayer.getInstance(p));
-                            // Supprimer l'équipe dissoute
-                            game.removeTeam(team);
-                            // Désenregistrer l'équipe du scoreboard
-                            team.getScoreboardTeam().unregister();
-                        }
+                    }
+                    // retirer l'équipe des joueurs
+                    Iterator<Player> iterator = team.getPlayers().iterator();
+                    while (iterator.hasNext()) {
+                        Player p = iterator.next();
+                        p.sendMessage(ChatColor.RED + "Votre équipe a été dissoute !");
+                        iterator.remove(); // Utiliser l'itérateur pour supprimer l'élément
+                        GamePlayer.getInstance(p).setTeam(null);
+                        game.removePlayer(GamePlayer.getInstance(p));
+                        // Supprimer l'équipe dissoute
                         game.removeTeam(team);
-                        break;
-                    }else{return false;}
+                        // Désenregistrer l'équipe du scoreboard
+                        team.getScoreboardTeam().unregister();
+                    }
+                    game.removeTeam(team);
+                    break;
                 }
                 case "create": {
                     if (args.length == 2) {
@@ -326,7 +330,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     if (game.hasStarted()) {
-                        player.sendMessage(ChatColor.RED + "Le jeu a déjà commencé !");
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
                         return false;
                     }
                     String teamName = args[2];
@@ -371,36 +375,35 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "fire": {
-                    if (!ONCGame.getInstance().hasStarted()) {
-                        if (GamePlayer.getInstance(player).getTeam() == null) {
-                            player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
-                            return false;
-                        }
-                        GameTeam team = GamePlayer.getInstance(player).getTeam();
-                        if (args.length == 2) {
-                            player.sendMessage(ChatColor.RED + "Usage : /city team fire <joueur>");
-                            return false;
-                        }
-                        if (!player.equals(team.getLeader())) {
-                            player.sendMessage(ChatColor.RED + "Vous n'êtes pas le chef de votre équipe !");
-                            return false;
-                        }
-                        // obtenir le joueur à supprimer
-                        Player playerARemove = player.getServer().getPlayer(args[2]);
-                        if (playerARemove == null) {
-                            player.sendMessage(ChatColor.RED + "Joueur introuvable !");
-                            return false;
-                        }
-                        // supprimer le joueur de l'équipe
-                        GamePlayer.getInstance(playerARemove).getTeam().removePlayer(playerARemove);
-                        game.removePlayer(GamePlayer.getInstance(playerARemove));
-                        player.sendMessage(ChatColor.GREEN + "Joueur " + playerARemove.getName() + " supprimé de votre équipe !");
-                        playerARemove.sendMessage(ChatColor.GREEN + "Vous avez été supprimé de " + team.getName() + " !");
-                        return true;
-                    }else{
-                            return false;
-                        }
-
+                    if (game.hasStarted()) {
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
+                        return false;
+                    }
+                    if (GamePlayer.getInstance(player).getTeam() == null) {
+                        player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
+                        return false;
+                    }
+                    GameTeam team = GamePlayer.getInstance(player).getTeam();
+                    if (args.length == 2) {
+                        player.sendMessage(ChatColor.RED + "Usage : /city team fire <joueur>");
+                        return false;
+                    }
+                    if (!player.equals(team.getLeader())) {
+                        player.sendMessage(ChatColor.RED + "Vous n'êtes pas le chef de votre équipe !");
+                        return false;
+                    }
+                    // obtenir le joueur à supprimer
+                    Player playerARemove = player.getServer().getPlayer(args[2]);
+                    if (playerARemove == null) {
+                        player.sendMessage(ChatColor.RED + "Joueur introuvable !");
+                        return false;
+                    }
+                    // supprimer le joueur de l'équipe
+                    GamePlayer.getInstance(playerARemove).getTeam().removePlayer(playerARemove);
+                    game.removePlayer(GamePlayer.getInstance(playerARemove));
+                    player.sendMessage(ChatColor.GREEN + "Joueur " + playerARemove.getName() + " supprimé de votre équipe !");
+                    playerARemove.sendMessage(ChatColor.GREEN + "Vous avez été supprimé de " + team.getName() + " !");
+                    return true;
                 }
                 case "marianne": {
                     if (!(sender.isOp())) {
@@ -412,7 +415,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     if (game.hasStarted()) {
-                        player.sendMessage(ChatColor.RED + "Le jeu a déjà commencé !");
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
                         return false;
                     }
                     String nbTeamStr = args[2];
@@ -477,6 +480,10 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "purge": {
+                    if (game.hasStarted()) {
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
+                        return false;
+                    }
                     if (!(sender.isOp())) {
                         sender.sendMessage(ChatColor.RED + "Vous devez être OP pour exécuter cette commande !");
                         return false;
@@ -500,8 +507,11 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "leave": {
-                    if (!ONCGame.getInstance().hasStarted()){
-                        GamePlayer gamePlayer = GamePlayer.getInstance(player);
+                    if (game.hasStarted()) {
+                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
+                        return false;
+                    }
+                    GamePlayer gamePlayer = GamePlayer.getInstance(player);
                     GameTeam team = gamePlayer.getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
@@ -514,10 +524,6 @@ public class Commands implements CommandExecutor {
                     }
                     player.sendMessage(ChatColor.GREEN + "Vous avez quitté votre équipe !");
                     return true;
-                }else{
-                    return false;
-                }
-
                 }
                 case "members": {
                     if (game.getTeams().isEmpty()) {
@@ -543,6 +549,7 @@ public class Commands implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + "Usage : /city team <color | create | disband | fire | hire | leave | members | marianne | purge | rename> <player | team_name>");
                     return false;
             }
+            return true;
         }
         else if (subCommand.equals("powder")) {
             if (!(sender.isOp())) {
