@@ -1,6 +1,8 @@
 package me.chaounne.onenightcity.villager;
 
 import me.chaounne.onenightcity.game.Generator;
+import me.chaounne.onenightcity.game.PoudreItem;
+import me.chaounne.onenightcity.game.PlayerTracker;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Villager;
@@ -32,6 +34,9 @@ public class Dream extends Trader {
 
         trades.add(new MerchantRecipe(Generator.getEmeraldGenerator(), 1));
         trades.get(3).addIngredient(new ItemStack(Material.EMERALD, 16));
+
+        trades.add(new MerchantRecipe(PlayerTracker.getItem(), 1));
+        trades.get(4).addIngredient(PoudreItem.getSuperPoudre(50));
 
         villager.setRecipes(trades);
 

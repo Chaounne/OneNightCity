@@ -8,6 +8,7 @@ import me.chaounne.onenightcity.commands.Commands;
 import me.chaounne.onenightcity.commands.Completer;
 import me.chaounne.onenightcity.events.Handler;
 import me.chaounne.onenightcity.events.JumpHandler;
+import me.chaounne.onenightcity.events.TrackerHandler;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.jump.Checkpoint;
 import org.bukkit.*;
@@ -122,8 +123,6 @@ public final class OneNightCity extends JavaPlugin {
                 new Checkpoint(new Location(world, 122, 213, -40))
         );
 
-        getServer().getPluginManager().registerEvents(jumpHandler, this);
-
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.teleport(new Location(Bukkit.getWorlds().get(0), 122, 154, -39));
             player.setGameMode(GameMode.ADVENTURE);
@@ -161,7 +160,9 @@ public final class OneNightCity extends JavaPlugin {
 
         getCommand("city").setExecutor(cmd);
         getCommand("city").setTabCompleter(tab);
-        getPlugin(OneNightCity.class).getServer().getPluginManager().registerEvents(new Handler(), this);
+        getServer().getPluginManager().registerEvents(new Handler(), this);
+        getServer().getPluginManager().registerEvents(jumpHandler, this);
+        getServer().getPluginManager().registerEvents(new TrackerHandler(), this);
     }
 
     @Override
