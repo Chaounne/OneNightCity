@@ -99,6 +99,7 @@ public class PlayerTracker implements Listener {
                     compass.setItemMeta(meta);
                     if (wasInOffHand || startInOffhand) {
                         owner.getInventory().setItemInOffHand(compass);
+                    }
                     else if (index != -1)
                         owner.getInventory().setItem(index, compass);
                     else {
