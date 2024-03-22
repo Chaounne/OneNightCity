@@ -31,16 +31,19 @@ public class PlayerTracker implements Listener {
 
     private boolean wasInOffHand;
 
+    private boolean startInOffhand;
+
     private int index = -1;
 
     private int timer = 5 * 60;
 
     private int taskId;
 
-    public PlayerTracker(Player owner, Player target, ItemStack compass) {
+    public PlayerTracker(Player owner, Player target, ItemStack compass, boolean startInOffhand) {
         this.owner = owner;
         this.target = target;
         this.compass = compass;
+        this.startInOffhand = startInOffhand;
         startTracking();
         trackers.put(owner, this);
     }
@@ -94,7 +97,7 @@ public class PlayerTracker implements Listener {
                     } else
                         wasInOffHand = false;
                     compass.setItemMeta(meta);
-                    if (wasInOffHand)
+                    if (wasInOffHand || startInOffhand) {
                         owner.getInventory().setItemInOffHand(compass);
                     else if (index != -1)
                         owner.getInventory().setItem(index, compass);

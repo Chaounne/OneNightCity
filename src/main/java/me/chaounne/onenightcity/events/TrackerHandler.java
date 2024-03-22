@@ -54,7 +54,13 @@ public class TrackerHandler implements Listener {
                 && meta.getDisplayName().equals(PlayerTracker.getItemName() + "(désactivé)")) {
 
             ItemStack tracker = PlayerTracker.getItem();
-            player.getInventory().removeItem(tracker);
+            boolean isInOffHand = false;
+            if (player.getInventory().getItemInOffHand().equals(tracker)) {
+                isInOffHand = true;
+                player.getInventory().setItemInOffHand(null);
+            }
+            else
+                player.getInventory().removeItem(tracker);
 
             tracker.addEnchantment(Enchantment.VANISHING_CURSE, 1);
 
@@ -65,7 +71,7 @@ public class TrackerHandler implements Listener {
             });
             Player target = RandomFromList.get(potentialTargets);
 
-            new PlayerTracker(player, target, tracker);
+            new PlayerTracker(player, target, tracker, isInOffHand);
         }
     }
 
