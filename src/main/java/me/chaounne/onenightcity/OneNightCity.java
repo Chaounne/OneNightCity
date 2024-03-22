@@ -59,7 +59,7 @@ public final class OneNightCity extends JavaPlugin {
 
         Hologram welcome = DHAPI.createHologram("Bienvenue", new Location(world, 125, 156, -33));
         DHAPI.addHologramLine(welcome, "Bienvenue sur OneNightCity");
-        DHAPI.addHologramLine(welcome, "fait par Chaounne, Lucastrap09 et S0meB0dy_");
+        DHAPI.addHologramLine(welcome, "fait par Chaounne, Lucastrap09 et Rashnain");
         DHAPI.addHologramLine(welcome, "et build par Mazlai et Lucastrap09");
 
         Hologram rules1 = DHAPI.createHologram("Regle", new Location(world, 121, 157, -33));
@@ -88,11 +88,16 @@ public final class OneNightCity extends JavaPlugin {
 
         Hologram news = DHAPI.createHologram("nouveautes", new Location(world, 121.5, 158, -49));
         DHAPI.addHologramLine(news, ChatColor.RED + "NOUVEAUTÉS");
-        DHAPI.addHologramLine(news, "Fix des bugs de la derniere game!");
-        DHAPI.addHologramLine(news, "Rework des générateurs de minerais");
-        DHAPI.addHologramLine(news, "Rework du système de jump au lobby");
-        DHAPI.addHologramLine(news, "Mise à jour de la safe zone (+ de pvp au spawn)");
-        DHAPI.addHologramLine(news, "Plus d'info dans le guide sur discord ! Amusez-vous bien !");
+        DHAPI.addHologramLine(news, "Nouveau villageois : Vigne Hill");
+        DHAPI.addHologramLine(news, "Nouveau items à différents villageois");
+        DHAPI.addHologramLine(news, "1er item spécial : traqueur de joueur !");
+        DHAPI.addHologramLine(news, "Commande de calcul de rendement : /city calc");
+        DHAPI.addHologramLine(news, "Commandes pour le jump : /city jump");
+        DHAPI.addHologramLine(news, "Rayons au lieu de feu d'artifices");
+        DHAPI.addHologramLine(news, "Invulnérabilité de 5s après respawn");
+        DHAPI.addHologramLine(news, "Excel des items maintenant publique");
+        DHAPI.addHologramLine(news, "Buff events, nerf items et corrections...");
+        DHAPI.addHologramLine(news, "Plus d'info dans le channel #nouveautés sur Discord");
 
         Hologram help = DHAPI.createHologram("aide", new Location(world, 125, 157, -40));
         DHAPI.addHologramLine(help, ChatColor.RED + "Création et gestion de team");
