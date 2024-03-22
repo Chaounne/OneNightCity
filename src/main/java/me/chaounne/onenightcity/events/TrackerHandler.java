@@ -33,12 +33,12 @@ public class TrackerHandler implements Listener {
             if (meta.getDisplayName().equals(PlayerTracker.getItemName() + "(désactivé)")) {
                 Player player = (Player) event.getWhoClicked();
                 GamePlayer gp = GamePlayer.getInstance(player);
-                if (gp.getScore() >= 50000) {
+                if (gp.getScore() >= 50000 && player.getInventory().firstEmpty() != -1) {
                     gp.substractScore(50000);
                     gp.getTeam().substractScore(50000);
                     player.getInventory().addItem(result);
                 } else
-                    player.sendMessage(ChatColor.RED + "Vous ne pouvez pas vous payer ça.");
+                    player.sendMessage(ChatColor.RED + "Vous ne pouvez pas vous payer ça ou vous avez l'inventaire plein.");
             }
         }
     }
