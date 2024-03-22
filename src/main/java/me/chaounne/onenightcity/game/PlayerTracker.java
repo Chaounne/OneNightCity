@@ -77,7 +77,8 @@ public class PlayerTracker implements Listener {
                             replacedLocation.getWorld().getBlockAt(replacedLocation).setType(replacedBlock);
                         replacedBlock = target.getWorld().getBlockAt(loc).getType();
                         replacedLocation = loc;
-                        target.getWorld().getBlockAt(loc).setType(Material.LODESTONE);
+                        if (target.getWorld().getBlockAt(loc).getType() != Material.LODESTONE)
+                            target.getWorld().getBlockAt(loc).setType(Material.LODESTONE);
                         if (meta instanceof CompassMeta compassMeta)
                             compassMeta.setLodestone(loc);
                         // update timer
