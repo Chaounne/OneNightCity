@@ -246,10 +246,6 @@ public class Commands implements CommandExecutor {
                     break;
                 }
                 case "hire": {
-                    if (game.hasStarted()) {
-                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
-                        return false;
-                    }
                     GameTeam team = GamePlayer.getInstance(player).getTeam();
                     if (team == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
@@ -375,10 +371,6 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 case "fire": {
-                    if (game.hasStarted()) {
-                        player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça lorsque la partie est en cours.");
-                        return false;
-                    }
                     if (GamePlayer.getInstance(player).getTeam() == null) {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
