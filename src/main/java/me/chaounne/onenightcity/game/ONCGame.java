@@ -95,30 +95,48 @@ public class ONCGame implements Listener {
 
 
             int countdown2 = time - 7200;// au bout de 1heure  end open
-            int countdown4 = time - 7200; // au bout de 1 heure  quine commence
+            int countdownQuineStart = time - 9000; // au bout de 1 heure  quine commence
+            int countdownQuineEnd = time - 7200; // au bout de 1 heure  quine commence
             int countdown = time - 10200; // countdown de 10 minutes pour pvp
 
 
             if (countdown >= 0) {
                 String countdownString = String.format("%02d:%02d:%02d", countdown / 3600, (countdown % 3600) / 60, countdown % 60);
                 String countdownString2 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
-                String countdownString3 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
+                String countdownString3 = String.format("%02d:%02d:%02d", countdownQuineStart / 3600, (countdownQuineStart % 3600) / 60, countdownQuineStart % 60);
 
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
                         ChatColor.GOLD + "PVP activé dans : " + ChatColor.WHITE + countdownString + "s",
                         ChatColor.GOLD + "END activé dans : " + ChatColor.WHITE + countdownString2 + "s",
-                        ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString3 + "s",
+                        ChatColor.GOLD + "Quine dans : " + ChatColor.WHITE + countdownString3 + "s",
                         ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
                         ChatColor.RED + "Morts : " + ChatColor.WHITE + player.getDeaths(),
                         "");
-            } else if(countdown<=0 && countdown2>=0) {
+            } else if(countdown<=0 && countdown2>=0 && countdownQuineStart>=0) {
                 String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
-                String countdownString2 = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
+                String countdownString2 = String.format("%02d:%02d:%02d", countdownQuineStart / 3600, (countdownQuineStart % 3600) / 60, countdownQuineStart % 60);
+
+                board.updateLines("",
+                        ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
+                        ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
+                        ChatColor.RED + "PVP ACTIVÉ !",
+                        ChatColor.GOLD + "END activé dans : " + ChatColor.WHITE + countdownString1 + "s",
+                        ChatColor.GOLD + "Quine dans : " + ChatColor.WHITE + countdownString2 + "s",
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
+                        ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
+                        ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
+                        ChatColor.RED + "Morts : " + ChatColor.WHITE + player.getDeaths(),
+
+                        "");
+            } else if(countdown<=0 && countdown2>=0 && countdownQuineStart<=0) {
+                String countdownString1 = String.format("%02d:%02d:%02d", countdown2 / 3600, (countdown2 % 3600) / 60, countdown2 % 60);
+                String countdownString2 = String.format("%02d:%02d:%02d", countdownQuineEnd / 3600, (countdownQuineEnd % 3600) / 60, countdownQuineEnd % 60);
 
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
@@ -133,24 +151,7 @@ public class ONCGame implements Listener {
                         ChatColor.RED + "Morts : " + ChatColor.WHITE + player.getDeaths(),
 
                         "");
-            }else if(countdown<=0 && countdown2<=0 && countdown4>=0){
-                String countdownString = String.format("%02d:%02d:%02d", countdown4 / 3600, (countdown4 % 3600) / 60, countdown4 % 60);
-
-                board.updateLines("",
-                            ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
-                            ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
-                        ChatColor.RED + "PVP ACTIVÉ !",
-                        ChatColor.DARK_PURPLE + "END ACTIVÉ !",
-                        ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString + "s",
-
-                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
-                        ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
-                        ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
-                        ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
-                        ChatColor.RED + "Morts : " + ChatColor.WHITE + player.getDeaths(),
-
-                        "");
-            }else {
+            } else {
                 board.updateLines("",
                         ChatColor.GOLD + "Joueurs : " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size(),
                         ChatColor.GOLD + "Temps restant : " + ChatColor.WHITE + timeString,
