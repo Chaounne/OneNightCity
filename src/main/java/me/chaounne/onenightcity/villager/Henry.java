@@ -25,15 +25,15 @@ public class Henry extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(Material.WHEAT, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
-        items.put(Material.MELON, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
-        items.put(Material.PUMPKIN, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
-        items.put(Material.CARROT, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
-        items.put(Material.POTATO, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
-        items.put(Material.BEETROOT, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
-        items.put(Material.APPLE, new Integer[] {Random.between(1, 3), Random.between(2, 25)});
-        items.put(Material.SUGAR_CANE, new Integer[] {Random.between(1, 5), Random.between(10, 25)});
-        items.put(Material.COCOA_BEANS, new Integer[] {Random.between(1, 3), Random.between(10, 25)});
+        items.put(Material.MELON, new Integer[] {Random.between(1, 3), Random.between(15, 50)});
+        items.put(Material.PUMPKIN, new Integer[] {Random.between(1, 3), Random.between(15, 100)});
+        items.put(Material.CARROT, new Integer[] {Random.between(1, 3), Random.between(15, 35)});
+        items.put(Material.POTATO, new Integer[] {Random.between(1, 3), Random.between(15, 35)});
+        items.put(Material.BEETROOT, new Integer[] {Random.between(1, 3), Random.between(15, 35)});
+        items.put(Material.WHEAT, new Integer[] {Random.between(1, 3), Random.between(15, 25)});
+        items.put(Material.SUGAR_CANE, new Integer[] {Random.between(1, 5), Random.between(15, 50)});
+        items.put(Material.COCOA_BEANS, new Integer[] {Random.between(1, 3), Random.between(15, 100)});
+        items.put(Material.APPLE, new Integer[] {Random.between(1, 3), Random.between(15, 100)});
 
         return items;
     }

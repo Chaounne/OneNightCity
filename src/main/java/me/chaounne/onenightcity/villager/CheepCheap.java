@@ -34,7 +34,7 @@ public class CheepCheap extends Trader {
 
         for (String woolColor : woolColors) {
             Material woolMaterial = Material.getMaterial(woolColor);
-            items.put(woolMaterial, new Integer[] {Random.between(1, 5), Random.between(2, 15)});
+            items.put(woolMaterial, new Integer[] {Random.between(1, 5), Random.between(50, 150)});
         }
 
         return items;

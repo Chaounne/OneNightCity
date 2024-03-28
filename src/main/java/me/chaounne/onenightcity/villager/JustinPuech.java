@@ -25,15 +25,16 @@ public class JustinPuech extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(Material.FISHING_ROD, new Integer[] {Random.between(1, 1), Random.between(10, 500)});
-        items.put(Material.WATER_BUCKET, new Integer[] {Random.between(1, 1), Random.between(20, 200)});
-        items.put(Material.PUFFERFISH, new Integer[] {Random.between(1, 1), Random.between(100, 200)});
+        items.put(Material.FISHING_ROD, new Integer[] {Random.between(1, 1), Random.between(800, 2000)});
+        items.put(Material.WATER_BUCKET, new Integer[] {Random.between(1, 1), Random.between(500, 1500)});
+        items.put(Material.PUFFERFISH, new Integer[] {Random.between(1, 1), Random.between(100, 350)});
         items.put(Material.COOKED_COD, new Integer[] {Random.between(1, 3), Random.between(10, 50)});
         items.put(Material.TROPICAL_FISH, new Integer[] {Random.between(1, 1), Random.between(50, 150)});
-        items.put(Material.COD_BUCKET, new Integer[] {Random.between(1, 3), Random.between(50, 400)});
-        items.put(Material.SALMON_BUCKET, new Integer[] {Random.between(1, 3), Random.between(50, 400)});
-        items.put(Material.PUFFERFISH_BUCKET, new Integer[] {Random.between(1, 3), Random.between(50, 500)});
-        items.put(Material.TROPICAL_FISH_BUCKET, new Integer[] {Random.between(1, 3), Random.between(50, 450)});
+        items.put(Material.COD_BUCKET, new Integer[] {Random.between(1, 3), Random.between(800, 1200)});
+        items.put(Material.SALMON_BUCKET, new Integer[] {Random.between(1, 3), Random.between(800, 1200)});
+        items.put(Material.PUFFERFISH_BUCKET, new Integer[] {Random.between(1, 3), Random.between(800, 2000)});
+        items.put(Material.TROPICAL_FISH_BUCKET, new Integer[] {Random.between(1, 3), Random.between(800, 2000)});
+        items.put(Material.CARROT_ON_A_STICK, new Integer[] {Random.between(1, 1), Random.between(450, 1250)});
 
         return items;
     }

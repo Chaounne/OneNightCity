@@ -25,15 +25,16 @@ public class Jeaneau extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(Material.PRISMARINE, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
-        items.put(Material.PRISMARINE_SHARD, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
-        items.put(Material.PRISMARINE_BRICKS, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
-        items.put(Material.PRISMARINE_CRYSTALS, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
-        items.put(Material.PRISMARINE_BRICK_SLAB, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
-        items.put(Material.PRISMARINE_BRICK_STAIRS, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
-        items.put(Material.PRISMARINE_SLAB, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
-        items.put(Material.PRISMARINE_STAIRS, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
-        items.put(Material.PRISMARINE_WALL, new Integer[] {Random.between(1, 15), Random.between(10, 150)});
+        items.put(Material.PRISMARINE, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.PRISMARINE_SHARD, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.PRISMARINE_BRICKS, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.PRISMARINE_CRYSTALS, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.PRISMARINE_BRICK_SLAB, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.PRISMARINE_BRICK_STAIRS, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.PRISMARINE_SLAB, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.PRISMARINE_STAIRS, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.PRISMARINE_WALL, new Integer[] {Random.between(1, 5), Random.between(85, 150)});
+        items.put(Material.SPONGE, new Integer[] {Random.between(1, 2), Random.between(1000, 3500)});
 
         return items;
     }

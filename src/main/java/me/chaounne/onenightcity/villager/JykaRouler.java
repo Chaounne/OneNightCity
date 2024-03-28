@@ -30,8 +30,8 @@ public class JykaRouler extends Trader {
         items.put(Material.LECTERN, new Integer[] {Random.between(1, 5), Random.between(10, 700)});
         items.put(Material.INK_SAC, new Integer[] {Random.between(1, 5), Random.between(10, 300)});
         items.put(Material.GLOW_INK_SAC, new Integer[] {Random.between(1, 5), Random.between(10, 1000)});
-        items.put(Material.WRITABLE_BOOK, new Integer[] {Random.between(1, 5), Random.between(10, 200)});
-        items.put(Material.FEATHER, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
+        items.put(Material.WRITABLE_BOOK, new Integer[] {Random.between(1, 5), Random.between(1200, 5500)});
+        items.put(Material.FEATHER, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
 
         return items;
     }

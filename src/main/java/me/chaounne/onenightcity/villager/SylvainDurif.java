@@ -31,11 +31,11 @@ public class SylvainDurif extends Trader {
         items.put(Material.PURPUR_PILLAR, new Integer[] {Random.between(1, 3), Random.between(50, 80)});
         items.put(Material.PURPUR_SLAB, new Integer[] {Random.between(1, 3), Random.between(50, 60)});
         items.put(Material.PURPUR_STAIRS, new Integer[] {Random.between(1, 3), Random.between(50, 60)});
-        items.put(Material.END_STONE_BRICKS, new Integer[] {Random.between(2, 5), Random.between(50, 75)});
-        items.put(Material.END_STONE_BRICK_SLAB, new Integer[] {Random.between(2, 5), Random.between(75, 100)});
-        items.put(Material.END_STONE_BRICK_STAIRS, new Integer[] {Random.between(2, 5), Random.between(75, 100)});
-        items.put(Material.END_STONE_BRICK_WALL, new Integer[] {Random.between(2, 5), Random.between(75, 100)});
-        items.put(Material.END_CRYSTAL, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.END_STONE_BRICKS, new Integer[] {Random.between(2, 5), Random.between(30, 30)});
+        items.put(Material.END_STONE_BRICK_SLAB, new Integer[] {Random.between(2, 5), Random.between(30, 90)});
+        items.put(Material.END_STONE_BRICK_STAIRS, new Integer[] {Random.between(2, 5), Random.between(30, 60)});
+        items.put(Material.END_STONE_BRICK_WALL, new Integer[] {Random.between(2, 5), Random.between(30, 120)});
+        items.put(Material.END_CRYSTAL, new Integer[] {Random.between(1, 1), Random.between(2500, 12000)});
         items.put(Material.END_ROD, new Integer[] {Random.between(1, 5), Random.between(25, 50)});
         items.put(Material.OBSIDIAN, new Integer[] {Random.between(1, 2), Random.between(100, 150)});
         items.put(Material.SHULKER_BOX, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});

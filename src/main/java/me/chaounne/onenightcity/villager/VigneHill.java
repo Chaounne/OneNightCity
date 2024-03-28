@@ -27,20 +27,20 @@ public class VigneHill extends Trader {
 
         items.put(Material.MUSIC_DISC_5, new Integer[] {Random.between(1, 1), Random.between(30000, 60000)});
         items.put(Material.DISC_FRAGMENT_5, new Integer[] {Random.between(1, 1), Random.between(3000, 6000)});
-        items.put(Material.MUSIC_DISC_11, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
-        items.put(Material.MUSIC_DISC_13, new Integer[] {Random.between(1, 1), Random.between(7500, 15000)});
-        items.put(Material.MUSIC_DISC_BLOCKS, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
-        items.put(Material.MUSIC_DISC_CAT, new Integer[] {Random.between(1, 1), Random.between(7500, 15000)});
-        items.put(Material.MUSIC_DISC_CHIRP, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
-        items.put(Material.MUSIC_DISC_FAR, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
-        items.put(Material.MUSIC_DISC_MALL, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
-        items.put(Material.MUSIC_DISC_MELLOHI, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
+        items.put(Material.MUSIC_DISC_11, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_13, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_BLOCKS, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_CAT, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_CHIRP, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_FAR, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_MALL, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_MELLOHI, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
         items.put(Material.MUSIC_DISC_OTHERSIDE, new Integer[] {Random.between(1, 1), Random.between(25000, 50000)});
         items.put(Material.MUSIC_DISC_PIGSTEP, new Integer[] {Random.between(1, 1), Random.between(35000, 70000)});
-        items.put(Material.MUSIC_DISC_STAL, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
-        items.put(Material.MUSIC_DISC_STRAD, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
-        items.put(Material.MUSIC_DISC_WAIT, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
-        items.put(Material.MUSIC_DISC_WARD, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
+        items.put(Material.MUSIC_DISC_STAL, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_STRAD, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_WAIT, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.MUSIC_DISC_WARD, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
 
         return items;
     }

@@ -25,15 +25,15 @@ public class FrancisClodo extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(Material.GLASS_BOTTLE, new Integer[] {Random.between(1, 10), Random.between(5, 20)});
-        items.put(Material.HONEY_BOTTLE, new Integer[] {Random.between(1, 5), Random.between(15, 30)});
-        items.put(Material.MILK_BUCKET, new Integer[] {Random.between(1, 1), Random.between(20, 250)});
-        items.put(Material.BEETROOT_SOUP, new Integer[] {Random.between(1, 1), Random.between(50, 200)});
+        items.put(Material.GLASS_BOTTLE, new Integer[] {Random.between(1, 3), Random.between(25, 50)});
+        items.put(Material.HONEY_BOTTLE, new Integer[] {Random.between(1, 3), Random.between(50, 500)});
+        items.put(Material.MILK_BUCKET, new Integer[] {Random.between(1, 1), Random.between(1000, 2000)});
+        items.put(Material.BEETROOT_SOUP, new Integer[] {Random.between(1, 1), Random.between(1000, 2000)});
         items.put(Material.ENCHANTING_TABLE, new Integer[] {Random.between(1, 2), Random.between(750, 1500)});
         items.put(Material.GHAST_TEAR, new Integer[] {Random.between(1, 1), Random.between(2000, 4000)});
         items.put(Material.HEART_OF_THE_SEA, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
         items.put(Material.NAME_TAG, new Integer[] {Random.between(1, 1), Random.between(3000, 5000)});
-        items.put(Material.SADDLE, new Integer[] {Random.between(1, 1), Random.between(2000, 4000)});
+        items.put(Material.SADDLE, new Integer[] {Random.between(1, 1), Random.between(4000, 8000)});
         items.put(Material.DIAMOND_HORSE_ARMOR, new Integer[] {Random.between(1, 1), Random.between(2000, 4000)});
         items.put(Material.GOLDEN_HORSE_ARMOR, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
         items.put(Material.IRON_HORSE_ARMOR, new Integer[] {Random.between(1, 1), Random.between(1000, 2000)});

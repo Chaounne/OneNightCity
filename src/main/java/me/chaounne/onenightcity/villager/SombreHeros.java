@@ -28,7 +28,7 @@ public class SombreHeros extends Trader {
         items.put(Material.SCULK, new Integer[] {Random.between(1, 5), Random.between(20, 150)});
         items.put(Material.SCULK_VEIN, new Integer[] {Random.between(1, 2), Random.between(50, 90)});
         items.put(Material.SCULK_CATALYST, new Integer[] {Random.between(1, 2), Random.between(50, 500)});
-        items.put(Material.SCULK_SENSOR, new Integer[] {Random.between(1, 2), Random.between(50, 500)});
+        items.put(Material.SCULK_SENSOR, new Integer[] {Random.between(1, 1), Random.between(50, 500)});
         items.put(Material.SCULK_SHRIEKER, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
         items.put(Material.COBWEB, new Integer[] {Random.between(1, 5), Random.between(1, 10)});
         items.put(Material.DEEPSLATE_BRICKS, new Integer[] {Random.between(1, 5), Random.between(1, 8)});

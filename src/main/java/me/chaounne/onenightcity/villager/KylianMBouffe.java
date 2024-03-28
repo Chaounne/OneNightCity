@@ -25,16 +25,16 @@ public class KylianMBouffe extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(Material.COOKED_BEEF, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
-        items.put(Material.COOKED_CHICKEN, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
-        items.put(Material.COOKED_PORKCHOP, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
-        items.put(Material.COOKED_MUTTON, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
+        items.put(Material.COOKED_BEEF, new Integer[] {Random.between(1, 5), Random.between(10, 20)});
+        items.put(Material.COOKED_CHICKEN, new Integer[] {Random.between(1, 5), Random.between(10, 20)});
+        items.put(Material.COOKED_PORKCHOP, new Integer[] {Random.between(1, 5), Random.between(10, 20)});
+        items.put(Material.COOKED_MUTTON, new Integer[] {Random.between(1, 5), Random.between(10, 20)});
         items.put(Material.COOKED_RABBIT, new Integer[] {Random.between(1, 5), Random.between(20, 100)});
         items.put(Material.RABBIT_STEW, new Integer[] {Random.between(1, 5), Random.between(200, 1000)});
         items.put(Material.PUMPKIN_PIE, new Integer[] {Random.between(1, 5), Random.between(20, 100)});
         items.put(Material.COOKIE, new Integer[] {Random.between(1, 5), Random.between(20, 100)});
-        items.put(Material.SWEET_BERRIES, new Integer[] {Random.between(1, 10), Random.between(1, 25)});
-        items.put(Material.DRIED_KELP, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
+        items.put(Material.SWEET_BERRIES, new Integer[] {Random.between(1, 5), Random.between(10, 25)});
+        items.put(Material.DRIED_KELP, new Integer[] {Random.between(1, 5), Random.between(10, 20)});
 
         return items;
     }

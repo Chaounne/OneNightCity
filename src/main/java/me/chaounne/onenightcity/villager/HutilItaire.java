@@ -25,18 +25,17 @@ public class HutilItaire extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(Material.CRAFTING_TABLE, new Integer[] {Random.between(1, 3), Random.between(2, 20)});
-        items.put(Material.STONECUTTER, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.CARTOGRAPHY_TABLE, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.FLETCHING_TABLE, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.SMITHING_TABLE, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.GRINDSTONE, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.LOOM, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.FURNACE, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.SMOKER, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.BLAST_FURNACE, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.NOTE_BLOCK, new Integer[] {Random.between(1, 3), Random.between(20, 50)});
-        items.put(Material.JUKEBOX, new Integer[] {Random.between(1, 3), Random.between(70, 500)});
+        items.put(Material.STONECUTTER, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.CARTOGRAPHY_TABLE, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.FLETCHING_TABLE, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.SMITHING_TABLE, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.GRINDSTONE, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.LOOM, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.FURNACE, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.SMOKER, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.BLAST_FURNACE, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.NOTE_BLOCK, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
+        items.put(Material.JUKEBOX, new Integer[] {Random.between(1, 3), Random.between(70, 130)});
 
         return items;
     }

@@ -25,17 +25,18 @@ public class DrRaoult extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(Material.SPIDER_EYE, new Integer[] {Random.between(1, 10), Random.between(1, 40)});
-        items.put(Material.ROTTEN_FLESH, new Integer[] {Random.between(1, 10), Random.between(1, 40)});
-        items.put(Material.BONE, new Integer[] {Random.between(1, 10), Random.between(1, 40)});
-        items.put(Material.BONE_BLOCK, new Integer[] {Random.between(1, 10), Random.between(1, 60)});
-        items.put(Material.BONE_MEAL, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
-        items.put(Material.GUNPOWDER, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
+        items.put(Material.SPIDER_EYE, new Integer[] {Random.between(1, 5), Random.between(50, 250)});
+        items.put(Material.ROTTEN_FLESH, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
+        items.put(Material.BONE, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
+        items.put(Material.BONE_BLOCK, new Integer[] {Random.between(1, 5), Random.between(10, 75)});
+        items.put(Material.BONE_MEAL, new Integer[] {Random.between(1, 5), Random.between(1, 25)});
+        items.put(Material.GUNPOWDER, new Integer[] {Random.between(1, 5), Random.between(1, 50)});
         items.put(Material.RABBIT_FOOT, new Integer[] {Random.between(1, 1), Random.between(500, 2000)});
-        items.put(Material.LEATHER, new Integer[] {Random.between(1, 10), Random.between(1, 20)});
-        items.put(Material.RABBIT_HIDE, new Integer[] {Random.between(1, 10), Random.between(1, 50)});
-        items.put(Material.SLIME_BALL, new Integer[] {Random.between(1, 10), Random.between(1, 200)});
+        items.put(Material.LEATHER, new Integer[] {Random.between(1, 5), Random.between(10, 100)});
+        items.put(Material.RABBIT_HIDE, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
+        items.put(Material.SLIME_BALL, new Integer[] {Random.between(1, 3), Random.between(100, 1000)});
         items.put(Material.SCUTE, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
+        items.put(Material.WITHER_SKELETON_SKULL, new Integer[] {Random.between(1, 1), Random.between(4000, 8000)});
 
         return items;
     }

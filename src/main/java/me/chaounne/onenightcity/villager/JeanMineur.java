@@ -25,7 +25,6 @@ public class JeanMineur extends Trader {
     public LinkedHashMap<Material, Integer[]> getTrades() {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
-        items.put(Material.COAL, new Integer[] {Random.between(1, 15), Random.between(10, 50)});
         items.put(Material.DEEPSLATE_COAL_ORE, new Integer[] {Random.between(1, 5), Random.between(500, 2000)});
         items.put(Material.IRON_ORE, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
         items.put(Material.DEEPSLATE_IRON_ORE, new Integer[] {Random.between(1, 5), Random.between(20, 100)});
@@ -42,7 +41,6 @@ public class JeanMineur extends Trader {
         items.put(Material.DIAMOND_ORE, new Integer[] {Random.between(1, 5), Random.between(500, 1000)});
         items.put(Material.DEEPSLATE_DIAMOND_ORE, new Integer[] {Random.between(1, 5), Random.between(50, 200)});
         items.put(Material.NETHER_GOLD_ORE, new Integer[] {Random.between(1, 5), Random.between(10, 50)});
-        items.put(Material.ANCIENT_DEBRIS, new Integer[] {Random.between(1, 5), Random.between(500, 1500)});
 
         return items;
     }

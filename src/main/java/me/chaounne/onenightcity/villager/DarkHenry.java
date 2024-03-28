@@ -28,7 +28,7 @@ public class DarkHenry extends Trader {
         possibleItems.add(new ItemStack(Material.HEART_OF_THE_SEA));
         possibleItems.add(new ItemStack(Material.SHULKER_SHELL));
 
-        MerchantRecipe recipe = new MerchantRecipe(PoudreItem.getSuperPoudre(15), 1);
+        MerchantRecipe recipe = new MerchantRecipe(PoudreItem.getSuperPoudre(20), 1);
         recipe.addIngredient(possibleItems.get((int) (Math.random() * possibleItems.size())));
 
         villager.setRecipe(0, recipe);
