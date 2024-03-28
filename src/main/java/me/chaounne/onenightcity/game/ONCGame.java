@@ -41,6 +41,13 @@ public class ONCGame implements Listener {
 
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
+    private boolean quine;
+    private boolean end;
+    private boolean darkHenry;
+    private boolean uneHeureRestante;
+    private boolean pvp;
+    private boolean annonceFin;
+
     private ONCGame() {
         Bukkit.getPluginManager().registerEvents(this, OneNightCity.getInstance());
         instance = this;
@@ -182,15 +189,21 @@ public class ONCGame implements Listener {
 
                 World world = Bukkit.getWorlds().get(0);
 
-                if (time == 0) {
+                if (time <= 1) {
+                    for(Player player:Bukkit.getOnlinePlayers()) {
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 1));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 50, 1));
+                    }
+                }
+                if (time <= 0) {
                     this.cancel();
                     endGame();
                 }
-                if (time == 9000) {//au bout de 30 min la quine commence
+                if (time <= 9000 && !quine) { // au bout de 30 min la quine commence
                     QuineItem.start();
-
+                    quine = true;
                 }
-                if (time==7200) { // au bout d'une heure
+                if (time <= 7200 && !end) { // end au bout d'une heure
                     Location[] endGateBlocks = new Location[] {
                             new Location(world, 2, 64, 7),
                             new Location(world, 2, 63, 7),
@@ -223,8 +236,9 @@ public class ONCGame implements Listener {
                     for(Player player: Bukkit.getOnlinePlayers()){
                         player.sendMessage(ChatColor.DARK_PURPLE+"L'end est ouvert le premier à récupérer l'oeuf du dragon recevra"+ChatColor.GOLD+" 25 000"+ChatColor.DARK_PURPLE+" poudres");
                     }
+                    end = true;
                 }
-                if (time == randomTime) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
+                if (time <= randomTime && !darkHenry) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
                     new DarkHenry(new Location(Bukkit.getWorlds().get(0), 0, 62.5, 1.5, 90, 0));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
@@ -237,13 +251,9 @@ public class ONCGame implements Listener {
 
                         p.sendMessage(ChatColor.RED+"Le frère maléfique de Henry est là, il est pressé, il ne vous accorde qu'un seul échange, dépéchez-vous !");
                     }
+                    darkHenry = true;
                 }
-                if(time==1){
-                    for(Player player:Bukkit.getOnlinePlayers()) {
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 1));
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 50, 1));
-                    }
-                }
+
             }
         };
         timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
@@ -255,8 +265,16 @@ public class ONCGame implements Listener {
         //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
 
         long startingTime = Instant.now().getEpochSecond();
-        long endingTime = startingTime + 3 * 3600;
+        long endingTime = startingTime + 20;// * 3600;
         time = (int) (endingTime - startingTime);
+
+        // events
+        pvp = false;
+        quine = false;
+        end = false;
+        darkHenry = false;
+        uneHeureRestante = false;
+        annonceFin = false;
 
         EventGame.LancerConcours();
         EventGame.revealPlayerPositions();
@@ -312,12 +330,12 @@ public class ONCGame implements Listener {
 
                 time = (int) (endingTime - Instant.now().getEpochSecond());
 
-                if (time == 3600) { // Si il reste 1 heure
+                if (time <= 3600 && !uneHeureRestante) { // Si il reste 1 heure
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle("1 heure restante", "", 10, 70, 20);
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 5f, 5f);
                     }
-
+                    uneHeureRestante = true;
                 }
                 if (playersWithEgg.isEmpty()) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
@@ -333,7 +351,7 @@ public class ONCGame implements Listener {
                         }
                     }
                 }
-                if(time==10200) {// Temps au bout de 10 min de jeu
+                if (time <= 10200 && !pvp) { // Temps au bout de 10 min de jeu
                     world.setPVP(true);
 
                     // Envoyer le titre à tous les joueurs en ligne
@@ -343,84 +361,24 @@ public class ONCGame implements Listener {
                         // Jouer un son à tous les joueurs
                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                     }
+                    pvp = true;
                 }
-                if(time==1){ // Pour la fin de la partie
-                    for(Player player:Bukkit.getOnlinePlayers()){
-                        player.getInventory().clear();
-                        player.sendMessage(ChatColor.RED+"FIN DE LA PARTIE, GG A TOUS");
-                        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
-                        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
-                        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
-                    }
-                }
-                if(time==11){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"Fin de la partie, dans 10 ");
-
-                    }
-                }
-                if(time==10){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...9");
-
-                    }
-                }
-                if(time==9){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...8");
-
-                    }
-                }
-                if(time==8){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...7");
-
-                    }
-                }
-                if(time==7){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...6");
-
-                    }
-                }
-                if(time==6){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...5");
-
-                    }
-                }
-                if(time==5){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...4");
-
-                    }
-                }
-                if(time==4){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...3");
-
-                    }
-                }
-                if(time==3){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...2");
-
-                    }
-                }
-                if(time==2){
-                    for(Player player:Bukkit.getOnlinePlayers()){
-
-                        player.sendMessage(ChatColor.RED+"...1");
-
+                if (time <= 10) { // Pour la fin de la partie
+                    if (!annonceFin) {
+                        Bukkit.broadcastMessage(ChatColor.RED + "Fin de la partie dans 10...");
+                        annonceFin = true;
+                    } else {
+                        if (time > 0)
+                            Bukkit.broadcastMessage(ChatColor.RED + "..." + time);
+                        else {
+                            for (Player player : Bukkit.getOnlinePlayers()) {
+                                player.getInventory().clear();
+                                player.sendMessage(ChatColor.RED + "FIN DE LA PARTIE, GG À TOUS");
+                                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
+                                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
+                                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
+                            }
+                        }
                     }
                 }
                 updateBoard();
