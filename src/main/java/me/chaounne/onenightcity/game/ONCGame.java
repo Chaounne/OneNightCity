@@ -463,6 +463,10 @@ public class ONCGame implements Listener {
         overworld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         overworld.setTime(0);
 
+        // stop trackers
+        for (Map.Entry<UUID, PlayerTracker> entry : PlayerTracker.getTrackers().entrySet())
+            entry.getValue().stop();
+
         for (Player player : Bukkit.getOnlinePlayers()) {
 
             player.getPlayer().teleport(new Location(overworld,122,154,-39));
