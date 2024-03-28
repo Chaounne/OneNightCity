@@ -265,7 +265,7 @@ public class ONCGame implements Listener {
         //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
 
         long startingTime = Instant.now().getEpochSecond();
-        long endingTime = startingTime + 20;// * 3600;
+        long endingTime = startingTime + 3 * 3600;
         time = (int) (endingTime - startingTime);
 
         // events
