@@ -14,109 +14,114 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class PlayerTracker implements Listener {
 
-    private static final Map<Player, PlayerTracker> trackers = new HashMap<>();
+    private static final Map<UUID, PlayerTracker> trackers = new HashMap<>();
 
     private final Player owner;
 
     private final Player target;
 
-    private final ItemStack compass;
+    private final UUID uuid;
 
     private Material replacedBlock;
 
     private Location replacedLocation;
 
-    private boolean wasInOffHand;
-
-    private boolean startInOffhand;
-
-    private int index = -1;
-
     private int timer = 5 * 60;
 
     private int taskId;
 
-    public PlayerTracker(Player owner, Player target, ItemStack compass, boolean startInOffhand) {
+    public PlayerTracker(Player owner, Player target, UUID uuid) {
         this.owner = owner;
         this.target = target;
-        this.compass = compass;
-        this.startInOffhand = startInOffhand;
-        startTracking();
-        trackers.put(owner, this);
+        this.uuid = uuid;
+        trackers.put(uuid, this);
+        createScheduler();
     }
 
-    private void startTracking() {
+    private void createScheduler() {
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(),
                 () -> {
+                    ItemStack compass = getItemFromInv();
                     if (timer == 0) {
+                        // obligé car remove() ne supprime pas l'item dans la main secondaire
                         if (owner.getInventory().getItemInOffHand().equals(compass))
                             owner.getInventory().setItemInOffHand(null);
                         else
-                            owner.getInventory().remove(compass);
-                        System.out.println("FIN");
+                            removeItemFromInv();
                         replacedLocation.getWorld().getBlockAt(replacedLocation).setType(replacedBlock);
                         Bukkit.getScheduler().cancelTask(taskId);
                         return;
                     }
+
+                    // update lodestone
+                    Location loc = target.getLocation();
+                    switch (target.getWorld().getEnvironment()) {
+                        case THE_END:
+                            loc.setY(255);
+                            break;
+                        case NETHER:
+                            loc.setY(0);
+                            break;
+                        default:
+                            loc.setY(-64);
+                            break;
+                    }
+
                     ItemMeta meta = compass.getItemMeta();
-                    if (meta != null) {
-                        // update lodestone
-                        Location loc = target.getLocation();
-                        switch (target.getWorld().getEnvironment()) {
-                            case THE_END:
-                                loc.setY(255);
-                                break;
-                            case NETHER:
-                                loc.setY(0);
-                                break;
-                            default:
-                                loc.setY(-64);
-                                break;
-                        }
-                        if (replacedBlock != null)
-                            replacedLocation.getWorld().getBlockAt(replacedLocation).setType(replacedBlock);
-                        replacedBlock = target.getWorld().getBlockAt(loc).getType();
-                        replacedLocation = loc;
-                        if (target.getWorld().getBlockAt(loc).getType() != Material.LODESTONE)
-                            target.getWorld().getBlockAt(loc).setType(Material.LODESTONE);
-                        if (meta instanceof CompassMeta compassMeta)
-                            compassMeta.setLodestone(loc);
-                        // update timer
-                        int minutes = timer / 60;
-                        int seconds = timer % 60;
-                        String strSeconds = seconds < 10 ? "0" + seconds : "" + seconds;
-                        meta.setDisplayName(getItemName() + "(0" + minutes + ":" + strSeconds + ")");
-                    }
-                    owner.getInventory().remove(compass);
-                    if (owner.getInventory().getItemInOffHand().equals(compass)) {
-                        wasInOffHand = true;
-                        owner.getInventory().setItemInOffHand(null);
-                    } else
-                        wasInOffHand = false;
+
+                    // change blocks
+                    if (replacedBlock != null)
+                        replacedLocation.getWorld().getBlockAt(replacedLocation).setType(replacedBlock);
+                    replacedBlock = target.getWorld().getBlockAt(loc).getType();
+                    replacedLocation = loc;
+                    if (target.getWorld().getBlockAt(loc).getType() != Material.LODESTONE)
+                        target.getWorld().getBlockAt(loc).setType(Material.LODESTONE);
+                    if (meta instanceof CompassMeta compassMeta)
+                        compassMeta.setLodestone(loc);
+
+                    // update timer
+                    int minutes = timer / 60;
+                    int seconds = timer % 60;
+                    String strSeconds = seconds < 10 ? "0" + seconds : "" + seconds;
+                    meta.setDisplayName(getItemName() + "(0" + minutes + ":" + strSeconds + ")");
+
                     compass.setItemMeta(meta);
-                    if (wasInOffHand || startInOffhand) {
-                        owner.getInventory().setItemInOffHand(compass);
-                        startInOffhand = false;
-                    }
-                    else if (index != -1)
-                        owner.getInventory().setItem(index, compass);
-                    else {
-                        owner.getInventory().addItem(compass);
-                    }
                     timer -= 5;
                 }, 0, 100);
 
         Bukkit.broadcastMessage(ChatColor.RED + "Un traqueur de joueur vient d'être activé, faites attention...");
     }
 
-    public void setSlot(int index) {
-        this.index = index;
+    private ItemStack getItemFromInv() {
+        for (ItemStack item : owner.getInventory().getContents()) {
+            if (item == null) continue;
+            if (item.getItemMeta() instanceof CompassMeta meta
+                    && meta.getLore() != null && meta.getLore().get(0).equals(uuid + ""))
+                return item;
+        }
+        return null;
     }
 
-    public static Map<Player, PlayerTracker> getTrackers() {
+    private void removeItemFromInv() {
+        for (ItemStack item : owner.getInventory().getContents()) {
+            if (item == null) continue;
+            if (item.getItemMeta() instanceof CompassMeta meta
+                    && meta.getLore() != null && meta.getLore().get(0).equals(uuid + "")) {
+                owner.getInventory().remove(item);
+                return;
+            }
+        }
+    }
+
+    public void stop() {
+        Bukkit.getScheduler().cancelTask(taskId);
+    }
+
+    public static Map<UUID, PlayerTracker> getTrackers() {
         return trackers;
     }
 

@@ -5,64 +5,59 @@ import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PlayerTracker;
 import me.chaounne.onenightcity.utils.RandomFromList;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.TradeSelectEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.CompassMeta;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TrackerHandler implements Listener {
 
     @EventHandler
     public void onTradeSelect(TradeSelectEvent event) {
         ItemStack result = event.getMerchant().getRecipe(event.getIndex()).getResult();
-        if (result.getItemMeta() instanceof CompassMeta meta) {
-            if (meta.getDisplayName().equals(PlayerTracker.getItemName() + "(désactivé)")) {
-                Player player = (Player) event.getWhoClicked();
-                GamePlayer gp = GamePlayer.getInstance(player);
-                if (gp.getScore() >= 50000 && player.getInventory().firstEmpty() != -1) {
-                    gp.substractScore(50000);
-                    gp.getTeam().substractScore(50000);
-                    player.getInventory().addItem(result);
-                } else
-                    player.sendMessage(ChatColor.RED + "Vous ne pouvez pas vous payer ça ou vous avez l'inventaire plein.");
-            }
+        if (result.getItemMeta() instanceof CompassMeta meta
+                && meta.getDisplayName().equals(PlayerTracker.getItemName() + "(désactivé)")) {
+            Player player = (Player) event.getWhoClicked();
+            GamePlayer gp = GamePlayer.getInstance(player);
+            if (gp.getScore() >= 25000 && player.getInventory().firstEmpty() != -1) {
+                gp.substractScore(25000);
+                gp.getTeam().substractScore(25000);
+                UUID uuid = UUID.randomUUID();
+                meta.setLore(List.of(uuid + ""));
+                result.setItemMeta(meta);
+                player.getInventory().addItem(result);
+            } else
+                player.sendMessage(ChatColor.RED + "Vous ne pouvez pas vous payer ça ou vous avez l'inventaire plein.");
         }
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
-        if (item != null && item.getType() == Material.COMPASS
-                && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
+        if (item != null && event.getAction() == Action.RIGHT_CLICK_AIR
                 && item.getItemMeta() instanceof CompassMeta meta
                 && meta.getDisplayName().equals(PlayerTracker.getItemName() + "(désactivé)")) {
 
-            ItemStack tracker = PlayerTracker.getItem();
-            boolean isInOffHand = false;
-            if (player.getInventory().getItemInOffHand().equals(tracker)) {
-                isInOffHand = true;
-                player.getInventory().setItemInOffHand(null);
-            }
-            else
-                player.getInventory().removeItem(tracker);
+            item.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            UUID uuid = UUID.fromString(meta.getLore().get(0));
 
-            tracker.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+            Player player = event.getPlayer();
 
             List<Player> potentialTargets = new ArrayList<>();
             ONCGame.getInstance().getTeams().forEach(gt -> {
@@ -71,38 +66,33 @@ public class TrackerHandler implements Listener {
             });
             Player target = RandomFromList.get(potentialTargets);
 
-            new PlayerTracker(player, target, tracker, isInOffHand);
+            new PlayerTracker(player, target, uuid);
         }
     }
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
+        // si pas dans l'inventaire du joueur -> interdire SWAP_OFFHAND
+        Inventory inv = event.getClickedInventory();
+        if (!(inv instanceof PlayerInventory) && event.getClick() == ClickType.SWAP_OFFHAND
+                && event.getWhoClicked().getInventory().getItemInOffHand().getItemMeta() instanceof CompassMeta metaInv
+                && metaInv.getDisplayName().startsWith(PlayerTracker.getItemName() + "(0"))
+            event.setCancelled(true);
+
         ItemStack item = event.getCurrentItem();
-        if (item == null) return;
 
-        ItemMeta meta = item.getItemMeta();
-        if (meta == null) return;
-
-        if (meta.getDisplayName().startsWith(PlayerTracker.getItemName() + "(0")) {
-            if (event.getAction() == InventoryAction.HOTBAR_SWAP) {
-                PlayerTracker.getTrackers().get((Player) event.getWhoClicked()).setSlot(event.getHotbarButton());
-            } else
-                event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onPlayerSwapHandItems(PlayerSwapHandItemsEvent event) {
-        if (PlayerTracker.getTrackers().containsKey(event.getPlayer()))
-            PlayerTracker.getTrackers().get(event.getPlayer()).setSlot(-1);
+        // si dans l'inventaire du joueur
+        if (item != null && item.getItemMeta() instanceof CompassMeta meta
+                && meta.getDisplayName().startsWith(PlayerTracker.getItemName() + "(0")
+                && event.getAction() != InventoryAction.HOTBAR_SWAP)
+            event.setCancelled(true);
     }
 
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
-        ItemMeta meta = event.getItemDrop().getItemStack().getItemMeta();
-        if (meta != null && meta.getDisplayName().startsWith(PlayerTracker.getItemName() + "(0")) {
+        if (event.getItemDrop().getItemStack().getItemMeta() instanceof CompassMeta meta
+                && meta.getDisplayName().startsWith(PlayerTracker.getItemName() + "(0"))
             event.setCancelled(true);
-        }
     }
 
 }
