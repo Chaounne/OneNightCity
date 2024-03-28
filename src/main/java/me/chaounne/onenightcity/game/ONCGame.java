@@ -19,6 +19,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.time.Instant;
 import java.util.*;
 
 public class ONCGame implements Listener {
@@ -34,7 +35,7 @@ public class ONCGame implements Listener {
 
     private BukkitRunnable timer;
 
-    private int time = 3 * 60 * 60;
+    private int time;
 
     private int randomTime;
 
@@ -248,11 +249,14 @@ public class ONCGame implements Listener {
         timer.runTaskTimer(OneNightCity.getInstance(), 0, 20);
     }
 
-
     public void startGame() {
         hasStarted = true;
 
         //Bukkit.broadcastMessage(ChatColor.YELLOW + "VERSION TEST, PENSER A REMETTRE LES TIMER CORRECT (mettre en commentaire quand c'est bon)");
+
+        long startingTime = Instant.now().getEpochSecond();
+        long endingTime = startingTime + 3 * 3600;
+        time = (int) (endingTime - startingTime);
 
         EventGame.LancerConcours();
         EventGame.revealPlayerPositions();
@@ -299,12 +303,14 @@ public class ONCGame implements Listener {
         
         List<Player> playersWithEgg = new ArrayList<>();
         randomTime = random.nextInt(3001) + 6000;
+
         timer = new BukkitRunnable() {
             @Override
             public void run() {
-                if(ONCGame.getInstance().hasStarted()) {
+                if(ONCGame.getInstance().hasStarted())
                     ClassementPoudre.showScoreboard();
-                }
+
+                time = (int) (endingTime - Instant.now().getEpochSecond());
 
                 if (time == 3600) { // Si il reste 1 heure
                     for (Player player : Bukkit.getOnlinePlayers()) {
@@ -344,9 +350,7 @@ public class ONCGame implements Listener {
                         player.sendMessage(ChatColor.RED+"FIN DE LA PARTIE, GG A TOUS");
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
-
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 100, 100); // Joue le son de l'enderman
-
                     }
                 }
                 if(time==11){
@@ -419,7 +423,6 @@ public class ONCGame implements Listener {
 
                     }
                 }
-                time--;
                 updateBoard();
             }
         };
@@ -556,8 +559,6 @@ public class ONCGame implements Listener {
 
         teams.clear();
         players.clear();
-
-        time = 3 * 60 * 60;
     }
 
     public void resetTeams(){
