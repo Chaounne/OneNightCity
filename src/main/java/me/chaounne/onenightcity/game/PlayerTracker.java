@@ -46,6 +46,11 @@ public class PlayerTracker implements Listener {
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(),
                 () -> {
                     ItemStack compass = getItemFromInv();
+                    if (compass == null) {
+                        stop();
+                        return;
+                    }
+
                     if (timer == 0) {
                         // obligé car remove() ne supprime pas l'item dans la main secondaire
                         if (owner.getInventory().getItemInOffHand().equals(compass))
@@ -53,7 +58,7 @@ public class PlayerTracker implements Listener {
                         else
                             removeItemFromInv();
                         replacedLocation.getWorld().getBlockAt(replacedLocation).setType(replacedBlock);
-                        Bukkit.getScheduler().cancelTask(taskId);
+                        stop();
                         return;
                     }
 
