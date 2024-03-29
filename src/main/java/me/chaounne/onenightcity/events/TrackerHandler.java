@@ -74,10 +74,16 @@ public class TrackerHandler implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         // si pas dans l'inventaire du joueur -> interdire SWAP_OFFHAND
         Inventory inv = event.getClickedInventory();
-        if (!(inv instanceof PlayerInventory) && event.getClick() == ClickType.SWAP_OFFHAND
-                && event.getWhoClicked().getInventory().getItemInOffHand().getItemMeta() instanceof CompassMeta metaInv
-                && metaInv.getDisplayName().startsWith(PlayerTracker.getItemName() + "(0"))
-            event.setCancelled(true);
+        if (!(inv instanceof PlayerInventory)) {
+            if (event.getClick() == ClickType.SWAP_OFFHAND
+                    && event.getWhoClicked().getInventory().getItemInOffHand().getItemMeta() instanceof CompassMeta metaInv
+                    && metaInv.getDisplayName().startsWith(PlayerTracker.getItemName() + "(0"))
+                event.setCancelled(true);
+            else if ((event.getAction() == InventoryAction.HOTBAR_MOVE_AND_READD || event.getAction() == InventoryAction.HOTBAR_SWAP)
+                    && event.getWhoClicked().getInventory().getItem(event.getHotbarButton()).getItemMeta() instanceof CompassMeta metaInv2
+                    && metaInv2.getDisplayName().startsWith(PlayerTracker.getItemName() + "(0"))
+                event.setCancelled(true);
+        }
 
         ItemStack item = event.getCurrentItem();
 
