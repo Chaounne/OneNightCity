@@ -20,7 +20,7 @@ public class PlayerTracker implements Listener {
 
     private static final Map<UUID, PlayerTracker> trackers = new HashMap<>();
 
-    private final Player owner;
+    private Player owner;
 
     private final Player target;
 
@@ -45,11 +45,16 @@ public class PlayerTracker implements Listener {
     private void createScheduler() {
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(),
                 () -> {
+                    // si déco player change donc il faut récupérer le nouveau
+                    Player newPlayer = Bukkit.getPlayer(owner.getUniqueId());
+                    if (newPlayer != null)
+                        owner = newPlayer;
+
                     ItemStack compass = getItemFromInv();
-                    if (compass == null) {
-                        stop();
-                        return;
-                    }
+
+                    // si joueur mort
+                    if (compass == null)
+                        timer = 0;
 
                     if (timer == 0) {
                         // obligé car remove() ne supprime pas l'item dans la main secondaire
