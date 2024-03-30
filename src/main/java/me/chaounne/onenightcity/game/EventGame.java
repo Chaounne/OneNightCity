@@ -1,6 +1,5 @@
 package me.chaounne.onenightcity.game;
 
-import fr.skytasul.guardianbeam.Laser;
 import me.chaounne.onenightcity.OneNightCity;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -9,6 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
+import xyz.xenondevs.particle.ParticleBuilder;
+import xyz.xenondevs.particle.ParticleEffect;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,7 +24,7 @@ public class EventGame {
     private static boolean game = false;
 
     public static void revealPlayerPositions() {
-        int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 40 et 55 minutes
+        int randomDelayPeriod = 30 * 60 * 20 + random.nextInt(15 * 60 * 20); // Entre 30 et 55 minutes
         if (ONCGame.getInstance().hasStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().hasStarted()) {
@@ -32,19 +34,21 @@ public class EventGame {
                     Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
                         if (ONCGame.getInstance().hasStarted()) {
                             for (Player player : Bukkit.getOnlinePlayers()) {
-                                if (!player.isDead() && !(player.getGameMode() == GameMode.SPECTATOR)) {
-                                    Location locationStart = player.getLocation().clone();
-                                    locationStart.setY(-64);
-                                    Location locationEnd = player.getLocation().clone();
-                                    locationEnd.setY(319);
-                                    try {
-                                        Laser.CrystalLaser laser = new Laser.CrystalLaser(locationStart, locationEnd, 10, -1);
-                                        laser.start(OneNightCity.getInstance());
-                                        player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
-                                    } catch (ReflectiveOperationException e) {
-                                        player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
-                                        player.sendMessage(ChatColor.RED + "Bizarrement aucun rayon ne vous a atteint !?");
-                                    }
+                                if (!player.isDead() && player.getGameMode() != GameMode.SPECTATOR) {
+                                    player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
+
+                                    BukkitRunnable runnable = new BukkitRunnable() {
+                                        int timer = 10 * 20;
+                                        @Override
+                                        public void run() {
+                                            new ParticleBuilder(ParticleEffect.EXPLOSION_LARGE, player.getLocation())
+                                                    .setAmount(300)
+                                                    .setOffsetY(300)
+                                                    .display(p -> !p.equals(player));
+                                            timer -= 5;
+                                            if (timer == 0) this.cancel();
+                                    }};
+                                    runnable.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 5);
                                 }
                             }
                         }
