@@ -5,7 +5,7 @@ api-version: 1.19
 authors: [ Chaounne, lucastrap09 ]
 description: Une cité mais version beaucoup plus rapide
 website: https://twitter.com/SsbShawn
-depend: [DecentHolograms]
+depend: [DecentHolograms, ParticleLib]
 commands:
   city:
     description: Commande principale de One Night City
