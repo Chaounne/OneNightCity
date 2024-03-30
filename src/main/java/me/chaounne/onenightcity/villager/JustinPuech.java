@@ -26,7 +26,6 @@ public class JustinPuech extends Trader {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
         items.put(Material.FISHING_ROD, new Integer[] {Random.between(1, 1), Random.between(800, 2000)});
-        items.put(Material.WATER_BUCKET, new Integer[] {Random.between(1, 1), Random.between(500, 1500)});
         items.put(Material.PUFFERFISH, new Integer[] {Random.between(1, 1), Random.between(100, 350)});
         items.put(Material.COOKED_COD, new Integer[] {Random.between(1, 3), Random.between(10, 50)});
         items.put(Material.TROPICAL_FISH, new Integer[] {Random.between(1, 1), Random.between(50, 150)});
