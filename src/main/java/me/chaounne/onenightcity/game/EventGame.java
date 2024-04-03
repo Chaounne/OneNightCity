@@ -1,9 +1,11 @@
 package me.chaounne.onenightcity.game;
 
 import me.chaounne.onenightcity.OneNightCity;
+import me.chaounne.onenightcity.utils.ChatCommand;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
+import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -28,31 +30,47 @@ public class EventGame {
         if (ONCGame.getInstance().hasStarted()) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(), () -> {
                 if (ONCGame.getInstance().hasStarted()) {
-                    for (Player player : Bukkit.getOnlinePlayers())
-                        player.sendMessage(ChatColor.YELLOW + "Rayons planétaires en approche, ils vont arriver d'ici 10 secondes !");
+                    Bukkit.broadcastMessage(ChatColor.YELLOW + "Rayons planétaires en approche, ils vont arriver d'ici 10 secondes !");
 
                     Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(), () -> {
+                        Bukkit.broadcastMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
                         if (ONCGame.getInstance().hasStarted()) {
-                            for (Player player : Bukkit.getOnlinePlayers()) {
-                                if (!player.isDead() && player.getGameMode() != GameMode.SPECTATOR) {
-                                    player.sendMessage(ChatColor.RED + "Les rayons planétaires ont atteint la Terre ! Positions des joueurs révélées pendant 10 secondes !");
-
+                            for (GameTeam gt : ONCGame.getInstance().getTeams()) {
+                                List<UUID> uuids = new ArrayList<>();
+                                for (Player player : gt.getPlayers()) {
+                                    Location locationStart = player.getLocation();
+                                    locationStart.setY(-64);
+                                    Location locationEnd = player.getLocation();
+                                    locationEnd.setY(340);
+                                    EnderCrystal crystal = player.getWorld().spawn(locationStart, EnderCrystal.class);
+                                    crystal.setBeamTarget(locationEnd);
+                                    crystal.setShowingBottom(false);
+                                    crystal.setGlowing(true);
+                                    crystal.setCustomName("Rayon Planétaire");
+                                    uuids.add(crystal.getUniqueId());
                                     BukkitRunnable runnable = new BukkitRunnable() {
                                         int timer = 10 * 20;
+
                                         @Override
                                         public void run() {
                                             new ParticleBuilder(ParticleEffect.EXPLOSION_LARGE, player.getLocation())
                                                     .setAmount(300)
-                                                    .setOffsetY(300)
+                                                    .setOffsetY(125)
                                                     .display(p -> !p.equals(player));
                                             timer -= 5;
                                             if (timer == 0) this.cancel();
-                                    }};
+                                        }
+                                    };
                                     runnable.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 5);
                                 }
+                                uuids.forEach(uuid -> ChatCommand.execute("execute as " + uuid +
+                                        " run team join " + gt.getScoreboardTeamName()));
                             }
                         }
                     }, 10 * 20);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(OneNightCity.getInstance(),
+                            () -> ChatCommand.execute("kill @e[type=minecraft:end_crystal," +
+                                    "name=\"Rayon Planétaire\"]"), 2 * 10 * 20);
                 }
             }, randomDelayPeriod, randomDelayPeriod);
         }
