@@ -1,5 +1,6 @@
 package me.chaounne.onenightcity.events;
 
+import fr.mrmicky.fastboard.FastBoard;
 import me.chaounne.onenightcity.OneNightCity;
 import me.chaounne.onenightcity.game.GamePlayer;
 import me.chaounne.onenightcity.game.Generator;
@@ -197,14 +198,22 @@ public class Handler implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if(!ONCGame.getInstance().hasStarted()){
-            Player player = event.getPlayer();
+        ONCGame game = ONCGame.getInstance();
+        Player player = event.getPlayer();
+
+        GamePlayer gamePlayer = GamePlayer.getInstance(player);
+        FastBoard board = new FastBoard(player);
+        board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
+        game.getBoards().put(player.getUniqueId(), board);
+        if (game.hasStarted() && !game.getPlayers().contains(gamePlayer))
+            player.setGameMode(GameMode.SPECTATOR);
+
+        if (!game.hasStarted()) {
             World overworld = Bukkit.getWorlds().get(0);
-            player.getPlayer().teleport(new Location(overworld, 122, 154, -39));
+            player.teleport(new Location(overworld, 122, 154, -39));
             player.setGameMode(GameMode.ADVENTURE);
             PlayerInventory playerInventory = player.getInventory();
             playerInventory.clear();
-
         }
     }
 

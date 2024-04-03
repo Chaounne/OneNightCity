@@ -10,9 +10,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
@@ -22,7 +19,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.time.Instant;
 import java.util.*;
 
-public class ONCGame implements Listener {
+public class ONCGame {
 
     private final ArrayList<GameTeam> teams = new ArrayList<>();
 
@@ -49,7 +46,6 @@ public class ONCGame implements Listener {
     private boolean annonceFin;
 
     private ONCGame() {
-        Bukkit.getPluginManager().registerEvents(this, OneNightCity.getInstance());
         instance = this;
     }
 
@@ -73,20 +69,16 @@ public class ONCGame implements Listener {
         teams.remove(team);
     }
 
-    public ArrayList<GameTeam> getTeams(){
+    public ArrayList<GameTeam> getTeams() {
         return teams;
     }
 
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
-        Player realPlayer = event.getPlayer();
-        GamePlayer player = GamePlayer.getInstance(realPlayer);
-        FastBoard board = new FastBoard(realPlayer);
-        board.updateTitle(ChatColor.DARK_BLUE + "Cité d'une nuit");
-        boards.put(realPlayer.getUniqueId(), board);
-        if(hasStarted()){
-            if(!players.contains(player)) realPlayer.setGameMode(GameMode.SPECTATOR);
-        }
+    public List<GamePlayer> getPlayers() {
+        return players;
+    }
+
+    public Map<UUID, FastBoard> getBoards() {
+        return boards;
     }
 
     public void updateBoard() {

@@ -109,8 +109,7 @@ public class JumpHandler implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        deactivateJumpManagerForPlayer(player);
+        deactivateJumpManagerForPlayer(event.getPlayer());
     }
 
     public void deactivateJumpManagerForPlayer(Player p) {
