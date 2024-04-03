@@ -56,7 +56,7 @@ public class PlayerTracker implements Listener {
                     if (compass == null)
                         timer = 0;
 
-                    if (timer == 0) {
+                    if (timer <= 0 && newPlayer != null) {
                         // obligé car remove() ne supprime pas l'item dans la main secondaire
                         if (owner.getInventory().getItemInOffHand().equals(compass))
                             owner.getInventory().setItemInOffHand(null);
