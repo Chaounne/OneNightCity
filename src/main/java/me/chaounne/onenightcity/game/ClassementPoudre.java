@@ -38,7 +38,7 @@ public class ClassementPoudre {
             else
                 teamColor = teams.get(i).getColor();
 
-            String teamName = teams.get(i).getName();
+            String teamName = teams.get(i).getDisplayName();
             String formattedTeamName = teamColor + (i == 0 ? "1er " : "") + (i == 1 ? "2eme " : "") +(i == 2 ? "3eme " : "") + teamName;String hologramText = formattedTeamName + " : " + teams.get(i).getScore() + " poudres";
             DHAPI.addHologramLine(scoreboardHologram, hologramText);
         }

@@ -111,7 +111,7 @@ public class ONCGame {
                         ChatColor.GOLD + "PVP activé dans : " + ChatColor.WHITE + countdownString + "s",
                         ChatColor.GOLD + "END activé dans : " + ChatColor.WHITE + countdownString2 + "s",
                         ChatColor.GOLD + "Quine dans : " + ChatColor.WHITE + countdownString3 + "s",
-                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getDisplayName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
@@ -127,7 +127,7 @@ public class ONCGame {
                         ChatColor.RED + "PVP ACTIVÉ !",
                         ChatColor.GOLD + "END activé dans : " + ChatColor.WHITE + countdownString1 + "s",
                         ChatColor.GOLD + "Quine dans : " + ChatColor.WHITE + countdownString2 + "s",
-                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getDisplayName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
@@ -144,7 +144,7 @@ public class ONCGame {
                         ChatColor.RED + "PVP ACTIVÉ !",
                         ChatColor.GOLD + "END activé dans : " + ChatColor.WHITE + countdownString1 + "s",
                         ChatColor.GOLD + "Quine fini dans : " + ChatColor.WHITE + countdownString2 + "s",
-                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getDisplayName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
@@ -158,7 +158,7 @@ public class ONCGame {
                         ChatColor.RED + "PVP ACTIVÉ !",
                         ChatColor.DARK_PURPLE + "END ACTIVÉ !",
                         ChatColor.AQUA + "QUINE FINI !",
-                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getName(),
+                        ChatColor.DARK_GREEN + "Equipe : " + player.getTeam().getColor() + player.getTeam().getDisplayName(),
                         ChatColor.BLUE + "Poudres d'équipe : " + ChatColor.WHITE + player.getTeam().getScore(),
                         ChatColor.DARK_BLUE + "Poudres perso : " + ChatColor.WHITE + player.getScore(),
                         ChatColor.RED + "Kills : " + ChatColor.WHITE + player.getKills(),
@@ -477,7 +477,7 @@ public class ONCGame {
         // Diffuser le message aux joueurs en fonction du résultat
         if (hasWinner) {
             for (Player p : Bukkit.getOnlinePlayers()) {
-                p.sendTitle(ChatColor.GREEN + " Félicitations à l'équipe gagnante !", ChatColor.AQUA + winningTeam.getName(), 10, 70, 20);
+                p.sendTitle(ChatColor.GREEN + " Félicitations à l'équipe gagnante !", ChatColor.AQUA + winningTeam.getDisplayName(), 10, 70, 20);
                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
             }
         } else {

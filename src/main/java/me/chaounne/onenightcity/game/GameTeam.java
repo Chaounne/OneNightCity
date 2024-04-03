@@ -13,7 +13,7 @@ public class GameTeam {
 
     private int score;
 
-    private String name;
+    private String displayName;
 
     private final Team scoreboardTeam;
 
@@ -24,8 +24,9 @@ public class GameTeam {
     public GameTeam(String name) {
         players = new ArrayList<>();
         score = 0;
-        this.name = name;
+        displayName = name.replace("_", " ");
         scoreboardTeam = Bukkit.getScoreboardManager().getMainScoreboard().registerNewTeam(name);
+        scoreboardTeam.setDisplayName(displayName);
         scoreboardTeam.setAllowFriendlyFire(false);
         scoreboardTeam.setCanSeeFriendlyInvisibles(true);
     }
@@ -34,12 +35,21 @@ public class GameTeam {
         return scoreboardTeam;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String name) {
+        displayName = name.replace("_", " ");
+    }
+
+    public String getScoreboardTeamName() {
+        return scoreboardTeam.getName();
     }
 
     public void setColor(ChatColor color){
         scoreboardTeam.setPrefix(color.toString());
+        scoreboardTeam.setColor(color);
         this.color = color;
     }
 
@@ -61,7 +71,7 @@ public class GameTeam {
     }
 
     public void removePlayer(Player player) {
-        if(leader == player)
+        if (leader == player)
             leader = null;
         GamePlayer.getInstance(player).setTeam(null);
         players.remove(player);
@@ -82,10 +92,6 @@ public class GameTeam {
 
     public void substractScore(int amount) {
         score = Math.max(score - amount, 0);
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void reset() {

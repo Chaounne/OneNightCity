@@ -207,7 +207,7 @@ public class Commands implements CommandExecutor {
                     }
                     team.setColor(chosenColor);
                     team.getScoreboardTeam().setColor(chosenColor);
-                    team.getScoreboardTeam().setPrefix("[" + team.getName() + "] ");
+                    team.getScoreboardTeam().setPrefix("[" + team.getDisplayName() + "] ");
                     player.sendMessage("Vous avez changé de couleur " + team.getColor() + chosenColor);
                     break;
                 }
@@ -224,24 +224,22 @@ public class Commands implements CommandExecutor {
                     }
 
                     String teamName = args[2];
-                    teamName = teamName.replace("_", " ");
                     if (teamName.length() > 20) {
                         player.sendMessage(ChatColor.RED + "Nom de team trop long (20 caractères max)");
                         return false;
                     }
 
                     for (GameTeam team : game.getTeams()) {
-                        if (team.getName().equals(teamName)) {
+                        if (team.getDisplayName().equals(teamName)) {
                             player.sendMessage(ChatColor.RED + "L'équipe " + teamName + " existe déjà !");
                             return false;
                         }
                     }
 
-
-                    playerTeam.setName(teamName);
+                    playerTeam.setDisplayName(teamName);
                     playerTeam.getScoreboardTeam().setColor(playerTeam.getColor());
-                    playerTeam.getScoreboardTeam().setPrefix("[" + playerTeam.getName() + "] ");
-                    player.sendMessage("Vous avez changé de nom : " + playerTeam.getName() + " !");
+                    playerTeam.getScoreboardTeam().setPrefix("[" + playerTeam.getDisplayName() + "] ");
+                    player.sendMessage("Vous avez changé de nom : " + playerTeam.getDisplayName() + " !");
 
                     break;
                 }
@@ -274,7 +272,7 @@ public class Commands implements CommandExecutor {
                     GamePlayer.getInstance(player1).setTeam(team);
                     game.addPlayer(GamePlayer.getInstance(player1));
                     player.sendMessage(ChatColor.GREEN + "Joueur " + player1.getName() + " ajouté à votre équipe !");
-                    player1.sendMessage(ChatColor.GREEN + "Vous avez été ajouté à " + team.getName() + " !");
+                    player1.sendMessage(ChatColor.GREEN + "Vous avez été ajouté à " + team.getDisplayName() + " !");
                     return true;
                 }
                 case "disband": {
@@ -294,7 +292,7 @@ public class Commands implements CommandExecutor {
                     if (sender.isOp() && args.length > 2) {
                         String teamName = args[2];
                         for (GameTeam t : game.getTeams()) {
-                            if (t.getName().equals(teamName)) {
+                            if (t.getDisplayName().equals(teamName)) {
                                 team = t;
                                 break;
                             }
@@ -330,7 +328,6 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     String teamName = args[2];
-                    teamName = teamName.replace("_", " ");
                     if (teamName.length() > 20) {
                         player.sendMessage(ChatColor.RED + "Nom de team trop long (20 caractères max)");
                         return false;
@@ -340,7 +337,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     for (GameTeam team : game.getTeams()) {
-                        if (team.getName().equals(teamName)) {
+                        if (team.getScoreboardTeamName().equals(teamName)) {
                             player.sendMessage(ChatColor.RED + "L'équipe " + teamName + " existe déjà !");
                             return false;
                         }
@@ -362,12 +359,12 @@ public class Commands implements CommandExecutor {
                     }
                     team.setColor(color);
                     team.getScoreboardTeam().setColor(color);
-                    team.getScoreboardTeam().setPrefix("[" + teamName + "] ");
+                    team.getScoreboardTeam().setPrefix("[" + team.getDisplayName() + "] ");
                     availableColors.remove(random);
                     // attribuer l'équipe au joueur
                     GamePlayer.getInstance(player).setTeam(team);
                     game.addPlayer(GamePlayer.getInstance(player));
-                    player.sendMessage(ChatColor.GREEN + "Vous avez créé l'équipe " + team.getColor() + teamName + ChatColor.GREEN + " !");
+                    player.sendMessage(ChatColor.GREEN + "Vous avez créé l'équipe " + team.getColor() + team.getDisplayName() + ChatColor.GREEN + " !");
                     return true;
                 }
                 case "fire": {
@@ -394,7 +391,7 @@ public class Commands implements CommandExecutor {
                     GamePlayer.getInstance(playerARemove).getTeam().removePlayer(playerARemove);
                     game.removePlayer(GamePlayer.getInstance(playerARemove));
                     player.sendMessage(ChatColor.GREEN + "Joueur " + playerARemove.getName() + " supprimé de votre équipe !");
-                    playerARemove.sendMessage(ChatColor.GREEN + "Vous avez été supprimé de " + team.getName() + " !");
+                    playerARemove.sendMessage(ChatColor.GREEN + "Vous avez été supprimé de " + team.getDisplayName() + " !");
                     return true;
                 }
                 case "marianne": {
@@ -441,20 +438,19 @@ public class Commands implements CommandExecutor {
                     GameTeam[] teams = new GameTeam[nbTeam];
                     // création des équipes
                     for (int i = 0; i < nbTeam; i++) {
-
-                        GameTeam team = new GameTeam("Team " + (i + 1));
+                        GameTeam team = new GameTeam("Team_" + (i + 1));
                         game.addTeam(team);
                         teams[i] = team;
                         team.setColor(ColorHelper.getRandomChatColor());
                         Player teamLeader = RandomFromList.get(unassignedPlayers);
-                        teamLeader.sendMessage(ChatColor.AQUA + "Vous avez été séléctionné comme leader de l'équipe " + team.getName());
+                        teamLeader.sendMessage(ChatColor.AQUA + "Vous avez été séléctionné comme leader de l'équipe " + team.getDisplayName());
                         team.addPlayer(teamLeader);
                         team.setLeader(teamLeader);
                         unassignedPlayers.remove(teamLeader);
                         GamePlayer.getInstance(teamLeader).setTeam(team);
                         game.addPlayer(GamePlayer.getInstance(teamLeader));
                         team.getScoreboardTeam().setColor(team.getColor());
-                        team.getScoreboardTeam().setPrefix("[" + team.getName() + "] ");
+                        team.getScoreboardTeam().setPrefix("[" + team.getDisplayName() + "] ");
                     }
                     int teamIndex = 0;
                     while (!unassignedPlayers.isEmpty()) {
@@ -464,7 +460,7 @@ public class Commands implements CommandExecutor {
                         GamePlayer.getInstance(toAssign).setTeam(teams[teamIndex]);
                         game.addPlayer(GamePlayer.getInstance(toAssign));
                         teams[teamIndex].getScoreboardTeam().setColor(teams[teamIndex].getColor());
-                        teams[teamIndex].getScoreboardTeam().setPrefix("[" + teams[teamIndex].getName() + "] ");
+                        teams[teamIndex].getScoreboardTeam().setPrefix("[" + teams[teamIndex].getDisplayName() + "] ");
                         teamIndex++;
                         if (teamIndex >= nbTeam) teamIndex = 0;
                     }
@@ -527,7 +523,7 @@ public class Commands implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Vous n'êtes pas dans une équipe !");
                         return false;
                     }
-                    player.sendMessage(ChatColor.GREEN + "Équipe " + team.getName() + " :");
+                    player.sendMessage(ChatColor.GREEN + "Équipe " + team.getDisplayName() + " :");
                     for (Player p : team.getPlayers()) {
                         if (p.equals(team.getLeader())) {
                             player.sendMessage(ChatColor.GREEN + "- " + ChatColor.GOLD + p.getName() + ChatColor.GREEN + " (chef)");

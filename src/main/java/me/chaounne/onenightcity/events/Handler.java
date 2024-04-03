@@ -152,12 +152,12 @@ public class Handler implements Listener {
         GamePlayer gamePlayer = GamePlayer.getInstance(player);
 
         if (gamePlayer.getTeam() != null) {
-            event.setFormat(gamePlayer.getTeam().getColor() + "[" + gamePlayer.getTeam().getName() + "] " + player.getName() + " : " + ChatColor.RESET + message);
+            event.setFormat(gamePlayer.getTeam().getColor() + "[" + gamePlayer.getTeam().getDisplayName() + "] " + player.getName() + " : " + ChatColor.RESET + message);
 
             if (message.startsWith("@")) {
                 event.setCancelled(true);
                 for (Player teamMember : gamePlayer.getTeam().getPlayers())
-                    teamMember.sendMessage("" + gamePlayer.getTeam().getColor() + ChatColor.BOLD + "<Privé> [" + gamePlayer.getTeam().getName() + "] " + player.getName() + " : " + ChatColor.RESET + message.substring(1));
+                    teamMember.sendMessage("" + gamePlayer.getTeam().getColor() + ChatColor.BOLD + "<Privé> [" + gamePlayer.getTeam().getDisplayName() + "] " + player.getName() + " : " + ChatColor.RESET + message.substring(1));
             }
         }
     }
