@@ -35,7 +35,7 @@ public class HutilItaire extends Trader {
         items.put(Material.SMOKER, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
         items.put(Material.BLAST_FURNACE, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
         items.put(Material.NOTE_BLOCK, new Integer[] {Random.between(1, 3), Random.between(20, 75)});
-        items.put(Material.JUKEBOX, new Integer[] {Random.between(1, 3), Random.between(70, 130)});
+        items.put(Material.JUKEBOX, new Integer[] {Random.between(1, 3), Random.between(50, 100)});
 
         return items;
     }
