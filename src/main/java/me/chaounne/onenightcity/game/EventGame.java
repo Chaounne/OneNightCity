@@ -38,11 +38,15 @@ public class EventGame {
                             for (GameTeam gt : ONCGame.getInstance().getTeams()) {
                                 List<UUID> uuids = new ArrayList<>();
                                 for (Player player : gt.getPlayers()) {
-                                    Location locationStart = player.getLocation();
+                                    // TODO faudrait faire une méthode dans Handler qui gère la déco-reco
+                                    Player onlinePlayer = Bukkit.getPlayer(player.getUniqueId());
+                                    if (onlinePlayer == null)
+                                        continue;
+                                    Location locationStart = onlinePlayer.getLocation();
                                     locationStart.setY(-64);
-                                    Location locationEnd = player.getLocation();
+                                    Location locationEnd = onlinePlayer.getLocation();
                                     locationEnd.setY(340);
-                                    EnderCrystal crystal = player.getWorld().spawn(locationStart, EnderCrystal.class);
+                                    EnderCrystal crystal = onlinePlayer.getWorld().spawn(locationStart, EnderCrystal.class);
                                     crystal.setBeamTarget(locationEnd);
                                     crystal.setShowingBottom(false);
                                     crystal.setGlowing(true);
@@ -53,10 +57,10 @@ public class EventGame {
 
                                         @Override
                                         public void run() {
-                                            new ParticleBuilder(ParticleEffect.EXPLOSION_LARGE, player.getLocation())
+                                            new ParticleBuilder(ParticleEffect.EXPLOSION_LARGE, onlinePlayer.getLocation())
                                                     .setAmount(300)
                                                     .setOffsetY(125)
-                                                    .display(p -> !p.equals(player));
+                                                    .display(p -> !p.equals(onlinePlayer));
                                             timer -= 5;
                                             if (timer == 0) this.cancel();
                                         }

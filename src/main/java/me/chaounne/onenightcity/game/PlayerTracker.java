@@ -22,7 +22,7 @@ public class PlayerTracker implements Listener {
 
     private Player owner;
 
-    private final Player target;
+    private Player target;
 
     private final UUID uuid;
 
@@ -46,9 +46,12 @@ public class PlayerTracker implements Listener {
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(),
                 () -> {
                     // si déco player change donc il faut récupérer le nouveau
-                    Player newPlayer = Bukkit.getPlayer(owner.getUniqueId());
-                    if (newPlayer != null)
-                        owner = newPlayer;
+                    Player newOwner = Bukkit.getPlayer(owner.getUniqueId());
+                    if (newOwner != null)
+                        owner = newOwner;
+                    Player newTarget = Bukkit.getPlayer(target.getUniqueId());
+                    if (newTarget != null)
+                        target = newTarget;
 
                     ItemStack compass = getItemFromInv();
 
@@ -56,7 +59,7 @@ public class PlayerTracker implements Listener {
                     if (compass == null)
                         timer = 0;
 
-                    if (timer <= 0 && newPlayer != null) {
+                    if (timer <= 0 && newOwner != null) {
                         // obligé car remove() ne supprime pas l'item dans la main secondaire
                         if (owner.getInventory().getItemInOffHand().equals(compass))
                             owner.getInventory().setItemInOffHand(null);
