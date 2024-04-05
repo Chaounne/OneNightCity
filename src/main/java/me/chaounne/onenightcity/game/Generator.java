@@ -32,11 +32,8 @@ public class Generator {
         Barrel barrel = (Barrel) location.getBlock().getState();
         Inventory inv = barrel.getInventory();
         ItemStack item = new ItemStack(material);
-        int period = 20;
-        if (material == Material.EMERALD)
-            period = 40;
         taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(OneNightCity.getInstance(),
-                () -> inv.addItem(item), period, period);
+                () -> inv.addItem(item), 40, 40);
     }
 
     public void unScheduleGeneration() {
