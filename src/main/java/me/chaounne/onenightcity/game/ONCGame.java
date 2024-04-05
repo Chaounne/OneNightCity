@@ -395,7 +395,7 @@ public class ONCGame {
         new HutilItaire(new Location(world, -20.5, 71, -19.5, -45, 0));
         new BeauThony(new Location(world, -16, 71, -21));
         // henry
-        new Henry(new Location(world, -25, 69, -62));
+        new Henry(new Location(world, 36.5, 68.5, 19));
         // port
         new Dream(new Location(world, 45, 68, -11.5, 90, 0));
         new JykaRouler(new Location(world, 50, 68, -11.5, -90, 0));
