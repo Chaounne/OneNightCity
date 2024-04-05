@@ -34,9 +34,9 @@ public class TrackerHandler implements Listener {
                 && meta.getDisplayName().equals(PlayerTracker.getItemName() + "(désactivé)")) {
             Player player = (Player) event.getWhoClicked();
             GamePlayer gp = GamePlayer.getInstance(player);
-            if (gp.getScore() >= 25000 && player.getInventory().firstEmpty() != -1) {
-                gp.substractScore(25000);
-                gp.getTeam().substractScore(25000);
+            if (gp.getScore() >= 15000 && player.getInventory().firstEmpty() != -1) {
+                gp.substractScore(15000);
+                gp.getTeam().substractScore(15000);
                 UUID uuid = UUID.randomUUID();
                 meta.setLore(List.of(uuid + ""));
                 result.setItemMeta(meta);

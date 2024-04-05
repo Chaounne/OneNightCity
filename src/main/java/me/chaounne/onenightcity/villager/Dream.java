@@ -36,7 +36,7 @@ public class Dream extends Trader {
         trades.get(3).addIngredient(new ItemStack(Material.EMERALD, 16));
 
         trades.add(new MerchantRecipe(PlayerTracker.getItem(), 1));
-        trades.get(4).addIngredient(PoudreItem.getSuperPoudre(25));
+        trades.get(4).addIngredient(PoudreItem.getSuperPoudre(15));
 
         villager.setRecipes(trades);
 
