@@ -64,7 +64,7 @@ public class Commands implements CommandExecutor {
                 return false;
             }
             if (game.hasStarted()) {
-                player.sendMessage(ChatColor.RED + "Vous ne pouvez pas aire ça pendant une partie !");
+                player.sendMessage(ChatColor.RED + "Vous ne pouvez pas faire ça pendant une partie !");
                 return false;
             }
 
