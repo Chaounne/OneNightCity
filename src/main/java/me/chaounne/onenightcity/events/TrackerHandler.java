@@ -1,6 +1,7 @@
 package me.chaounne.onenightcity.events;
 
 import me.chaounne.onenightcity.game.GamePlayer;
+import me.chaounne.onenightcity.game.GameTeam;
 import me.chaounne.onenightcity.game.ONCGame;
 import me.chaounne.onenightcity.game.PlayerTracker;
 import me.chaounne.onenightcity.utils.RandomFromList;
@@ -21,11 +22,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.CompassMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class TrackerHandler implements Listener {
+
+    private Map<GameTeam, Integer> timesBought = new HashMap<>();
 
     @EventHandler
     public void onTradeSelect(TradeSelectEvent event) {
@@ -34,13 +35,17 @@ public class TrackerHandler implements Listener {
                 && meta.getDisplayName().equals(PlayerTracker.getItemName() + "(désactivé)")) {
             Player player = (Player) event.getWhoClicked();
             GamePlayer gp = GamePlayer.getInstance(player);
-            if (gp.getScore() >= 15000 && player.getInventory().firstEmpty() != -1) {
-                gp.substractScore(15000);
-                gp.getTeam().substractScore(15000);
+            if (timesBought.containsKey(gp.getTeam()) && timesBought.get(gp.getTeam()) == 4)
+                player.sendMessage(ChatColor.RED + "Votre équipe a atteint le quota de traqueurs (4), vous ne pouvez plus en acheter.");
+            else if (gp.getScore() >= 25000 && player.getInventory().firstEmpty() != -1) {
+                gp.substractScore(25000);
+                gp.getTeam().substractScore(25000);
                 UUID uuid = UUID.randomUUID();
                 meta.setLore(List.of(uuid + ""));
                 result.setItemMeta(meta);
                 player.getInventory().addItem(result);
+                if (timesBought.putIfAbsent(gp.getTeam(), 1) != null)
+                    timesBought.put(gp.getTeam(), timesBought.get(gp.getTeam()) + 1);
             } else
                 player.sendMessage(ChatColor.RED + "Vous ne pouvez pas vous payer ça ou vous avez l'inventaire plein.");
         }

@@ -30,7 +30,9 @@ public class PlayerTracker implements Listener {
 
     private Location replacedLocation;
 
-    private int timer = 5 * 60;
+    private int timer = 2 * 60 + 30;
+
+    private int pingTimer = 0;
 
     private int taskId;
 
@@ -70,31 +72,39 @@ public class PlayerTracker implements Listener {
                         return;
                     }
 
-                    // update lodestone
-                    Location loc = target.getLocation();
-                    switch (target.getWorld().getEnvironment()) {
-                        case THE_END:
-                            loc.setY(255);
-                            break;
-                        case NETHER:
-                            loc.setY(0);
-                            break;
-                        default:
-                            loc.setY(-64);
-                            break;
-                    }
-
                     ItemMeta meta = compass.getItemMeta();
 
-                    // change blocks
-                    if (replacedBlock != null)
-                        replacedLocation.getWorld().getBlockAt(replacedLocation).setType(replacedBlock);
-                    replacedBlock = target.getWorld().getBlockAt(loc).getType();
-                    replacedLocation = loc;
-                    if (target.getWorld().getBlockAt(loc).getType() != Material.LODESTONE)
-                        target.getWorld().getBlockAt(loc).setType(Material.LODESTONE);
-                    if (meta instanceof CompassMeta compassMeta)
-                        compassMeta.setLodestone(loc);
+                    if (owner.getLocation().distance(target.getLocation()) <= 150) {
+                        for (Player teammate : GamePlayer.getInstance(target).getTeam().getPlayers())
+                            teammate.sendMessage("Vous sentez une presence proche de vous...");
+                    }
+
+                    if (pingTimer == 0) {
+                        // update lodestone
+                        Location loc = target.getLocation();
+                        switch (target.getWorld().getEnvironment()) {
+                            case THE_END:
+                                loc.setY(255);
+                                break;
+                            case NETHER:
+                                loc.setY(0);
+                                break;
+                            default:
+                                loc.setY(-64);
+                                break;
+                        }
+
+                        // change blocks
+                        if (replacedBlock != null)
+                            replacedLocation.getWorld().getBlockAt(replacedLocation).setType(replacedBlock);
+                        replacedBlock = target.getWorld().getBlockAt(loc).getType();
+                        replacedLocation = loc;
+                        if (target.getWorld().getBlockAt(loc).getType() != Material.LODESTONE)
+                            target.getWorld().getBlockAt(loc).setType(Material.LODESTONE);
+                        if (meta instanceof CompassMeta compassMeta)
+                            compassMeta.setLodestone(loc);
+                        pingTimer = 15;
+                    }
 
                     // update timer
                     int minutes = timer / 60;
@@ -104,7 +114,8 @@ public class PlayerTracker implements Listener {
 
                     compass.setItemMeta(meta);
                     timer -= 5;
-                }, 0, 100);
+                    pingTimer -= 5;
+                }, 0, 5 * 20);
 
         Bukkit.broadcastMessage(ChatColor.RED + "Un traqueur de joueur vient d'être activé, faites attention...");
     }
