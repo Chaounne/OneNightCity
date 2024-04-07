@@ -106,8 +106,8 @@ public final class OneNightCity extends JavaPlugin {
 
         Hologram jump_leaderboard = DHAPI.createHologram("jump_leaderboard", new Location(world, 128.5, 158, -49));
         DHAPI.addHologramLine(jump_leaderboard, ChatColor.RED + "Leaderboard Jump");
-        DHAPI.addHologramLine(jump_leaderboard, ChatColor.GOLD + "1er : Yaourt - 02:50:493");
-        DHAPI.addHologramLine(jump_leaderboard, ChatColor.GRAY + "2e : Toluj330 - 15:06:215");
+        DHAPI.addHologramLine(jump_leaderboard, ChatColor.GOLD + "1er : Yaourt - 02:32:118");
+        DHAPI.addHologramLine(jump_leaderboard, ChatColor.GRAY + "2e : Toluj330 - 06:21:081");
         DHAPI.addHologramLine(jump_leaderboard, "3e : ...");
 
         Location leaderboardLoc = new Location(world, 118, 218, -36);
