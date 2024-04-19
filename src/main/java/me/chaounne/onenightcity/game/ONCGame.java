@@ -197,12 +197,10 @@ public class ONCGame {
                 }
                 if (time <= 7200 && !end) { // end au bout d'une heure
                     Location[] endGateBlocks = new Location[] {
-                            new Location(world, 2, 64, 7),
-                            new Location(world, 2, 63, 7),
-                            new Location(world, 2, 62, 7),
-                            new Location(world, 1, 64, 7),
-                            new Location(world, 1, 63, 7),
-                            new Location(world, 1, 62, 7)
+                            new Location(world, 87, 69, -42),
+                            new Location(world, 88, 69, -42),
+                            new Location(world, 87, 69, -41),
+                            new Location(world, 88, 69, -41),
                     };
                     for (Location location : endGateBlocks) {
                         Block block = location.getBlock();
@@ -211,16 +209,17 @@ public class ONCGame {
                         }
                     }
                     Location[] endChests = new Location[] {
-                            new Location(world, -8, 54, 16),
-                            new Location(world, -5, 54, 11),
-                            new Location(world, -14, 52, 8),
-                            new Location(world, -21, 52, 13),
-                            new Location(world, -20, 52, 9),
-                            new Location(world, -4, 54, 20),
-                            new Location(world, -9, 54, 28),
-                            new Location(world, -16, 54, 23),
-                            new Location(world, -19, 54, 15),
-                            new Location(world, 1, 54, 26),
+                            new Location(world, 95.5, 43, -31),
+                            new Location(world, 77, 42, -31),
+                            new Location(world, 80, 38, -31),
+                            new Location(world, 105, 30, -35),
+                            new Location(world, 94, 30, -21),
+                            new Location(world, 79, 34, -35),
+                            new Location(world, 87, 24, -40),
+                            new Location(world, 76, 26, -30),
+                            new Location(world, 83, 29, -25),
+                            new Location(world, 85, 35, -28),
+                            new Location(world, 82, 34, -35),
                     };
                     for (Location location : endChests) {
                         GenerateChest.spawnEndChest(location);
@@ -231,7 +230,7 @@ public class ONCGame {
                     end = true;
                 }
                 if (time <= randomTime && !darkHenry) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
-                    new DarkHenry(new Location(Bukkit.getWorlds().get(0), 0, 62.5, 1.5, 90, 0));
+                    new DarkHenry(new Location(Bukkit.getWorlds().get(0), 103, 63, -23.6, 90, 0));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
                     world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);
@@ -379,32 +378,32 @@ public class ONCGame {
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
 
         // nord-est
-        new SombreHeros(new Location(world, 16, 71, -21));
-        new Ikikomori(new Location(world, 20.5, 71, -20.5, 45, 0));
-        new NegeuxDemo(new Location(world, 22, 71, -16, 90, 0));
+        new SombreHeros(new Location(world, 121, 72, -43.5, 90, 0));
+        new Ikikomori(new Location(world, 107, 71, 6, -90, 0));
+        new NegeuxDemo(new Location(world, 83, 71, -24.5, -90, 0));
         // sud-est
-        new LucieAcier(new Location(world, 22, 70, 16, 90, 0));
-        new SylvainDurif(new Location(world, 21.5, 70, 20.5, 135, 0));
-        new DrRaoult(new Location(world, 17, 70, 22, 180, 0));
+        new LucieAcier(new Location(world, 131.5, 72, -39.5, 90, 0));
+        new SylvainDurif(new Location(world, 89, 72, -32.5, 0, 0));
+        new DrRaoult(new Location(world, 102, 71, -44.5, -90, 0));
         // sud-ouest
-        new KylianMBouffe(new Location(world, -15, 70, 22, 180, 0));
-        new JeanMineur(new Location(world, -19.5, 70, 21.5, -135, 0));
-        new LesPierres(new Location(world, -21, 70, 17, -90, 0));
+        new KylianMBouffe(new Location(world, 112, 72, -46.5, 0, 0));
+        new JeanMineur(new Location(world, 118.5, 71, -51.5, -90, 0));
+        new LesPierres(new Location(world, 126.5, 71, -51.5, 90, 0));
         // nord-ouest
-        new MicoseMicode(new Location(world, -21, 71, -15, -90, 0));
-        new HutilItaire(new Location(world, -20.5, 71, -19.5, -45, 0));
-        new BeauThony(new Location(world, -16, 71, -21));
+        new MicoseMicode(new Location(world, 122, 71, -47.5, 180, 0));
+        new HutilItaire(new Location(world, 122, 71, -55, 0, 0));
+        new BeauThony(new Location(world, 105.5, 71, -2.5, -90, 0));
         // henry
-        new Henry(new Location(world, 36.5, 68.5, 19, -90, 0));
+        new Henry(new Location(world, 118.5, 72, 7, 180, 0));
         // port
-        new Dream(new Location(world, 45, 68, -11.5, 90, 0));
-        new JykaRouler(new Location(world, 50, 68, -11.5, -90, 0));
-        new FrancisClodo(new Location(world, 45, 68, -18.5, 90, 0));
-        new Jeaneau(new Location(world, 50, 68, -18.5, -90, 0));
-        new CheepCheap(new Location(world, 57.5, 69, -17.5, 90, 0));
-        new JustinPuech(new Location(world, 55.5, 68, 1, 90, 0));
-        new Legias(new Location(world, 55.5, 68, 4, 90, 0));
-        new VigneHill(new Location(world, 52.5, 69, 16.5, 0, 0));
+        new Dream(new Location(world, 104, 83, 6.5, 90, 0));
+        new JykaRouler(new Location(world, 128, 72, -32, 180, 0));
+        new FrancisClodo(new Location(world, 128.5, 72, -9, 180, 0));
+        new Jeaneau(new Location(world, 87, 71, -28.5, -90, 0));
+        new CheepCheap(new Location(world, 124, 72, -3.5, 90, 0));
+        new JustinPuech(new Location(world, 106, 73, 36.5, 180, 0));
+        new Legias(new Location(world, 103, 71, -35, -90, 0));
+        new VigneHill(new Location(world, 128, 80, -7, 180, 0));
     }
 
     public void endGame(){

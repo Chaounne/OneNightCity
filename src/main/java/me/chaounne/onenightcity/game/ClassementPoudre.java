@@ -21,7 +21,7 @@ public class ClassementPoudre {
         DHAPI.removeHologram("Classement");
 
         // Créer un hologramme pour afficher le classement
-        Location hologramLocation = new Location(Bukkit.getWorlds().get(0), -1.5, 72.5, -1.5);
+        Location hologramLocation = new Location(Bukkit.getWorlds().get(0), 120, 73, -25.5);
         Hologram scoreboardHologram = DHAPI.createHologram("Classement", hologramLocation);
         String title = ChatColor.RED + "C" + ChatColor.GOLD + "l" + ChatColor.YELLOW + "a" + ChatColor.GREEN + "s" + ChatColor.AQUA + "s" + ChatColor.BLUE + "e" + ChatColor.DARK_BLUE + "m" + ChatColor.DARK_PURPLE + "e" + ChatColor.LIGHT_PURPLE + "n" + ChatColor.RED + "t" + ChatColor.GOLD + " " + ChatColor.YELLOW + "d" + ChatColor.GREEN + "e" + ChatColor.AQUA + "s" + ChatColor.BLUE + " " + ChatColor.DARK_BLUE + "t" + ChatColor.DARK_PURPLE + "e" + ChatColor.LIGHT_PURPLE + "a" + ChatColor.RED + "m" + ChatColor.GOLD + "s" + ChatColor.YELLOW + " :";
         DHAPI.addHologramLine(scoreboardHologram, title);

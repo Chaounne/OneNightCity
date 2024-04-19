@@ -57,8 +57,8 @@ public class Handler implements Listener {
         }
         // pas de malus si respawn dans le chateau
         Location loc = event.getRespawnLocation().clone();
-        loc.setY(71);
-        if (loc.getWorld() != Bukkit.getWorlds().get(0) || loc.distance(new Location(Bukkit.getWorlds().get(0), 0, 71, 0)) > 5) {
+        loc.setY(73);
+        if (loc.getWorld() != Bukkit.getWorlds().get(0) || loc.distance(new Location(Bukkit.getWorlds().get(0), 109.5, 73, -22.5)) > 5) {
             new BukkitRunnable() {
                 int count = 5;
 
@@ -87,7 +87,7 @@ public class Handler implements Listener {
             Location bedSpawnPoint = player.getBedSpawnLocation();
             if (bedSpawnPoint == null) {
                 World overworld = Bukkit.getWorlds().get(0);
-                event.setRespawnLocation(new Location(overworld, 0, 70, 0));
+                event.setRespawnLocation(new Location(overworld, 109.5, 72, -22.5));
             }
             playerDeathStatus.put(player, false);
             player.getInventory().clear();
