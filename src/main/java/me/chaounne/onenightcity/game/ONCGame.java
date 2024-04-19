@@ -202,12 +202,9 @@ public class ONCGame {
                             new Location(world, 87, 69, -41),
                             new Location(world, 88, 69, -41),
                     };
-                    for (Location location : endGateBlocks) {
-                        Block block = location.getBlock();
-                        if (block.getType() != Material.AIR) {
-                            block.breakNaturally();
-                        }
-                    }
+                    for (Location location : endGateBlocks)
+                        location.getBlock().setType(Material.AIR);
+
                     Location[] endChests = new Location[] {
                             new Location(world, 95.5, 43, -31),
                             new Location(world, 77, 42, -31),
