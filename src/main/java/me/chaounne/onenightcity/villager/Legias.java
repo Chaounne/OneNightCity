@@ -26,9 +26,9 @@ public class Legias extends Trader {
         LinkedHashMap<Material, Integer[]> items = new LinkedHashMap<>();
 
         items.put(Material.ARROW, new Integer[] {Random.between(1, 5), Random.between(15, 50)});
-        items.put(Material.BOW, new Integer[] {Random.between(1, 1), Random.between(700, 2000)});
+        items.put(Material.BOW, new Integer[] {Random.between(1, 1), Random.between(500, 1500)});
         items.put(Material.SPECTRAL_ARROW, new Integer[] {Random.between(1, 5), Random.between(25, 150)});
-        items.put(Material.CROSSBOW, new Integer[] {Random.between(1, 1), Random.between(2000, 4000)});
+        items.put(Material.CROSSBOW, new Integer[] {Random.between(1, 1), Random.between(1250, 2500)});
         items.put(Material.BIG_DRIPLEAF, new Integer[] {Random.between(1, 5), Random.between(15, 100)});
         items.put(Material.SMALL_DRIPLEAF, new Integer[] {Random.between(1, 5), Random.between(15, 100)});
         items.put(Material.SPORE_BLOSSOM, new Integer[] {Random.between(1, 5), Random.between(40, 250)});

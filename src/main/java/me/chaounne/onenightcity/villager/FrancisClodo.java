@@ -42,6 +42,7 @@ public class FrancisClodo extends Trader {
         items.put(Material.CHAINMAIL_BOOTS, new Integer[] {Random.between(1, 1), Random.between(1500, 3000)});
         items.put(Material.ENCHANTED_GOLDEN_APPLE, new Integer[] {Random.between(1, 1), Random.between(10000, 25000)});
         items.put(Material.LAVA_BUCKET, new Integer[] {Random.between(1, 1), Random.between(250, 500)});
+        items.put(Material.TRIDENT, new Integer[] {Random.between(1, 1), Random.between(10000, 20000)});
 
         return items;
     }

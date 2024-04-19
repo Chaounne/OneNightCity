@@ -29,7 +29,7 @@ public class LucieAcier extends Trader {
        items.put(Material.NETHER_WART_BLOCK, new Integer[] {Random.between(1, 5), Random.between(10, 25)});
        items.put(Material.WARPED_WART_BLOCK, new Integer[] {Random.between(1, 5), Random.between(10, 25)});
        items.put(Material.WARPED_FUNGUS, new Integer[] {Random.between(1, 5), Random.between(10, 20)});
-       items.put(Material.WARPED_FUNGUS_ON_A_STICK, new Integer[] {Random.between(1, 1), Random.between(100, 1500)});
+       items.put(Material.WARPED_FUNGUS_ON_A_STICK, new Integer[] {Random.between(1, 1), Random.between(500, 1250)});
        items.put(Material.QUARTZ_BLOCK, new Integer[] {Random.between(1, 5), Random.between(20, 50)});
        items.put(Material.QUARTZ, new Integer[] {Random.between(1, 5), Random.between(10, 40)});
        items.put(Material.NETHER_BRICK, new Integer[] {Random.between(1, 5), Random.between(10, 30)});

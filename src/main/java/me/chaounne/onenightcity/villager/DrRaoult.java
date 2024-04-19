@@ -37,6 +37,8 @@ public class DrRaoult extends Trader {
         items.put(Material.SLIME_BALL, new Integer[] {Random.between(1, 3), Random.between(100, 1000)});
         items.put(Material.SCUTE, new Integer[] {Random.between(1, 1), Random.between(5000, 10000)});
         items.put(Material.WITHER_SKELETON_SKULL, new Integer[] {Random.between(1, 1), Random.between(4000, 8000)});
+        items.put(Material.WITHER_ROSE, new Integer[] {Random.between(1, 1), Random.between(2500, 5000)});
+        items.put(Material.BEACON, new Integer[] {Random.between(1, 1), Random.between(15000, 25000)});
 
         return items;
     }

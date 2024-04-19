@@ -27,9 +27,9 @@ public class Ikikomori extends Trader {
 
         items.put(Material.MOSS_BLOCK, new Integer[] {Random.between(1, 5), Random.between(10, 45)});
         items.put(Material.MOSS_CARPET, new Integer[] {Random.between(1, 5), Random.between(10, 30)});
-        items.put(Material.OCHRE_FROGLIGHT, new Integer[] {Random.between(1, 5), Random.between(50, 1000)});
-        items.put(Material.PEARLESCENT_FROGLIGHT, new Integer[] {Random.between(1, 5), Random.between(50, 1000)});
-        items.put(Material.VERDANT_FROGLIGHT, new Integer[] {Random.between(1, 5), Random.between(50, 1000)});
+        items.put(Material.OCHRE_FROGLIGHT, new Integer[] {Random.between(1, 1), Random.between(50, 1000)});
+        items.put(Material.PEARLESCENT_FROGLIGHT, new Integer[] {Random.between(1, 1), Random.between(50, 1000)});
+        items.put(Material.VERDANT_FROGLIGHT, new Integer[] {Random.between(1, 1), Random.between(50, 1000)});
         items.put(Material.AXOLOTL_BUCKET, new Integer[] {Random.between(1, 1), Random.between(20, 500)});
         items.put(Material.MANGROVE_PLANKS, new Integer[] {Random.between(1, 5), Random.between(10, 40)});
         items.put(Material.MANGROVE_LEAVES, new Integer[] {Random.between(1, 5), Random.between(10, 40)});
