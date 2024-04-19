@@ -35,6 +35,7 @@ public class JustinPuech extends Trader {
         items.put(Material.TROPICAL_FISH_BUCKET, new Integer[] {Random.between(1, 3), Random.between(800, 2000)});
         items.put(Material.CARROT_ON_A_STICK, new Integer[] {Random.between(1, 1), Random.between(750, 1500)});
         items.put(Material.AXOLOTL_BUCKET, new Integer[] {Random.between(1, 1), Random.between(1500, 4000)});
+        items.put(Material.TADPOLE_BUCKET, new Integer[] {Random.between(1, 1), Random.between(500, 1000)});
 
         return items;
     }

@@ -29,7 +29,7 @@ public class CheepCheap extends Trader {
                 "WHITE_WOOL", "RED_WOOL", "BLUE_WOOL", "GREEN_WOOL", "YELLOW_WOOL",
                 "PURPLE_WOOL", "ORANGE_WOOL", "MAGENTA_WOOL", "LIGHT_BLUE_WOOL",
                 "LIGHT_GRAY_WOOL", "GRAY_WOOL", "BLACK_WOOL", "BROWN_WOOL",
-                "CYAN_WOOL", "LIME_WOOL"
+                "CYAN_WOOL", "LIME_WOOL", "PINK_WOOL"
         };
 
         for (String woolColor : woolColors) {
