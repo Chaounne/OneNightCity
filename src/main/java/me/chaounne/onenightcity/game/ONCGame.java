@@ -206,17 +206,19 @@ public class ONCGame {
                         location.getBlock().setType(Material.AIR);
 
                     Location[] endChests = new Location[] {
-                            new Location(world, 95.5, 43, -31),
-                            new Location(world, 77, 42, -31),
-                            new Location(world, 80, 38, -31),
+                            new Location(world, 95, 43, -32),
+                            new Location(world, 77, 42, -32),
+                            new Location(world, 80, 38, -32),
                             new Location(world, 105, 30, -35),
-                            new Location(world, 94, 30, -21),
+                            new Location(world, 94, 30, -22),
                             new Location(world, 79, 34, -35),
-                            new Location(world, 87, 24, -40),
+                            new Location(world, 87, 24, -41),
                             new Location(world, 76, 26, -30),
                             new Location(world, 83, 29, -25),
-                            new Location(world, 85, 35, -28),
+                            new Location(world, 85, 34, -29),
                             new Location(world, 82, 34, -35),
+                            new Location(world, 90, 39, -34),
+                            new Location(world, 94, 34, -33),
                     };
                     for (Location location : endChests) {
                         GenerateChest.spawnEndChest(location);
@@ -227,7 +229,7 @@ public class ONCGame {
                     end = true;
                 }
                 if (time <= randomTime && !darkHenry) { // Dark Henry spawn entre 30m et 1h20 ; remettre à 6250
-                    new DarkHenry(new Location(Bukkit.getWorlds().get(0), 103, 63, -23.6, 90, 0));
+                    new DarkHenry(new Location(Bukkit.getWorlds().get(0), 104, 63, -24, 90, 0));
                     Location location = new Location(world, 0, 62, 1);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 4.0f);
                     world.spawnParticle(Particle.REDSTONE, location, 100, 2, 2, 2, 1, dustOptions);
@@ -375,32 +377,32 @@ public class ONCGame {
         timer.runTaskTimerAsynchronously(OneNightCity.getInstance(), 0, 20);
 
         // nord-est
-        new SombreHeros(new Location(world, 121, 72, -43.5, 90, 0));
-        new Ikikomori(new Location(world, 107, 71, 6, -90, 0));
-        new NegeuxDemo(new Location(world, 83, 71, -24.5, -90, 0));
+        new SombreHeros(new Location(world, 121.5, 72, -43.5, 90, 0));
+        new Ikikomori(new Location(world, 107.5, 71, 6.5, -90, 0));
+        new NegeuxDemo(new Location(world, 82.5, 71, -24.5, -90, 0));
         // sud-est
         new LucieAcier(new Location(world, 131.5, 72, -39.5, 90, 0));
-        new SylvainDurif(new Location(world, 89, 72, -32.5, 0, 0));
-        new DrRaoult(new Location(world, 102, 71, -44.5, -90, 0));
+        new SylvainDurif(new Location(world, 89.5, 72, -32.5, 0, 0));
+        new DrRaoult(new Location(world, 102.5, 71, -44.5, -90, 0));
         // sud-ouest
         new KylianMBouffe(new Location(world, 112, 72, -46.5, 0, 0));
         new JeanMineur(new Location(world, 118.5, 71, -51.5, -90, 0));
         new LesPierres(new Location(world, 126.5, 71, -51.5, 90, 0));
         // nord-ouest
-        new MicoseMicode(new Location(world, 122, 71, -47.5, 180, 0));
-        new HutilItaire(new Location(world, 122, 71, -55, 0, 0));
-        new BeauThony(new Location(world, 105.5, 71, -2.5, -90, 0));
+        new MicoseMicode(new Location(world, 122.5, 71, -47.5, 180, 0));
+        new HutilItaire(new Location(world, 122.5, 71, -55, 0, 0));
+        new BeauThony(new Location(world, 104.5, 71, -3.5, -90, 0));
         // henry
-        new Henry(new Location(world, 118.5, 72, 7, 180, 0));
+        new Henry(new Location(world, 118.5, 72, 7.5, 180, 0));
         // port
-        new Dream(new Location(world, 104, 83, 6.5, 90, 0));
-        new JykaRouler(new Location(world, 128, 72, -32, 180, 0));
-        new FrancisClodo(new Location(world, 128.5, 72, -9, 180, 0));
-        new Jeaneau(new Location(world, 87, 71, -28.5, -90, 0));
+        new Dream(new Location(world, 104.5, 83, 6.5, 90, 0));
+        new JykaRouler(new Location(world, 128.5, 72, -32, 180, 0));
+        new FrancisClodo(new Location(world, 128.5, 72, -8, 180, 0));
+        new Jeaneau(new Location(world, 94.5, 70, -16.5, 180, 0));
         new CheepCheap(new Location(world, 124, 72, -3.5, 90, 0));
-        new JustinPuech(new Location(world, 106, 73, 36.5, 180, 0));
-        new Legias(new Location(world, 103, 71, -35, -90, 0));
-        new VigneHill(new Location(world, 128, 80, -7, 180, 0));
+        new JustinPuech(new Location(world, 92, 71, -8, 90, 0));
+        new Legias(new Location(world, 103.5, 71, -35.5, -90, 0));
+        new VigneHill(new Location(world, 128.5, 80, -7, 180, 0));
     }
 
     public void endGame(){

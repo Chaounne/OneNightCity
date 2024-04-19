@@ -92,7 +92,7 @@ public class QuineItem {
                 return;
             }
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.getLocation().distance(player.getWorld().getSpawnLocation()) < 50) {
+                if (player.getLocation().distance(new Location(Bukkit.getWorlds().get(0), 109.5, 72, -22.5)) < 50) {
                     // Vérification de la présence des 3 items requis dans l'inventaire du joueur
                     boolean hasAllItems = true;
                     for (ItemStack item : itemsToFind) {

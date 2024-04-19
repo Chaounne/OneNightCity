@@ -160,7 +160,7 @@ public class GenerateChest {
                     do {
                         x = spawn.getX() + (random.nextDouble() * rayon * 2) - rayon;
                         z = spawn.getZ() + (random.nextDouble() * rayon * 2) - rayon;
-                    } while ((x < 100 && x > -100) || (z < 100 && z > -100)); // Ajout de la condition
+                    } while ((x < 200 && x > 50) || (z > -100 && z < 100)); // Ajout de la condition
 
                     Location chestLocation = new Location(spawn.getWorld(), x, spawn.getY(), z);
 

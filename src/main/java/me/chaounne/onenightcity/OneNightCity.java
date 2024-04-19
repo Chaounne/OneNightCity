@@ -45,7 +45,7 @@ public final class OneNightCity extends JavaPlugin {
         world.setTime(0);
 
         // supprime les villageois à 100 blocks de rayon du spawn
-        Location spawn_loc = new Location(world, 0, 70, 0);
+        Location spawn_loc = new Location(world, 109.5, 72, -22.5);
         for (Entity entity : world.getEntities()) {
             if (entity.getType() == EntityType.VILLAGER) {
                 if (entity.getLocation().distance(spawn_loc) <= 100)
