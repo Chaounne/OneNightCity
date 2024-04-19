@@ -44,7 +44,7 @@ public class SampleInventory extends FastInv {
     };
 
     public void trade(int price, ItemStack item, Player player) {
-        if (player.getInventory().containsAtLeast(item, item.getAmount())) {
+        if (player.getInventory().contains(item.getType(), item.getAmount())) {
             GamePlayer gamePlayer = GamePlayer.getInstance(player);
 
             int powderGained = 0;
