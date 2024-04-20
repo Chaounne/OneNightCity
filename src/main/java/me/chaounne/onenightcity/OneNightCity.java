@@ -88,13 +88,12 @@ public final class OneNightCity extends JavaPlugin {
 
         Hologram news = DHAPI.createHologram("nouveautes", new Location(world, 121.5, 158, -49));
         DHAPI.addHologramLine(news, ChatColor.RED + "NOUVEAUTÉS");
-        DHAPI.addHologramLine(news, "Nouveaux items : Lava bucket et Axolotl bucket");
-        DHAPI.addHologramLine(news, "Les rayons sont désormais beaucoup plus visible !");
-        DHAPI.addHologramLine(news, "Les trackers valent 15k au lieu de 25k");
-        DHAPI.addHologramLine(news, "Buff Carrot on a stick");
-        DHAPI.addHologramLine(news, "Nerf générateurs à 1 item par 2s");
-        DHAPI.addHologramLine(news, "Petit nerf Jukebox");
-        DHAPI.addHologramLine(news, "Le water/milk bucket n'est plus vendable");
+        DHAPI.addHologramLine(news, "Nouveau spawn !");
+        DHAPI.addHologramLine(news, "Nouveaux items : Laine rose, Seau de tétard");
+        DHAPI.addHologramLine(news, "Wither rose, Beacon, Trident");
+        DHAPI.addHologramLine(news, "Dark Henry 20k -> 25k");
+        DHAPI.addHologramLine(news, "Nerf items utilisant des fils");
+        DHAPI.addHologramLine(news, "Fix la vente de seaux d'axolotl qui ne marchait pas");
         DHAPI.addHologramLine(news, "Plus d'info dans le channel #nouveautés sur Discord");
 
         Hologram help = DHAPI.createHologram("aide", new Location(world, 125, 157, -40));
