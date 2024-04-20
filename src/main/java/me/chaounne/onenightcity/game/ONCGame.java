@@ -397,7 +397,7 @@ public class ONCGame {
         // port
         new Dream(new Location(world, 104.5, 83, 6.5, 90, 0));
         new JykaRouler(new Location(world, 128.5, 72, -32, 180, 0));
-        new FrancisClodo(new Location(world, 128.5, 72, -8, 180, 0));
+        new FrancisClodo(new Location(world, 128.5, 72, -9.5, 180, 0));
         new Jeaneau(new Location(world, 94.5, 70, -16.5, 180, 0));
         new CheepCheap(new Location(world, 124, 72, -3.5, 90, 0));
         new JustinPuech(new Location(world, 92, 71, -8, 90, 0));
