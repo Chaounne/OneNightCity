@@ -12,3 +12,5 @@ Consultez le document officiel pour plus de détails sur le plugin :
 📄 [Télécharger le document officiel (PDF)](assets/OneNightCity_DOCUMENT_Officiel-2.pdf)
 
 ---
+
+> **Note :** Si le PDF ne s'affiche pas correctement, cliquez sur le lien de téléchargement ci-dessus ou consultez directement le fichier dans le dossier `assets/`.
